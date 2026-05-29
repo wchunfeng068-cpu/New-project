@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="zh-CN" data-default-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRAVELDAY | Company Presence</title>
+    <meta
+      name="description"
+      content="TRAVELDAY 公司风采页面，使用极简轻奢风格呈现团队、会面与品牌气质。"
+    />
+    <style>
+      :root {
+        --page: #f6f1e8;
+        --surface: rgba(255, 255, 255, 0.7);
+        --surface-strong: rgba(255, 255, 255, 0.88);
+        --ink: #171411;
+        --text: #5f564d;
+        --muted: #887d70;
+        --line: rgba(136, 113, 82, 0.14);
+        --frame-border: rgba(136, 113, 82, 0.14);
+        --frame-shadow: 0 18px 38px rgba(64, 44, 18, 0.08);
+        --frame-footer: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 242, 233, 0.96));
+        --gold: #b88922;
+        --gold-dark: #9d6f0f;
+        --shadow: 0 24px 60px rgba(64, 44, 18, 0.1);
+        --radius: 28px;
+        --radius-sm: 18px;
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.86), transparent 26%),
+          radial-gradient(circle at 84% 14%, rgba(187, 147, 59, 0.08), transparent 22%),
+          linear-gradient(180deg, #fbf8f2 0%, #f5efe5 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      .page {
+        width: min(1500px, calc(100vw - 40px));
+        margin: 18px auto 30px;
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: 180px 1fr auto;
+        align-items: center;
+        gap: 20px;
+        padding: 8px 10px 20px;
+      }
+
+      .brand {
+        width: 154px;
+        height: 60px;
+      }
+
+      .brand img {
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        color: #73695c;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .nav a {
+        position: relative;
+        padding: 12px 0;
+      }
+
+      .nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 5px;
+        width: 22px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .pill,
+      .button {
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(112, 90, 60, 0.14);
+        background: rgba(255, 255, 255, 0.72);
+        color: #61574e;
+        font-size: 13px;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .button.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, #d5a52a, #b6881c);
+        color: #fff;
+        box-shadow: 0 10px 24px rgba(182, 136, 28, 0.2);
+      }
+
+      .hero,
+      .section {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        overflow: visible;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+        min-height: 640px;
+        gap: 18px;
+        padding: 18px;
+      }
+
+      .hero-copy {
+        padding: 28px 24px 22px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
+      }
+
+      .hero-copy .eyebrow,
+      .story-copy .eyebrow {
+        color: rgb(184, 137, 34);
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--gold);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .hero h1,
+      .section-title {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .hero h1 {
+        max-width: 10ch;
+        font-size: clamp(48px, 5vw, 86px);
+        line-height: 0.96;
+        margin-top: 16px;
+      }
+
+      .hero-copy p {
+        margin: 18px 0 0;
+        max-width: 520px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .hero-points {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .hero-points span,
+      .tag {
+        min-height: 36px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(106, 89, 66, 0.12);
+        background: rgba(255, 255, 255, 0.68);
+        color: #72675b;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .hero-visual {
+        position: relative;
+        border-radius: calc(var(--radius) - 6px);
+        overflow: hidden;
+        min-height: 100%;
+        background:
+          radial-gradient(circle at 16% 20%, rgba(255, 255, 255, 0.28), transparent 24%),
+          linear-gradient(135deg, #f4eee4, #e7d9c6 58%, #d4c2aa);
+      }
+
+      .hero-visual img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .hero-note {
+        position: absolute;
+        right: 24px;
+        bottom: 22px;
+        max-width: 220px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.54);
+        backdrop-filter: blur(6px);
+      }
+
+      .hero-note strong {
+        display: block;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .hero-note span {
+        display: block;
+        margin-top: 6px;
+        color: rgba(82, 72, 62, 0.74);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        padding: 0 8px 14px;
+      }
+
+      .section-title {
+        font-size: 30px;
+        line-height: 1.08;
+      }
+
+      .section-copy {
+        max-width: 520px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+
+      .story {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+        gap: 14px;
+        padding: 14px;
+      }
+
+      .story-copy {
+        min-height: 360px;
+        padding: 16px 6px 10px 16px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .story-copy h3 {
+        width: min(500px, 100%);
+        max-width: min(500px, 100%);
+        margin: 10px 0 10px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(24px, 2.8vw, 34px);
+        font-weight: 500;
+        line-height: 1.06;
+      }
+
+      .story-copy p {
+        margin: 0;
+        max-width: 500px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .story-list {
+        margin-top: auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .story-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #c59b2b, #9f7111);
+        box-shadow: 0 0 0 4px rgba(201, 155, 38, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .story-item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #2d251d;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .story-item span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .story-visual {
+        order: -1;
+        min-height: 500px;
+        height: 500px;
+        border-radius: 22px;
+        overflow: hidden;
+      }
+
+      .story-visual img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .employee-strip {
+        display: none !important;
+      }
+
+      .team {
+        padding: 20px 18px 18px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+        justify-items: center;
+      }
+
+      .team .section-head {
+        width: min(840px, 100%);
+        margin: 0 auto;
+        display: block;
+        padding: 4px 8px 2px;
+        text-align: center;
+      }
+
+      .team .section-head .eyebrow,
+      .team .section-copy {
+        display: block;
+      }
+
+      .team .section-head > div {
+        display: grid;
+        gap: 8px;
+      }
+
+      .team .section-title {
+        font-size: clamp(26px, 2.4vw, 34px);
+        line-height: 1.18;
+      }
+
+      .team .section-copy {
+        display: block;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      .member-menu {
+        --active-progress: 0%;
+        position: relative;
+        isolation: isolate;
+        justify-self: stretch;
+        min-width: 0;
+        max-width: 100%;
+        width: min(1120px, 100%);
+        margin: 0 auto;
+        padding: 8px 0 76px;
+        border-radius: 28px;
+        overflow: visible;
+        border: 1px solid var(--frame-border);
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(248, 243, 235, 0.96)),
+          radial-gradient(circle at 50% 18%, rgba(214, 171, 51, 0.08), transparent 38%);
+        box-shadow: var(--frame-shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .member-menu::before {
+        content: "";
+        position: absolute;
+        inset: auto 14% 54px;
+        height: 54px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(185, 137, 34, 0.11), transparent 66%);
+        filter: blur(18px);
+        pointer-events: none;
+      }
+
+      .member-viewport {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        overflow: visible;
+        min-height: clamp(470px, 40vw, 560px);
+        padding: 8px 22px 8px;
+      }
+
+      .member-track {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        height: clamp(408px, 35vw, 488px);
+        padding: 0;
+      }
+
+      .member-card {
+        position: absolute;
+        top: var(--card-top, 0px);
+        left: 50%;
+        width: clamp(196px, 15.8vw, 236px);
+        height: clamp(360px, 31vw, 438px);
+        flex: 0 0 clamp(196px, 15.8vw, 236px);
+        appearance: none;
+        border: 0;
+        padding: 0;
+        border-radius: 20px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: #e7dfd2;
+        border: 1px solid var(--frame-border);
+        box-shadow: none;
+        cursor: pointer;
+        color: inherit;
+        opacity: var(--card-opacity, 1);
+        transform: translate3d(calc(-50% + var(--card-x, 0px)), var(--card-y, 10px), 0) scale3d(
+          var(--card-scale-x, 0.94),
+          var(--card-scale-y, 0.94),
+          1
+        );
+        transform-origin: center top;
+        transition:
+          transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.42s ease,
+          box-shadow 0.42s ease,
+          border-color 0.42s ease;
+      }
+
+      .member-card::before,
+      .member-card::after {
+        content: none;
+      }
+
+      .member-card.is-near {
+        opacity: 1;
+      }
+
+      .member-card.is-active {
+        --card-top: 0px;
+        --card-y: 0px;
+        --card-scale-x: 1;
+        --card-scale-y: 1;
+        opacity: 1;
+        border-color: rgba(185, 137, 34, 0.34);
+        box-shadow:
+          0 0 0 1px rgba(214, 171, 51, 0.08) inset,
+          0 18px 36px rgba(64, 44, 18, 0.12);
+      }
+
+      .member-menu.is-expanded .member-card.is-active {
+        box-shadow:
+          0 0 0 1px rgba(214, 171, 51, 0.12) inset,
+          0 28px 52px rgba(64, 44, 18, 0.16);
+      }
+
+      .member-menu.is-expanded .member-card:not(.is-active) {
+        opacity: 0 !important;
+        box-shadow: none;
+        pointer-events: none;
+      }
+
+      .member-card img {
+        flex: 1 1 auto;
+        min-height: 0;
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        object-position: center center;
+        transform: none;
+        filter: none;
+        background: #dacfc1;
+      }
+
+      .member-meta {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-height: 96px;
+        padding: 12px 12px 14px;
+        border-top: 1px solid rgba(136, 113, 82, 0.12);
+        background: var(--frame-footer);
+        text-align: left;
+      }
+
+      .member-card:not(.is-active) .member-meta {
+        opacity: 1;
+      }
+
+      .member-canvas,
+      .menu-card-layer,
+      .menu-copy,
+      .menu-hint {
+        display: none;
+      }
+
+      .member-progress {
+        position: absolute;
+        left: clamp(24px, 4vw, 54px);
+        right: clamp(24px, 4vw, 54px);
+        bottom: 50px;
+        z-index: 2;
+        height: 1px;
+        overflow: hidden;
+        background: rgba(136, 113, 82, 0.14);
+      }
+
+      .member-progress::after {
+        content: "";
+        display: block;
+        width: var(--active-progress);
+        height: 100%;
+        background: linear-gradient(90deg, rgba(185, 137, 34, 0.2), rgba(185, 137, 34, 0.82));
+        transition: width 0.45s ease;
+      }
+
+      .menu-actions {
+        --action-size: 48px;
+        --progress-offset: 50px;
+        position: absolute;
+        left: 50%;
+        bottom: calc((var(--progress-offset) - var(--action-size)) / 2);
+        z-index: 5;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        justify-content: center;
+        width: max-content;
+        transform: translateX(-50%);
+        pointer-events: auto;
+      }
+
+      .menu-nav {
+        width: 48px;
+        height: 48px;
+        border: 1px solid rgba(130, 109, 78, 0.16);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.76);
+        color: var(--ink);
+        font-size: 28px;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(64, 44, 18, 0.08);
+        transition:
+          transform 0.2s ease,
+          border-color 0.2s ease,
+          background 0.2s ease;
+      }
+
+      .menu-nav:hover {
+        transform: translateY(-1px);
+        border-color: rgba(185, 137, 34, 0.36);
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      .menu-actions .button.primary {
+        min-width: 148px;
+      }
+
+      .menu-hint {
+        position: absolute;
+        right: 22px;
+        bottom: 24px;
+        z-index: 2;
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(136, 113, 82, 0.14);
+        background: rgba(255, 255, 255, 0.68);
+        color: var(--muted);
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        backdrop-filter: blur(10px);
+      }
+
+      .menu-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .member-card .member-meta {
+        min-height: 96px;
+      }
+
+      .member-role {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .member-name {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.1;
+      }
+
+      .member-copy {
+        margin: 0;
+        color: var(--text);
+        font-size: 10px;
+        line-height: 1.5;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .gallery {
+        padding: 18px;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .gallery-grid figure {
+        margin: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      .gallery-grid figure img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: inherit;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 14px 8px 4px;
+        color: #7b7167;
+        font-size: 12px;
+      }
+
+      @media (max-width: 1080px) {
+        .topbar,
+        .hero,
+        .story,
+        .member-carousel {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .actions {
+          justify-content: flex-start;
+        }
+
+        .hero-copy,
+        .story-copy {
+          min-height: auto;
+          padding-right: 10px;
+        }
+
+        .hero-visual,
+        .story-visual {
+          min-height: 320px;
+        }
+
+        .carousel-arrow {
+          display: none;
+        }
+
+        .member-viewport {
+          min-height: clamp(440px, 54vw, 520px);
+        }
+
+        .footer {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          width: min(100vw - 24px, 1500px);
+          margin-top: 12px;
+        }
+
+        .topbar {
+          padding: 8px 4px 12px;
+        }
+
+        .hero,
+        .story,
+        .team,
+        .gallery {
+          padding: 14px;
+        }
+
+        .hero-copy {
+          padding: 8px 6px 12px;
+        }
+
+        .hero h1 {
+          max-width: 12ch;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .story-visual,
+        .hero-visual {
+          min-height: 320px;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .member-card {
+          width: min(54vw, 228px);
+          height: min(98vw, 392px);
+          flex-basis: min(54vw, 228px);
+        }
+
+        .member-card .member-meta {
+          min-height: 96px;
+          padding: 11px 11px 13px;
+        }
+
+        .gallery-grid figure {
+          border-radius: 16px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .member-menu {
+          padding-bottom: 64px;
+        }
+
+        .menu-copy {
+          max-width: calc(100% - 44px);
+        }
+
+        .menu-actions {
+          --progress-offset: 50px;
+          left: 50%;
+          right: auto;
+          bottom: calc((var(--progress-offset) - var(--action-size)) / 2);
+          justify-content: center;
+          transform: translateX(-50%);
+        }
+
+        .menu-description {
+          max-width: 30ch;
+        }
+      }
+    </style><style>
+      .site-header {
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        gap: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        position: relative;
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+        overflow: visible;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.65);
+        color: #1c1916;
+        box-shadow: none;
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .primary-nav,
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        body.is-menu-open .primary-nav,
+        body.is-menu-open .header-actions {
+          display: flex;
+        }
+
+        .primary-nav {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+          padding-top: 12px;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="page">
+            <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY ??">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="./product-center-preview.html">产品中心</a>
+          <a href="../index.html#solutions">解决方案</a>
+          <a class="active" href="./company-presence-preview.html">关于我们</a>
+          <a href="../index.html#market">市场</a>
+          <a href="../index.html#contact">联系我们</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <a class="quote-button" href="../index.html#contact">获取报价 →</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" aria-label="Company Presence hero">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">Company Presence</p>
+              <h1>不费力的精致</h1>
+              <p>
+                让品牌的自信、专业与质感在安静里被看见。
+              </p>
+              <div class="hero-points" aria-label="Brand traits">
+                <span>Elegant</span>
+                <span>Professional</span>
+                <span>Global</span>
+                <span>Calm Confidence</span>
+              </div>
+            </div>
+          </div>
+
+          <figure class="hero-visual">
+            <img src="../images/company-presence/hero-portrait.png" alt="品牌气质展示，模特与旅行箱同框" />
+            <figcaption class="hero-note">
+              <strong>Travel in Style</strong>
+              <span>光线、材质、姿态和节奏，一起把品牌的轻奢感稳稳托住。</span>
+            </figcaption>
+          </figure>
+        </section>
+
+                <section class="section story" aria-labelledby="story-title">
+          <div class="story-copy">
+            <p class="eyebrow">Meeting Culture</p>
+            <h3 id="story-title">鎶婁笓涓氭斁鍦ㄥ璇濋噷锛屾妸淇′换鏀惧湪缁嗚妭閲屻€?</h3>
+            <p>
+              鎴戜滑鎶婁細璋堝満鏅繚鐣欏緱瓒冲瀹夐潤
+            </p>
+          </div>
+
+          <figure class="story-visual">
+            <img src="../images/company-presence/meeting-room.png" alt="浼氳瀹ゅ満鏅紝鍥㈤槦鍥寸粫鏃呰绠辨柟妗堟矡閫? />
+          </figure>
+        </section>
+
+        <section class="section employee-strip" aria-labelledby="employee-strip-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Employee Carousel</p>
+              <h2 class="section-title" id="employee-strip-title">员工照片轮播展示</h2>
+            </div>
+            <p class="section-copy">
+              这里是独立可见的员工轮播模块，横向滑动即可查看每位员工的照片和说明。
+            </p>
+          </div>
+
+          <div class="strip-wrap" aria-label="员工照片轮播">
+            <div class="strip-track">
+              <article class="strip-card">
+                <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" />
+                <div class="strip-copy">
+                  <strong>Lucky</strong>
+                  <span>Sales · Professional in every word, trusted on every trip.</span>
+                </div>
+              </article>
+              <article class="strip-card">
+                <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" />
+                <div class="strip-copy">
+                  <strong>Rita</strong>
+                  <span>Sales · Warm service and steady follow-through for each client.</span>
+                </div>
+              </article>
+              <article class="strip-card">
+                <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" />
+                <div class="strip-copy">
+                  <strong>Zoe</strong>
+                  <span>Sales · Professional execution with calm, confident delivery.</span>
+                </div>
+              </article>
+              <article class="strip-card">
+                <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" />
+                <div class="strip-copy">
+                  <strong>Beauty</strong>
+                  <span>Sales · 15+ years in luggage sourcing and one-stop support.</span>
+                </div>
+              </article>
+              <article class="strip-card">
+                <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" />
+                <div class="strip-copy">
+                  <strong>Alice</strong>
+                  <span>Sales · Integrity builds trust and long-term partnerships.</span>
+                </div>
+              </article>
+              <article class="strip-card">
+                <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" />
+                <div class="strip-copy">
+                  <strong>Sunny</strong>
+                  <span>Finance · Consistent effort, patient follow-through, precise control.</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+<section class="section team" id="team" aria-labelledby="team-title" hidden aria-hidden="true">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Employee Carousel</p>
+              <h2 class="section-title" id="team-title">员工照片轮播展示</h2>
+            </div>
+            <p class="section-copy">
+              让团队成员以更有秩序的方式被看见，页面保持轻奢、克制和清爽，后续只需替换成员图即可。
+            </p>
+          </div>
+
+          <div class="member-menu" data-team-carousel>
+            <div class="member-viewport">
+              <div class="member-track" data-member-track>
+                <button class="member-card" type="button" data-member-card data-index="0" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Lucky</span>
+                    <span class="member-copy">Professional in every word, trusted on every trip.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card data-index="1" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Rita</span>
+                    <span class="member-copy">Warm service and steady follow-through for each client.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card data-index="2" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Zoe</span>
+                    <span class="member-copy">Professional execution with calm, confident delivery.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card data-index="3" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Beauty</span>
+                    <span class="member-copy">15+ years in luggage sourcing and one-stop support.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card data-index="4" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Alice</span>
+                    <span class="member-copy">Integrity builds trust and long-term partnerships.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card data-index="5" style="--image-position: 50%;">
+                  <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" />
+                  <span class="member-meta">
+                    <span class="member-role">Finance</span>
+                    <span class="member-name">Sunny</span>
+                    <span class="member-copy">Consistent effort, patient follow-through, precise control.</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="member-progress" aria-hidden="true"></div>
+
+            <div class="menu-actions">
+              <button class="menu-nav" type="button" data-menu-prev aria-label="Previous member">&#8249;</button>
+              <button class="button primary" type="button" data-menu-toggle aria-pressed="false">查看成员</button>
+              <button class="menu-nav" type="button" data-menu-next aria-label="Next member">&#8250;</button>
+            </div>
+          </div>
+          <div class="member-menu legacy-team-carousel" hidden>
+            <div class="member-viewport">
+              <div class="member-track" data-member-track>
+                <button class="member-card" type="button" data-member-card>
+                  <img src="../images/company-presence/team-member-01.png" alt="团队成员一" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Member 01</span>
+                    <span class="member-copy">Calm confidence, clear communication.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card>
+                  <img src="../images/company-presence/team-member-02.png" alt="团队成员二" />
+                  <span class="member-meta">
+                    <span class="member-role">Sales</span>
+                    <span class="member-name">Member 02</span>
+                    <span class="member-copy">Professional support with a warm rhythm.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card>
+                  <img src="../images/company-presence/team-member-03.png" alt="团队成员三" />
+                  <span class="member-meta">
+                    <span class="member-role">Finance</span>
+                    <span class="member-name">Member 03</span>
+                    <span class="member-copy">Precise thinking, steady delivery.</span>
+                  </span>
+                </button>
+                <button class="member-card" type="button" data-member-card>
+                  <img src="../images/company-presence/team-member-04.png" alt="团队成员四" />
+                  <span class="member-meta">
+                    <span class="member-role">Operations</span>
+                    <span class="member-name">Member 04</span>
+                    <span class="member-copy">Structured, responsive, and reliable.</span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="member-progress" aria-hidden="true"></div>
+            <canvas class="member-canvas" data-menu-canvas aria-label="团队成员无限菜单"></canvas>
+            <div class="menu-card-layer" data-menu-card-layer aria-label="团队成员3D无限菜单"></div>
+
+            <div class="menu-overlay">
+              <div class="menu-copy">
+                <p class="eyebrow">Infinite Menu</p>
+                <h3 class="menu-title" data-menu-title>Member 01</h3>
+                <p class="menu-description" data-menu-description>Calm confidence, clear communication.</p>
+              </div>
+
+              <div class="menu-actions">
+                <button class="menu-nav" type="button" data-menu-prev aria-label="上一个成员">‹</button>
+                <a class="button primary" data-menu-link href="#" target="_blank" rel="noreferrer">查看成员</a>
+                <button class="menu-nav" type="button" data-menu-next aria-label="下一个成员">›</button>
+              </div>
+
+              <div class="menu-hint">Drag to rotate · wheel to spin · click a card to focus</div>
+            </div>
+          </div>
+        </section>
+        <section class="section gallery" aria-labelledby="gallery-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Editorial Moments</p>
+              <h2 class="section-title" id="gallery-title">出行、会面、日常，都可以很克制。</h2>
+            </div>
+          </div>
+
+          <div class="gallery-grid">
+            <figure>
+              <img src="../images/company-presence/travel-lifestyle-grid-a.png" alt="旅行场景编辑图一" />
+            </figure>
+            <figure>
+              <img src="../images/company-presence/travel-lifestyle-grid-b.png" alt="旅行场景编辑图二" />
+            </figure>
+            <figure>
+              <img src="../images/company-presence/travel-lifestyle-grid-c.png" alt="旅行场景编辑图三" />
+            </figure>
+            <figure>
+              <img src="../images/company-presence/meeting-room.png" alt="会谈场景编辑图" />
+            </figure>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>TRAVELDAY Company Presence</span>
+          <span>Minimal luxury / calm / structured / precise</span>
+        </footer>
+      </main>
+    </div>
+
+    <!-- <script>
+      (() => {
+      const carousel = document.querySelector("[data-member-carousel]");
+        if (!carousel) return;
+
+        const viewport = carousel.querySelector("[data-carousel-viewport]");
+        const track = carousel.querySelector("[data-carousel-track]");
+        const cards = Array.from(carousel.querySelectorAll("[data-carousel-card]"));
+        const prevButton = carousel.querySelector("[data-carousel-prev]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+        const dotsWrap = carousel.querySelector("[data-carousel-dots]");
+
+        if (!viewport || !track || !cards.length || !dotsWrap) return;
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let activeIndex = 0;
+        let timer = null;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        const dots = cards.map((card, index) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "member-dot";
+          dot.setAttribute("aria-label", `切换到成员 ${index + 1}`);
+          dot.addEventListener("click", () => goTo(index));
+          dotsWrap.appendChild(dot);
+          return dot;
+        });
+
+        function renderCarousel() {
+          const baseX = Math.min(280, Math.max(190, viewport.clientWidth * 0.18));
+          const baseY = Math.min(28, Math.max(10, viewport.clientHeight * 0.03));
+
+          cards.forEach((card, index) => {
+            let diff = index - activeIndex;
+            if (diff > cards.length / 2) diff -= cards.length;
+            if (diff < -cards.length / 2) diff += cards.length;
+
+            const absDiff = Math.abs(diff);
+            const x = clamp(diff * baseX, -baseX * 2.25, baseX * 2.25);
+            const y = absDiff === 0 ? 0 : clamp(absDiff * baseY, 6, 42);
+            const scale = absDiff === 0 ? 1 : absDiff === 1 ? 0.9 : 0.78;
+            const rotateY = clamp(diff * 18, -24, 24);
+            const rotateZ = clamp(diff * -2.4, -4.5, 4.5);
+            const opacity = absDiff === 0 ? 1 : absDiff === 1 ? 0.58 : 0.28;
+            const blur = absDiff === 0 ? 0 : absDiff === 1 ? 0.35 : 0.8;
+            const saturate = absDiff === 0 ? 1 : 0.92;
+
+            card.style.setProperty("--card-x", `${x}px`);
+            card.style.setProperty("--card-y", `${y}px`);
+            card.style.setProperty("--card-scale", scale.toFixed(3));
+            card.style.setProperty("--card-rotate-y", `${rotateY.toFixed(2)}deg`);
+            card.style.setProperty("--card-rotate-z", `${rotateZ.toFixed(2)}deg`);
+            card.style.setProperty("--card-opacity", opacity.toFixed(3));
+            card.style.setProperty("--card-blur", `${blur.toFixed(2)}px`);
+            card.style.setProperty("--card-saturate", saturate.toFixed(3));
+            card.style.zIndex = String(10 - absDiff);
+            card.classList.toggle("is-active", absDiff === 0);
+            card.classList.toggle("is-near", absDiff === 1);
+          });
+
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle("is-active", dotIndex === activeIndex);
+          });
+        }
+
+        function goTo(index) {
+          activeIndex = (index + cards.length) % cards.length;
+          renderCarousel();
+        }
+
+        function startAutoPlay() {
+          if (prefersReducedMotion || timer) return;
+          timer = window.setInterval(() => {
+            goTo(activeIndex + 1);
+          }, 3600);
+        }
+
+        function stopAutoPlay() {
+          if (!timer) return;
+          window.clearInterval(timer);
+          timer = null;
+        }
+
+        prevButton?.addEventListener("click", () => goTo(activeIndex - 1));
+        nextButton?.addEventListener("click", () => goTo(activeIndex + 1));
+
+        cards.forEach((card, index) => {
+          card.addEventListener("click", () => goTo(index));
+          card.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              goTo(index);
+            }
+          });
+        });
+
+        viewport.addEventListener("mouseenter", stopAutoPlay);
+        viewport.addEventListener("mouseleave", startAutoPlay);
+        carousel.addEventListener("focusin", stopAutoPlay);
+        carousel.addEventListener("focusout", () => {
+          if (!carousel.contains(document.activeElement)) {
+            startAutoPlay();
+          }
+        });
+
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+            stopAutoPlay();
+          } else {
+            startAutoPlay();
+          }
+        });
+
+        window.addEventListener("resize", renderCarousel);
+
+        renderCarousel();
+        startAutoPlay();
+      })();
+    </script> -->
+    <script src="../shared-shell.js?v=20260529-1"></script>
+    <script src="./company-presence-preview.js?v=language-page-2"></script>
+
+  </body>
+</html>

@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="zh-CN" data-default-lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | 市场预览</title>
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --surface: #fffdfa;
+        --card: #ffffff;
+        --ink: #171411;
+        --text: #2f2a25;
+        --muted: #736a5e;
+        --line: #ebe3d8;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --soft: #f7f2ea;
+        --shadow-soft: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --shadow-card: 0 12px 28px rgba(37, 30, 21, 0.08);
+        --radius-card: 18px;
+        --radius-inner: 14px;
+        --font-serif: Georgia, "Times New Roman", "SimSun", serif;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-gutter: stable;
+        overflow-y: scroll;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.96), rgba(244, 240, 233, 0.72) 42%, rgba(227, 221, 211, 0.62)),
+          var(--page);
+        font-family: var(--font-sans);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(1500px, calc(100% - 42px));
+        margin: 16px auto 30px;
+      }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .quote-button,
+      .button-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--ink);
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius-card);
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 0.96fr 1.04fr;
+        gap: 18px;
+        min-height: 620px;
+        margin-top: 8px;
+        padding: 18px;
+      }
+
+      .hero-copy {
+        padding: 30px 22px 22px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--gold-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .hero h1,
+      .section-title {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .hero h1 {
+        max-width: 11ch;
+        margin-top: 16px;
+        font-size: clamp(48px, 5vw, 84px);
+        line-height: 0.96;
+      }
+
+      .hero-copy p {
+        max-width: 520px;
+        margin: 18px 0 0;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .hero-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .metric {
+        padding: 16px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(232, 224, 212, 0.9);
+      }
+
+      .metric strong {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 22px;
+        font-weight: 900;
+      }
+
+      .metric span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .chip {
+        min-height: 36px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(106, 89, 66, 0.12);
+        background: rgba(255, 255, 255, 0.74);
+        color: #72675b;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .map-hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        background:
+          linear-gradient(135deg, rgba(18, 37, 63, 0.96), rgba(20, 50, 85, 0.94)),
+          url("../images/server-map.jpg") center / cover no-repeat;
+      }
+
+      .map-hero::before {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.2), transparent 16%),
+          radial-gradient(circle at 48% 34%, rgba(211, 154, 0, 0.18), transparent 18%),
+          radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.12), transparent 12%),
+          linear-gradient(180deg, rgba(17, 29, 47, 0.1), rgba(17, 29, 47, 0.3));
+        content: "";
+      }
+
+      .map-hero::after {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 20px;
+        content: "";
+        pointer-events: none;
+      }
+
+      .world-label {
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        z-index: 1;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.88);
+        color: #3a342e;
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .world-label strong {
+        color: var(--gold-dark);
+      }
+
+      .region-hint {
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        z-index: 1;
+        max-width: 300px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(8px);
+      }
+
+      .region-hint strong {
+        display: block;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .region-hint span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        padding: 0 8px 14px;
+      }
+
+      .section-title {
+        font-size: 30px;
+        line-height: 1.08;
+      }
+
+      .section-copy {
+        max-width: 540px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+
+      .coverage-shell {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 18px;
+        min-height: 540px;
+        padding: 18px;
+      }
+
+      .coverage-map {
+        position: relative;
+        overflow: hidden;
+        min-height: 450px;
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(18, 37, 63, 0.96), rgba(20, 50, 85, 0.94)),
+          url("../images/earth.png") center / 72% no-repeat;
+      }
+
+      .coverage-map::before {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.14), transparent 12%),
+          radial-gradient(circle at 51% 40%, rgba(211, 154, 0, 0.18), transparent 16%),
+          radial-gradient(circle at 66% 58%, rgba(255, 255, 255, 0.13), transparent 12%);
+        content: "";
+      }
+
+      .coverage-map::after {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 16px;
+        content: "";
+      }
+
+      .pin {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #2b2824;
+        font-size: 12px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+      }
+
+      .pin::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e0b94b, #b88922);
+        content: "";
+      }
+
+      .pin-asia {
+        left: 18%;
+        top: 36%;
+      }
+
+      .pin-middle-east {
+        left: 40%;
+        top: 42%;
+      }
+
+      .pin-africa {
+        left: 46%;
+        top: 61%;
+      }
+
+      .pin-europe {
+        left: 35%;
+        top: 28%;
+      }
+
+      .coverage-copy {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        padding: 10px 4px 10px 0;
+      }
+
+      .coverage-copy h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 24px;
+        line-height: 1.14;
+      }
+
+      .coverage-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .coverage-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .coverage-list li {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 10px;
+        align-items: start;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .coverage-list li::before {
+        margin-top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .type-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .type-card {
+        min-height: 118px;
+        padding: 18px 16px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .type-card strong {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .type-card span {
+        display: block;
+        margin-top: 8px;
+        color: #3a342e;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .stats-band {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        padding: 0 8px;
+      }
+
+      .stat-card {
+        padding: 18px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: var(--shadow-card);
+      }
+
+      .stat-card strong {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 28px;
+        font-weight: 900;
+      }
+
+      .stat-card span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .cta-card {
+        padding: 24px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .cta-card h3 {
+        margin: 0 0 8px;
+        color: var(--ink);
+        font-size: 22px;
+        line-height: 1.18;
+      }
+
+      .cta-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .cta-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto 42px;
+        align-items: center;
+        gap: 18px;
+        min-height: 62px;
+        margin-top: 18px;
+        border-radius: 12px;
+        padding: 0 22px;
+        background: #11100f;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .site-footer p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .site-footer nav {
+        display: flex;
+        gap: 22px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .back-top {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      @media (max-width: 1180px) {
+        .site-header {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-nav {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 22px;
+        }
+
+        .hero,
+        .coverage-shell,
+        .cta-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .type-grid,
+        .stats-band {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-metrics {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .primary-nav,
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        body.is-menu-open .primary-nav,
+        body.is-menu-open .header-actions {
+          display: flex;
+        }
+
+        .primary-nav {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+          padding-top: 12px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: min(100% - 22px, 720px);
+          margin-top: 10px;
+        }
+
+        .site-header,
+        .hero,
+        .coverage,
+        .cta-grid {
+          padding: 18px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+          max-width: 100%;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .type-grid,
+        .stats-band,
+        .hero-metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .site-footer {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          padding: 18px;
+        }
+
+        .site-footer nav {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY 首页">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="./product-center-preview.html">产品中心</a>
+          <a href="./solution-preview-draft.html">解决方案</a>
+          <a href="./company-presence-preview.html">关于我们</a>
+          <a class="active" href="./market-preview-draft.html">市场</a>
+          <a href="../index.html#contact">联系我们</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <a class="quote-button" href="../index.html#contact">获取报价 →</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero card">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">GLOBAL MARKET</p>
+              <h1>把全球覆盖能力做成一张看得懂的地图</h1>
+              <p>
+                这一页不优先放客户名单，而是用地图视觉清楚表达：TRAVELDAY 服务过哪些区域、面对哪些 B 端客户、以及我们为什么适合做全球业务覆盖。
+              </p>
+              <div class="hero-tags">
+                <span class="chip">亚洲</span>
+                <span class="chip">中东</span>
+                <span class="chip">非洲</span>
+                <span class="chip">欧洲</span>
+                <span class="chip">全球覆盖</span>
+              </div>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#coverage">查看覆盖地图</a>
+                <a class="button button-outline" href="#customer-types">客户类型</a>
+              </div>
+            </div>
+
+            <div class="hero-metrics" aria-label="市场概览">
+              <div class="metric"><strong>4+</strong><span>重点覆盖区域，后续可继续补充真实国家名称。</span></div>
+              <div class="metric"><strong>6</strong><span>B 端客户类型，覆盖采购、分销和品牌项目场景。</span></div>
+              <div class="metric"><strong>1</strong><span>统一沟通与交付入口，减少跨时区协作成本。</span></div>
+              <div class="metric"><strong>24/7</strong><span>支持全球客户的询盘节奏和项目跟进节奏。</span></div>
+            </div>
+          </div>
+
+          <div class="map-hero" aria-label="全球业务地图视觉">
+            <div class="world-label"><strong>Coverage</strong> 覆盖地图</div>
+            <div class="region-hint">
+              <strong>区域化呈现，真实业务可继续补国家</strong>
+              <span>先从亚洲、中东、非洲、欧洲的区域层级开始展示，再按真实业务不断补充国家级信息。</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="coverage">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Service Reach</p>
+              <h2 class="section-title">地图为主，说明我们的服务覆盖</h2>
+            </div>
+            <p class="section-copy">
+              这个页面核心不是“谁买过”，而是“我们能在哪些区域持续服务”。所以采用区域高亮 + 客户类型分组，让信息更透明，也更适合未来扩展。
+            </p>
+          </div>
+
+          <div class="coverage-shell card">
+            <div class="coverage-map" aria-label="服务区域地图">
+              <span class="pin pin-europe">欧洲</span>
+              <span class="pin pin-asia">亚洲</span>
+              <span class="pin pin-middle-east">中东</span>
+              <span class="pin pin-africa">非洲</span>
+            </div>
+
+            <div class="coverage-copy">
+              <p class="eyebrow">Regional Focus</p>
+              <h3>重点区域可以逐步补成真实国家名单</h3>
+              <p>
+                当前视觉先强调“覆盖能力”，不优先暴露具体客户名称。后续可以按真实业务，细化到国家、港口、项目类型或重点产品线。
+              </p>
+              <ul class="coverage-list">
+                <li>亚洲：适合做高频补货、快速响应和多国家联动的市场。</li>
+                <li>中东：适合做项目型、品牌型和中高端客户的定制需求。</li>
+                <li>非洲：适合做稳定供货、性价比和渠道导入型项目。</li>
+                <li>欧洲：适合做标准化、品质导向与合规要求更强的合作。</li>
+              </ul>
+              <div class="cta-actions">
+                <a class="button button-primary" href="#customer-types">看客户类型</a>
+                <a class="button button-outline" href="./solution-preview-draft.html">回到解决方案</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="customer-types">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">B2B Customer Types</p>
+              <h2 class="section-title">我们服务的客户类型</h2>
+            </div>
+            <p class="section-copy">
+              这些标签可直接用于页面结构，不需要堆太多具体名单，就能清晰传达“我们面向谁、擅长什么合作方式”。
+            </p>
+          </div>
+
+          <div class="type-grid">
+            <article class="type-card">
+              <strong>进口商</strong>
+              <span>重视稳定供货、反复补货和可持续合作关系。</span>
+            </article>
+            <article class="type-card">
+              <strong>批发商</strong>
+              <span>重视价格、交期和多 SKU 组合采购的效率。</span>
+            </article>
+            <article class="type-card">
+              <strong>区域分销商</strong>
+              <span>重视区域代理、产品更新和长期市场布局。</span>
+            </article>
+            <article class="type-card">
+              <strong>海外品牌方</strong>
+              <span>重视品牌一致性、定制化和供应链稳定性。</span>
+            </article>
+            <article class="type-card">
+              <strong>工厂客户</strong>
+              <span>需要半成品、配件或补充资源，提升内部产线效率。</span>
+            </article>
+            <article class="type-card">
+              <strong>项目采购方</strong>
+              <span>适合项目式、多节点、跨市场的整合交付场景。</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Market Proof</p>
+              <h2 class="section-title">用几组数字把覆盖能力讲清楚</h2>
+            </div>
+          </div>
+
+          <div class="stats-band">
+            <div class="stat-card"><strong>Asia</strong><span>高频交易、补货速度和供应链协同能力</span></div>
+            <div class="stat-card"><strong>MENA</strong><span>项目型需求、定制服务和品牌合作机会</span></div>
+            <div class="stat-card"><strong>Africa</strong><span>稳定供货、价格敏感型渠道和长周期合作</span></div>
+            <div class="stat-card"><strong>Europe</strong><span>标准化、品质导向与更清晰的交付要求</span></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="cta-grid">
+            <article class="cta-card">
+              <p class="eyebrow">What This Page Says</p>
+              <h3>市场页的重点是“覆盖能力”，而不是客户隐私</h3>
+              <p>
+                所以视觉上优先展示地图、区域标签和客户类型，不优先放具体客户名称。这样既能体现全球业务能力，也能更好保护隐私与合作边界。
+              </p>
+            </article>
+            <article class="cta-card">
+              <p class="eyebrow">Next Step</p>
+              <h3>如果你认可这个方向，我就按这个版式继续落正式页面</h3>
+              <p>确认后会把真实页面接入共享壳层，并把中英文、跳转和顶部按钮一起统一。</p>
+              <div class="cta-actions">
+                <a class="button button-primary" href="./solution-preview-draft.html">看解决方案页</a>
+                <a class="button button-outline" href="../index.html">返回首页</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>TRAVELDAY Market Preview</p>
+          <nav aria-label="页脚导航">
+            <a href="#">隐私政策</a>
+            <a href="#">服务条款</a>
+            <a href="#">网站地图</a>
+          </nav>
+          <a class="back-top" href="#top" aria-label="返回顶部">↑</a>
+        </footer>
+      </main>
+    </div>
+
+    <script src="../shared-shell.js?v=20260529-1"></script>
+  </body>
+</html>

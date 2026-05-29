@@ -1,0 +1,17 @@
+images/product-finished-luggage.jpg -> images/product-gallery/01-product-finished-luggage.jpg
+images/series-luggage.jpg -> images/product-gallery/02-series-luggage.jpg
+images/series-luggage333.jpg -> images/product-gallery/03-series-luggage333.jpg
+images/series-luggage111.jpg -> images/product-gallery/04-series-luggage111.jpg
+images/product-finished-luggage111.jpg -> images/product-gallery/05-product-finished-luggage111.jpg
+images/194303a2-70f2-4922-a9a5-8fcafdd560f9.jpg -> images/product-gallery/06-194303a2-70f2-4922-a9a5-8fcafdd560f9.jpg
+images/product-semi-finished-luggage.jpg -> images/product-gallery/07-product-semi-finished-luggage.jpg
+images/series-production123.jpg -> images/product-gallery/08-series-production123.jpg
+images/luggage-components.jpg -> images/product-gallery/09-luggage-components.jpg
+images/series-handle.jpg -> images/product-gallery/10-series-handle.jpg
+images/series-handle000.jpg -> images/product-gallery/11-series-handle000.jpg
+images/series-wheels.jpg -> images/product-gallery/12-series-wheels.jpg
+images/series-wheels000.jpg -> images/product-gallery/13-series-wheels000.jpg
+images/581b5d15-ae58-4888-bd18-13d26e321c96.jpg -> images/product-gallery/14-581b5d15-ae58-4888-bd18-13d26e321c96.jpg
+images/oem-odm222.jpg -> images/product-gallery/15-oem-odm222.jpg
+images/oem-odm333.jpg -> images/product-gallery/16-oem-odm333.jpg
+images/series-production.jpg -> images/product-gallery/17-series-production.jpg

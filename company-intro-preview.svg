@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="90" x2="1410" y2="870" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F2E9"/>
+      <stop offset="0.48" stop-color="#EEE4D5"/>
+      <stop offset="1" stop-color="#DDCCB6"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFF9F1"/>
+      <stop offset="1" stop-color="#F1E8DD"/>
+    </linearGradient>
+    <linearGradient id="caseBody" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FAFCFF"/>
+      <stop offset="1" stop-color="#C8D6E6"/>
+    </linearGradient>
+    <linearGradient id="caseSide" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#899DB4"/>
+      <stop offset="1" stop-color="#6D819A"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#7A5E37" flood-opacity="0.18"/>
+    </filter>
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <style>
+      .serif { font-family: "Georgia", "Times New Roman", serif; }
+      .sans { font-family: Arial, Helvetica, sans-serif; }
+      .ink { fill: #141414; }
+      .muted { fill: rgba(20,20,20,.66); }
+      .gold { fill: #D9A300; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="960" fill="#F5EFE5"/>
+  <rect x="56" y="56" width="1488" height="848" rx="34" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="56" y="56" width="1488" height="848" rx="34" fill="url(#panel)" opacity=".86"/>
+
+  <!-- subtle atmosphere -->
+  <ellipse cx="366" cy="206" rx="220" ry="120" fill="#FFF" opacity=".20"/>
+  <ellipse cx="1236" cy="732" rx="240" ry="110" fill="#A97C43" opacity=".06" filter="url(#softBlur)"/>
+  <path d="M120 160C340 128 505 158 688 228" stroke="#FFFFFF" stroke-opacity=".28" stroke-width="3"/>
+  <path d="M122 828C350 772 540 783 710 808" stroke="#A57C44" stroke-opacity=".08" stroke-width="2"/>
+
+  <!-- swatches -->
+  <g transform="translate(116 188)">
+    <circle cx="0" cy="0" r="10" fill="#D7C6B0" stroke="#141414" stroke-opacity=".12" stroke-width="1"/>
+    <circle cx="0" cy="28" r="10" fill="#B6C5D6" stroke="#141414" stroke-opacity=".12" stroke-width="1"/>
+    <circle cx="0" cy="56" r="10" fill="#98A9BB" stroke="#141414" stroke-opacity=".12" stroke-width="1"/>
+    <circle cx="0" cy="84" r="10" fill="#6F8194" stroke="#141414" stroke-opacity=".12" stroke-width="1"/>
+    <circle cx="0" cy="112" r="10" fill="#445264" stroke="#141414" stroke-opacity=".12" stroke-width="1"/>
+  </g>
+
+  <!-- right illustration -->
+  <g transform="translate(970 170)">
+    <ellipse cx="248" cy="560" rx="220" ry="42" fill="#43311F" opacity=".13" filter="url(#softBlur)"/>
+    <rect x="150" y="48" width="250" height="340" rx="24" fill="url(#caseSide)" opacity=".10"/>
+    <g transform="translate(112 34)">
+      <rect x="0" y="48" width="210" height="278" rx="18" fill="url(#caseBody)" stroke="#5D728B" stroke-opacity=".18" stroke-width="2"/>
+      <rect x="68" y="10" width="74" height="40" rx="20" fill="#CBD7E5" stroke="#5D728B" stroke-opacity=".2" stroke-width="2"/>
+      <rect x="20" y="72" width="170" height="238" rx="14" fill="none" stroke="#475C77" stroke-opacity=".17" stroke-width="1.5"/>
+      <g opacity=".28">
+        <path d="M36 78H36.5M52 78H52.5M68 78H68.5M84 78H84.5M100 78H100.5M116 78H116.5M132 78H132.5M148 78H148.5M164 78H164.5" stroke="#3C526C" stroke-width="4"/>
+        <path d="M36 101H36.5M52 101H52.5M68 101H68.5M84 101H84.5M100 101H100.5M116 101H116.5M132 101H132.5M148 101H148.5M164 101H164.5" stroke="#3C526C" stroke-width="4"/>
+        <path d="M36 124H36.5M52 124H52.5M68 124H68.5M84 124H84.5M100 124H100.5M116 124H116.5M132 124H132.5M148 124H148.5M164 124H164.5" stroke="#3C526C" stroke-width="4"/>
+      </g>
+      <rect x="-8" y="316" width="26" height="26" rx="13" fill="#2F3A44"/>
+      <rect x="184" y="316" width="26" height="26" rx="13" fill="#2F3A44"/>
+      <circle cx="5" cy="329" r="9" fill="#1B1F22"/>
+      <circle cx="197" cy="329" r="9" fill="#1B1F22"/>
+      <circle cx="5" cy="329" r="3" fill="#B7C4CF"/>
+      <circle cx="197" cy="329" r="3" fill="#B7C4CF"/>
+    </g>
+    <path d="M272 0L298 0L298 31L272 31Z" fill="#637C95"/>
+    <path d="M272 14H298" stroke="#F7FAFC" stroke-width="3" opacity=".65"/>
+  </g>
+
+  <!-- caption -->
+  <g transform="translate(116 706)">
+    <text x="0" y="0" class="sans gold" font-size="15" font-weight="700" letter-spacing="0.24em">PREMIUM B2B</text>
+    <text x="0" y="70" class="serif ink" font-size="62" font-weight="500">公司介绍</text>
+  <text x="0" y="112" class="sans" font-size="22" font-weight="400" fill="#141414" fill-opacity=".66">
+      <tspan x="0" dy="0">立足中国供应链，面向全球市场，</tspan>
+      <tspan x="0" dy="34">呈现品牌的专业、稳重与高品质交付感。</tspan>
+    </text>
+  </g>
+
+  <!-- brand chip -->
+  <g transform="translate(1276 798)">
+    <rect x="0" y="0" width="164" height="58" rx="999" fill="#FFFFFF" fill-opacity=".50" stroke="#141414" stroke-opacity=".08"/>
+    <text x="82" y="36" text-anchor="middle" class="sans" font-size="18" fill="rgba(20,20,20,.56)" font-weight="700">TRAVELDAY</text>
+  </g>
+</svg>

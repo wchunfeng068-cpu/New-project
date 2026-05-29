@@ -1,0 +1,1195 @@
+<!doctype html>
+<html lang="zh-CN" data-default-lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | 解决方案预览</title>
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --surface: #fffdfa;
+        --card: #ffffff;
+        --ink: #171411;
+        --text: #2f2a25;
+        --muted: #736a5e;
+        --line: #ebe3d8;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --soft: #f7f2ea;
+        --shadow-soft: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --shadow-card: 0 12px 28px rgba(37, 30, 21, 0.08);
+        --radius-card: 18px;
+        --radius-inner: 14px;
+        --font-serif: Georgia, "Times New Roman", "SimSun", serif;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scrollbar-gutter: stable;
+        overflow-y: scroll;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.96), rgba(244, 240, 233, 0.72) 42%, rgba(227, 221, 211, 0.62)),
+          var(--page);
+        font-family: var(--font-sans);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(1500px, calc(100% - 42px));
+        margin: 16px auto 30px;
+      }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .quote-button,
+      .button-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--ink);
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius-card);
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 18px;
+        min-height: 620px;
+        margin-top: 8px;
+        padding: 18px;
+        background:
+          radial-gradient(circle at 18% 12%, rgba(211, 154, 0, 0.08), transparent 28%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 242, 234, 0.96));
+      }
+
+      .hero-copy {
+        padding: 30px 22px 22px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--gold-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .hero h1,
+      .section-title {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .hero h1 {
+        max-width: 11ch;
+        margin-top: 16px;
+        font-size: clamp(48px, 5vw, 84px);
+        line-height: 0.96;
+      }
+
+      .hero-copy p {
+        max-width: 520px;
+        margin: 18px 0 0;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.9;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .chip,
+      .tag {
+        min-height: 36px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(106, 89, 66, 0.12);
+        background: rgba(255, 255, 255, 0.74);
+        color: #72675b;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        background:
+          linear-gradient(135deg, rgba(19, 17, 15, 0.08), rgba(19, 17, 15, 0.02)),
+          url("../images/series-production.jpg") center / cover no-repeat;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      }
+
+      .hero-panel::before {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 55% 30%, rgba(255, 255, 255, 0.24), transparent 22%),
+          linear-gradient(180deg, rgba(18, 15, 11, 0.08), rgba(18, 15, 11, 0.42));
+        content: "";
+      }
+
+      .hero-panel::after {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero-flag {
+        position: absolute;
+        left: 22px;
+        top: 22px;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.86);
+        color: #5f564d;
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .hero-flag strong {
+        color: var(--gold-dark);
+      }
+
+      .hero-pulse {
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        z-index: 1;
+        max-width: 280px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.86);
+        backdrop-filter: blur(8px);
+      }
+
+      .hero-pulse strong {
+        display: block;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      .hero-pulse span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .hero-list {
+        display: grid;
+        gap: 14px;
+        margin-top: auto;
+        padding-top: 24px;
+      }
+
+      .hero-list-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #c59b2b, #9f7111);
+        box-shadow: 0 0 0 4px rgba(201, 155, 38, 0.08);
+        flex: 0 0 auto;
+      }
+
+      .hero-list-item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #2d251d;
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero-list-item span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        padding: 0 8px 14px;
+      }
+
+      .section-title {
+        font-size: 30px;
+        line-height: 1.08;
+      }
+
+      .section-copy {
+        max-width: 540px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.85;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 18px;
+        padding: 18px;
+      }
+
+      .faq-panel {
+        display: grid;
+        gap: 14px;
+      }
+
+      .faq-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .faq-card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 18px 20px;
+        border-bottom: 1px solid rgba(232, 224, 212, 0.8);
+      }
+
+      .faq-card-head h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .faq-number {
+        min-width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba(211, 154, 0, 0.1);
+        color: var(--gold-dark);
+        font-weight: 900;
+      }
+
+      .faq-body {
+        display: grid;
+        gap: 12px;
+        padding: 18px 20px 20px;
+      }
+
+      .faq-body p {
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.85;
+      }
+
+      .faq-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 2px;
+      }
+
+      .faq-tags span {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(233, 225, 214, 0.95);
+        color: #6f655a;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .side-rail {
+        display: grid;
+        gap: 16px;
+      }
+
+      .side-card {
+        overflow: hidden;
+        padding: 22px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .side-card h3 {
+        margin: 0 0 12px;
+        color: var(--ink);
+        font-size: 20px;
+        line-height: 1.18;
+      }
+
+      .side-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .pain-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .pain-item {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .pain-item i {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(211, 154, 0, 0.1);
+        color: var(--gold-dark);
+        font-style: normal;
+        font-weight: 900;
+      }
+
+      .pain-item strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #2d251d;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .pain-item span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .process {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .process-step {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+        align-items: start;
+        padding: 14px 0;
+        border-top: 1px solid rgba(232, 224, 212, 0.72);
+      }
+
+      .process-step:first-child {
+        border-top: 0;
+        padding-top: 0;
+      }
+
+      .process-step b {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d9ae34, #b88922);
+        color: #fff;
+        font-size: 12px;
+      }
+
+      .process-step strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #2d251d;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .process-step span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .coverage {
+        padding: 18px;
+      }
+
+      .coverage-shell {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 18px;
+        min-height: 520px;
+        padding: 20px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .map-stage {
+        position: relative;
+        overflow: hidden;
+        min-height: 420px;
+        border-radius: 18px;
+        background:
+          linear-gradient(180deg, rgba(13, 25, 39, 0.94), rgba(17, 35, 58, 0.92)),
+          url("../images/server-map.jpg") center / cover no-repeat;
+      }
+
+      .map-stage::before {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 28% 28%, rgba(255, 255, 255, 0.18), transparent 16%),
+          radial-gradient(circle at 55% 46%, rgba(211, 154, 0, 0.18), transparent 18%),
+          radial-gradient(circle at 75% 64%, rgba(255, 255, 255, 0.14), transparent 12%);
+        content: "";
+      }
+
+      .map-stage::after {
+        position: absolute;
+        inset: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 16px;
+        content: "";
+      }
+
+      .map-pin {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #2b2824;
+        font-size: 12px;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+      }
+
+      .map-pin::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e0b94b, #b88922);
+        content: "";
+      }
+
+      .pin-asia {
+        left: 18%;
+        top: 38%;
+      }
+
+      .pin-middle-east {
+        left: 39%;
+        top: 44%;
+      }
+
+      .pin-africa {
+        left: 44%;
+        top: 62%;
+      }
+
+      .pin-europe {
+        left: 36%;
+        top: 29%;
+      }
+
+      .coverage-copy {
+        display: grid;
+        align-content: start;
+        gap: 14px;
+        padding: 10px 6px 10px 0;
+      }
+
+      .coverage-copy h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 24px;
+        line-height: 1.14;
+      }
+
+      .coverage-copy p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .coverage-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .coverage-list li {
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 10px;
+        align-items: start;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .coverage-list li::before {
+        margin-top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .customer-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .customer-card {
+        min-height: 104px;
+        padding: 16px 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #fff;
+        box-shadow: var(--shadow-card);
+      }
+
+      .customer-card strong {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .customer-card span {
+        display: block;
+        margin-top: 8px;
+        color: #3a342e;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .bottom-cta {
+        display: grid;
+        grid-template-columns: 1.04fr 0.96fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .cta-card {
+        padding: 24px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 234, 0.98));
+        box-shadow: var(--shadow-card);
+      }
+
+      .cta-card h3 {
+        margin: 0 0 8px;
+        color: var(--ink);
+        font-size: 22px;
+        line-height: 1.18;
+      }
+
+      .cta-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .cta-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto 42px;
+        align-items: center;
+        gap: 18px;
+        min-height: 62px;
+        margin-top: 18px;
+        border-radius: 12px;
+        padding: 0 22px;
+        background: #11100f;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .site-footer p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .site-footer nav {
+        display: flex;
+        gap: 22px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .back-top {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold);
+        color: #fff;
+        font-weight: 900;
+      }
+
+      @media (max-width: 1180px) {
+        .site-header {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-nav {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          gap: 22px;
+        }
+
+        .hero,
+        .faq-grid,
+        .coverage-shell,
+        .bottom-cta {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-panel {
+          min-height: 420px;
+        }
+
+        .customer-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .primary-nav,
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        body.is-menu-open .primary-nav,
+        body.is-menu-open .header-actions {
+          display: flex;
+        }
+
+        .primary-nav {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+          padding-top: 12px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: min(100% - 22px, 720px);
+          margin-top: 10px;
+        }
+
+        .site-header,
+        .hero,
+        .faq-grid,
+        .coverage,
+        .bottom-cta {
+          padding: 18px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+          max-width: 100%;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .customer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .site-footer {
+          grid-template-columns: 1fr;
+          justify-items: start;
+          padding: 18px;
+        }
+
+        .site-footer nav {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY 首页">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="./product-center-preview.html">产品中心</a>
+          <a class="active" href="./solution-preview-draft.html">解决方案</a>
+          <a href="./company-presence-preview.html">关于我们</a>
+          <a href="./market-preview-draft.html">市场</a>
+          <a href="../index.html#contact">联系我们</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="hi">हिन्दी</option>
+          </select>
+          <a class="quote-button" href="../index.html#contact">获取报价 →</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero card">
+          <div class="hero-copy">
+            <div>
+              <p class="eyebrow">SOLUTION / FAQ</p>
+              <h1>解决买家找货难的全链路方案</h1>
+              <p>
+                TRAVELDAY 是中国国内全方位渠道和供应链整合方，帮助海外客户把“找货难、渠道散、供应不稳、沟通慢、品类多”
+                变成可控、可交付、可追踪的一站式合作。
+              </p>
+              <div class="chip-row">
+                <span class="chip">渠道整合</span>
+                <span class="chip">供应商管理</span>
+                <span class="chip">多品类协同</span>
+                <span class="chip">稳定交付</span>
+                <span class="chip">中英沟通</span>
+              </div>
+              <div class="hero-actions">
+                <a class="button button-primary" href="./product-center-preview.html">查看产品中心</a>
+                <a class="button button-outline" href="#faq">查看 FAQ</a>
+              </div>
+            </div>
+
+            <div class="hero-list" aria-label="核心痛点">
+              <div class="hero-list-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>找货难</strong>
+                  <span>一个入口整合多个品类和可选供应商，减少海外客户逐个搜索、逐个询价的时间成本。</span>
+                </div>
+              </div>
+              <div class="hero-list-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>供应不稳</strong>
+                  <span>通过整合渠道和工厂资源，降低单一供应商波动对交期与品质的影响。</span>
+                </div>
+              </div>
+              <div class="hero-list-item">
+                <span class="dot"></span>
+                <div>
+                  <strong>品类复杂</strong>
+                  <span>适合同时采购箱包、配件、半成品或项目型组合订单的客户。</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel" aria-label="TRAVELDAY 解决方案视觉">
+            <div class="hero-flag"><strong>One-stop</strong> 供应链整合视角</div>
+            <div class="hero-pulse">
+              <strong>把分散资源整成一条线</strong>
+              <span>从需求梳理、找货、比价、打样到交付，让客户少沟通、少试错、少切换。</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="faq">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Buyer Pain Points</p>
+              <h2 class="section-title">FAQ 形式回答最关心的 5 个问题</h2>
+            </div>
+            <p class="section-copy">
+              不强调“我们能做很多”，而是直接回应海外买家最常遇到的问题，让方案逻辑更清晰，也更容易把 TRAVELDAY 的整合价值说透。
+            </p>
+          </div>
+
+          <div class="faq-grid card">
+            <div class="faq-panel">
+              <article class="faq-card">
+                <div class="faq-card-head">
+                  <h3>你们能解决什么？</h3>
+                  <span class="faq-number">01</span>
+                </div>
+                <div class="faq-body">
+                  <p>
+                    我们解决的是海外客户在中国找货时最耗时、最分散、最不稳定的环节。包括品类匹配、渠道筛选、供应商协调、质量确认、交期跟进和多方沟通。
+                  </p>
+                  <div class="faq-tags">
+                    <span>找货</span>
+                    <span>比价</span>
+                    <span>打样</span>
+                    <span>交期</span>
+                    <span>品质</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-card">
+                <div class="faq-card-head">
+                  <h3>如果我要很多不同品类，你们能做吗？</h3>
+                  <span class="faq-number">02</span>
+                </div>
+                <div class="faq-body">
+                  <p>
+                    可以。TRAVELDAY 的定位不是单一工厂，而是整合方。我们可把多个品类、多个工厂、多个交付节点放进同一个项目里统一管理，帮助客户减少采购入口数量。
+                  </p>
+                  <div class="faq-tags">
+                    <span>多品类采购</span>
+                    <span>组合订单</span>
+                    <span>项目制管理</span>
+                    <span>统一交付</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="faq-card">
+                <div class="faq-card-head">
+                  <h3>我已经有供应商了，为什么还需要你们？</h3>
+                  <span class="faq-number">03</span>
+                </div>
+                <div class="faq-body">
+                  <p>
+                    如果你已有供应商，我们更像是你的中国端协调中台。我们可以帮你补充资源、降低单点风险、做替补供应、做多源比选，尤其在旺季、补货或需要扩品类时更有价值。
+                  </p>
+                  <div class="faq-tags">
+                    <span>备份供应</span>
+                    <span>多源比选</span>
+                    <span>风险分散</span>
+                    <span>旺季补位</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <aside class="side-rail">
+              <article class="side-card">
+                <p class="eyebrow">Best Fit</p>
+                <h3>我们适合什么客户？</h3>
+                <p>
+                  重点面向需要中国供应链支持、但又不想自己对接过多工厂和中间环节的海外买家。
+                </p>
+                <div class="pain-list">
+                  <div class="pain-item">
+                    <i>1</i>
+                    <div><strong>进口商 / 批发商</strong><span>需要稳定供货、快速补货和更少的沟通成本。</span></div>
+                  </div>
+                  <div class="pain-item">
+                    <i>2</i>
+                    <div><strong>区域分销商 / 海外品牌方</strong><span>需要多品类组合、品牌一致性与更灵活的交付节奏。</span></div>
+                  </div>
+                  <div class="pain-item">
+                    <i>3</i>
+                    <div><strong>工厂客户 / 项目采购方</strong><span>需要半成品、配件、项目型资源整合，降低内部协调压力。</span></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="side-card">
+                <p class="eyebrow">Process</p>
+                <h3>合作流程是什么？</h3>
+                <div class="process">
+                  <div class="process-step">
+                    <b>1</b>
+                    <div><strong>需求确认</strong><span>先确认品类、预算、目标市场和交付时间。</span></div>
+                  </div>
+                  <div class="process-step">
+                    <b>2</b>
+                    <div><strong>资源匹配</strong><span>从整合渠道里筛选适合的供应方和组合方案。</span></div>
+                  </div>
+                  <div class="process-step">
+                    <b>3</b>
+                    <div><strong>打样与确认</strong><span>样品、细节、包装和交期同步确认。</span></div>
+                  </div>
+                  <div class="process-step">
+                    <b>4</b>
+                    <div><strong>协调交付</strong><span>统一推进订单、质检、包装、发货和后续跟进。</span></div>
+                  </div>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="bottom-cta">
+            <article class="cta-card">
+              <p class="eyebrow">Why TRAVELDAY</p>
+              <h3>让海外客户少跑几步，把复杂供应链变成可执行方案</h3>
+              <p>
+                这个页面的重点是“解释价值”，不是罗列能力。用 FAQ 形式更容易让客户快速理解：我们能把分散、复杂、不稳定的问题，变成一个可以被管理的合作流程。
+              </p>
+            </article>
+            <article class="cta-card">
+              <p class="eyebrow">Next Step</p>
+              <h3>如果你确认这套方向，我们就按这个逻辑正式落地</h3>
+              <p>确认后我会把它接入正式导航、语言切换与共享壳层，再补上中英文内容和页面跳转。</p>
+              <div class="cta-actions">
+                <a class="button button-primary" href="./market-preview-draft.html">看市场页</a>
+                <a class="button button-outline" href="../index.html">返回首页</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>TRAVELDAY Solution Preview</p>
+          <nav aria-label="页脚导航">
+            <a href="#">隐私政策</a>
+            <a href="#">服务条款</a>
+            <a href="#">网站地图</a>
+          </nav>
+          <a class="back-top" href="#top" aria-label="返回顶部">↑</a>
+        </footer>
+      </main>
+    </div>
+
+    <script src="../shared-shell.js?v=20260529-1"></script>
+  </body>
+</html>

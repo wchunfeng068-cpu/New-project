@@ -1,0 +1,6 @@
+.vercel
+node_modules
+.chrome-verify
+.npm-cache
+verify-video-section.png
+images/raw-products
