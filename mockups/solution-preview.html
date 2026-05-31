@@ -1,0 +1,1448 @@
+﻿<!doctype html>
+<html lang="en" data-default-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | Solutions</title>
+    <link rel="stylesheet" href="../styles.css?v=20260530-1" />
+    <style>
+      .preview-main {
+        display: grid;
+        gap: 24px;
+        padding-top: 8px;
+        padding-bottom: 28px;
+      }
+
+      .preview-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 24px;
+        background: #fffdfa;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .solution-hero {
+        display: grid;
+        grid-template-columns: minmax(410px, 0.92fr) 1.08fr;
+        align-items: stretch;
+        min-height: 560px;
+        gap: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #f8f3eb 0%, #efe3d4 100%);
+      }
+
+      .solution-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 70px 64px 70px 70px;
+      }
+
+      .solution-eyebrow,
+      .qa-eyebrow,
+      .market-eyebrow {
+        margin: 0 0 16px;
+        color: var(--color-gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+      }
+
+      .solution-title,
+      .qa-title,
+      .market-title {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: clamp(40px, 4vw, 60px);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+      }
+
+      .solution-desc,
+      .qa-desc,
+      .market-desc {
+        max-width: 500px;
+        margin: 20px 0 0;
+        color: var(--color-muted);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .solution-meta,
+      .qa-meta,
+      .market-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 16px;
+        border-radius: var(--radius-pill);
+        border: 1px solid #e2d7c8;
+        background: rgba(255, 255, 255, 0.82);
+        color: #665c50;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .solution-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .solution-image-wrap {
+        position: relative;
+        margin: 18px 18px 18px 0;
+        border-radius: 26px;
+        overflow: hidden;
+        background: #d8cdc0;
+      }
+
+      .solution-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .solution-image-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(32, 25, 20, 0.18)),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.08));
+      }
+
+      .chip-card {
+        position: absolute;
+        left: 26px;
+        top: 24px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        box-shadow: 0 10px 28px rgba(31, 24, 18, 0.09);
+        backdrop-filter: blur(10px);
+      }
+
+      .solution-visual {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .solution-visual .solution-image-wrap {
+        position: absolute;
+        inset: 18px 18px 18px 0;
+      }
+
+      .qa-panel {
+        display: grid;
+        grid-template-columns: minmax(520px, 1.02fr) minmax(460px, 0.98fr);
+        gap: 0;
+        min-height: 580px;
+        background: linear-gradient(180deg, #fcfaf5 0%, #f6efe5 100%);
+      }
+
+      .qa-copy {
+        order: 2;
+        padding: 42px 44px 40px 44px;
+      }
+
+      .qa-title {
+        font-size: clamp(28px, 3vw, 42px);
+        line-height: 1.08;
+      }
+
+      .qa-desc {
+        max-width: 560px;
+        margin-top: 18px;
+        font-size: 16px;
+      }
+
+      .qa-summary {
+        margin-top: 24px;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(232, 221, 208, 0.92);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 10px 24px rgba(44, 35, 25, 0.04);
+        color: #3d352d;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .qa-points {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .qa-point {
+        display: flex;
+        align-items: center;
+        min-height: 54px;
+        padding: 12px 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(232, 221, 208, 0.82);
+        background: linear-gradient(180deg, #fffdfa 0%, #f8f3eb 100%);
+        color: var(--color-ink);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        box-shadow: 0 8px 18px rgba(44, 35, 25, 0.04);
+      }
+
+      .qa-tags {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .qa-visual {
+        order: 1;
+        position: relative;
+        margin: 16px;
+        border-radius: 26px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e9e1d6 0%, #f7f2eb 100%);
+        border: 1px solid rgba(224, 214, 202, 0.72);
+      }
+
+      .qa-visual-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .qa-visual-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(27, 21, 16, 0.08)),
+          url("../images/luggage-components.jpg") center/cover no-repeat;
+        filter: saturate(0.8) contrast(0.98);
+        opacity: 0.34;
+      }
+
+      .qa-graph {
+        position: absolute;
+        inset: 0;
+        padding: 26px;
+      }
+
+      .qa-hub {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 176px;
+        height: 100px;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        border-radius: 22px;
+        border: 1px solid rgba(183, 154, 104, 0.34);
+        background: linear-gradient(180deg, rgba(240, 231, 219, 0.96), rgba(228, 216, 200, 0.92));
+        box-shadow: 0 14px 28px rgba(50, 37, 22, 0.08);
+      }
+
+      .qa-hub strong {
+        display: block;
+        color: var(--color-ink);
+        font-size: 18px;
+        line-height: 1.15;
+      }
+
+      .qa-hub span {
+        display: block;
+        margin-top: 4px;
+        color: var(--color-muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .qa-node {
+        position: absolute;
+        display: grid;
+        align-items: end;
+        justify-items: center;
+        width: 132px;
+        height: 118px;
+        padding: 0 0 2px;
+      }
+
+      .qa-node::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--color-gold);
+        box-shadow: 0 0 0 8px rgba(211, 154, 0, 0.12);
+        transform: translateX(-50%);
+      }
+
+      .qa-node img {
+        width: 100%;
+        height: 82px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        box-shadow: 0 10px 18px rgba(44, 33, 20, 0.08);
+      }
+
+      .qa-node span {
+        margin-top: 8px;
+        color: #3a342d;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .qa-node.handle {
+        left: 24px;
+        top: 26px;
+      }
+
+      .qa-node.wheel {
+        right: 28px;
+        top: 26px;
+      }
+
+      .qa-node.luggage {
+        left: 50%;
+        bottom: 24px;
+        transform: translateX(-50%);
+      }
+
+      .qa-node.luggage::before {
+        top: auto;
+        bottom: 92px;
+      }
+
+      .qa-connector {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, transparent 0%, transparent 45%, rgba(201, 141, 0, 0.24) 45.2%, rgba(201, 141, 0, 0.24) 46%, transparent 46.2%),
+          linear-gradient(225deg, transparent 0%, transparent 45%, rgba(201, 141, 0, 0.24) 45.2%, rgba(201, 141, 0, 0.24) 46%, transparent 46.2%);
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .qa-note {
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(224, 214, 202, 0.72);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        box-shadow: 0 10px 22px rgba(49, 39, 27, 0.06);
+        backdrop-filter: blur(10px);
+      }
+
+      .qa-note span {
+        display: block;
+        margin-top: 2px;
+        color: var(--color-muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      @media (max-width: 1180px) {
+        .solution-hero,
+        .qa-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .solution-copy,
+        .qa-copy {
+          padding: 42px 34px;
+        }
+
+        .solution-visual {
+          min-height: 420px;
+          padding: 0 18px 18px 18px;
+        }
+
+        .solution-visual .solution-image-wrap {
+          position: relative;
+          inset: auto;
+          min-height: 420px;
+          margin: 0 18px 18px;
+        }
+
+        .qa-visual {
+          min-height: 500px;
+          margin: 0 16px 16px;
+        }
+
+        .qa-copy,
+        .qa-visual {
+          order: initial;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .section-heading {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .solution-copy,
+        .qa-copy {
+          padding: 34px 24px;
+        }
+
+        .solution-desc,
+        .qa-desc {
+          font-size: 16px;
+        }
+
+        .qa-panel {
+          min-height: auto;
+        }
+
+        .qa-tags {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .qa-node {
+          width: 104px;
+          height: 102px;
+        }
+
+        .qa-note {
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+        }
+      }
+    </style>
+    <style>
+      body {
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.92), rgba(244, 240, 233, 0.72) 42%, rgba(227, 221, 211, 0.54)),
+          var(--color-page);
+      }
+
+      .preview-panel {
+        background: #f8f3ec;
+        border-color: rgba(226, 216, 202, 0.9);
+        box-shadow: 0 14px 32px rgba(44, 34, 24, 0.055);
+      }
+
+      .solution-hero {
+        background: linear-gradient(180deg, #f6f1e8 0%, #ece0cf 100%);
+      }
+
+      .solution-copy,
+      .qa-copy {
+        color: #2b2824;
+      }
+
+      .solution-desc,
+      .qa-desc,
+      .section-heading p {
+        color: #6d655c;
+      }
+
+      .meta-pill {
+        background: rgba(249, 244, 236, 0.95);
+        border-color: #e2d6c5;
+        color: #6a6054;
+      }
+
+      .solution-image-wrap,
+      .qa-visual {
+        background: linear-gradient(135deg, #efe7db 0%, #f7f1e8 100%);
+        border-color: rgba(223, 212, 199, 0.82);
+      }
+
+      .solution-image-overlay {
+        background:
+          linear-gradient(180deg, rgba(67, 54, 40, 0.07), rgba(67, 54, 40, 0.16)),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.06));
+      }
+
+      .chip-card {
+        background: rgba(249, 244, 236, 0.94);
+        color: #2b2824;
+        box-shadow: 0 10px 20px rgba(31, 24, 18, 0.07);
+      }
+
+      .bubble.question {
+        background: #fbf7f1;
+        border-color: #e4d7c8;
+        color: #3d352d;
+      }
+
+      .bubble.question::before {
+        background: #776d61;
+      }
+
+      .bubble.answer {
+        background: #f2e8db;
+        color: #312d28;
+        border: 1px solid #e1d2c1;
+      }
+
+      .bubble.answer::before {
+        background: var(--color-gold);
+      }
+
+      .qa-visual-bg {
+        filter: saturate(0.74) contrast(0.96);
+        opacity: 0.28;
+      }
+
+      .qa-hub {
+        background: linear-gradient(180deg, rgba(245, 236, 224, 0.97), rgba(234, 223, 208, 0.95));
+        border-color: rgba(183, 154, 104, 0.18);
+        box-shadow: 0 12px 22px rgba(50, 37, 22, 0.055);
+      }
+
+      .qa-hub strong,
+      .qa-node span,
+      .qa-note {
+        color: #2b2824;
+      }
+
+      .qa-hub span,
+      .qa-node .tag span,
+      .qa-note span {
+        color: #6d655c;
+      }
+
+      .qa-node::before {
+        box-shadow: 0 0 0 7px rgba(211, 154, 0, 0.08);
+      }
+
+      .qa-node .tag {
+        background: rgba(249, 244, 236, 0.94);
+        border-color: rgba(223, 212, 199, 0.82);
+        box-shadow: 0 8px 16px rgba(44, 33, 20, 0.06);
+      }
+
+      .qa-note {
+        background: rgba(249, 244, 236, 0.94);
+        border-color: rgba(223, 212, 199, 0.82);
+        box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
+      }
+    </style>
+    <style>
+      .inquiry-panel {
+        display: grid;
+        grid-template-columns: minmax(360px, 0.88fr) minmax(540px, 1.12fr);
+        align-items: stretch;
+        min-height: 420px;
+        background: linear-gradient(180deg, #f8f3eb 0%, #efe3d4 100%);
+      }
+
+      .inquiry-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 44px 44px 44px 48px;
+      }
+
+      .inquiry-eyebrow {
+        margin: 0 0 16px;
+        color: var(--color-gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+      }
+
+      .inquiry-title {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: clamp(32px, 3.6vw, 48px);
+        line-height: 1.03;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+      }
+
+      .inquiry-desc {
+        max-width: 500px;
+        margin: 18px 0 0;
+        color: var(--color-muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .inquiry-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .inquiry-contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(226, 215, 200, 0.95);
+      }
+
+      .inquiry-contact strong {
+        display: block;
+        color: var(--color-ink);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .inquiry-contact span {
+        display: block;
+        margin-top: 4px;
+        color: var(--color-muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .inquiry-email {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: var(--radius-pill);
+        border: 1px solid rgba(224, 214, 202, 0.82);
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
+      }
+
+      .inquiry-form-wrap {
+        margin: 16px 16px 16px 0;
+        padding: 26px;
+        border-radius: 26px;
+        background: linear-gradient(180deg, rgba(251, 247, 240, 0.96), rgba(243, 234, 223, 0.96));
+        border: 1px solid rgba(225, 213, 198, 0.8);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      }
+
+      .inquiry-form-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .inquiry-form-head p {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .inquiry-form-head span {
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .inquiry-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .inquiry-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .inquiry-field.full {
+        grid-column: 1 / -1;
+      }
+
+      .inquiry-field label {
+        color: #675d52;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .inquiry-field input,
+      .inquiry-field textarea {
+        width: 100%;
+        border: 1px solid #e1d6c7;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #2b2824;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 15px 16px;
+        outline: none;
+        box-shadow: 0 8px 18px rgba(43, 34, 24, 0.04);
+      }
+
+      .inquiry-field input::placeholder,
+      .inquiry-field textarea::placeholder {
+        color: #8a7f74;
+        font-weight: 500;
+      }
+
+      .inquiry-field input:focus,
+      .inquiry-field textarea:focus {
+        border-color: rgba(211, 154, 0, 0.5);
+        box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+      .inquiry-field textarea {
+        min-height: 138px;
+        resize: none;
+        line-height: 1.7;
+      }
+
+      .inquiry-form-footer {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 4px;
+      }
+
+      .inquiry-note {
+        max-width: 320px;
+        color: #7b7166;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .inquiry-form .button {
+        min-width: 168px;
+      }
+
+      @media (max-width: 1180px) {
+        .inquiry-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry-form-wrap {
+          margin: 0 16px 16px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .inquiry-copy {
+          padding: 34px 24px 18px;
+        }
+
+        .inquiry-form-wrap {
+          padding: 20px;
+          margin: 0 12px 12px;
+        }
+
+        .inquiry-form {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry-form-footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .inquiry-form .button {
+          width: 100%;
+        }
+
+        .inquiry-note {
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-stage">
+      <div class="page-shell" id="top">
+        <header class="site-header" data-section="navigation">
+          <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
+            <span class="brand-logo">
+              <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+            </span>
+          </a>
+
+          <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="product-center-preview.html">Product Center</a>
+            <a href="solution-preview.html" class="active">Solutions</a>
+            <a href="company-presence-preview.html">About Us</a>
+            <a href="market-preview.html">Market</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="header-actions">
+            <select class="language-select" aria-label="Language">
+              <option value="zh">Chinese</option>
+              <option value="en" selected>English</option>
+              <option value="es">Spanish</option>
+              <option value="hi">Hindi</option>
+            </select>
+            <a class="quote-button" href="#contact">Get Quote -></a>
+          </div>
+        </header>
+
+        <main class="preview-main">
+          <section class="preview-panel solution-hero card" data-section="solution-hero">
+            <div class="solution-copy">
+              <p class="solution-eyebrow" data-copy="solutionEyebrow">Solutions</p>
+              <h1 class="solution-title" data-copy="heroTitle">One-stop luggage resource integration</h1>
+              <p class="solution-desc" data-copy="heroDesc">Bring complete luggage, wheels, trolley handles and grips into one coordinated supply path for faster matching and smoother delivery.</p>
+              <div class="solution-meta">
+                <span class="meta-pill" data-copy="heroPill1">One-stop sets</span>
+                <span class="meta-pill" data-copy="heroPill2">Unified contact</span>
+                <span class="meta-pill" data-copy="heroPill3">Fast matching</span>
+              </div>
+              <div class="solution-actions">
+                <a class="button button-primary" href="product-center-preview.html" data-copy="heroPrimary">View products</a>
+                <a class="button button-outline" href="#qa" data-copy="heroSecondary">See the structure</a>
+              </div>
+            </div>
+            <div class="solution-visual">
+              <div class="solution-image-wrap">
+                <img src="../images/solution-hero-resource-integration.jpg" alt="Premium luggage resource integration scene in a bright sample studio" />
+                <div class="solution-image-overlay"></div>
+                <div class="chip-card" data-copy="heroChip">Integration / Matching / Delivery</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="preview-panel qa-panel card" id="qa" data-section="solution-qa">
+            <div class="qa-copy">
+              <div class="section-heading">
+                <div>
+                  <p class="qa-eyebrow" data-copy="qaEyebrow">RESOURCE INTEGRATION</p>
+                  <h2 class="qa-title" data-copy="qaTitle">Customers want one contact. We integrate one chain.</h2>
+                </div>
+              </div>
+
+              <div class="qa-summary" data-copy="qaSummary">
+                Bring complete luggage, components and service into one entry point to reduce scattered communication.
+              </div>
+
+              <div class="qa-points">
+                <div class="qa-point" data-copy="qaPointOne">Unified contact</div>
+                <div class="qa-point" data-copy="qaPointTwo">Unified matching</div>
+                <div class="qa-point" data-copy="qaPointThree">Unified delivery</div>
+                <div class="qa-point" data-copy="qaPointFour">Complete sets</div>
+              </div>
+
+              <div class="qa-tags">
+                <span class="meta-pill" data-copy="qaTagOne">Trolley handles</span>
+                <span class="meta-pill" data-copy="qaTagTwo">Grips</span>
+                <span class="meta-pill" data-copy="qaTagThree">Wheels</span>
+                <span class="meta-pill" data-copy="qaTagFour">Full luggage sets</span>
+              </div>
+            </div>
+
+            <div class="qa-visual">
+              <img
+                class="qa-visual-image"
+                src="../images/solution-resource-integration-graph.jpg"
+                alt="Luggage resource integration diagram"
+              />
+            </div>
+          </section>
+
+          <section class="preview-panel inquiry-panel card" id="contact" data-section="solution-inquiry">
+            <div class="inquiry-copy">
+              <p class="inquiry-eyebrow" data-copy="inquiryEyebrow">INQUIRY / CONTACT</p>
+              <h2 class="inquiry-title" data-copy="inquiryTitle">Turn every inquiry into one elegant entry point.</h2>
+              <p class="inquiry-desc" data-copy="inquiryDesc">Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
+
+              <div class="inquiry-meta">
+                <span class="meta-pill" data-copy="inquiryPill1">Reply within 24h</span>
+                <span class="meta-pill" data-copy="inquiryPill2">Resource coordination</span>
+                <span class="meta-pill" data-copy="inquiryPill3">Unified quote</span>
+              </div>
+
+              <div class="inquiry-contact">
+                <div>
+                  <strong data-copy="inquiryContactTitle">Direct contact</strong>
+                  <span data-copy="inquiryContactDesc">sales@travelday.com · More details can be discussed in one step.</span>
+                </div>
+                <a class="inquiry-email" href="mailto:sales@travelday.com" data-copy="inquiryEmail">sales@travelday.com</a>
+              </div>
+            </div>
+
+            <div class="inquiry-form-wrap">
+              <div class="inquiry-form-head">
+                <p data-copy="inquiryFormTitle">Quick inquiry form</p>
+                <span data-copy="inquiryFormHint">One step to start the conversation</span>
+              </div>
+              <form class="inquiry-form" onsubmit="return false;">
+                <div class="inquiry-field">
+                  <label for="inq-name" data-copy="inquiryNameLabel">Name</label>
+                  <input id="inq-name" type="text" data-placeholder="inquiryNamePlaceholder" placeholder="Your name" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-company" data-copy="inquiryCompanyLabel">Company</label>
+                  <input id="inq-company" type="text" data-placeholder="inquiryCompanyPlaceholder" placeholder="Company name" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-email" data-copy="inquiryEmailLabel">Email</label>
+                  <input id="inq-email" type="email" data-placeholder="inquiryEmailPlaceholder" placeholder="Email address" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-need" data-copy="inquiryNeedLabel">Need</label>
+                  <input id="inq-need" type="text" data-placeholder="inquiryNeedPlaceholder" placeholder="Component, customization or integration request" />
+                </div>
+                <div class="inquiry-field full">
+                  <label for="inq-message" data-copy="inquiryMessageLabel">Notes</label>
+                  <textarea id="inq-message" data-placeholder="inquiryMessagePlaceholder" placeholder="Please tell us quantity, target market and timeline"></textarea>
+                </div>
+                <div class="inquiry-form-footer">
+                  <p class="inquiry-note" data-copy="inquiryNote">We will get back to you quickly with a suitable resource-matching plan.</p>
+                  <button class="button button-primary" type="button" data-copy="inquiryButton">Send inquiry</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../shared-shell.js"></script>
+    <script>
+      const LANG_COPY = {
+        zh: {
+          nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系"],
+          quote: "获取报价",
+          brand: "TRAVELDAY 首页",
+          navLabel: "主导航",
+          solutionEyebrow: "解决方案",
+          heroTitle: "一站式箱包资源整合方案",
+          heroDesc: "整箱、轮子、拉杆、手把等资源统一对接，帮助客户更快匹配，更快成交。",
+          heroPill1: "一站式配套",
+          heroPill2: "统一对接",
+          heroPill3: "快速匹配",
+          heroPrimary: "查看产品",
+          heroSecondary: "了解布局",
+          heroChip: "整合 · 匹配 · 交付",
+          qaEyebrow: "资源整合",
+          qaTitle: "客户找的是一个人，我们整合的是一条链。",
+          qaSummary: "把整箱、配件和服务统一到一个入口，减少多头沟通。",
+          qaPointOne: "统一对接",
+          qaPointTwo: "统一匹配",
+          qaPointThree: "统一交付",
+          qaPointFour: "整箱配套",
+          qaTagOne: "拉杆",
+          qaTagTwo: "手把",
+          qaTagThree: "轮子",
+          qaTagFour: "整箱配套",
+          qaNodeOne: "拉杆 / 手把",
+          qaNodeTwo: "轮子资源",
+          qaNodeThree: "整箱协同",
+          qaHubTitle: "资源整合商",
+          qaHubDesc: "一个入口 · 多种资源",
+          qaNote: "拉杆 · 手把 · 轮子 · 整箱配套",
+        },
+        en: {
+          nav: ["Home", "Product Center", "Solutions", "About Us", "Market", "Contact"],
+          quote: "Get Quote ->",
+          brand: "TRAVELDAY Home",
+          navLabel: "Primary navigation",
+          solutionEyebrow: "Solutions",
+          heroTitle: "One-stop luggage resource integration",
+          heroDesc: "Bring complete luggage, wheels, trolley handles and grips into one coordinated supply path for faster matching and smoother delivery.",
+          heroPill1: "One-stop sets",
+          heroPill2: "Unified contact",
+          heroPill3: "Fast matching",
+          heroPrimary: "View products",
+          heroSecondary: "See the structure",
+          heroChip: "Integration / Matching / Delivery",
+          qaEyebrow: "RESOURCE INTEGRATION",
+          qaTitle: "Customers want one contact. We integrate one chain.",
+          qaSummary: "Bring complete luggage, accessories and service into one entry point to reduce scattered communication.",
+          qaPointOne: "Unified contact",
+          qaPointTwo: "Unified matching",
+          qaPointThree: "Unified delivery",
+          qaPointFour: "Complete sets",
+          qaTagOne: "Trolley handles",
+          qaTagTwo: "Grips",
+          qaTagThree: "Wheels",
+          qaTagFour: "Full luggage sets",
+          qaNodeOne: "Trolley handles / grips",
+          qaNodeTwo: "Wheel resources",
+          qaNodeThree: "Full luggage coordination",
+          qaHubTitle: "Resource Integrator",
+          qaHubDesc: "One entry / multiple resources",
+          qaNote: "Trolley handles / grips / wheels / full luggage sets",
+        },
+        es: {
+          nav: ["Inicio", "Centro de productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
+          quote: "Obtener cotización ?",
+          brand: "Inicio de TRAVELDAY",
+          navLabel: "Navegación principal",
+          solutionEyebrow: "Soluciones",
+          heroTitle: "Convertir la integración en una sola entrada",
+          heroDesc: "Unificar manijas, ruedas y más recursos en una sola entrada.",
+          heroPill1: "Menos explicación ? más claro",
+          heroPill2: "Integración ? una sola entrada",
+          heroPill3: "Mejor soporte",
+          heroPrimary: "Ver productos",
+          heroSecondary: "Ver estructura",
+          heroChip: "Integración de recursos integral",
+          qaEyebrow: "INTEGRACIÓN DE RECURSOS",
+          qaTitle: "El cliente quiere una persona, nosotros integramos una cadena.",
+          qaSummary: "Unificar maletas, accesorios y servicio en una sola entrada reduce la coordinación dispersa.",
+          qaPointOne: "Contacto unificado",
+          qaPointTwo: "Coincidencia unificada",
+          qaPointThree: "Entrega unificada",
+          qaPointFour: "Conjuntos completos",
+          qaTagOne: "Manijas",
+          qaTagTwo: "Correas",
+          qaTagThree: "Ruedas",
+          qaTagFour: "Conjuntos completos",
+          qaNodeOne: "Manijas",
+          qaNodeTwo: "Ruedas",
+          qaNodeThree: "Suministro integrado",
+          qaHubTitle: "Integrador de recursos",
+          qaHubDesc: "Una entrada ? múltiples recursos",
+          qaNote: "Cotización unificada ? matching unificado ? entrega unificada",
+        },
+        hi: {
+          nav: ["होम", "प्रोडक्ट सेंटर", "समाधान", "हमारे बारे में", "बाज़ार", "संपर्क"],
+          quote: "कोटेशन लें →",
+          brand: "TRAVELDAY होम",
+          navLabel: "मुख्य नेविगेशन",
+          solutionEyebrow: "समाधान",
+          heroTitle: "इंटीग्रेशन को एक एंट्री बनाएं",
+          heroDesc: "हैंडल, व्हील और अन्य संसाधनों को एक ही एंट्री में लाएँ।",
+          heroPill1: "कम समझाना · ज़्यादा साफ़",
+          heroPill2: "रिसोर्स इंटीग्रेशन · एक एंट्री",
+          heroPill3: "बेहतर सपोर्ट",
+          heroPrimary: "प्रोडक्ट देखें",
+          heroSecondary: "लेआउट देखें",
+          heroChip: "वन-स्टॉप रिसोर्स इंटीग्रेशन",
+          qaEyebrow: "रिसोर्स इंटीग्रेशन",
+          qaTitle: "ग्राहक एक संपर्क चाहता है, हम एक श्रृंखला जोड़ते हैं।",
+          qaSummary: "पूरे लगेज, एक्सेसरीज़ और सेवा को एक ही एंट्री में लाने से बिखरा संवाद कम होता है।",
+          qaPointOne: "एकीकृत संपर्क",
+          qaPointTwo: "एकीकृत मिलान",
+          qaPointThree: "एकीकृत डिलीवरी",
+          qaPointFour: "पूर्ण सेट",
+          qaTagOne: "हैंडल",
+          qaTagTwo: "स्ट्रैप",
+          qaTagThree: "व्हील",
+          qaTagFour: "पूर्ण सेट",
+          qaNodeOne: "हैंडल",
+          qaNodeTwo: "व्हील",
+          qaNodeThree: "इंटीग्रेटेड सप्लाई",
+          qaHubTitle: "रिसोर्स इंटीग्रेटर",
+          qaHubDesc: "एक एंट्री · कई संसाधन",
+          qaNote: "एकीकृत कोटेशन · एकीकृत मिलान · एकीकृत डिलीवरी",
+        },
+      };
+
+      const INQUIRY_COPY = {
+        zh: {
+          inquiryEyebrow: "INQUIRY / CONTACT",
+          inquiryTitle: "让合作更快发生",
+          inquiryDesc: "告诉我们你的市场、产品或定制需求，我们会在同一条资源链里快速响应。",
+          inquiryPill1: "24小时内回复",
+          inquiryPill2: "资源协同",
+          inquiryPill3: "统一报价",
+          inquiryContactTitle: "直接联系",
+          inquiryContactDesc: "sales@travelday.com · 详细需求可直接沟通。",
+          inquiryEmail: "sales@travelday.com",
+          inquiryFormTitle: "快速询盘",
+          inquiryFormHint: "第一步就能开始对接",
+          inquiryNameLabel: "姓名",
+          inquiryNamePlaceholder: "请输入您的姓名",
+          inquiryCompanyLabel: "公司名称",
+          inquiryCompanyPlaceholder: "请输入公司名称",
+          inquiryEmailLabel: "邮箱",
+          inquiryEmailPlaceholder: "请输入邮箱地址",
+          inquiryNeedLabel: "采购需求",
+          inquiryNeedPlaceholder: "例如：整箱采购、轮子配件、拉杆配套、定制需求",
+          inquiryMessageLabel: "补充说明",
+          inquiryMessagePlaceholder: "请简单说明数量、目标市场和交期要求",
+          inquiryButton: "提交询盘",
+          inquiryNote: "我们会尽快与您联系，并给出适合的资源匹配方案。",
+        },
+        en: {
+          inquiryEyebrow: "INQUIRY / CONTACT",
+          inquiryTitle: "Turn every inquiry into one elegant entry point.",
+          inquiryDesc: "Tell us your market, product or customization needs and we will respond through one integrated resource chain.",
+          inquiryPill1: "Reply within 24h",
+          inquiryPill2: "Resource coordination",
+          inquiryPill3: "Unified quote",
+          inquiryContactTitle: "Direct contact",
+          inquiryContactDesc: "sales@travelday.com · More details can be discussed in one step.",
+          inquiryEmail: "sales@travelday.com",
+          inquiryFormTitle: "Quick inquiry form",
+          inquiryFormHint: "One step to start the conversation",
+          inquiryNameLabel: "Name",
+          inquiryNamePlaceholder: "Your name",
+          inquiryCompanyLabel: "Company",
+          inquiryCompanyPlaceholder: "Company name",
+          inquiryEmailLabel: "Email",
+          inquiryEmailPlaceholder: "Email address",
+          inquiryNeedLabel: "Need",
+          inquiryNeedPlaceholder: "Component, customization or integration request",
+          inquiryMessageLabel: "Notes",
+          inquiryMessagePlaceholder: "Please tell us quantity, target market and timeline",
+          inquiryButton: "Send inquiry",
+          inquiryNote: "We will get back to you quickly with a suitable resource-matching plan.",
+        },
+        es: {
+          inquiryEyebrow: "INQUIRY / CONTACT",
+          inquiryTitle: "Convierte cada consulta en una entrada clara y elegante.",
+          inquiryDesc: "Cuéntanos tu mercado, producto o necesidad de personalización y responderemos con una cadena integrada de recursos.",
+          inquiryPill1: "Respuesta en 24h",
+          inquiryPill2: "Coordinación de recursos",
+          inquiryPill3: "Cotización unificada",
+          inquiryContactTitle: "Contacto directo",
+          inquiryContactDesc: "sales@travelday.com · Se pueden discutir más detalles en un solo paso.",
+          inquiryEmail: "sales@travelday.com",
+          inquiryFormTitle: "Formulario rápido",
+          inquiryFormHint: "Un solo paso para iniciar la conversación",
+          inquiryNameLabel: "Nombre",
+          inquiryNamePlaceholder: "Tu nombre",
+          inquiryCompanyLabel: "Empresa",
+          inquiryCompanyPlaceholder: "Nombre de la empresa",
+          inquiryEmailLabel: "Correo",
+          inquiryEmailPlaceholder: "Dirección de correo",
+          inquiryNeedLabel: "Necesidad",
+          inquiryNeedPlaceholder: "Componente, personalización o integración",
+          inquiryMessageLabel: "Notas",
+          inquiryMessagePlaceholder: "Indica cantidad, mercado objetivo y plazo",
+          inquiryButton: "Enviar consulta",
+          inquiryNote: "Te responderemos pronto con una propuesta adecuada de recursos.",
+        },
+        hi: {
+          inquiryEyebrow: "INQUIRY / CONTACT",
+          inquiryTitle: "हर पूछताछ को एक ही प्रवेश बिंदु में लाएं।",
+          inquiryDesc: "हमें अपना बाज़ार, उत्पाद या कस्टमाइज़ेशन आवश्यकता बताएं, हम एकीकृत संसाधन श्रृंखला के साथ जवाब देंगे।",
+          inquiryPill1: "24 घंटे में जवाब",
+          inquiryPill2: "रिसोर्स समन्वय",
+          inquiryPill3: "एकीकृत कोटेशन",
+          inquiryContactTitle: "सीधा संपर्क",
+          inquiryContactDesc: "sales@travelday.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।",
+          inquiryEmail: "sales@travelday.com",
+          inquiryFormTitle: "त्वरित पूछताछ फॉर्म",
+          inquiryFormHint: "बातचीत शुरू करने के लिए एक ही चरण",
+          inquiryNameLabel: "नाम",
+          inquiryNamePlaceholder: "अपना नाम लिखें",
+          inquiryCompanyLabel: "कंपनी",
+          inquiryCompanyPlaceholder: "कंपनी का नाम",
+          inquiryEmailLabel: "ईमेल",
+          inquiryEmailPlaceholder: "ईमेल पता",
+          inquiryNeedLabel: "आवश्यकता",
+          inquiryNeedPlaceholder: "घटक, कस्टमाइज़ेशन या इंटीग्रेशन",
+          inquiryMessageLabel: "अतिरिक्त विवरण",
+          inquiryMessagePlaceholder: "कृपया मात्रा, लक्ष्य बाज़ार और समय सीमा बताएं",
+          inquiryButton: "पूछताछ भेजें",
+          inquiryNote: "हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।",
+        },
+      };
+
+      const getViewportBucket = () => {
+        if (window.innerWidth <= 720) return "phone";
+        if (window.innerWidth <= 1180) return "tablet";
+        return "desktop";
+      };
+
+      const applyTypeTuning = (node, tuning) => {
+        if (!node || !tuning) return;
+        node.style.fontSize = tuning.fontSize;
+        node.style.lineHeight = tuning.lineHeight;
+        node.style.maxWidth = tuning.maxWidth;
+        node.style.minHeight = tuning.minHeight;
+        node.style.paddingTop = tuning.paddingTop;
+        node.style.letterSpacing = "0";
+      };
+
+      const clearTypeTuning = (node) => {
+        if (!node) return;
+        node.style.fontSize = "";
+        node.style.lineHeight = "";
+        node.style.maxWidth = "";
+        node.style.minHeight = "";
+        node.style.paddingTop = "";
+        node.style.letterSpacing = "";
+      };
+
+      const applySolutionTypeTuning = (lang) => {
+        const bucket = getViewportBucket();
+        const solutionTitle = document.querySelector(".solution-title");
+        const solutionDesc = document.querySelector(".solution-desc");
+        const qaTitle = document.querySelector(".qa-title");
+        const qaDesc = document.querySelector(".qa-desc");
+        const inquiryTitle = document.querySelector(".inquiry-title");
+        const inquiryDesc = document.querySelector(".inquiry-desc");
+
+        const tuning = {
+          desktop: {
+            zh: {
+              solutionTitle: { fontSize: "58px", lineHeight: "0.98", maxWidth: "520px", minHeight: "124px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "18px", lineHeight: "1.8", maxWidth: "500px", minHeight: "72px", paddingTop: "0px" },
+              qaTitle: { fontSize: "42px", lineHeight: "1.08", maxWidth: "100%", minHeight: "96px", paddingTop: "0px" },
+              qaDesc: { fontSize: "16px", lineHeight: "1.8", maxWidth: "560px", minHeight: "54px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "46px", lineHeight: "1.03", maxWidth: "360px", minHeight: "68px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "16px", lineHeight: "1.8", maxWidth: "500px", minHeight: "54px", paddingTop: "0px" },
+            },
+            en: {
+              solutionTitle: { fontSize: "38px", lineHeight: "1.08", maxWidth: "540px", minHeight: "124px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "16px", lineHeight: "1.8", maxWidth: "500px", minHeight: "72px", paddingTop: "0px" },
+              qaTitle: { fontSize: "34px", lineHeight: "1.1", maxWidth: "100%", minHeight: "96px", paddingTop: "0px" },
+              qaDesc: { fontSize: "15px", lineHeight: "1.8", maxWidth: "560px", minHeight: "54px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "36px", lineHeight: "1.05", maxWidth: "360px", minHeight: "68px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "15px", lineHeight: "1.8", maxWidth: "500px", minHeight: "54px", paddingTop: "0px" },
+            },
+            es: {
+              solutionTitle: { fontSize: "40px", lineHeight: "1.06", maxWidth: "540px", minHeight: "124px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "16px", lineHeight: "1.78", maxWidth: "500px", minHeight: "72px", paddingTop: "0px" },
+              qaTitle: { fontSize: "34px", lineHeight: "1.1", maxWidth: "100%", minHeight: "96px", paddingTop: "0px" },
+              qaDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "560px", minHeight: "54px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "34px", lineHeight: "1.06", maxWidth: "360px", minHeight: "68px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "500px", minHeight: "54px", paddingTop: "0px" },
+            },
+            hi: {
+              solutionTitle: { fontSize: "40px", lineHeight: "1.06", maxWidth: "540px", minHeight: "124px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "16px", lineHeight: "1.78", maxWidth: "500px", minHeight: "72px", paddingTop: "0px" },
+              qaTitle: { fontSize: "34px", lineHeight: "1.1", maxWidth: "100%", minHeight: "96px", paddingTop: "0px" },
+              qaDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "560px", minHeight: "54px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "36px", lineHeight: "1.06", maxWidth: "360px", minHeight: "68px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "500px", minHeight: "54px", paddingTop: "0px" },
+            },
+          },
+          tablet: {
+            zh: {
+              solutionTitle: { fontSize: "44px", lineHeight: "1.02", maxWidth: "500px", minHeight: "108px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "17px", lineHeight: "1.78", maxWidth: "500px", minHeight: "64px", paddingTop: "0px" },
+              qaTitle: { fontSize: "34px", lineHeight: "1.1", maxWidth: "100%", minHeight: "84px", paddingTop: "0px" },
+              qaDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "40px", lineHeight: "1.04", maxWidth: "100%", minHeight: "60px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+            },
+            en: {
+              solutionTitle: { fontSize: "34px", lineHeight: "1.08", maxWidth: "520px", minHeight: "108px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "15px", lineHeight: "1.78", maxWidth: "500px", minHeight: "64px", paddingTop: "0px" },
+              qaTitle: { fontSize: "30px", lineHeight: "1.12", maxWidth: "100%", minHeight: "84px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "32px", lineHeight: "1.06", maxWidth: "100%", minHeight: "60px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+            },
+            es: {
+              solutionTitle: { fontSize: "34px", lineHeight: "1.08", maxWidth: "520px", minHeight: "108px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "15px", lineHeight: "1.76", maxWidth: "500px", minHeight: "64px", paddingTop: "0px" },
+              qaTitle: { fontSize: "30px", lineHeight: "1.12", maxWidth: "100%", minHeight: "84px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "32px", lineHeight: "1.06", maxWidth: "100%", minHeight: "60px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+            },
+            hi: {
+              solutionTitle: { fontSize: "34px", lineHeight: "1.08", maxWidth: "520px", minHeight: "108px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "15px", lineHeight: "1.76", maxWidth: "500px", minHeight: "64px", paddingTop: "0px" },
+              qaTitle: { fontSize: "30px", lineHeight: "1.12", maxWidth: "100%", minHeight: "84px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "32px", lineHeight: "1.06", maxWidth: "100%", minHeight: "60px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.76", maxWidth: "100%", minHeight: "48px", paddingTop: "0px" },
+            },
+          },
+          phone: {
+            zh: {
+              solutionTitle: { fontSize: "34px", lineHeight: "1.06", maxWidth: "100%", minHeight: "92px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "15px", lineHeight: "1.74", maxWidth: "100%", minHeight: "56px", paddingTop: "0px" },
+              qaTitle: { fontSize: "28px", lineHeight: "1.1", maxWidth: "100%", minHeight: "72px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "30px", lineHeight: "1.04", maxWidth: "100%", minHeight: "52px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+            },
+            en: {
+              solutionTitle: { fontSize: "28px", lineHeight: "1.1", maxWidth: "100%", minHeight: "92px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "56px", paddingTop: "0px" },
+              qaTitle: { fontSize: "24px", lineHeight: "1.12", maxWidth: "100%", minHeight: "72px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "26px", lineHeight: "1.06", maxWidth: "100%", minHeight: "52px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+            },
+            es: {
+              solutionTitle: { fontSize: "28px", lineHeight: "1.1", maxWidth: "100%", minHeight: "92px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "56px", paddingTop: "0px" },
+              qaTitle: { fontSize: "24px", lineHeight: "1.12", maxWidth: "100%", minHeight: "72px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "26px", lineHeight: "1.06", maxWidth: "100%", minHeight: "52px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+            },
+            hi: {
+              solutionTitle: { fontSize: "28px", lineHeight: "1.1", maxWidth: "100%", minHeight: "92px", paddingTop: "0px" },
+              solutionDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "56px", paddingTop: "0px" },
+              qaTitle: { fontSize: "24px", lineHeight: "1.12", maxWidth: "100%", minHeight: "72px", paddingTop: "0px" },
+              qaDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+              inquiryTitle: { fontSize: "26px", lineHeight: "1.06", maxWidth: "100%", minHeight: "52px", paddingTop: "0px" },
+              inquiryDesc: { fontSize: "14px", lineHeight: "1.74", maxWidth: "100%", minHeight: "44px", paddingTop: "0px" },
+            },
+          },
+        };
+
+        const next = (tuning[bucket] || tuning.desktop)[lang] || tuning[bucket].zh;
+        applyTypeTuning(solutionTitle, next.solutionTitle);
+        applyTypeTuning(solutionDesc, next.solutionDesc);
+        applyTypeTuning(qaTitle, next.qaTitle);
+        applyTypeTuning(qaDesc, next.qaDesc);
+        applyTypeTuning(inquiryTitle, next.inquiryTitle);
+        applyTypeTuning(inquiryDesc, next.inquiryDesc);
+
+        if (!solutionTitle) clearTypeTuning(solutionTitle);
+        if (!solutionDesc) clearTypeTuning(solutionDesc);
+        if (!qaTitle) clearTypeTuning(qaTitle);
+        if (!qaDesc) clearTypeTuning(qaDesc);
+        if (!inquiryTitle) clearTypeTuning(inquiryTitle);
+        if (!inquiryDesc) clearTypeTuning(inquiryDesc);
+      };
+
+      function applySolutionCopy(lang) {
+        const activeLang = LANG_COPY[lang] ? lang : "en";
+        const copy = LANG_COPY[activeLang] || LANG_COPY.en;
+        const inquiry = INQUIRY_COPY[activeLang] || INQUIRY_COPY.en;
+        document.title = activeLang === "zh" ? "TRAVELDAY | 解决方案" : "TRAVELDAY | Solutions";
+        document.documentElement.lang = activeLang === "zh" ? "zh-CN" : activeLang;
+        document.documentElement.dataset.lang = activeLang;
+
+        document.querySelector(".brand")?.setAttribute("aria-label", copy.brand);
+        document.querySelector(".primary-nav")?.setAttribute("aria-label", copy.navLabel);
+        document.querySelectorAll(".primary-nav a").forEach((link, index) => {
+          if (copy.nav[index]) link.textContent = copy.nav[index];
+        });
+        const quoteButton = document.querySelector(".quote-button");
+        if (quoteButton) quoteButton.textContent = copy.quote;
+
+        const map = {
+          solutionEyebrow: copy.solutionEyebrow,
+          heroTitle: copy.heroTitle,
+          heroDesc: copy.heroDesc,
+          heroPill1: copy.heroPill1,
+          heroPill2: copy.heroPill2,
+          heroPill3: copy.heroPill3,
+          heroPrimary: copy.heroPrimary,
+          heroSecondary: copy.heroSecondary,
+          heroChip: copy.heroChip,
+          qaEyebrow: copy.qaEyebrow,
+          qaTitle: copy.qaTitle,
+          qaSummary: copy.qaSummary,
+          qaPointOne: copy.qaPointOne,
+          qaPointTwo: copy.qaPointTwo,
+          qaPointThree: copy.qaPointThree,
+          qaPointFour: copy.qaPointFour,
+          qaTagOne: copy.qaTagOne,
+          qaTagTwo: copy.qaTagTwo,
+          qaTagThree: copy.qaTagThree,
+          qaTagFour: copy.qaTagFour,
+          qaNodeOne: copy.qaNodeOne,
+          qaNodeTwo: copy.qaNodeTwo,
+          qaNodeThree: copy.qaNodeThree,
+          qaHubTitle: copy.qaHubTitle,
+          qaHubDesc: copy.qaHubDesc,
+          qaNote: copy.qaNote,
+          inquiryEyebrow: inquiry.inquiryEyebrow,
+          inquiryTitle: inquiry.inquiryTitle,
+          inquiryDesc: inquiry.inquiryDesc,
+          inquiryPill1: inquiry.inquiryPill1,
+          inquiryPill2: inquiry.inquiryPill2,
+          inquiryPill3: inquiry.inquiryPill3,
+          inquiryContactTitle: inquiry.inquiryContactTitle,
+          inquiryContactDesc: inquiry.inquiryContactDesc,
+          inquiryEmail: inquiry.inquiryEmail,
+          inquiryFormTitle: inquiry.inquiryFormTitle,
+          inquiryFormHint: inquiry.inquiryFormHint,
+          inquiryNameLabel: inquiry.inquiryNameLabel,
+          inquiryCompanyLabel: inquiry.inquiryCompanyLabel,
+          inquiryEmailLabel: inquiry.inquiryEmailLabel,
+          inquiryNeedLabel: inquiry.inquiryNeedLabel,
+          inquiryMessageLabel: inquiry.inquiryMessageLabel,
+          inquiryButton: inquiry.inquiryButton,
+          inquiryNote: inquiry.inquiryNote,
+        };
+
+        document.querySelectorAll("[data-copy]").forEach((node) => {
+          const key = node.dataset.copy;
+          const value = map[key];
+          if (!value) return;
+          if (node.tagName === "A" || node.tagName === "SPAN" || node.tagName === "DIV" || node.tagName === "P") {
+            node.innerHTML = value;
+          } else {
+            node.textContent = value;
+          }
+        });
+
+        document.querySelectorAll("[data-placeholder]").forEach((node) => {
+          const key = node.dataset.placeholder;
+          const value = inquiry[key];
+          if (value) node.setAttribute("placeholder", value);
+        });
+
+        applySolutionTypeTuning(activeLang);
+        document.documentElement.dataset.navReady = "true";
+      }
+
+      window.traveldayShell?.init?.({ defaultLang: "en" });
+      applySolutionCopy(window.traveldayShell?.getLanguage?.() || "en");
+      window.addEventListener("travelday:languagechange", (event) => {
+        applySolutionCopy(event.detail?.lang || window.traveldayShell?.getLanguage?.() || "en");
+      });
+      window.addEventListener("resize", () => {
+        applySolutionTypeTuning(window.traveldayShell?.getLanguage?.() || "en");
+      });
+    </script>
+    <script src="../shared-inquiry.js?v=20260531-1"></script>
+  </body>
+</html>

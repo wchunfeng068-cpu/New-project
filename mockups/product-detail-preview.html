@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="zh-CN" data-default-lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | Product Detail</title>
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --surface: #fffdfa;
+        --ink: #171411;
+        --text: #2b2824;
+        --muted: #756f66;
+        --line: #e9e1d6;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --radius-card: 18px;
+        --radius-inner: 14px;
+        --shadow-soft: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --shadow-card: 0 10px 28px rgba(37, 30, 21, 0.08);
+        --font-serif: Georgia, "Times New Roman", "SimSun", serif;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        font-family: var(--font-sans);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
+          var(--page);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .page {
+        width: min(1500px, calc(100% - 42px));
+        margin: 16px auto 32px;
+      }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        gap: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        position: relative;
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+        overflow: visible;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+      }
+
+      html:not([data-nav-ready="true"]) .primary-nav {
+        visibility: hidden;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .quote-button,
+      .button-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.65);
+        color: #1c1916;
+        box-shadow: none;
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius-card);
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        color: var(--gold-dark);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      h2 {
+        margin-bottom: 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .detail-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 420px;
+        gap: 24px;
+        min-height: 560px;
+        margin-top: 8px;
+        padding: 24px;
+      }
+
+      .hero-visual {
+        position: relative;
+        overflow: hidden;
+        min-height: 512px;
+        border-radius: var(--radius-inner);
+        background:
+          radial-gradient(circle at 52% 86%, rgba(110, 85, 52, 0.16), transparent 34%),
+          linear-gradient(135deg, #f0ebe3, #d8cfc3);
+      }
+
+      .hero-visual::before {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 248, 239, 0.04), rgba(60, 53, 45, 0.06)),
+          var(--hero-image, url("../images/product-card-luggage.png")) center / cover no-repeat;
+        content: "";
+      }
+
+      .hero-visual::after {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 48%),
+          linear-gradient(90deg, rgba(255, 253, 250, 0.2), rgba(255, 253, 250, 0) 36%, rgba(255, 253, 250, 0.1));
+        content: "";
+        pointer-events: none;
+      }
+
+      .detail-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 32px;
+        border-radius: var(--radius-inner);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 244, 236, 0.98));
+      }
+
+      .detail-copy h1 {
+        margin-bottom: 18px;
+        font-size: 54px;
+        line-height: 1.08;
+      }
+
+      .intro {
+        margin-bottom: 24px;
+        color: #4d463f;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.85;
+      }
+
+      .proof-list {
+        display: grid;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .proof-list li {
+        display: grid;
+        grid-template-columns: 32px 1fr;
+        gap: 12px;
+        align-items: start;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.55;
+      }
+
+      .proof-list span {
+        display: grid;
+        width: 32px;
+        height: 32px;
+        place-items: center;
+        border: 1px solid rgba(211, 154, 0, 0.45);
+        border-radius: 8px;
+        color: var(--gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .detail-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .gallery-shell {
+        margin-top: 8px;
+        padding: 22px;
+      }
+
+      .detail-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .detail-shot {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-card);
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+      }
+
+      .detail-shot-image-wrap {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-card);
+        background:
+          linear-gradient(rgba(242, 236, 226, 0.18), rgba(218, 208, 195, 0.12)),
+          var(--image) var(--position, center) / var(--size, cover) no-repeat,
+          linear-gradient(135deg, #f0ebe3, #d8cfc3);
+      }
+
+      .detail-shot-image-wrap::after {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 50% 100%, rgba(110, 85, 52, 0.12), transparent 34%),
+          linear-gradient(180deg, rgba(246, 241, 233, 0.16), rgba(218, 208, 195, 0.1));
+        content: "";
+        pointer-events: none;
+      }
+
+      .detail-shot-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        min-height: 220px;
+      }
+
+      .inquiry {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
+        gap: 26px;
+        align-items: start;
+        margin-top: 24px;
+        padding: 30px;
+      }
+
+      .inquiry-head {
+        align-self: center;
+        padding: 8px 4px 8px 6px;
+      }
+
+      .inquiry-head h2 {
+        margin-bottom: 10px;
+        font-family: var(--font-serif);
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1.08;
+      }
+
+      .inquiry-head p {
+        max-width: 460px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.7;
+      }
+
+      .inquiry-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 16px;
+        width: 100%;
+        padding: 24px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 10px 28px rgba(37, 30, 21, 0.05);
+      }
+
+      .inquiry-form h3 {
+        grid-column: 1 / -1;
+        margin: 0 0 2px;
+        color: var(--ink);
+        font-family: var(--font-sans);
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+
+      .inquiry-form label {
+        display: grid;
+        gap: 7px;
+      }
+
+      .inquiry-form label:nth-of-type(3),
+      .inquiry-form label:nth-of-type(4),
+      .inquiry-form .form-submit,
+      .inquiry-form .form-status {
+        grid-column: 1 / -1;
+      }
+
+      .inquiry-form label span {
+        color: #625b53;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .inquiry-form input,
+      .inquiry-form textarea {
+        width: 100%;
+        border: 1px solid #ded5ca;
+        border-radius: 8px;
+        background: #fff;
+        color: var(--ink);
+        outline: 0;
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+        font: inherit;
+      }
+
+      .inquiry-form input {
+        height: 42px;
+        padding: 0 13px;
+      }
+
+      .inquiry-form textarea {
+        min-height: 84px;
+        padding: 11px 13px;
+        resize: vertical;
+      }
+
+      .inquiry-form input:focus,
+      .inquiry-form textarea:focus {
+        border-color: rgba(211, 154, 0, 0.55);
+        box-shadow: 0 0 0 3px rgba(211, 154, 0, 0.12);
+      }
+
+      .form-submit {
+        justify-self: start;
+        min-height: 44px;
+        border-radius: 10px;
+        padding-inline: 22px;
+      }
+
+      .form-status {
+        min-height: 18px;
+        margin: 0;
+        color: var(--gold-dark);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 1180px) {
+        .detail-hero,
+        .inquiry {
+          grid-template-columns: 1fr;
+        }
+
+        .site-header {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-nav {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 22px;
+        }
+
+        .detail-gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-visual {
+          min-height: 430px;
+        }
+
+        .inquiry-head {
+          padding: 0;
+        }
+
+        .inquiry-form {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .primary-nav,
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        body.is-menu-open .primary-nav,
+        body.is-menu-open .header-actions {
+          display: flex;
+        }
+
+        .primary-nav {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+          padding-top: 12px;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          width: min(100% - 22px, 720px);
+          margin-top: 10px;
+        }
+
+        .site-header,
+        .detail-hero,
+        .detail-copy,
+        .gallery-shell,
+        .inquiry {
+          padding: 18px;
+        }
+
+        .brand {
+          width: 140px;
+          height: 58px;
+        }
+
+        .primary-nav {
+          justify-content: flex-start;
+          width: 100%;
+          overflow-x: auto;
+          font-size: 15px;
+          scrollbar-width: none;
+        }
+
+        .primary-nav::-webkit-scrollbar {
+          display: none;
+        }
+
+        .detail-copy h1 {
+          font-size: 36px;
+        }
+
+        .hero-visual {
+          min-height: 330px;
+        }
+
+        .detail-gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry {
+          gap: 18px;
+        }
+
+        .inquiry-form {
+          padding: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+            <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY ??">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="???">
+          <a href="../index.html">??</a>
+          <a class="active" href="./product-center-preview.html">????</a>
+          <a href="../index.html#solutions">????</a>
+          <a href="./company-presence-preview.html">????</a>
+          <a href="../index.html#market">??</a>
+          <a href="#contact">????</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">??</option>
+            <option value="en">English</option>
+            <option value="es">Espa?ol</option>
+            <option value="hi">??????</option>
+          </select>
+          <a class="quote-button" href="#contact">???? ?</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="detail-hero card" aria-label="产品顶图">
+          <div class="hero-visual" role="img" aria-label="ABS / PC 拉链箱产品顶图"></div>
+          <aside class="detail-copy">
+            <p class="kicker">PRODUCT DETAIL</p>
+            <h1>ABS / PC 拉链箱</h1>
+            <p class="intro">延续首页的暖色视觉、金色强调和大图展示方式，用于海外批发、进口商与品牌客户快速了解产品外观、结构细节和定制能力。</p>
+            <ul class="proof-list">
+              <li><span>01</span><strong>顶图突出产品整体外观，和首页产品卡片保持同一套图片质感。</strong></li>
+              <li><span>02</span><strong>九宫格补充拉杆、轮组、手把、箱体与工厂方案，适合作为详情页核心内容。</strong></li>
+              <li><span>03</span><strong>页面底部保留询盘入口，让客户看完整套图片后再进入报价沟通。</strong></li>
+            </ul>
+            <div class="detail-actions">
+              <a class="button button-outline" data-lang-link href="product-center-preview.html#catalog">返回产品图片</a>
+              <a class="button button-primary" data-lang-link href="#contact">发送询盘</a>
+            </div>
+          </aside>
+        </section>
+
+        <section class="gallery-shell card" id="detail-gallery" aria-label="行李箱 3x3 详情图">
+          <div class="detail-gallery-grid" data-detail-gallery></div>
+        </section>
+
+        <section class="inquiry card" id="contact">
+          <div class="inquiry-head">
+            <p class="kicker">INQUIRY / CONTACT</p>
+            <h2>Turn every inquiry into one elegant entry point.</h2>
+            <p>Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
+          </div>
+
+          <form class="inquiry-form" aria-label="Quick inquiry form">
+            <h3>Quick inquiry form</h3>
+            <label>
+              <span>Your name</span>
+              <input name="name" type="text" autocomplete="name" />
+            </label>
+            <label>
+              <span>Company name</span>
+              <input name="company" type="text" autocomplete="organization" />
+            </label>
+            <label>
+              <span>Email address</span>
+              <input name="email" type="email" autocomplete="email" />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" rows="3"></textarea>
+            </label>
+            <button class="button button-primary form-submit" type="submit">Send inquiry</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="../shared-shell.js?v=20260529-1"></script>
+
+    <script>
+      (() => {
+        const LANGS = ['zh', 'en', 'es', 'hi'];
+        const copy = {
+          zh: {
+            nav: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
+            quote: '获取报价 →',
+            lang: ['中文', 'English', 'Español', 'हिन्दी'],
+            heroLabel: 'ABS / PC 拉链箱产品详情',
+            heroTitle: 'ABS / PC 拉链箱',
+            heroIntro:
+              '延续首页的暖色视觉、金色强调和大图展示方式，用于海外批发、进口商与品牌客户快速了解产品外观、结构细节和定制能力。',
+            proof: [
+              '顶图突出产品整体外观，和首页产品卡片保持同一套图片质感。',
+              '九宫格补充拉杆、轮组、手把、箱体与工厂方案，适合作为详情页核心内容。',
+              '页面底部保留询盘入口，让客户看完整套图片后再进入报价沟通。',
+            ],
+            back: '返回产品图集',
+            inquiry: '发送询盘',
+            galleryLabel: '行李箱 3x3 详情图',
+            inquiryKicker: '询盘',
+            inquiryTitle: '获取专属报价',
+            inquiryCopy: '留下姓名、公司、邮箱和简短留言。我们会尽快回复你需要的细节。',
+            formTitle: '发送询盘',
+            formName: '你的姓名',
+            formCompany: '公司名称',
+            formEmail: '邮箱地址',
+            formMessage: '留言内容',
+            formSubmit: '提交需求 →',
+            status: '我们已收到你的询盘，会尽快回复。',
+          },
+          en: {
+            nav: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
+            quote: 'Get Quote →',
+            lang: ['Chinese', 'English', 'Spanish', 'Hindi'],
+            heroLabel: 'ABS / PC zipper luggage detail',
+            heroTitle: 'ABS / PC Zipper Luggage',
+            heroIntro:
+              'Carry forward the warm visual language, gold accents, and large-scale presentation from the homepage so overseas buyers and brand clients can quickly review the product look, structure, and customization options.',
+            proof: [
+              'The hero image keeps the same product-card visual quality as the homepage.',
+              'The 3x3 grid adds handles, wheels, shell, and factory options for a compact product story.',
+              'The inquiry area stays at the bottom so customers can move straight from browsing to quoting.',
+            ],
+            back: 'Back to catalog',
+            inquiry: 'Send inquiry',
+            galleryLabel: 'Luggage 3x3 detail gallery',
+            inquiryKicker: 'Inquiry',
+            inquiryTitle: 'Get a custom quote',
+            inquiryCopy: 'Leave your name, company, email, and a short message. We will reply with the details you need.',
+            formTitle: 'Send an inquiry',
+            formName: 'Your name',
+            formCompany: 'Company name',
+            formEmail: 'Email address',
+            formMessage: 'Message',
+            formSubmit: 'Submit request →',
+            status: 'Inquiry received. We will reply shortly.',
+          },
+          es: {
+            nav: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
+            quote: 'Solicitar cotización →',
+            lang: ['Chino', 'English', 'Español', 'Hindi'],
+            heroLabel: 'Detalle de maleta ABS / PC con cremallera',
+            heroTitle: 'Maleta ABS / PC con cremallera',
+            heroIntro:
+              'Conserva el lenguaje visual cálido, los acentos dorados y la presentación a gran formato para que compradores internacionales y marcas revisen rápidamente el aspecto, la estructura y las opciones de personalización.',
+            proof: [
+              'La imagen principal mantiene la misma calidad visual que la tarjeta de producto de inicio.',
+              'La cuadrícula 3x3 añade asas, ruedas, carcasa y opciones de fábrica para contar el producto.',
+              'El área de consulta queda al final para pasar del recorrido visual al presupuesto.',
+            ],
+            back: 'Volver al catálogo',
+            inquiry: 'Enviar consulta',
+            galleryLabel: 'Galería de detalle 3x3 de equipaje',
+            inquiryKicker: 'Consulta',
+            inquiryTitle: 'Obtén una cotización personalizada',
+            inquiryCopy: 'Deja tu nombre, empresa, correo y un breve mensaje. Te responderemos con los detalles necesarios.',
+            formTitle: 'Enviar una consulta',
+            formName: 'Tu nombre',
+            formCompany: 'Nombre de la empresa',
+            formEmail: 'Correo electrónico',
+            formMessage: 'Mensaje',
+            formSubmit: 'Enviar solicitud →',
+            status: 'Consulta recibida. Responderemos en breve.',
+          },
+          hi: {
+            nav: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
+            quote: 'कोटेशन लें →',
+            lang: ['चीनी', 'English', 'Español', 'हिन्दी'],
+            heroLabel: 'ABS / PC ज़िपर सूटकेस विवरण',
+            heroTitle: 'ABS / PC ज़िपर सूटकेस',
+            heroIntro:
+              'होमपेज के गर्म दृश्य, गोल्ड एक्सेंट और बड़े डिस्प्ले स्टाइल को आगे बढ़ाते हुए, यह पेज विदेशी खरीदारों और ब्रांड ग्राहकों को उत्पाद का रूप, संरचना और कस्टमाइज़ेशन जल्दी समझने देता है।',
+            proof: [
+              'हीरो इमेज होमपेज के प्रोडक्ट कार्ड जैसी ही दृश्य गुणवत्ता रखती है।',
+              '3x3 ग्रिड में हैंडल, व्हील, शेल और फ़ैक्ट्री विकल्प जोड़कर कहानी पूरी होती है।',
+              'क्वेरी सेक्शन नीचे रखा गया है ताकि देखने के बाद सीधे कोटेशन तक जाया जा सके।',
+            ],
+            back: 'कैटलॉग पर वापस',
+            inquiry: 'पूछताछ भेजें',
+            galleryLabel: 'लगेज 3x3 विवरण गैलरी',
+            inquiryKicker: 'पूछताछ',
+            inquiryTitle: 'कस्टम कोटेशन लें',
+            inquiryCopy: 'अपना नाम, कंपनी, ईमेल और छोटा संदेश छोड़ें। हम आपको ज़रूरी विवरण के साथ जवाब देंगे।',
+            formTitle: 'पूछताछ भेजें',
+            formName: 'आपका नाम',
+            formCompany: 'कंपनी का नाम',
+            formEmail: 'ईमेल पता',
+            formMessage: 'संदेश',
+            formSubmit: 'अनुरोध भेजें →',
+            status: 'पूछताछ मिल गई है। हम जल्द जवाब देंगे।',
+          },
+        };
+
+        const readLang = () => {
+          const fromShell = window.traveldayShell?.getLanguage?.();
+          if (LANGS.includes(fromShell)) return fromShell;
+          const optionValue = document.querySelector('.language-select')?.value;
+          if (LANGS.includes(optionValue)) return optionValue;
+          try {
+            const queryLang = new URLSearchParams(window.location.search).get('lang');
+            if (LANGS.includes(queryLang)) return queryLang;
+          } catch {
+            // Ignore malformed URLs.
+          }
+          return 'zh';
+        };
+
+        const applyText = (lang) => {
+          const t = copy[lang] || copy.zh;
+
+          document.querySelectorAll('.primary-nav a').forEach((link, index) => {
+            if (t.nav[index]) link.textContent = t.nav[index];
+          });
+
+          const quote = document.querySelector('.quote-button');
+          if (quote) quote.textContent = t.quote;
+
+          document.querySelectorAll('.language-select option').forEach((option) => {
+            const index = LANGS.indexOf(option.value);
+            if (index >= 0 && t.lang[index]) option.textContent = t.lang[index];
+          });
+
+          const hero = document.querySelector('.detail-hero');
+          if (hero) hero.setAttribute('aria-label', t.heroLabel);
+          const visual = document.querySelector('.hero-visual');
+          if (visual) visual.setAttribute('aria-label', t.heroLabel);
+
+          const h1 = document.querySelector('.detail-copy h1');
+          if (h1) h1.textContent = t.heroTitle;
+
+          const intro = document.querySelector('.detail-copy .intro');
+          if (intro) intro.textContent = t.heroIntro;
+
+          document.querySelectorAll('.proof-list li strong').forEach((node, index) => {
+            if (t.proof[index]) node.textContent = t.proof[index];
+          });
+
+          const back = document.querySelector('.detail-actions .button-outline');
+          if (back) back.textContent = t.back;
+          const inquiry = document.querySelector('.detail-actions .button-primary');
+          if (inquiry) inquiry.textContent = t.inquiry;
+
+          const gallery = document.querySelector('.gallery-shell');
+          if (gallery) gallery.setAttribute('aria-label', t.galleryLabel);
+
+          const inquiryKicker = document.querySelector('.inquiry .kicker');
+          if (inquiryKicker) inquiryKicker.textContent = t.inquiryKicker;
+          const inquiryTitle = document.querySelector('.inquiry-head h2');
+          if (inquiryTitle) inquiryTitle.textContent = t.inquiryTitle;
+          const inquiryCopy = document.querySelector('.inquiry-head p:last-of-type');
+          if (inquiryCopy) inquiryCopy.textContent = t.inquiryCopy;
+          const formTitle = document.querySelector('.inquiry-form h3');
+          if (formTitle) formTitle.textContent = t.formTitle;
+          const labels = document.querySelectorAll('.inquiry-form label span');
+          if (labels[0]) labels[0].textContent = t.formName;
+          if (labels[1]) labels[1].textContent = t.formCompany;
+          if (labels[2]) labels[2].textContent = t.formEmail;
+          if (labels[3]) labels[3].textContent = t.formMessage;
+          const submit = document.querySelector('.form-submit');
+          if (submit) submit.textContent = t.formSubmit;
+        };
+
+        const activeLang = readLang();
+        applyText(activeLang);
+        window.addEventListener('travelday:languagechange', (event) => {
+          applyText(event.detail?.lang || readLang());
+        });
+
+        const form = document.querySelector('.inquiry-form');
+        const status = document.querySelector('.form-status');
+        if (form && status) {
+          form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            status.textContent = (copy[readLang()] || copy.zh).status;
+            form.reset();
+          });
+        }
+      })();
+    </script>
+
+    <script>
+      const detailGalleryItems = [
+        { title: '正面主图', src: '../images/product-card-luggage.png', position: 'center' },
+        { title: '系列展示', src: '../images/series-luggage.jpg', position: 'center' },
+        { title: '套装展示', src: '../images/product-card-luggage.png', position: '80% 58%', size: '155%' },
+        { title: '拉杆细节', src: '../images/product-card-luggage.png', position: '78% 19%', size: '205%' },
+        { title: '轮组细节', src: '../images/product-card-luggage.png', position: '77% 92%', size: '215%' },
+        { title: '箱体侧面', src: '../images/product-card-luggage.png', position: '67% 62%', size: '165%' },
+        { title: '手把部件', src: '../images/product-card-luggage.png', position: '76% 18%', size: '235%' },
+        { title: '工厂定制', src: '../images/product-card-luggage.png', position: '43% 42%', size: '145%' },
+        { title: '材料与方案', src: '../images/product-card-luggage.png', position: '18% 42%', size: '160%' },
+      ];
+
+      function renderDetailGallery(items, target) {
+        target.innerHTML = items.slice(0, 9).map(function (item) {
+          return (
+            '<article class="detail-shot" aria-label="' +
+            item.title +
+            '">' +
+            '<div class="detail-shot-image-wrap" style="--image: url(\'' +
+            item.src +
+            '\'); --position: ' +
+            (item.position || 'center') +
+            '; --size: ' +
+            (item.size || 'cover') +
+            '">' +
+            '<div class="detail-shot-image" role="img" aria-label="' +
+            item.title +
+            '"></div>' +
+            '</div>' +
+            '</article>'
+          );
+        }).join('');
+      }
+
+      renderDetailGallery(detailGalleryItems, document.querySelector('[data-detail-gallery]'));
+
+      const form = document.querySelector('.inquiry-form');
+      const status = document.querySelector('.form-status');
+      if (form && status) {
+        form.addEventListener('submit', function (event) {
+          event.preventDefault();
+          status.textContent = 'Inquiry received. We will reply shortly.';
+          form.reset();
+        });
+      }
+    </script>
+
+    <script>
+      (() => {
+        const LANGS = ["zh", "en", "es", "hi"];
+        const DEFAULT_PRODUCT = "luggage";
+        const productKeys = ["luggage", "semi-shell", "eva-soft-shell", "trolley-handle"];
+
+        const pageCopy = {
+          zh: {
+            nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系我们"],
+            quote: "获取报价 →",
+            lang: ["中文", "English", "Español", "हिन्दी"],
+            back: "返回产品中心",
+            inquiry: "发送询盘",
+            productDetail: "产品详情",
+            gallerySuffix: "详情图",
+            inquiryKicker: "询盘",
+            inquiryTitle: "获取专属报价",
+            inquiryCopy: "留下姓名、公司、邮箱和简短需求，我们会尽快回复你需要的产品细节。",
+            formLabel: "获取专属报价表单",
+            formTitle: "发送询盘",
+            formName: "你的姓名",
+            formCompany: "公司名称",
+            formEmail: "邮箱地址",
+            formMessage: "留言内容",
+            formSubmit: "提交需求 →",
+            status: "我们已收到你的询盘，会尽快回复。",
+          },
+          en: {
+            nav: ["Home", "Products", "Solutions", "About", "Market", "Contact"],
+            quote: "Get Quote →",
+            lang: ["Chinese", "English", "Spanish", "Hindi"],
+            back: "Back to catalog",
+            inquiry: "Send inquiry",
+            productDetail: "Product Detail",
+            gallerySuffix: "detail gallery",
+            inquiryKicker: "INQUIRY / CONTACT",
+            inquiryTitle: "Turn every inquiry into one elegant entry point.",
+            inquiryCopy: "Tell us your market, product or customization needs and we will respond through one integrated resource chain.",
+            formLabel: "Quick inquiry form",
+            formTitle: "Quick inquiry form",
+            formName: "Your name",
+            formCompany: "Company name",
+            formEmail: "Email address",
+            formMessage: "Message",
+            formSubmit: "Send inquiry",
+            status: "We will get back to you quickly with a suitable resource-matching plan.",
+          },
+          es: {
+            nav: ["Inicio", "Productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
+            quote: "Solicitar cotización →",
+            lang: ["Chino", "English", "Español", "Hindi"],
+            back: "Volver al catálogo",
+            inquiry: "Enviar consulta",
+            productDetail: "Detalle de producto",
+            gallerySuffix: "galería de detalle",
+            inquiryKicker: "Consulta",
+            inquiryTitle: "Obtén una cotización personalizada",
+            inquiryCopy: "Deja tu nombre, empresa, correo y un breve mensaje. Te responderemos con los detalles necesarios.",
+            formLabel: "Formulario para solicitar cotización",
+            formTitle: "Enviar una consulta",
+            formName: "Tu nombre",
+            formCompany: "Nombre de la empresa",
+            formEmail: "Correo electrónico",
+            formMessage: "Mensaje",
+            formSubmit: "Enviar solicitud →",
+            status: "Consulta recibida. Responderemos en breve.",
+          },
+          hi: {
+            nav: ["होम", "उत्पाद", "समाधान", "हमारे बारे में", "बाजार", "संपर्क"],
+            quote: "कोटेशन लें →",
+            lang: ["चीनी", "English", "Español", "हिन्दी"],
+            back: "कैटलॉग पर लौटें",
+            inquiry: "पूछताछ भेजें",
+            productDetail: "उत्पाद विवरण",
+            gallerySuffix: "विवरण गैलरी",
+            inquiryKicker: "पूछताछ",
+            inquiryTitle: "कस्टम कोटेशन लें",
+            inquiryCopy: "अपना नाम, कंपनी, ईमेल और छोटा संदेश छोड़ें। हम आवश्यक विवरणों के साथ जल्दी उत्तर देंगे।",
+            formLabel: "कस्टम कोटेशन फॉर्म",
+            formTitle: "पूछताछ भेजें",
+            formName: "आपका नाम",
+            formCompany: "कंपनी का नाम",
+            formEmail: "ईमेल पता",
+            formMessage: "संदेश",
+            formSubmit: "अनुरोध भेजें →",
+            status: "पूछताछ मिल गई है। हम जल्द जवाब देंगे।",
+          },
+        };
+
+        const productDetailData = {
+          "luggage": {
+            heroImage: "../images/product-card-luggage.png",
+            copy: {
+              zh: {
+                title: "ABS / PC 行李箱",
+                intro: "ABS 与 PC 复合箱体兼顾轻量、韧性和表面质感，适合登机箱、托运行李箱以及品牌定制项目。",
+                proof: ["箱体外观完整清晰，适合展示拉链箱与硬箱系列的主力款式。", "可延展到尺寸、颜色、轮组、拉杆和内衬等定制方案。", "适合进口商、批发商和品牌客户快速了解量产交付能力。"],
+              },
+              en: {
+                title: "ABS / PC Luggage",
+                intro: "ABS and PC composite shells balance light weight, durability, and a polished surface, making them suitable for carry-ons, checked luggage, and private-label programs.",
+                proof: ["A clear hero view presents the main hard-shell luggage look.", "Customization can cover size, color, wheels, trolley handle, lining, and branding.", "A practical choice for importers, wholesalers, and brand customers reviewing production capacity."],
+              },
+              es: {
+                title: "Equipaje ABS / PC",
+                intro: "Las carcasas compuestas de ABS y PC equilibran ligereza, resistencia y buen acabado para maletas de cabina, facturadas y proyectos de marca propia.",
+                proof: ["La imagen principal muestra con claridad la apariencia de la maleta rígida.", "La personalización puede cubrir tamaño, color, ruedas, tirador, forro y marca.", "Una opción práctica para importadores, mayoristas y marcas que evalúan producción."],
+              },
+              hi: {
+                title: "ABS / PC लगेज",
+                intro: "ABS और PC कंपोजिट शेल हल्के वजन, मजबूती और बेहतर सतह फिनिश को संतुलित करते हैं, जो कैरी-ऑन, चेक-इन लगेज और ब्रांड प्रोजेक्ट के लिए उपयुक्त हैं।",
+                proof: ["मुख्य छवि हार्ड-शेल लगेज का रूप साफ दिखाती है।", "आकार, रंग, पहिए, ट्रॉली हैंडल, लाइनिंग और ब्रांडिंग तक कस्टमाइजेशन संभव है।", "इंपोर्टर, होलसेलर और ब्रांड ग्राहकों के लिए उत्पादन क्षमता देखने का व्यावहारिक विकल्प।"],
+              },
+            },
+            gallery: [
+              ["正面主图", "../images/product-card-luggage.png", "center"],
+              ["系列展示", "../images/series-luggage.jpg", "center"],
+              ["成品行李箱", "../images/product-gallery/01-product-finished-luggage.jpg", "center"],
+              ["行李箱系列", "../images/product-gallery/02-series-luggage.jpg", "center"],
+              ["套装展示", "../images/product-gallery/03-series-luggage333.jpg", "center"],
+              ["ABS / PC 主推款", "../images/product-gallery/04-series-luggage111.jpg", "center"],
+              ["成品细节", "../images/product-gallery/05-product-finished-luggage111.jpg", "center"],
+              ["箱体结构", "../images/product-gallery/06-194303a2-70f2-4922-a9a5-8fcafdd560f9.jpg", "center"],
+              ["材料与方案", "../images/product-card-luggage.png", "18% 42%", "160%"],
+            ],
+          },
+          "semi-shell": {
+            heroImage: "../images/product-gallery/17-series-production.jpg",
+            copy: {
+              zh: {
+                title: "PP 行李箱",
+                intro: "PP 材质耐冲击、回弹性好，适合需要更强抗压表现和稳定量产交付的行李箱项目。",
+                proof: ["突出材料韧性和箱体抗压表现，适合长途运输场景。", "可对接半成品、箱壳、生产线和工厂配套方案。", "适合海外工厂、批发项目和供应链合作客户。"],
+              },
+              en: {
+                title: "PP Luggage",
+                intro: "PP luggage offers strong impact resistance and rebound performance for projects that need durable shells and stable production delivery.",
+                proof: ["Highlights shell toughness and pressure resistance for long-distance transport.", "Can connect with semi-finished shells, production lines, and factory support.", "Suitable for overseas factories, wholesale programs, and supply chain partners."],
+              },
+              es: {
+                title: "Equipaje PP",
+                intro: "El equipaje de PP ofrece alta resistencia al impacto y buena recuperación para proyectos que necesitan carcasas duraderas y entrega estable.",
+                proof: ["Destaca la resistencia de la carcasa para transporte de larga distancia.", "Puede conectarse con carcasas semielaboradas, líneas de producción y soporte de fábrica.", "Adecuado para fábricas en el extranjero, mayoristas y socios de suministro."],
+              },
+              hi: {
+                title: "PP लगेज",
+                intro: "PP लगेज बेहतर इम्पैक्ट रेजिस्टेंस और रिकवरी देता है, इसलिए यह टिकाऊ शेल और स्थिर उत्पादन डिलीवरी वाले प्रोजेक्ट के लिए उपयुक्त है।",
+                proof: ["लंबी दूरी के परिवहन के लिए शेल की मजबूती और दबाव प्रतिरोध दिखाता है।", "सेमी-फिनिश्ड शेल, उत्पादन लाइन और फैक्ट्री सपोर्ट से जोड़ा जा सकता है।", "ओवरसीज फैक्ट्री, होलसेल प्रोग्राम और सप्लाई चेन पार्टनर के लिए उपयुक्त।"],
+              },
+            },
+            gallery: [
+              ["PP 行李箱", "../images/product-gallery/17-series-production.jpg", "center"],
+              ["生产场景", "../images/series-production.jpg", "center"],
+              ["生产线展示", "../images/series-production123.jpg", "center"],
+              ["半成品箱体", "../images/product-gallery/07-product-semi-finished-luggage.jpg", "center"],
+              ["生产配套", "../images/product-gallery/08-series-production123.jpg", "center"],
+              ["工厂能力", "../images/product-gallery/14-581b5d15-ae58-4888-bd18-13d26e321c96.jpg", "center"],
+              ["箱体材料", "../images/product-semi-finished-luggage.jpg", "center"],
+              ["批量交付", "../images/series-production000.jpg", "center"],
+              ["供应链方案", "../images/product-gallery/17-series-production.jpg", "43% 42%", "145%"],
+            ],
+          },
+          "eva-soft-shell": {
+            heroImage: "../images/product-gallery/15-oem-odm222.jpg",
+            copy: {
+              zh: {
+                title: "EVA 行李箱",
+                intro: "EVA 软箱方案强调轻量、柔韧和灵活开发，适合软面箱、商务出行和 OEM / ODM 定制需求。",
+                proof: ["适合展示软箱面料、结构开发和外观定制能力。", "可配合不同市场做颜色、尺寸、口袋和品牌细节开发。", "适合小批量测试、品牌款开发和一站式定制项目。"],
+              },
+              en: {
+                title: "EVA Luggage",
+                intro: "EVA soft luggage focuses on light weight, flexibility, and adaptable development for soft-side cases, business travel, and OEM / ODM programs.",
+                proof: ["Shows soft-shell materials, structure development, and appearance customization.", "Supports market-specific color, size, pocket, and branding details.", "Good for trial orders, brand development, and one-stop customization projects."],
+              },
+              es: {
+                title: "Equipaje EVA",
+                intro: "El equipaje blando de EVA se centra en ligereza, flexibilidad y desarrollo adaptable para maletas blandas, viajes de negocios y proyectos OEM / ODM.",
+                proof: ["Muestra materiales blandos, desarrollo estructural y personalización visual.", "Permite colores, tamaños, bolsillos y marca según cada mercado.", "Adecuado para pruebas, desarrollo de marca y personalización integral."],
+              },
+              hi: {
+                title: "EVA लगेज",
+                intro: "EVA सॉफ्ट लगेज हल्के वजन, लचीलापन और अनुकूल विकास पर केंद्रित है, जो सॉफ्ट-साइड केस, बिजनेस ट्रैवल और OEM / ODM प्रोग्राम के लिए उपयुक्त है।",
+                proof: ["सॉफ्ट-शेल सामग्री, संरचना विकास और लुक कस्टमाइजेशन दिखाता है।", "अलग बाजारों के लिए रंग, आकार, पॉकेट और ब्रांडिंग डिटेल सपोर्ट करता है।", "ट्रायल ऑर्डर, ब्रांड डेवलपमेंट और वन-स्टॉप कस्टमाइजेशन के लिए अच्छा।"],
+              },
+            },
+            gallery: [
+              ["EVA 行李箱", "../images/product-gallery/15-oem-odm222.jpg", "center"],
+              ["OEM ODM", "../images/product-gallery/16-oem-odm333.jpg", "center"],
+              ["定制方案", "../images/product-gallery/5f7e87adbc1fdbf02416eb5995f78d7c.jpg", "center"],
+              ["软箱开发", "../company-products-preview.svg", "center"],
+              ["工厂定制", "../images/series-production.jpg", "center"],
+              ["材料方案", "../images/product-gallery/14-581b5d15-ae58-4888-bd18-13d26e321c96.jpg", "center"],
+              ["箱包开发", "../images/product-card-accessories.png", "center"],
+              ["系列应用", "../images/product-gallery/15-oem-odm222.jpg", "43% 42%", "145%"],
+              ["品牌项目", "../images/product-gallery/16-oem-odm333.jpg", "center"],
+            ],
+          },
+          "trolley-handle": {
+            heroImage: "../images/product-gallery/10-series-handle.jpg",
+            copy: {
+              zh: {
+                title: "ACCESORIES 配件",
+                intro: "配件方案覆盖拉杆、手把、轮组和箱体零件，适合工厂配套、维修替换和整箱开发项目。",
+                proof: ["拉杆、手把、轮组等关键部件可按项目需求组合。", "适合海外工厂采购零部件并接入本地装配。", "支持从单个配件到整箱结构的一站式供应链服务。"],
+              },
+              en: {
+                title: "ACCESORIES Parts",
+                intro: "The accessories program covers trolley handles, carry handles, wheels, and case components for factory support, replacement, and full luggage development.",
+                proof: ["Key parts such as trolley handles, handles, and wheels can be combined by project need.", "Suitable for overseas factories sourcing components for local assembly.", "Supports one-stop supply from single parts to full luggage structures."],
+              },
+              es: {
+                title: "ACCESORIES piezas",
+                intro: "El programa de accesorios cubre tiradores, asas, ruedas y componentes para soporte de fábrica, reemplazo y desarrollo completo de maletas.",
+                proof: ["Las piezas clave se pueden combinar según cada proyecto.", "Adecuado para fábricas en el extranjero que compran componentes para ensamblaje local.", "Soporta suministro integral desde piezas individuales hasta estructuras completas."],
+              },
+              hi: {
+                title: "ACCESORIES पार्ट्स",
+                intro: "एक्सेसरीज़ प्रोग्राम में ट्रॉली हैंडल, कैरी हैंडल, पहिए और केस कंपोनेंट शामिल हैं, जो फैक्ट्री सपोर्ट, रिप्लेसमेंट और पूरे लगेज विकास के लिए उपयुक्त हैं।",
+                proof: ["ट्रॉली हैंडल, हैंडल और पहिए जैसे मुख्य पार्ट्स प्रोजेक्ट जरूरत के अनुसार जोड़े जा सकते हैं।", "लोकल असेंबली के लिए कंपोनेंट खरीदने वाली ओवरसीज फैक्ट्री के लिए उपयुक्त।", "सिंगल पार्ट से पूरे लगेज स्ट्रक्चर तक वन-स्टॉप सप्लाई सपोर्ट।"],
+              },
+            },
+            gallery: [
+              ["拉杆系列", "../images/product-gallery/10-series-handle.jpg", "center"],
+              ["拉杆细节", "../images/product-gallery/11-series-handle000.jpg", "center"],
+              ["轮组系列", "../images/product-gallery/12-series-wheels.jpg", "center"],
+              ["轮组细节", "../images/product-gallery/13-series-wheels000.jpg", "center"],
+              ["零部件合集", "../images/product-gallery/09-luggage-components.jpg", "center"],
+              ["配件展示", "../images/product-card-accessories.png", "center"],
+              ["手把部件", "../images/product-gallery/10-series-handle.jpg", "76% 18%", "235%"],
+              ["轮子部件", "../images/product-gallery/12-series-wheels.jpg", "77% 92%", "215%"],
+              ["整箱配套", "../images/product-gallery/09-luggage-components.jpg", "center"],
+            ],
+          },
+        };
+
+        const readLang = () => {
+          const fromShell = window.traveldayShell?.getLanguage?.();
+          if (LANGS.includes(fromShell)) return fromShell;
+          try {
+            const queryLang = new URLSearchParams(window.location.search).get("lang");
+            if (LANGS.includes(queryLang)) return queryLang;
+          } catch {
+            // Ignore malformed URLs.
+          }
+          return "zh";
+        };
+
+        const readProduct = () => {
+          try {
+            const queryProduct = new URLSearchParams(window.location.search).get("product");
+            if (productKeys.includes(queryProduct)) return queryProduct;
+          } catch {
+            // Ignore malformed URLs.
+          }
+          return DEFAULT_PRODUCT;
+        };
+
+        const setText = (selector, value, root = document) => {
+          const node = root.querySelector(selector);
+          if (node && value !== undefined) node.textContent = value;
+        };
+
+        const addLang = (href, lang) => {
+          const url = new URL(href, window.location.href);
+          url.searchParams.set("lang", lang);
+          return url.toString();
+        };
+
+        const renderGallery = (items, lang, galleryLabel) => {
+          const target = document.querySelector("[data-detail-gallery]");
+          if (!target) return;
+          target.innerHTML = items.slice(0, 9).map((item) => {
+            const [title, src, position = "center", size = "cover"] = item;
+            const label = lang === "en" ? title.replace(/[一-龥]/g, "").trim() || galleryLabel : title;
+            return `
+              <article class="detail-shot" aria-label="${label}">
+                <div class="detail-shot-image-wrap" style="--image: url('${src}'); --position: ${position}; --size: ${size}">
+                  <div class="detail-shot-image" role="img" aria-label="${label}"></div>
+                </div>
+              </article>
+            `;
+          }).join("");
+        };
+
+        const applyDetailPage = (lang = readLang()) => {
+          const productKey = readProduct();
+          const page = pageCopy[lang] || pageCopy.zh;
+          const product = productDetailData[productKey] || productDetailData[DEFAULT_PRODUCT];
+          const detail = product.copy[lang] || product.copy.zh;
+          const title = `TRAVELDAY | ${detail.title}`;
+          const galleryLabel = `${detail.title} ${page.gallerySuffix}`;
+
+          document.title = title;
+          document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+          document.documentElement.dataset.lang = lang;
+
+          document.querySelectorAll(".primary-nav a").forEach((link, index) => {
+            if (page.nav[index]) link.textContent = page.nav[index];
+          });
+          document.querySelectorAll(".language-select option").forEach((option) => {
+            const index = LANGS.indexOf(option.value);
+            if (index >= 0 && page.lang[index]) option.textContent = page.lang[index];
+          });
+
+          setText(".quote-button", page.quote);
+          setText(".detail-copy .kicker", page.productDetail);
+          setText(".detail-copy h1", detail.title);
+          setText(".detail-copy .intro", detail.intro);
+          document.querySelectorAll(".proof-list li strong").forEach((node, index) => {
+            if (detail.proof[index]) node.textContent = detail.proof[index];
+          });
+
+          const hero = document.querySelector(".detail-hero");
+          if (hero) hero.setAttribute("aria-label", galleryLabel);
+          const visual = document.querySelector(".hero-visual");
+          if (visual) {
+            visual.setAttribute("aria-label", galleryLabel);
+            visual.style.setProperty("--hero-image", `url("${product.heroImage}")`);
+          }
+
+          const back = document.querySelector(".detail-actions .button-outline");
+          if (back) {
+            back.textContent = page.back;
+            back.href = addLang("product-center-preview.html#catalog", lang);
+          }
+          const inquiry = document.querySelector(".detail-actions .button-primary");
+          if (inquiry) inquiry.textContent = page.inquiry;
+
+          const gallery = document.querySelector(".gallery-shell");
+          if (gallery) gallery.setAttribute("aria-label", galleryLabel);
+          renderGallery(product.gallery, lang, galleryLabel);
+
+          setText(".inquiry .kicker", page.inquiryKicker);
+          setText(".inquiry-head h2", page.inquiryTitle);
+          setText(".inquiry-head p:last-of-type", page.inquiryCopy);
+          const form = document.querySelector(".inquiry-form");
+          if (form) form.setAttribute("aria-label", page.formLabel);
+          setText(".inquiry-form h3", page.formTitle);
+          const labels = document.querySelectorAll(".inquiry-form label span");
+          if (labels[0]) labels[0].textContent = page.formName;
+          if (labels[1]) labels[1].textContent = page.formCompany;
+          if (labels[2]) labels[2].textContent = page.formEmail;
+          if (labels[3]) labels[3].textContent = page.formMessage;
+          setText(".form-submit", page.formSubmit);
+
+          window.traveldayShell?.syncLanguageLinks?.(lang);
+          document.documentElement.dataset.navReady = "true";
+        };
+
+        applyDetailPage(readLang());
+        window.addEventListener("travelday:languagechange", (event) => {
+          applyDetailPage(LANGS.includes(event.detail?.lang) ? event.detail.lang : readLang());
+        });
+
+        const form = document.querySelector(".inquiry-form");
+        const status = document.querySelector(".form-status");
+        if (form && status && form.dataset.productDetailBound !== "true") {
+          form.dataset.productDetailBound = "true";
+          form.addEventListener("submit", () => {
+            status.textContent = (pageCopy[readLang()] || pageCopy.zh).status;
+          });
+        }
+      })();
+    </script>
+    <script src="../shared-inquiry.js?v=20260531-1"></script>
+  </body>
+</html>

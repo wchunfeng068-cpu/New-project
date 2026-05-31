@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F1E8"/>
+      <stop offset="1" stop-color="#EEDFCF"/>
+    </linearGradient>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFF9F1"/>
+      <stop offset="1" stop-color="#F2E8DA"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#D9A200"/>
+      <stop offset="1" stop-color="#BF8C00"/>
+    </linearGradient>
+    <linearGradient id="veil" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#FFFFFF" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#D8C7B2" stop-opacity=".14"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="28" stdDeviation="32" flood-color="#7A5E37" flood-opacity="0.14"/>
+    </filter>
+    <filter id="softBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <style>
+      .serif { font-family: Georgia, "Times New Roman", serif; }
+      .sans { font-family: Arial, Helvetica, sans-serif; }
+      .title { fill: #111111; font-size: 34px; font-weight: 500; }
+      .label { fill: #111111; font-size: 19px; font-weight: 700; }
+      .sub { fill: rgba(17,17,17,.62); font-size: 12px; font-weight: 600; }
+      .kicker { fill: #D9A200; font-size: 14px; font-weight: 800; letter-spacing: .22em; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#pageBg)"/>
+
+  <text x="92" y="74" class="sans kicker">PRODUCT PREVIEW</text>
+  <text x="92" y="112" class="serif" fill="#111111" font-size="32" font-weight="500">Three-card direction for the product section</text>
+  <text x="92" y="144" class="sans" fill="rgba(17,17,17,.58)" font-size="15" font-weight="700">Card 1 stays as-is, only slightly widened; Card 2 becomes a real accessories collage; Card 3 becomes a company presence scene.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="92" y="176" width="448" height="626" rx="28" fill="url(#cardBg)" stroke="#D7C4AE" stroke-opacity=".42"/>
+    <rect x="576" y="176" width="448" height="626" rx="28" fill="url(#cardBg)" stroke="#D7C4AE" stroke-opacity=".42"/>
+    <rect x="1060" y="176" width="448" height="626" rx="28" fill="url(#cardBg)" stroke="#D7C4AE" stroke-opacity=".42"/>
+  </g>
+
+  <!-- CARD 1 - LUGGAGE -->
+  <g transform="translate(92 176)">
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="#F3EBDD"/>
+    <image href="file:///C:/Users/Administrator/Documents/New%20project/images/series-luggage.jpg" x="18" y="18" width="412" height="454" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="url(#veil)"/>
+    <ellipse cx="226" cy="406" rx="130" ry="24" fill="#4B3925" opacity=".12" filter="url(#softBlur)"/>
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+    <text x="18" y="516" class="label">Luggage</text>
+    <text x="18" y="542" class="sub sans">Keep the original image, just stretch the card width a little</text>
+  </g>
+
+  <!-- CARD 2 - ACCESSORIES -->
+  <g transform="translate(576 176)">
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="#F4ECDD"/>
+    <g clip-path="url(#clipCard2)">
+      <rect x="18" y="18" width="412" height="454" rx="22" fill="#F4ECDD"/>
+      <image href="file:///C:/Users/Administrator/Documents/New%20project/images/series-handle.jpg" x="18" y="18" width="205" height="227" preserveAspectRatio="xMidYMid slice"/>
+      <image href="file:///C:/Users/Administrator/Documents/New%20project/images/series-wheels.jpg" x="225" y="18" width="205" height="227" preserveAspectRatio="xMidYMid slice"/>
+      <image href="file:///C:/Users/Administrator/Documents/New%20project/images/luggage-components.jpg" x="18" y="247" width="205" height="225" preserveAspectRatio="xMidYMid slice"/>
+      <image href="file:///C:/Users/Administrator/Documents/New%20project/images/bag-materials.jpg" x="225" y="247" width="205" height="225" preserveAspectRatio="xMidYMid slice"/>
+      <rect x="18" y="18" width="412" height="454" rx="22" fill="url(#veil)"/>
+    </g>
+    <defs>
+      <clipPath id="clipCard2">
+        <rect x="18" y="18" width="412" height="454" rx="22"/>
+      </clipPath>
+    </defs>
+    <rect x="28" y="28" width="106" height="30" rx="999" fill="#FFF8ED" fill-opacity=".58" stroke="#141414" stroke-opacity=".06"/>
+    <text x="81" y="49" text-anchor="middle" class="sans" fill="#111111" font-size="12" font-weight="800" letter-spacing=".18em">REAL ACCESSORIES</text>
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+    <text x="18" y="516" class="label">ACCESORIES</text>
+    <text x="18" y="542" class="sub sans">Real component photos, grouped into one calm, premium collage</text>
+  </g>
+
+  <!-- CARD 3 - COMPANY PRESENCE -->
+  <g transform="translate(1060 176)">
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="#F4ECDD"/>
+    <image href="file:///C:/Users/Administrator/Documents/New%20project/images/series-production.jpg" x="18" y="18" width="412" height="454" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="url(#veil)"/>
+    <rect x="30" y="30" width="104" height="30" rx="999" fill="#FFF7EA" fill-opacity=".62" stroke="#141414" stroke-opacity=".06"/>
+    <text x="82" y="51" text-anchor="middle" class="sans" fill="#111111" font-size="12" font-weight="800" letter-spacing=".18em">COMPANY PRESENCE</text>
+    <text x="38" y="378" class="serif" fill="#111111" font-size="25" font-weight="500">Company presence</text>
+    <text x="38" y="408" class="sans" fill="rgba(17,17,17,.66)" font-size="12" font-weight="700">
+      <tspan x="38" dy="0">Warm workshop, refined lighting, and a professional brand mood.</tspan>
+      <tspan x="38" dy="18">We can tune the picture tone to match your homepage exactly.</tspan>
+    </text>
+    <rect x="18" y="18" width="412" height="454" rx="22" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+    <text x="18" y="516" class="label">Company Presence</text>
+    <text x="18" y="542" class="sub sans">A premium company mood scene with a real production / showroom feel</text>
+  </g>
+
+  <text x="92" y="848" class="sans" fill="#8F7856" font-size="12" font-weight="800" letter-spacing=".16em">TRAVELDAY HOME CARD UPDATE PREVIEW</text>
+</svg>

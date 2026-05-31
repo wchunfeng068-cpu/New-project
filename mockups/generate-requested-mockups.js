@@ -1,0 +1,224 @@
+const fs = require('node:fs');
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
+
+const root = process.cwd();
+const mockups = path.join(root, 'mockups');
+const chrome = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+
+function ensureDir(dir) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+function fileUrl(p) {
+  return 'file:///' + p.replace(/\\/g, '/').replace(/ /g, '%20');
+}
+
+function writeHtml(name, html) {
+  const full = path.join(mockups, name);
+  fs.writeFileSync(full, html, 'utf8');
+  return full;
+}
+
+function render(htmlFile, pngFile) {
+  const args = [
+    '--headless',
+    '--disable-gpu',
+    '--disable-software-rasterizer',
+    '--no-sandbox',
+    '--disable-dev-shm-usage',
+    '--hide-scrollbars',
+    '--window-size=1600,1100',
+    `--screenshot=${path.join(mockups, pngFile)}`,
+    fileUrl(htmlFile),
+  ];
+  const result = spawnSync(chrome, args, { encoding: 'utf8' });
+  if (result.status !== 0) {
+    throw new Error((result.stderr || result.stdout || 'render failed').trim());
+  }
+}
+
+ensureDir(mockups);
+
+const baseCss = `
+  * { box-sizing: border-box; }
+  html, body {
+    width: 1600px;
+    height: 1100px;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #f7f3ed 0%, #efe4d4 100%);
+    font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .page {
+    position: relative;
+    width: 1540px;
+    height: 1040px;
+    border-radius: 34px;
+    background: #fcfaf5;
+    box-shadow: 0 18px 48px rgba(35, 28, 20, 0.12);
+    overflow: hidden;
+  }
+  .logo {
+    position: absolute;
+    left: 70px;
+    top: 58px;
+    width: 170px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .eyebrow {
+    position: absolute;
+    left: 92px;
+    top: 166px;
+    color: #b77a00;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+  }
+  .title {
+    position: absolute;
+    left: 92px;
+    top: 214px;
+    width: 520px;
+    color: #171411;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 0.98;
+    font-family: "SimHei", "Microsoft YaHei", sans-serif;
+  }
+  .subtitle {
+    position: absolute;
+    left: 92px;
+    top: 384px;
+    width: 460px;
+    color: #6f655a;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  .pill {
+    position: absolute;
+    left: 92px;
+    top: 474px;
+    padding: 0 18px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid #e3d9ca;
+    background: #fff;
+    color: #6f655a;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+  }
+  .top-image {
+    position: absolute;
+    right: 70px;
+    top: 140px;
+    width: 760px;
+    height: 490px;
+    border-radius: 30px;
+    object-fit: cover;
+    filter: saturate(0.96);
+  }
+  .top-overlay {
+    position: absolute;
+    right: 70px;
+    top: 140px;
+    width: 760px;
+    height: 490px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, rgba(31, 25, 20, 0.10), rgba(31, 25, 20, 0.28));
+  }
+  .chip {
+    position: absolute;
+    left: 744px;
+    top: 164px;
+    width: 240px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #171411;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .bottom-image {
+    position: absolute;
+    left: 92px;
+    right: 92px;
+    top: 712px;
+    height: 250px;
+    border-radius: 26px;
+    object-fit: cover;
+  }
+  .bottom-frame {
+    position: absolute;
+    left: 92px;
+    right: 92px;
+    top: 712px;
+    height: 250px;
+    border-radius: 26px;
+    border: 1px solid rgba(224, 214, 202, 0.92);
+    pointer-events: none;
+  }
+`;
+
+const solutionHtml = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>${baseCss}</style>
+</head>
+<body>
+  <div class="page">
+    <img class="logo" src="../images/logo-travelday.png" alt="TRAVELDAY" />
+    <div class="eyebrow">SOLUTION</div>
+    <div class="title">解决买家<br>找货难题</div>
+    <div class="subtitle">把找货、协同和交付收成一条线。</div>
+    <div class="pill">更少解释 · 更清晰的入口</div>
+    <img class="top-image" src="../images/series-production.jpg" alt="solution hero" />
+    <div class="top-overlay"></div>
+    <div class="chip">One-stop supply chain</div>
+    <img class="bottom-image" src="../images/luggage-components.jpg" alt="solution bottom" />
+    <div class="bottom-frame"></div>
+  </div>
+</body>
+</html>`;
+
+const marketHtml = `<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>${baseCss}</style>
+</head>
+<body>
+  <div class="page">
+    <img class="logo" src="../images/logo-travelday.png" alt="TRAVELDAY" />
+    <div class="eyebrow">GLOBAL MARKET</div>
+    <div class="title">把全球覆盖<br>做成一张图</div>
+    <div class="subtitle">用地图表达区域覆盖，保持画面更干净。</div>
+    <div class="pill">区域优先 · 信息克制</div>
+    <img class="top-image" src="../images/server-map.jpg" alt="market hero" />
+    <div class="top-overlay"></div>
+    <div class="chip">Coverage map</div>
+    <img class="bottom-image" src="../images/server-map111.jpg" alt="market bottom" />
+    <div class="bottom-frame"></div>
+  </div>
+</body>
+</html>`;
+
+const solutionHtmlFile = writeHtml('requested-solution.html', solutionHtml);
+const marketHtmlFile = writeHtml('requested-market.html', marketHtml);
+
+render(solutionHtmlFile, 'requested-solution.png');
+render(marketHtmlFile, 'requested-market.png');
+
+console.log('requested PNGs generated');

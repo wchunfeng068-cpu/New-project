@@ -1,0 +1,554 @@
+(() => {
+  const STYLE_ID = 'travelday-inquiry-module-styles';
+  const MODULE_CLASS = 'inquiry-standard';
+  const TARGET_SELECTOR = 'section#contact';
+  const DEFAULT_LANG = 'en';
+
+  const COPY = {
+    zh: {
+      eyebrow: 'INQUIRY / CONTACT',
+      title: '让合作更快发生',
+      desc: '告诉我们你的市场、产品或定制需求，我们会在同一条资源链里快速响应。',
+      pill1: '24小时内回复',
+      pill2: '资源协同',
+      pill3: '统一报价',
+      contactTitle: '直接联系',
+      contactDesc: 'sales@travelday.com · 详细需求可直接沟通。',
+      email: 'sales@travelday.com',
+      formTitle: '快速询盘',
+      formHint: '第一步就能开始对接',
+      formAria: '快速询盘',
+      nameLabel: '姓名',
+      namePlaceholder: '请输入您的姓名',
+      companyLabel: '公司名称',
+      companyPlaceholder: '请输入公司名称',
+      emailLabel: '邮箱',
+      emailPlaceholder: '请输入邮箱地址',
+      needLabel: '采购需求',
+      needPlaceholder: '例如：整箱采购、轮子配件、拉杆配套、定制需求',
+      messageLabel: '补充说明',
+      messagePlaceholder: '请简单说明数量、目标市场和交期要求',
+      button: '提交询盘',
+      note: '我们会尽快与您联系，并给出适合的资源匹配方案。',
+      status: '我们已收到您的需求，会尽快联系您。',
+    },
+    en: {
+      eyebrow: 'INQUIRY / CONTACT',
+      title: 'Turn every inquiry into one elegant entry point.',
+      desc: 'Tell us your market, product or customization needs and we will respond through one integrated resource chain.',
+      pill1: 'Reply within 24h',
+      pill2: 'Resource coordination',
+      pill3: 'Unified quote',
+      contactTitle: 'Direct contact',
+      contactDesc: 'sales@travelday.com · More details can be discussed in one step.',
+      email: 'sales@travelday.com',
+      formTitle: 'Quick inquiry form',
+      formHint: 'One step to start the conversation',
+      formAria: 'Quick inquiry form',
+      nameLabel: 'Name',
+      namePlaceholder: 'Your name',
+      companyLabel: 'Company',
+      companyPlaceholder: 'Company name',
+      emailLabel: 'Email',
+      emailPlaceholder: 'Email address',
+      needLabel: 'Need',
+      needPlaceholder: 'Market direction, product line or customization request',
+      messageLabel: 'Notes',
+      messagePlaceholder: 'Please tell us quantity, target market and timeline',
+      button: 'Send inquiry',
+      note: 'We will get back to you quickly with a suitable resource-matching plan.',
+      status: 'We have received your request and will contact you soon.',
+    },
+    es: {
+      eyebrow: 'INQUIRY / CONTACT',
+      title: 'Convierte cada consulta en una entrada clara y elegante.',
+      desc: 'Cuéntanos tu mercado, producto o necesidad de personalización y responderemos con una cadena integrada de recursos.',
+      pill1: 'Respuesta en 24h',
+      pill2: 'Coordinación de recursos',
+      pill3: 'Cotización unificada',
+      contactTitle: 'Contacto directo',
+      contactDesc: 'sales@travelday.com · Se pueden discutir más detalles en un solo paso.',
+      email: 'sales@travelday.com',
+      formTitle: 'Formulario rápido',
+      formHint: 'Un solo paso para iniciar la conversación',
+      formAria: 'Formulario rápido',
+      nameLabel: 'Nombre',
+      namePlaceholder: 'Tu nombre',
+      companyLabel: 'Empresa',
+      companyPlaceholder: 'Nombre de la empresa',
+      emailLabel: 'Correo',
+      emailPlaceholder: 'Dirección de correo',
+      needLabel: 'Necesidad',
+      needPlaceholder: 'Mercado, línea de producto o personalización',
+      messageLabel: 'Notas',
+      messagePlaceholder: 'Indica cantidad, mercado objetivo y plazo',
+      button: 'Enviar consulta',
+      note: 'Te responderemos pronto con una propuesta adecuada de recursos.',
+      status: 'Hemos recibido tu consulta y te contactaremos pronto.',
+    },
+    hi: {
+      eyebrow: 'INQUIRY / CONTACT',
+      title: 'हर पूछताछ को एक स्पष्ट और सुरुचिपूर्ण प्रवेश बिंदु में बदलें।',
+      desc: 'हमें अपना बाज़ार, उत्पाद या कस्टमाइज़ेशन आवश्यकता बताएं, हम एकीकृत संसाधन श्रृंखला के साथ जवाब देंगे।',
+      pill1: '24 घंटे में जवाब',
+      pill2: 'रिसोर्स समन्वय',
+      pill3: 'एकीकृत कोटेशन',
+      contactTitle: 'सीधा संपर्क',
+      contactDesc: 'sales@travelday.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।',
+      email: 'sales@travelday.com',
+      formTitle: 'त्वरित पूछताछ फॉर्म',
+      formHint: 'बातचीत शुरू करने के लिए एक ही चरण',
+      formAria: 'त्वरित पूछताछ फॉर्म',
+      nameLabel: 'नाम',
+      namePlaceholder: 'अपना नाम लिखें',
+      companyLabel: 'कंपनी',
+      companyPlaceholder: 'कंपनी का नाम',
+      emailLabel: 'ईमेल',
+      emailPlaceholder: 'ईमेल पता',
+      needLabel: 'आवश्यकता',
+      needPlaceholder: 'बाज़ार, उत्पाद श्रृंखला या कस्टमाइज़ेशन अनुरोध',
+      messageLabel: 'अतिरिक्त विवरण',
+      messagePlaceholder: 'कृपया मात्रा, लक्ष्य बाज़ार और समय सीमा बताएं',
+      button: 'पूछताछ भेजें',
+      note: 'हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।',
+      status: 'हमने आपकी पूछताछ प्राप्त कर ली है और जल्द ही संपर्क करेंगे।',
+    },
+  };
+
+  const getLanguage = () => {
+    const shellLang = window.traveldayShell?.getLanguage?.();
+    if (COPY[shellLang]) return shellLang;
+
+    const attrLang = document.documentElement?.dataset?.lang;
+    if (COPY[attrLang]) return attrLang;
+
+    try {
+      const queryLang = new URLSearchParams(window.location.search).get('lang');
+      if (COPY[queryLang]) return queryLang;
+    } catch {
+      // Ignore malformed URLs.
+    }
+
+    return DEFAULT_LANG;
+  };
+
+  const ensureStyles = () => {
+    if (document.getElementById(STYLE_ID)) return;
+
+    const style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = `
+      body .${MODULE_CLASS} {
+        display: grid;
+        grid-template-columns: minmax(360px, 0.88fr) minmax(540px, 1.12fr);
+        align-items: stretch;
+        min-height: 420px;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid rgba(225, 213, 198, 0.82);
+        border-radius: 28px;
+        background: linear-gradient(180deg, #f8f3eb 0%, #efe3d4 100%);
+        box-shadow: 0 16px 40px rgba(59, 43, 24, 0.06);
+      }
+
+      body .${MODULE_CLASS} .inquiry-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 44px 44px 44px 48px;
+      }
+
+      body .${MODULE_CLASS} .inquiry-eyebrow {
+        margin: 0 0 16px;
+        color: #a87300;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+      }
+
+      body .${MODULE_CLASS} .inquiry-title {
+        margin: 0;
+        color: #171514;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        font-size: clamp(32px, 3.6vw, 48px);
+        font-weight: 900;
+        line-height: 1.03;
+        letter-spacing: -0.03em;
+      }
+
+      body .${MODULE_CLASS} .inquiry-desc {
+        max-width: 500px;
+        margin: 18px 0 0;
+        color: #6d6257;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      body .${MODULE_CLASS} .inquiry-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      body .${MODULE_CLASS} .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid #e2d7c8;
+        background: rgba(255, 255, 255, 0.82);
+        color: #665c50;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      body .${MODULE_CLASS} .inquiry-contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(226, 215, 200, 0.95);
+      }
+
+      body .${MODULE_CLASS} .inquiry-contact strong {
+        display: block;
+        color: #171514;
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      body .${MODULE_CLASS} .inquiry-contact span {
+        display: block;
+        margin-top: 4px;
+        color: #6d6257;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      body .${MODULE_CLASS} .inquiry-email {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(224, 214, 202, 0.82);
+        background: rgba(255, 255, 255, 0.88);
+        color: #171514;
+        font-size: 13px;
+        font-weight: 900;
+        box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
+      }
+
+      body .${MODULE_CLASS} .inquiry-form-wrap {
+        margin: 16px 16px 16px 0;
+        padding: 26px;
+        border-radius: 26px;
+        border: 1px solid rgba(225, 213, 198, 0.8);
+        background: linear-gradient(180deg, rgba(251, 247, 240, 0.96), rgba(243, 234, 223, 0.96));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      }
+
+      body .${MODULE_CLASS} .inquiry-form-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      body .${MODULE_CLASS} .inquiry-form-head p {
+        margin: 0;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      body .${MODULE_CLASS} .inquiry-form-head span {
+        color: #6d6257;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      body .${MODULE_CLASS} .inquiry-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      body .${MODULE_CLASS} .inquiry-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      body .${MODULE_CLASS} .inquiry-field.full {
+        grid-column: 1 / -1;
+      }
+
+      body .${MODULE_CLASS} .inquiry-field label {
+        color: #675d52;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      body .${MODULE_CLASS} .inquiry-field input,
+      body .${MODULE_CLASS} .inquiry-field textarea {
+        width: 100%;
+        border: 1px solid #e1d6c7;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #2b2824;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 15px 16px;
+        outline: none;
+        box-shadow: 0 8px 18px rgba(43, 34, 24, 0.04);
+      }
+
+      body .${MODULE_CLASS} .inquiry-field input::placeholder,
+      body .${MODULE_CLASS} .inquiry-field textarea::placeholder {
+        color: #8a7f74;
+        font-weight: 500;
+      }
+
+      body .${MODULE_CLASS} .inquiry-field input:focus,
+      body .${MODULE_CLASS} .inquiry-field textarea:focus {
+        border-color: rgba(211, 154, 0, 0.5);
+        box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+      body .${MODULE_CLASS} .inquiry-field textarea {
+        min-height: 138px;
+        resize: none;
+        line-height: 1.7;
+      }
+
+      body .${MODULE_CLASS} .inquiry-form-footer {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 4px;
+      }
+
+      body .${MODULE_CLASS} .inquiry-note {
+        max-width: 320px;
+        color: #7b7166;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      body .${MODULE_CLASS} .inquiry-form .button {
+        min-width: 168px;
+      }
+
+      body .${MODULE_CLASS} .form-status {
+        margin: 0;
+      }
+
+      @media (max-width: 1180px) {
+        body .${MODULE_CLASS} {
+          grid-template-columns: 1fr;
+        }
+
+        body .${MODULE_CLASS} .inquiry-form-wrap {
+          margin: 0 16px 16px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body .${MODULE_CLASS} .inquiry-copy {
+          padding: 34px 24px 18px;
+        }
+
+        body .${MODULE_CLASS} .inquiry-form-wrap {
+          padding: 20px;
+          margin: 0 12px 12px;
+        }
+
+        body .${MODULE_CLASS} .inquiry-form {
+          grid-template-columns: 1fr;
+        }
+
+        body .${MODULE_CLASS} .inquiry-form-footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        body .${MODULE_CLASS} .inquiry-form .button {
+          width: 100%;
+        }
+
+        body .${MODULE_CLASS} .inquiry-note {
+          max-width: none;
+        }
+
+        body .${MODULE_CLASS} .inquiry-contact {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        body .${MODULE_CLASS} .inquiry-email {
+          justify-content: center;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  };
+
+  const template = () => `
+    <div class="inquiry-copy">
+      <p class="inquiry-eyebrow" data-inquiry-copy="eyebrow">INQUIRY / CONTACT</p>
+      <h2 class="inquiry-title" data-inquiry-copy="title">Turn every inquiry into one elegant entry point.</h2>
+      <p class="inquiry-desc" data-inquiry-copy="desc">Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
+
+      <div class="inquiry-meta">
+        <span class="meta-pill" data-inquiry-copy="pill1">Reply within 24h</span>
+        <span class="meta-pill" data-inquiry-copy="pill2">Resource coordination</span>
+        <span class="meta-pill" data-inquiry-copy="pill3">Unified quote</span>
+      </div>
+
+      <div class="inquiry-contact">
+        <div>
+          <strong data-inquiry-copy="contactTitle">Direct contact</strong>
+          <span data-inquiry-copy="contactDesc">sales@travelday.com · More details can be discussed in one step.</span>
+        </div>
+        <a class="inquiry-email" href="mailto:sales@travelday.com" data-inquiry-copy="email">sales@travelday.com</a>
+      </div>
+    </div>
+
+    <div class="inquiry-form-wrap">
+      <div class="inquiry-form-head">
+        <p data-inquiry-copy="formTitle">Quick inquiry form</p>
+        <span data-inquiry-copy="formHint">One step to start the conversation</span>
+      </div>
+      <form class="inquiry-form" aria-label="Quick inquiry form">
+        <div class="inquiry-field">
+          <label for="inq-name" data-inquiry-copy="nameLabel">Name</label>
+          <input id="inq-name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" />
+        </div>
+        <div class="inquiry-field">
+          <label for="inq-company" data-inquiry-copy="companyLabel">Company</label>
+          <input id="inq-company" type="text" autocomplete="organization" data-inquiry-placeholder="companyPlaceholder" placeholder="Company name" />
+        </div>
+        <div class="inquiry-field">
+          <label for="inq-email" data-inquiry-copy="emailLabel">Email</label>
+          <input id="inq-email" type="email" autocomplete="email" data-inquiry-placeholder="emailPlaceholder" placeholder="Email address" />
+        </div>
+        <div class="inquiry-field">
+          <label for="inq-need" data-inquiry-copy="needLabel">Need</label>
+          <input id="inq-need" type="text" data-inquiry-placeholder="needPlaceholder" placeholder="Market direction, product line or customization request" />
+        </div>
+        <div class="inquiry-field full">
+          <label for="inq-message" data-inquiry-copy="messageLabel">Notes</label>
+          <textarea id="inq-message" data-inquiry-placeholder="messagePlaceholder" placeholder="Please tell us quantity, target market and timeline"></textarea>
+        </div>
+        <div class="inquiry-form-footer">
+          <p class="inquiry-note" data-inquiry-copy="note">We will get back to you quickly with a suitable resource-matching plan.</p>
+          <button class="button button-primary form-submit" type="submit" data-inquiry-copy="button">Send inquiry</button>
+        </div>
+      </form>
+    </div>
+  `;
+
+  const setText = (root, selector, value, useHTML = false) => {
+    const node = root.querySelector(selector);
+    if (!node || value === undefined || value === null) return;
+    if (useHTML) {
+      node.innerHTML = value;
+    } else {
+      node.textContent = value;
+    }
+  };
+
+  const setPlaceholder = (root, selector, value) => {
+    const node = root.querySelector(selector);
+    if (node && value !== undefined && value !== null) node.setAttribute('placeholder', value);
+  };
+
+  const bindSubmit = (section, copy) => {
+    const form = section.querySelector('.inquiry-form');
+    const status = section.querySelector('.form-status');
+    if (!form || !status || form.dataset.inquiryBound === 'true') return;
+
+    form.dataset.inquiryBound = 'true';
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      status.textContent = copy.status;
+      form.reset();
+    });
+  };
+
+  const renderSection = (section, copy) => {
+    section.classList.add(MODULE_CLASS);
+
+    if (section.dataset.inquiryStandardMounted !== 'true') {
+      section.innerHTML = template();
+      section.dataset.inquiryStandardMounted = 'true';
+    }
+
+    setText(section, '[data-inquiry-copy="eyebrow"]', copy.eyebrow);
+    setText(section, '[data-inquiry-copy="title"]', copy.title);
+    setText(section, '[data-inquiry-copy="desc"]', copy.desc);
+    setText(section, '[data-inquiry-copy="pill1"]', copy.pill1);
+    setText(section, '[data-inquiry-copy="pill2"]', copy.pill2);
+    setText(section, '[data-inquiry-copy="pill3"]', copy.pill3);
+    setText(section, '[data-inquiry-copy="contactTitle"]', copy.contactTitle);
+    setText(section, '[data-inquiry-copy="contactDesc"]', copy.contactDesc);
+    setText(section, '[data-inquiry-copy="email"]', copy.email);
+    setText(section, '[data-inquiry-copy="formTitle"]', copy.formTitle);
+    setText(section, '[data-inquiry-copy="formHint"]', copy.formHint);
+    setText(section, '[data-inquiry-copy="nameLabel"]', copy.nameLabel);
+    setText(section, '[data-inquiry-copy="companyLabel"]', copy.companyLabel);
+    setText(section, '[data-inquiry-copy="emailLabel"]', copy.emailLabel);
+    setText(section, '[data-inquiry-copy="needLabel"]', copy.needLabel);
+    setText(section, '[data-inquiry-copy="messageLabel"]', copy.messageLabel);
+    setText(section, '[data-inquiry-copy="note"]', copy.note);
+    setText(section, '[data-inquiry-copy="button"]', copy.button);
+    setPlaceholder(section, '[data-inquiry-placeholder="namePlaceholder"]', copy.namePlaceholder);
+    setPlaceholder(section, '[data-inquiry-placeholder="companyPlaceholder"]', copy.companyPlaceholder);
+    setPlaceholder(section, '[data-inquiry-placeholder="emailPlaceholder"]', copy.emailPlaceholder);
+    setPlaceholder(section, '[data-inquiry-placeholder="needPlaceholder"]', copy.needPlaceholder);
+    setPlaceholder(section, '[data-inquiry-placeholder="messagePlaceholder"]', copy.messagePlaceholder);
+
+    const form = section.querySelector('.inquiry-form');
+    if (form) form.setAttribute('aria-label', copy.formAria || copy.formTitle);
+    const email = section.querySelector('.inquiry-email');
+    if (email) email.setAttribute('href', `mailto:${copy.email}`);
+
+    bindSubmit(section, copy);
+  };
+
+  const sync = (lang = getLanguage()) => {
+    ensureStyles();
+    const copy = COPY[lang] || COPY[DEFAULT_LANG];
+    const sections = Array.from(document.querySelectorAll(TARGET_SELECTOR));
+    sections.forEach((section) => renderSection(section, copy));
+  };
+
+  window.traveldayInquiry = {
+    version: '2026-05-31',
+    getLanguage,
+    getCopy: (lang) => COPY[lang] || COPY[DEFAULT_LANG],
+    sync,
+    render: sync,
+  };
+
+  window.addEventListener('travelday:languagechange', (event) => {
+    sync(COPY[event.detail?.lang] ? event.detail.lang : getLanguage());
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => sync(getLanguage()), { once: true });
+  } else {
+    sync(getLanguage());
+  }
+})();

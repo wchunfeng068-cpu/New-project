@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test": "node tests/homepage.test.mjs && node tests/responsive.test.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.21.0"
+  }
+}

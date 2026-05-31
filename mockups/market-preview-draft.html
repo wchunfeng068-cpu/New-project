@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | 市场预览</title>
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --surface: #fffdfa;
+        --ink: #171411;
+        --text: #3a342d;
+        --muted: #7a6f61;
+        --line: #ebe3d8;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --shadow: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --radius: 18px;
+        --font-serif: Georgia, "Times New Roman", "SimSun", serif;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scrollbar-gutter: stable; overflow-y: scroll; }
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255,255,255,.97), rgba(244,240,233,.78) 40%, rgba(228,221,210,.65)),
+          var(--page);
+        font-family: var(--font-sans);
+      }
+      a { color: inherit; text-decoration: none; }
+      .page { width: min(1500px, calc(100% - 42px)); margin: 16px auto 30px; }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 240px 1fr auto;
+        align-items: center;
+        gap: 22px;
+        min-height: 64px;
+        padding: 0 34px;
+      }
+      .brand-logo { display: grid; width: 160px; height: 70px; place-items: center; }
+      .brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+      .primary-nav {
+        display: flex;
+        justify-content: center;
+        gap: 42px;
+        font-size: 18px;
+        font-weight: 800;
+        color: #171514;
+      }
+      .primary-nav a { position: relative; padding: 22px 0; }
+      .primary-nav a.active { color: var(--gold-dark); }
+      .primary-nav a.active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        transform: translateX(-50%);
+      }
+      .header-actions { display: flex; align-items: center; gap: 12px; }
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 22px;
+        border-radius: 8px;
+        border: 0;
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .button-primary { background: var(--gold); color: #fff; box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18); }
+      .button-outline { border: 1px solid rgba(184, 128, 21, 0.42); background: rgba(255,255,255,.72); color: var(--ink); }
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 8px;
+        min-height: 620px;
+        padding: 18px;
+      }
+      .hero-copy { padding: 18px 14px; display: flex; flex-direction: column; justify-content: center; }
+      .eyebrow {
+        margin: 0;
+        color: var(--gold-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: .22em;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        margin: 14px 0 0;
+        max-width: 8ch;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: clamp(54px, 5vw, 88px);
+        font-weight: 500;
+        line-height: .95;
+      }
+      .hero-copy p {
+        max-width: 460px;
+        margin: 18px 0 0;
+        font-size: 15px;
+        line-height: 1.85;
+        color: var(--text);
+      }
+      .chip-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+      .chip {
+        min-height: 34px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(106, 89, 66, 0.12);
+        background: rgba(255,255,255,.72);
+        color: #72675b;
+        font-size: 12px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+      }
+      .hero-actions { display: flex; gap: 12px; margin-top: 24px; }
+      .hero-notes {
+        margin-top: auto;
+        padding-top: 26px;
+        display: grid;
+        gap: 10px;
+      }
+      .note {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+      .note::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-top: .5em;
+        border-radius: 999px;
+        background: var(--gold);
+        box-shadow: 0 0 0 4px rgba(211,154,0,.12);
+        flex: none;
+      }
+      .hero-panel {
+        position: relative;
+        border-radius: 28px;
+        background:
+          linear-gradient(180deg, rgba(13, 28, 58, 0.08), rgba(13, 28, 58, 0.42)),
+          url("../images/server-map.jpg") center/cover no-repeat;
+        min-height: 100%;
+        overflow: hidden;
+      }
+      .panel-chip {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.9);
+        color: #2e2418;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .panel-caption {
+        position: absolute;
+        right: 18px;
+        bottom: 18px;
+        max-width: 290px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,.92);
+        box-shadow: 0 12px 28px rgba(37, 30, 21, 0.08);
+      }
+      .panel-caption strong {
+        display: block;
+        color: var(--ink);
+        font-size: 18px;
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.2;
+      }
+      .panel-caption span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.65;
+      }
+
+      .section {
+        margin-top: 24px;
+        padding: 0 10px;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 14px;
+      }
+      .section-title {
+        margin: 6px 0 0;
+        color: var(--ink);
+        font-family: var(--font-serif);
+        font-size: 28px;
+        font-weight: 500;
+      }
+      .section-copy {
+        max-width: 580px;
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.8;
+      }
+      .coverage-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 18px;
+        padding: 18px;
+      }
+      .coverage-map {
+        min-height: 360px;
+        border-radius: 22px;
+        background:
+          linear-gradient(180deg, rgba(13, 28, 58, 0.16), rgba(13, 28, 58, 0.38)),
+          url("../images/server-map.jpg") center/cover no-repeat;
+        position: relative;
+        overflow: hidden;
+      }
+      .pin {
+        position: absolute;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,.92);
+        color: #2e2418;
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .pin.one { top: 18%; left: 18%; }
+      .pin.two { top: 34%; right: 16%; }
+      .pin.three { bottom: 20%; left: 42%; }
+      .coverage-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 8px 10px 8px 4px;
+      }
+      .coverage-copy h3 {
+        margin: 10px 0 0;
+        color: var(--ink);
+        font-size: 22px;
+        font-family: var(--font-serif);
+        font-weight: 500;
+        line-height: 1.25;
+      }
+      .coverage-copy p {
+        margin: 10px 0 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.75;
+      }
+      .coverage-list {
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+      .coverage-list li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .coverage-list li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        margin-top: .45em;
+        border-radius: 999px;
+        background: var(--gold);
+        flex: none;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .stat-card {
+        padding: 16px 14px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,.8);
+      }
+      .stat-card strong {
+        display: block;
+        color: var(--gold-dark);
+        font-size: 22px;
+        font-weight: 900;
+      }
+      .stat-card span {
+        display: block;
+        margin-top: 6px;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 16px;
+        padding: 18px 12px 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .site-footer nav { display: flex; gap: 18px; }
+
+      @media (max-width: 1100px) {
+        .site-header { grid-template-columns: 1fr auto; }
+        .primary-nav { display: none; }
+        .hero, .coverage-grid { grid-template-columns: 1fr; }
+        .stats { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 760px) {
+        .page { width: min(100%, calc(100% - 20px)); }
+        .site-header { padding: 0 14px; }
+        .hero { padding: 14px; min-height: auto; }
+        .hero h1 { max-width: 100%; }
+        .hero-actions { flex-wrap: wrap; }
+        .section { padding: 0; }
+        .section-head { display: block; }
+        .stats { grid-template-columns: 1fr; }
+        .site-footer { grid-template-columns: 1fr; justify-items: start; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY 首页">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <nav class="primary-nav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a href="./product-center-preview.html">产品中心</a>
+          <a href="./solution-preview-draft.html">解决方案</a>
+          <a href="./company-presence-preview.html">关于我们</a>
+          <a class="active" href="./market-preview-draft.html">市场</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="hi">हिंदी</option>
+          </select>
+          <a class="button button-primary" href="../index.html#contact">获取报价 →</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero card">
+          <div class="hero-copy">
+            <p class="eyebrow">GLOBAL MARKET</p>
+            <h1>把全球覆盖做成一张图</h1>
+            <p>
+              这一页只强调两件事: 覆盖到哪里，以及适合哪些 B 端客户。信息少一点，画面会更稳。
+            </p>
+            <div class="chip-row" aria-label="市场标签">
+              <span class="chip">亚洲</span>
+              <span class="chip">中东</span>
+              <span class="chip">非洲</span>
+              <span class="chip">欧洲</span>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#coverage">看覆盖地图</a>
+              <a class="button button-outline" href="#customer-types">看客户类型</a>
+            </div>
+            <div class="hero-notes">
+              <div class="note">先讲区域，再讲客户，不把页面塞满数字。</div>
+              <div class="note">用更大的留白，让“全球视角”更容易被看见。</div>
+            </div>
+          </div>
+
+          <div class="hero-panel" aria-label="市场视觉">
+            <div class="panel-chip">Coverage 覆盖地图</div>
+            <div class="panel-caption">
+              <strong>区域化呈现</strong>
+              <span>先做大区域层级，再逐步补真实国家信息。</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="coverage">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Service Reach</p>
+              <h2 class="section-title">地图为主，文字为辅</h2>
+            </div>
+            <p class="section-copy">
+              页面重点不是“谁来过”，而是“我们能在哪些区域持续服务”。所以采用地图 + 区域标签的组合。
+            </p>
+          </div>
+
+          <div class="coverage-grid card">
+            <div class="coverage-map" aria-label="服务覆盖地图">
+              <span class="pin one">欧洲</span>
+              <span class="pin two">中东</span>
+              <span class="pin three">非洲</span>
+            </div>
+
+            <div class="coverage-copy">
+              <p class="eyebrow">Regional Focus</p>
+              <h3>重点区域可以逐步补成真实国家名</h3>
+              <p>当前版本保持抽象和克制，后续再按业务扩展到国家、港口或产品线。</p>
+              <ul class="coverage-list">
+                <li>适合高频补货和快速响应市场</li>
+                <li>适合项目型、品牌型和分销型客户</li>
+                <li>适合做区域覆盖和长期合作</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="customer-types">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">B2B Customer Types</p>
+              <h2 class="section-title">我们服务的客户类型</h2>
+            </div>
+            <p class="section-copy">
+              只保留最关键的几类，既能说明定位，也不会让页面显得太挤。
+            </p>
+          </div>
+
+          <div class="stats">
+            <article class="stat-card">
+              <strong>进口商</strong>
+              <span>稳定供货，快速补货</span>
+            </article>
+            <article class="stat-card">
+              <strong>批发商</strong>
+              <span>价格敏感，重视效率</span>
+            </article>
+            <article class="stat-card">
+              <strong>区域分销商</strong>
+              <span>需要更清晰的区域协同</span>
+            </article>
+            <article class="stat-card">
+              <strong>海外品牌方</strong>
+              <span>重视品牌一致性和交付</span>
+            </article>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <p>TRAVELDAY Market Preview</p>
+          <nav aria-label="页脚导航">
+            <a href="#">隐私</a>
+            <a href="#">条款</a>
+            <a href="#">地图</a>
+          </nav>
+        </footer>
+      </main>
+    </div>
+
+    <script src="../shared-shell.js?v=20260529-1"></script>
+  </body>
+</html>

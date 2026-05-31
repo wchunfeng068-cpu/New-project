@@ -1,0 +1,1304 @@
+﻿<!doctype html>
+<html lang="en" data-default-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | Market</title>
+    <link rel="stylesheet" href="../styles.css?v=20260530-1" />
+    <style>
+      .preview-main {
+        display: grid;
+        gap: 24px;
+        padding-top: 8px;
+        padding-bottom: 28px;
+      }
+
+      .preview-panel {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 24px;
+        background: #fffdfa;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .market-hero {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        min-height: 560px;
+        gap: 0;
+        background: linear-gradient(180deg, #f8f3eb 0%, #efe3d4 100%);
+      }
+
+      .market-copy {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        padding: 70px 64px 70px 70px;
+      }
+
+      .market-eyebrow,
+      .qa-eyebrow {
+        margin: 0 0 16px;
+        color: var(--color-gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+      }
+
+      .market-title,
+      .qa-title {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: clamp(40px, 4vw, 60px);
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+      }
+
+      .market-desc,
+      .qa-desc {
+        max-width: 500px;
+        margin: 20px 0 0;
+        color: var(--color-muted);
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .market-meta,
+      .qa-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .meta-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 0 16px;
+        border-radius: var(--radius-pill);
+        border: 1px solid #e2d7c8;
+        background: rgba(255, 255, 255, 0.82);
+        color: #665c50;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .market-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .market-image-wrap {
+        position: relative;
+        margin: 18px 18px 18px 0;
+        border-radius: 26px;
+        overflow: hidden;
+        background: #d8cdc0;
+      }
+
+      .market-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
+        filter: saturate(0.98);
+      }
+
+      .market-image-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(67, 54, 40, 0.08)),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.03));
+      }
+
+      .chip-card {
+        position: absolute;
+        left: 26px;
+        top: 24px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.02em;
+        box-shadow: 0 10px 28px rgba(31, 24, 18, 0.09);
+        backdrop-filter: blur(10px);
+      }
+
+      .market-visual {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .market-hero .chip-card {
+        display: none;
+      }
+
+      .market-visual .market-image-wrap {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        border-radius: inherit;
+      }
+
+      .qa-panel {
+        display: grid;
+        grid-template-columns: minmax(520px, 1.02fr) minmax(460px, 0.98fr);
+        gap: 0;
+        min-height: 580px;
+        background: linear-gradient(180deg, #fcfaf5 0%, #f6efe5 100%);
+      }
+
+      .qa-copy {
+        order: 2;
+        padding: 42px 44px 40px 44px;
+      }
+
+      .qa-title {
+        font-size: clamp(28px, 3vw, 42px);
+        line-height: 1.08;
+      }
+
+      .qa-desc {
+        max-width: 560px;
+        margin-top: 18px;
+        font-size: 16px;
+      }
+
+      .market-logic-lead {
+        margin: 18px 0 0;
+        color: #6d655c;
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .market-fit-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .market-fit-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 18px 20px;
+        border-radius: 22px;
+        border: 1px solid rgba(226, 216, 202, 0.9);
+        background: linear-gradient(180deg, rgba(255, 253, 250, 0.96), rgba(248, 243, 235, 0.9));
+        box-shadow: 0 8px 18px rgba(44, 35, 25, 0.04);
+      }
+
+      .market-fit-index {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: rgba(211, 154, 0, 0.12);
+        color: var(--color-gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .market-fit-card strong {
+        display: block;
+        color: var(--color-ink);
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .market-fit-card p {
+        margin: 6px 0 0;
+        color: #6d655c;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .qa-tags {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .qa-visual {
+        order: 1;
+        position: relative;
+        margin: 16px;
+        border-radius: 26px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e9e1d6 0%, #f7f2eb 100%);
+        border: 1px solid rgba(224, 214, 202, 0.72);
+      }
+
+      .qa-visual-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(27, 21, 16, 0.04)),
+          url("../images/market-regional-preference-display.png?v=20260530-1") center/cover no-repeat;
+        filter: saturate(0.86) contrast(0.95);
+        opacity: 1;
+      }
+
+      .qa-panel .qa-graph,
+      .qa-panel .market-links,
+      .qa-panel .market-note {
+        display: none;
+      }
+
+      .qa-graph {
+        position: absolute;
+        inset: 0;
+      }
+
+      .market-network {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 184px;
+        height: 184px;
+        transform: translate(-50%, -50%);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        border-radius: 50%;
+        border: 1px solid rgba(183, 154, 104, 0.34);
+        background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.98), rgba(240, 231, 219, 0.94) 72%, rgba(228, 216, 200, 0.88));
+        box-shadow: 0 14px 28px rgba(50, 37, 22, 0.08);
+      }
+
+      .market-network strong {
+        display: block;
+        color: var(--color-ink);
+        font-size: 18px;
+        line-height: 1.15;
+      }
+
+      .market-network span {
+        display: block;
+        margin-top: 4px;
+        color: var(--color-muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .market-node {
+        position: absolute;
+        width: 132px;
+        padding-top: 20px;
+      }
+
+      .market-node::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--color-gold);
+        box-shadow: 0 0 0 8px rgba(211, 154, 0, 0.12);
+        transform: translateX(-50%);
+      }
+
+      .market-node .tag {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 40px;
+        padding: 0 12px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.90);
+        border: 1px solid rgba(224, 214, 202, 0.72);
+        color: #3a342d;
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+        box-shadow: 0 10px 18px rgba(44, 33, 20, 0.08);
+      }
+
+      .market-node.north {
+        left: 22px;
+        top: 26px;
+      }
+
+      .market-node.europe {
+        right: 24px;
+        top: 28px;
+      }
+
+      .market-node.asia {
+        left: 26px;
+        bottom: 26px;
+      }
+
+      .market-node.middle-east {
+        right: 24px;
+        bottom: 26px;
+      }
+
+      .market-links {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, transparent 0%, transparent 46%, rgba(201, 141, 0, 0.25) 46.2%, rgba(201, 141, 0, 0.25) 47%, transparent 47.2%),
+          linear-gradient(225deg, transparent 0%, transparent 46%, rgba(201, 141, 0, 0.25) 46.2%, rgba(201, 141, 0, 0.25) 47%, transparent 47.2%),
+          linear-gradient(315deg, transparent 0%, transparent 46%, rgba(201, 141, 0, 0.25) 46.2%, rgba(201, 141, 0, 0.25) 47%, transparent 47.2%),
+          linear-gradient(45deg, transparent 0%, transparent 46%, rgba(201, 141, 0, 0.25) 46.2%, rgba(201, 141, 0, 0.25) 47%, transparent 47.2%);
+        opacity: 0.9;
+        pointer-events: none;
+      }
+
+      .market-note {
+        position: absolute;
+        right: 22px;
+        bottom: 22px;
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(224, 214, 202, 0.72);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        box-shadow: 0 10px 22px rgba(49, 39, 27, 0.06);
+        backdrop-filter: blur(10px);
+      }
+
+      .market-note span {
+        display: block;
+        margin-top: 2px;
+        color: var(--color-muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      @media (max-width: 1180px) {
+        .market-hero,
+        .qa-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .market-copy,
+        .qa-copy {
+          padding: 42px 34px;
+        }
+
+        .market-visual {
+          min-height: 420px;
+          padding: 0 18px 18px 18px;
+        }
+
+        .market-visual .market-image-wrap {
+          position: relative;
+          inset: auto;
+          min-height: 420px;
+          margin: 0 18px 18px;
+        }
+
+        .qa-visual {
+          min-height: 500px;
+          margin: 0 16px 16px;
+        }
+
+        .qa-copy,
+        .qa-visual {
+          order: initial;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .section-heading {
+          flex-direction: column;
+          align-items: start;
+        }
+
+        .market-copy,
+        .qa-copy {
+          padding: 34px 24px;
+        }
+
+        .market-desc,
+        .qa-desc {
+          font-size: 16px;
+        }
+
+        .qa-panel {
+          min-height: auto;
+        }
+
+        .qa-tags {
+          display: flex;
+          flex-wrap: wrap;
+        }
+
+        .market-note {
+          left: 16px;
+          right: 16px;
+          bottom: 16px;
+        }
+      }
+    </style>
+    <style>
+      body {
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.92), rgba(244, 240, 233, 0.72) 42%, rgba(227, 221, 211, 0.54)),
+          var(--color-page);
+      }
+
+      .preview-panel {
+        background: #f8f3ec;
+        border-color: rgba(226, 216, 202, 0.9);
+        box-shadow: 0 14px 32px rgba(44, 34, 24, 0.055);
+      }
+
+      .market-hero {
+        background: linear-gradient(180deg, #f6f1e8 0%, #ece0cf 100%);
+      }
+
+      .market-copy,
+      .qa-copy {
+        color: #2b2824;
+      }
+
+      .market-desc,
+      .qa-desc,
+      .section-heading p {
+        color: #6d655c;
+      }
+
+      .meta-pill {
+        background: rgba(249, 244, 236, 0.95);
+        border-color: #e2d6c5;
+        color: #6a6054;
+      }
+
+      .market-image-wrap,
+      .qa-visual {
+        background: linear-gradient(135deg, #efe7db 0%, #f7f1e8 100%);
+        border-color: rgba(223, 212, 199, 0.82);
+      }
+
+      .market-image-overlay {
+        background:
+          linear-gradient(180deg, rgba(67, 54, 40, 0.06), rgba(67, 54, 40, 0.15)),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.00), rgba(255, 255, 255, 0.05));
+      }
+
+      .chip-card {
+        background: rgba(249, 244, 236, 0.94);
+        color: #2b2824;
+        box-shadow: 0 10px 20px rgba(31, 24, 18, 0.07);
+      }
+
+      .qa-visual-bg {
+        filter: saturate(0.74) contrast(0.96);
+        opacity: 0.28;
+      }
+
+      .market-network {
+        background: linear-gradient(180deg, rgba(245, 236, 224, 0.97), rgba(234, 223, 208, 0.95));
+        border-color: rgba(183, 154, 104, 0.18);
+        box-shadow: 0 12px 22px rgba(50, 37, 22, 0.055);
+      }
+
+      .market-network strong,
+      .market-node .tag,
+      .market-note {
+        color: #2b2824;
+      }
+
+      .market-network span,
+      .market-note span {
+        color: #6d655c;
+      }
+
+      .market-node::before {
+        box-shadow: 0 0 0 7px rgba(211, 154, 0, 0.08);
+      }
+
+      .market-node .tag {
+        background: rgba(249, 244, 236, 0.94);
+        border-color: rgba(223, 212, 199, 0.82);
+        box-shadow: 0 8px 16px rgba(44, 33, 20, 0.06);
+      }
+
+      .market-links {
+        opacity: 0.55;
+      }
+
+      .market-note {
+        background: rgba(249, 244, 236, 0.94);
+        border-color: rgba(223, 212, 199, 0.82);
+        box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
+      }
+    </style>
+
+    <style>
+      .inquiry-panel {
+        display: grid;
+        grid-template-columns: minmax(360px, 0.88fr) minmax(540px, 1.12fr);
+        align-items: stretch;
+        min-height: 420px;
+        background: linear-gradient(180deg, #f8f3eb 0%, #efe3d4 100%);
+      }
+
+      .inquiry-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 44px 44px 44px 48px;
+      }
+
+      .inquiry-eyebrow {
+        margin: 0 0 16px;
+        color: var(--color-gold-dark);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+      }
+
+      .inquiry-title {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: clamp(32px, 3.6vw, 48px);
+        line-height: 1.03;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+      }
+
+      .inquiry-desc {
+        max-width: 500px;
+        margin: 18px 0 0;
+        color: var(--color-muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .inquiry-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .inquiry-contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(226, 215, 200, 0.95);
+      }
+
+      .inquiry-contact strong {
+        display: block;
+        color: var(--color-ink);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .inquiry-contact span {
+        display: block;
+        margin-top: 4px;
+        color: var(--color-muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .inquiry-email {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: var(--radius-pill);
+        border: 1px solid rgba(224, 214, 202, 0.82);
+        background: rgba(255, 255, 255, 0.88);
+        color: var(--color-ink);
+        font-size: 13px;
+        font-weight: 900;
+        box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
+      }
+
+      .inquiry-form-wrap {
+        margin: 16px 16px 16px 0;
+        padding: 26px;
+        border-radius: 26px;
+        background: linear-gradient(180deg, rgba(251, 247, 240, 0.96), rgba(243, 234, 223, 0.96));
+        border: 1px solid rgba(225, 213, 198, 0.8);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      }
+
+      .inquiry-form-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .inquiry-form-head p {
+        margin: 0;
+        color: var(--color-ink);
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .inquiry-form-head span {
+        color: var(--color-muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .inquiry-form {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .inquiry-field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .inquiry-field.full {
+        grid-column: 1 / -1;
+      }
+
+      .inquiry-field label {
+        color: #675d52;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .inquiry-field input,
+      .inquiry-field textarea {
+        width: 100%;
+        border: 1px solid #e1d6c7;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #2b2824;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 15px 16px;
+        outline: none;
+        box-shadow: 0 8px 18px rgba(43, 34, 24, 0.04);
+      }
+
+      .inquiry-field input::placeholder,
+      .inquiry-field textarea::placeholder {
+        color: #8a7f74;
+        font-weight: 500;
+      }
+
+      .inquiry-field input:focus,
+      .inquiry-field textarea:focus {
+        border-color: rgba(211, 154, 0, 0.5);
+        box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+      .inquiry-field textarea {
+        min-height: 138px;
+        resize: none;
+        line-height: 1.7;
+      }
+
+      .inquiry-form-footer {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 4px;
+      }
+
+      .inquiry-note {
+        max-width: 320px;
+        color: #7b7166;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .inquiry-form .button {
+        min-width: 168px;
+      }
+
+      @media (max-width: 1180px) {
+        .inquiry-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry-form-wrap {
+          margin: 0 16px 16px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .inquiry-copy {
+          padding: 34px 24px 18px;
+        }
+
+        .inquiry-form-wrap {
+          padding: 20px;
+          margin: 0 12px 12px;
+        }
+
+        .inquiry-form {
+          grid-template-columns: 1fr;
+        }
+
+        .inquiry-form-footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .inquiry-form .button {
+          width: 100%;
+        }
+
+        .inquiry-note {
+          max-width: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-stage">
+      <div class="page-shell" id="top">
+        <header class="site-header" data-section="navigation">
+          <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
+            <span class="brand-logo">
+              <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+            </span>
+          </a>
+
+          <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="product-center-preview.html">Product Center</a>
+            <a href="solution-preview.html">Solutions</a>
+            <a href="company-presence-preview.html">About Us</a>
+            <a href="market-preview.html" class="active">Market</a>
+            <a href="#contact">Contact</a>
+          </nav>
+
+          <div class="header-actions">
+            <select class="language-select" aria-label="Language">
+              <option value="zh">Chinese</option>
+              <option value="en" selected>English</option>
+              <option value="es">Spanish</option>
+              <option value="hi">Hindi</option>
+            </select>
+            <a class="quote-button" href="#contact">Get Quote -></a>
+          </div>
+        </header>
+
+        <main class="preview-main">
+          <section class="preview-panel market-hero card" data-section="market-hero">
+            <div class="market-copy">
+              <p class="market-eyebrow">GLOBAL MARKET</p>
+              <h1 class="market-title" data-copy="heroTitle">Global market<br />nodes at a glance</h1>
+              <p class="market-desc" data-copy="heroDesc">Map regional luggage, component and delivery needs into one market network, so customers can quickly see what fits.</p>
+              <div class="market-meta">
+                <span class="meta-pill" data-copy="heroPill1">Global nodes</span>
+                <span class="meta-pill" data-copy="heroPill2">Regional fit</span>
+              </div>
+              <div class="market-actions">
+                <a class="button button-primary" href="product-center-preview.html" data-copy="heroPrimary">View products</a>
+                <a class="button button-outline" href="#qa" data-copy="heroSecondary">Market logic</a>
+              </div>
+            </div>
+            <div class="market-visual">
+              <div class="market-image-wrap">
+                <img src="../images/market-global-nodes.png?v=20260530-2" alt="TRAVELDAY global market node map with luggage and component distribution" />
+                <div class="market-image-overlay"></div>
+                <div class="chip-card" data-copy="heroChip">Global market nodes</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="preview-panel qa-panel card" id="qa" data-section="market-qa">
+            <div class="qa-copy">
+              <div class="section-heading">
+                <div>
+                  <p class="qa-eyebrow" data-copy="qaEyebrow">MARKET FIT</p>
+                  <h2 class="qa-title" data-copy="qaTitle">Different markets need different configurations.</h2>
+                </div>
+              </div>
+
+              <p class="market-logic-lead" data-copy="qaLead">
+                Start from the target market, then match luggage colors, wheels, trolley handles, grips and delivery rhythm so customers can find the right local channel combination faster.
+              </p>
+
+              <div class="market-fit-grid">
+                <article class="market-fit-card">
+                  <span class="market-fit-index">01</span>
+                  <div>
+                    <strong data-copy="fitCardOneTitle">Regional preference reading</strong>
+                    <p data-copy="fitCardOneDesc">Judge key colors, case types and price bands based on the target country and channel position.</p>
+                  </div>
+                </article>
+                <article class="market-fit-card">
+                  <span class="market-fit-index">02</span>
+                  <div>
+                    <strong data-copy="fitCardTwoTitle">Product configuration match</strong>
+                    <p data-copy="fitCardTwoDesc">Combine luggage, wheels, trolley handles, grips and locks into a market-ready solution.</p>
+                  </div>
+                </article>
+                <article class="market-fit-card">
+                  <span class="market-fit-index">03</span>
+                  <div>
+                    <strong data-copy="fitCardThreeTitle">Unified response and delivery</strong>
+                    <p data-copy="fitCardThreeDesc">Bring multi-region inquiries, quotations and delivery into one communication entry point.</p>
+                  </div>
+                </article>
+              </div>
+
+              <div class="qa-tags">
+                <span class="meta-pill" data-copy="qaNodeOne">North America / Europe</span>
+                <span class="meta-pill" data-copy="qaNodeTwo">Middle East / Africa</span>
+                <span class="meta-pill" data-copy="qaNodeThree">APAC / Australia</span>
+                <span class="meta-pill" data-copy="qaNodeFour">South America</span>
+              </div>
+            </div>
+
+            <div class="qa-visual">
+              <div class="qa-visual-bg"></div>
+              <div class="market-links"></div>
+              <div class="qa-graph">
+                <div class="market-node north">
+                  <div class="tag" data-copy="qaNodeOne">North America / Europe</div>
+                </div>
+                <div class="market-node europe">
+                  <div class="tag" data-copy="qaNodeTwo">Middle East / Africa</div>
+                </div>
+                <div class="market-node asia">
+                  <div class="tag" data-copy="qaNodeThree">APAC / Australia</div>
+                </div>
+                <div class="market-node middle-east">
+                  <div class="tag" data-copy="qaNodeFour">South America</div>
+                </div>
+                <div class="market-network">
+                  <div>
+                    <strong data-copy="qaHubTitle">Market<br />Nodes</strong>
+                    <span data-copy="qaHubDesc">Products and components aligned</span>
+                  </div>
+                </div>
+              </div>
+              <div class="market-note" data-copy="qaNote">
+                Global nodes · regional fit · unified delivery
+              </div>
+            </div>
+          </section>
+
+          <section class="preview-panel inquiry-panel card" id="contact" data-section="market-inquiry">
+            <div class="inquiry-copy">
+              <p class="inquiry-eyebrow" data-copy="inquiryEyebrow">INQUIRY / CONTACT</p>
+              <h2 class="inquiry-title" data-copy="inquiryTitle">Turn every inquiry into one elegant entry point.</h2>
+              <p class="inquiry-desc" data-copy="inquiryDesc">Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
+
+              <div class="inquiry-meta">
+                <span class="meta-pill" data-copy="inquiryPill1">Reply within 24h</span>
+                <span class="meta-pill" data-copy="inquiryPill2">Multi-resource coordination</span>
+                <span class="meta-pill" data-copy="inquiryPill3">Unified quote</span>
+              </div>
+
+              <div class="inquiry-contact">
+                <div>
+                  <strong data-copy="inquiryContactTitle">Direct contact</strong>
+                  <span data-copy="inquiryContactDesc">sales@travelday.com · More details can be discussed in one step.</span>
+                </div>
+                <a class="inquiry-email" href="mailto:sales@travelday.com" data-copy="inquiryEmail">sales@travelday.com</a>
+              </div>
+            </div>
+
+            <div class="inquiry-form-wrap">
+              <div class="inquiry-form-head">
+                <p data-copy="inquiryFormTitle">Quick inquiry form</p>
+                <span data-copy="inquiryFormHint">One step to start the conversation</span>
+              </div>
+              <form class="inquiry-form" onsubmit="return false;">
+                <div class="inquiry-field">
+                  <label for="inq-name" data-copy="inquiryNameLabel">Name</label>
+                  <input id="inq-name" type="text" data-placeholder="inquiryNamePlaceholder" placeholder="Your name" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-company" data-copy="inquiryCompanyLabel">Company</label>
+                  <input id="inq-company" type="text" data-placeholder="inquiryCompanyPlaceholder" placeholder="Company name" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-email" data-copy="inquiryEmailLabel">Email</label>
+                  <input id="inq-email" type="email" data-placeholder="inquiryEmailPlaceholder" placeholder="Email address" />
+                </div>
+                <div class="inquiry-field">
+                  <label for="inq-need" data-copy="inquiryNeedLabel">Need</label>
+                  <input id="inq-need" type="text" data-placeholder="inquiryNeedPlaceholder" placeholder="Market direction, product line or customization request" />
+                </div>
+                <div class="inquiry-field full">
+                  <label for="inq-message" data-copy="inquiryMessageLabel">Notes</label>
+                  <textarea id="inq-message" data-placeholder="inquiryMessagePlaceholder" placeholder="Please tell us quantity, target market and timeline"></textarea>
+                </div>
+                <div class="inquiry-form-footer">
+                  <p class="inquiry-note" data-copy="inquiryNote">We will get back to you quickly with a suitable resource-matching plan.</p>
+                  <button class="button button-primary" type="button" data-copy="inquiryButton">Send inquiry</button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../shared-shell.js"></script>
+    <script>
+      const LANG_COPY = {
+        zh: {
+          nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系我们"],
+          quote: "获取报价 →",
+          brand: "TRAVELDAY 首页",
+          navLabel: "主导航",
+          heroTitle: "全球市场节点<br>一图看清",
+          heroDesc: "把不同区域的箱包、配件和交付需求放进同一张市场网络，帮助客户快速判断适配方向。",
+          heroPill1: "全球节点",
+          heroPill2: "区域适配",
+          heroPrimary: "查看产品",
+          heroSecondary: "了解市场逻辑",
+          heroChip: "Global market nodes",
+          qaEyebrow: "MARKET FIT",
+          qaTitle: "不同市场，需要不同配置。",
+          qaLead: "从目标市场出发，匹配整箱颜色、轮子、拉杆、手把和交付节奏，让客户更快找到适合当地渠道的产品组合。",
+          fitCardOneTitle: "区域偏好判断",
+          fitCardOneDesc: "根据目标国家和渠道定位，判断主推颜色、箱型和价格带。",
+          fitCardTwoTitle: "产品配置匹配",
+          fitCardTwoDesc: "把整箱、轮子、拉杆、手把和锁具组合成适合市场的方案。",
+          fitCardThreeTitle: "统一响应交付",
+          fitCardThreeDesc: "把多区域询盘、报价和交付集中到一个对接口。",
+          qaNodeOne: "北美 / 欧洲",
+          qaNodeTwo: "中东 / 非洲",
+          qaNodeThree: "亚太 / 澳洲",
+          qaNodeFour: "南美市场",
+          qaHubTitle: "市场<br>节点",
+          qaHubDesc: "产品与配件同步适配",
+          qaNote: "全球节点 · 区域适配 · 统一交付",
+        },
+        en: {
+          nav: ["Home", "Product Center", "Solutions", "About Us", "Market", "Contact"],
+          quote: "Get Quote ->",
+          brand: "TRAVELDAY Home",
+          navLabel: "Primary navigation",
+          heroTitle: "Global market<br>nodes at a glance",
+          heroDesc: "Map regional luggage, component and delivery needs into one market network, so customers can quickly see what fits.",
+          heroPill1: "Global nodes",
+          heroPill2: "Regional fit",
+          heroPrimary: "View products",
+          heroSecondary: "Market logic",
+          heroChip: "Global market nodes",
+          qaEyebrow: "MARKET FIT",
+          qaTitle: "Different markets need different configurations.",
+          qaLead: "Start from the target market, then match luggage colors, wheels, trolley handles, grips and delivery rhythm so customers can find the right local channel combination faster.",
+          fitCardOneTitle: "Regional preference reading",
+          fitCardOneDesc: "Judge key colors, case types and price bands based on the target country and channel position.",
+          fitCardTwoTitle: "Product configuration match",
+          fitCardTwoDesc: "Combine luggage, wheels, trolley handles, grips and locks into a market-ready solution.",
+          fitCardThreeTitle: "Unified response and delivery",
+          fitCardThreeDesc: "Bring multi-region inquiries, quotations and delivery into one communication entry point.",
+          qaNodeOne: "North America / Europe",
+          qaNodeTwo: "Middle East / Africa",
+          qaNodeThree: "APAC / Australia",
+          qaNodeFour: "South America",
+          qaHubTitle: "Market<br>Nodes",
+          qaHubDesc: "Products and components aligned",
+          qaNote: "Global nodes · regional fit · unified delivery",
+        },
+        es: {
+          nav: ["Inicio", "Centro de productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
+          quote: "Obtener cotización →",
+          brand: "Inicio de TRAVELDAY",
+          navLabel: "Navegación principal",
+          heroTitle: "Nodos de mercado<br>global en un mapa",
+          heroDesc: "Reunimos necesidades regionales de equipaje, componentes y entrega en una red clara para ver mejor el encaje.",
+          heroPill1: "Nodos globales",
+          heroPill2: "Encaje regional",
+          heroPrimary: "Ver productos",
+          heroSecondary: "Lógica de mercado",
+          heroChip: "Nodos de mercado global",
+          qaEyebrow: "MARKET FIT",
+          qaTitle: "Cada mercado necesita una configuración.",
+          qaLead: "Partimos del mercado objetivo y combinamos colores, ruedas, tiradores, asas y ritmo de entrega para encontrar la mezcla adecuada.",
+          fitCardOneTitle: "Lectura de preferencia regional",
+          fitCardOneDesc: "Definir colores principales, tipo de maleta y rango de precio según país y canal objetivo.",
+          fitCardTwoTitle: "Configuración de producto",
+          fitCardTwoDesc: "Combinar maleta, ruedas, tiradores, asas y cerraduras en una solución lista para el mercado.",
+          fitCardThreeTitle: "Respuesta y entrega unificadas",
+          fitCardThreeDesc: "Centralizar consultas, cotizaciones y entregas regionales en un solo punto de contacto.",
+          qaNodeOne: "Norteamérica / Europa",
+          qaNodeTwo: "Medio Oriente / África",
+          qaNodeThree: "APAC / Australia",
+          qaNodeFour: "Sudamérica",
+          qaHubTitle: "Nodos<br>de mercado",
+          qaHubDesc: "Producto y componentes alineados",
+          qaNote: "Nodos globales · encaje regional · entrega unificada",
+        },
+        hi: {
+          nav: ["होम", "प्रोडक्ट सेंटर", "समाधान", "हमारे बारे में", "बाज़ार", "संपर्क"],
+          quote: "कोटेशन लें →",
+          brand: "TRAVELDAY होम",
+          navLabel: "मुख्य नेविगेशन",
+          heroTitle: "वैश्विक बाज़ार<br>नोड्स एक नज़र में",
+          heroDesc: "क्षेत्रीय लगेज, कंपोनेंट और डिलीवरी जरूरतों को एक मार्केट नेटवर्क में रखें, ताकि फिट जल्दी समझ आए।",
+          heroPill1: "ग्लोबल नोड्स",
+          heroPill2: "रीजनल फिट",
+          heroPrimary: "उत्पाद देखें",
+          heroSecondary: "मार्केट लॉजिक",
+          heroChip: "ग्लोबल मार्केट नोड्स",
+          qaEyebrow: "MARKET FIT",
+          qaTitle: "हर बाज़ार को अलग कॉन्फ़िगरेशन चाहिए।",
+          qaLead: "लक्ष्य बाज़ार से शुरू करके लगेज रंग, व्हील, ट्रॉली हैंडल, ग्रिप और डिलीवरी रिद्म मिलाएं, ताकि सही संयोजन जल्दी मिले।",
+          fitCardOneTitle: "क्षेत्रीय पसंद समझना",
+          fitCardOneDesc: "लक्ष्य देश और चैनल के आधार पर मुख्य रंग, केस प्रकार और प्राइस बैंड तय करें।",
+          fitCardTwoTitle: "उत्पाद कॉन्फ़िगरेशन मिलान",
+          fitCardTwoDesc: "लगेज, व्हील, ट्रॉली हैंडल, ग्रिप और लॉक को बाज़ार के हिसाब से जोड़ें।",
+          fitCardThreeTitle: "एकीकृत जवाब और डिलीवरी",
+          fitCardThreeDesc: "कई क्षेत्रों की पूछताछ, कोटेशन और डिलीवरी को एक ही संपर्क बिंदु में रखें।",
+          qaNodeOne: "उत्तरी अमेरिका / यूरोप",
+          qaNodeTwo: "मध्य पूर्व / अफ्रीका",
+          qaNodeThree: "APAC / ऑस्ट्रेलिया",
+          qaNodeFour: "दक्षिण अमेरिका",
+          qaHubTitle: "मार्केट<br>नोड्स",
+          qaHubDesc: "उत्पाद और कंपोनेंट साथ मिलें",
+          qaNote: "ग्लोबल नोड्स · रीजनल फिट · एकीकृत डिलीवरी",
+        },
+      };
+
+
+      const INQUIRY_COPY = {
+        zh: {
+          inquiryEyebrow: 'INQUIRY / CONTACT',
+          inquiryTitle: '让合作更快发生',
+          inquiryDesc: '告诉我们你的市场、产品或定制需求，我们会在同一条资源链里快速响应。',
+          inquiryPill1: '24小时内回复',
+          inquiryPill2: '多资源协同',
+          inquiryPill3: '统一报价',
+          inquiryContactTitle: 'Direct contact',
+          inquiryContactDesc: 'sales@travelday.com · More details can be discussed in one step.',
+          inquiryEmail: 'sales@travelday.com',
+          inquiryFormTitle: 'Quick inquiry form',
+          inquiryFormHint: 'One step to start the conversation',
+          inquiryNameLabel: '姓名',
+          inquiryNamePlaceholder: '请输入您的姓名',
+          inquiryCompanyLabel: '公司名称',
+          inquiryCompanyPlaceholder: '请输入公司名称',
+          inquiryEmailLabel: '邮箱',
+          inquiryEmailPlaceholder: '请输入邮箱地址',
+          inquiryNeedLabel: '采购需求',
+          inquiryNeedPlaceholder: '例如：市场方向、产品系列、定制要求',
+          inquiryMessageLabel: '补充说明',
+          inquiryMessagePlaceholder: '请简单描述数量、目标市场和时间要求',
+          inquiryButton: '提交询盘',
+          inquiryNote: '我们会尽快与您联系，并给出适合的资源匹配方案。',
+        },
+        en: {
+          inquiryEyebrow: 'INQUIRY / CONTACT',
+          inquiryTitle: 'Turn every inquiry into one elegant entry point.',
+          inquiryDesc: 'Tell us your market, product or customization needs and we will respond through one integrated resource chain.',
+          inquiryPill1: 'Reply within 24h',
+          inquiryPill2: 'Multi-resource coordination',
+          inquiryPill3: 'Unified quote',
+          inquiryContactTitle: 'Direct contact',
+          inquiryContactDesc: 'sales@travelday.com · More details can be discussed in one step.',
+          inquiryEmail: 'sales@travelday.com',
+          inquiryFormTitle: 'Quick inquiry form',
+          inquiryFormHint: 'One step to start the conversation',
+          inquiryNameLabel: 'Name',
+          inquiryNamePlaceholder: 'Your name',
+          inquiryCompanyLabel: 'Company',
+          inquiryCompanyPlaceholder: 'Company name',
+          inquiryEmailLabel: 'Email',
+          inquiryEmailPlaceholder: 'Email address',
+          inquiryNeedLabel: 'Need',
+          inquiryNeedPlaceholder: 'Market direction, product line or customization request',
+          inquiryMessageLabel: 'Notes',
+          inquiryMessagePlaceholder: 'Please tell us quantity, target market and timeline',
+          inquiryButton: 'Send inquiry',
+          inquiryNote: 'We will get back to you quickly with a suitable resource-matching plan.',
+        },
+        es: {
+          inquiryEyebrow: 'INQUIRY / CONTACT',
+          inquiryTitle: 'Convierte cada consulta en una entrada clara y elegante.',
+          inquiryDesc: 'Cuéntanos tu mercado, producto o necesidad de personalización y responderemos con una cadena integrada de recursos.',
+          inquiryPill1: 'Respuesta en 24h',
+          inquiryPill2: 'Coordinación multirrecurso',
+          inquiryPill3: 'Cotización unificada',
+          inquiryContactTitle: 'Contacto directo',
+          inquiryContactDesc: 'sales@travelday.com · Se pueden discutir más detalles en un solo paso.',
+          inquiryEmail: 'sales@travelday.com',
+          inquiryFormTitle: 'Formulario rápido',
+          inquiryFormHint: 'Un solo paso para iniciar la conversación',
+          inquiryNameLabel: 'Nombre',
+          inquiryNamePlaceholder: 'Tu nombre',
+          inquiryCompanyLabel: 'Empresa',
+          inquiryCompanyPlaceholder: 'Nombre de la empresa',
+          inquiryEmailLabel: 'Correo',
+          inquiryEmailPlaceholder: 'Dirección de correo',
+          inquiryNeedLabel: 'Necesidad',
+          inquiryNeedPlaceholder: 'Mercado, línea de producto o personalización',
+          inquiryMessageLabel: 'Notas',
+          inquiryMessagePlaceholder: 'Indica cantidad, mercado objetivo y plazo',
+          inquiryButton: 'Enviar consulta',
+          inquiryNote: 'Te responderemos pronto con una propuesta adecuada de recursos.',
+        },
+        hi: {
+          inquiryEyebrow: 'INQUIRY / CONTACT',
+          inquiryTitle: 'हर पूछताछ को एक ही प्रवेश बिंदु में लाएं।',
+          inquiryDesc: 'हमें अपना बाज़ार, उत्पाद या कस्टमाइज़ेशन आवश्यकता बताएं, हम एकीकृत संसाधन श्रृंखला के साथ जवाब देंगे।',
+          inquiryPill1: '24 घंटे में जवाब',
+          inquiryPill2: 'बहु-संसाधन समन्वय',
+          inquiryPill3: 'एकीकृत कोटेशन',
+          inquiryContactTitle: 'सीधा संपर्क',
+          inquiryContactDesc: 'sales@travelday.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।',
+          inquiryEmail: 'sales@travelday.com',
+          inquiryFormTitle: 'त्वरित पूछताछ फॉर्म',
+          inquiryFormHint: 'बातचीत शुरू करने के लिए एक ही चरण',
+          inquiryNameLabel: 'नाम',
+          inquiryNamePlaceholder: 'अपना नाम लिखें',
+          inquiryCompanyLabel: 'कंपनी',
+          inquiryCompanyPlaceholder: 'कंपनी का नाम',
+          inquiryEmailLabel: 'ईमेल',
+          inquiryEmailPlaceholder: 'ईमेल पता',
+          inquiryNeedLabel: 'आवश्यकता',
+          inquiryNeedPlaceholder: 'बाज़ार, उत्पाद श्रृंखला या कस्टमाइज़ेशन अनुरोध',
+          inquiryMessageLabel: 'अतिरिक्त विवरण',
+          inquiryMessagePlaceholder: 'कृपया मात्रा, लक्ष्य बाज़ार और समय सीमा बताएं',
+          inquiryButton: 'पूछताछ भेजें',
+          inquiryNote: 'हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।',
+        },
+      };
+
+      function applyMarketCopy(lang) {
+        const activeLang = LANG_COPY[lang] ? lang : "en";
+        const copy = LANG_COPY[activeLang] || LANG_COPY.en;
+        const inquiry = INQUIRY_COPY[activeLang] || INQUIRY_COPY.en;
+        document.title = activeLang === "zh" ? "TRAVELDAY | 市场" : "TRAVELDAY | Market";
+        document.documentElement.lang = activeLang === "zh" ? "zh-CN" : activeLang;
+        document.documentElement.dataset.lang = activeLang;
+
+        document.querySelector(".brand")?.setAttribute("aria-label", copy.brand);
+        document.querySelector(".primary-nav")?.setAttribute("aria-label", copy.navLabel);
+        document.querySelectorAll(".primary-nav a").forEach((link, index) => {
+          if (copy.nav[index]) link.textContent = copy.nav[index];
+        });
+        const quoteButton = document.querySelector(".quote-button");
+        if (quoteButton) quoteButton.textContent = copy.quote;
+
+        const map = {
+          heroTitle: copy.heroTitle,
+          heroDesc: copy.heroDesc,
+          heroPill1: copy.heroPill1,
+          heroPill2: copy.heroPill2,
+          heroPrimary: copy.heroPrimary,
+          heroSecondary: copy.heroSecondary,
+          heroChip: copy.heroChip,
+          qaEyebrow: copy.qaEyebrow,
+          qaTitle: copy.qaTitle,
+          qaLead: copy.qaLead,
+          fitCardOneTitle: copy.fitCardOneTitle,
+          fitCardOneDesc: copy.fitCardOneDesc,
+          fitCardTwoTitle: copy.fitCardTwoTitle,
+          fitCardTwoDesc: copy.fitCardTwoDesc,
+          fitCardThreeTitle: copy.fitCardThreeTitle,
+          fitCardThreeDesc: copy.fitCardThreeDesc,
+          qaNodeOne: copy.qaNodeOne,
+          qaNodeTwo: copy.qaNodeTwo,
+          qaNodeThree: copy.qaNodeThree,
+          qaNodeFour: copy.qaNodeFour,
+          qaHubTitle: copy.qaHubTitle,
+          qaHubDesc: copy.qaHubDesc,
+          qaNote: copy.qaNote,
+          inquiryEyebrow: inquiry.inquiryEyebrow,
+          inquiryTitle: inquiry.inquiryTitle,
+          inquiryDesc: inquiry.inquiryDesc,
+          inquiryPill1: inquiry.inquiryPill1,
+          inquiryPill2: inquiry.inquiryPill2,
+          inquiryPill3: inquiry.inquiryPill3,
+          inquiryContactTitle: inquiry.inquiryContactTitle,
+          inquiryContactDesc: inquiry.inquiryContactDesc,
+          inquiryEmail: inquiry.inquiryEmail,
+          inquiryFormTitle: inquiry.inquiryFormTitle,
+          inquiryFormHint: inquiry.inquiryFormHint,
+          inquiryNameLabel: inquiry.inquiryNameLabel,
+          inquiryCompanyLabel: inquiry.inquiryCompanyLabel,
+          inquiryEmailLabel: inquiry.inquiryEmailLabel,
+          inquiryNeedLabel: inquiry.inquiryNeedLabel,
+          inquiryMessageLabel: inquiry.inquiryMessageLabel,
+          inquiryButton: inquiry.inquiryButton,
+          inquiryNote: inquiry.inquiryNote,
+        };
+
+        document.querySelectorAll("[data-copy]").forEach((node) => {
+          const key = node.dataset.copy;
+          const value = map[key];
+          if (!value) return;
+          if (node.tagName === "A" || node.tagName === "SPAN" || node.tagName === "DIV" || node.tagName === "P") {
+            node.innerHTML = value;
+          } else {
+            node.textContent = value;
+          }
+        });
+
+        document.querySelectorAll("[data-placeholder]").forEach((node) => {
+          const key = node.dataset.placeholder;
+          const value = inquiry[key];
+          if (value) node.setAttribute("placeholder", value);
+        });
+        document.documentElement.dataset.navReady = "true";
+      }
+
+      window.traveldayShell?.init?.({ defaultLang: "en" });
+      applyMarketCopy(window.traveldayShell?.getLanguage?.() || "en");
+      window.addEventListener("travelday:languagechange", (event) => {
+        applyMarketCopy(event.detail?.lang || window.traveldayShell?.getLanguage?.() || "en");
+      });
+    </script>
+    <script src="../shared-inquiry.js?v=20260531-1"></script>
+  </body>
+</html>
+
+
+

@@ -1,0 +1,735 @@
+﻿<!doctype html>
+<html lang="en" data-default-lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TRAVELDAY | Product Center</title>
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --card: #ffffff;
+        --ink: #141312;
+        --text: #2b2824;
+        --muted: #766f65;
+        --line: #ebe3d8;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --soft: #f6f1e9;
+        --shadow: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --radius: 18px;
+        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
+          var(--page);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .page {
+        width: min(1500px, calc(100% - 42px));
+        margin: 16px auto 30px;
+      }
+
+      .site-header {
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        gap: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        position: relative;
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+        overflow: visible;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+      }
+
+      html:not([data-nav-ready="true"]) .primary-nav {
+        visibility: hidden;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        height: 38px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .quote-button,
+      .button-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline,
+      .outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: block;
+        min-height: 520px;
+        margin-top: 8px;
+        padding: 66px 72px;
+        background:
+          linear-gradient(90deg, rgba(255, 253, 250, 0.96) 0%, rgba(255, 253, 250, 0.86) 43%, rgba(255, 253, 250, 0.18) 68%),
+          url("../images/series-luggage.jpg") right center / cover no-repeat;
+      }
+
+      .hero.product-center-hero {
+        min-height: 0;
+        padding: 0;
+        background: none;
+      }
+
+      .product-center-hero-image {
+        display: block;
+        width: 75%;
+        height: auto;
+        margin: 0 auto;
+        transform: scaleX(1.333333);
+        transform-origin: center center;
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        color: var(--gold-dark);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 22px;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", "SimSun", serif;
+        font-size: 64px;
+        font-weight: 500;
+        line-height: 1.08;
+      }
+
+      .lead {
+        max-width: 560px;
+        color: var(--muted);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.8;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 42px;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .category-card,
+      .filter button {
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .category-card.is-active,
+      .filter .selected {
+        border-color: rgba(211, 154, 0, 0.55);
+        background: #fff7e1;
+        color: var(--gold-dark);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 24px;
+      }
+
+      .stats article {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        min-height: 96px;
+        padding: 0 24px;
+        border-right: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .stats article:last-child {
+        border-right: 0;
+      }
+
+      .icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 3px solid var(--gold);
+        border-radius: 12px;
+        color: var(--gold);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .stats strong {
+        display: block;
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      .stats span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .categories {
+        margin-top: 24px;
+        padding: 18px;
+      }
+
+      .category-card {
+        min-height: 180px;
+        overflow: hidden;
+        border-radius: 14px;
+        padding: 0;
+        text-align: left;
+      }
+
+      .category-card-image {
+        height: 124px;
+        background:
+          linear-gradient(rgba(242, 236, 226, 0.2), rgba(218, 208, 195, 0.12)),
+          var(--image) center / cover no-repeat;
+      }
+
+      .category-card span {
+        display: block;
+        padding: 14px 14px 16px;
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .workspace {
+        margin-top: 24px;
+      }
+
+      .catalog-rail {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .catalog-section {
+        position: relative;
+        display: grid;
+        gap: 10px;
+        min-height: 0;
+        overflow: hidden;
+        padding: 10px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 242, 234, 0.98));
+        box-shadow: 0 16px 36px rgba(35, 28, 20, 0.08);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .catalog-section-frame {
+        display: grid;
+        gap: 10px;
+      }
+
+      .catalog-section:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 46px rgba(35, 28, 20, 0.12);
+      }
+
+      .catalog-section-image {
+        min-height: 360px;
+        border-radius: 20px;
+        background-color: #eae0d3;
+        background-image:
+          linear-gradient(180deg, rgba(240, 231, 220, 0.48) 0%, rgba(235, 224, 211, 0.14) 100%),
+          var(--image);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-blend-mode: multiply;
+        filter: saturate(0.9) contrast(0.95);
+      }
+
+      .catalog-section-head {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 66px;
+        padding: 0 18px;
+        border: 1px solid rgba(232, 224, 212, 0.72);
+        border-radius: 16px;
+        background: rgba(255, 252, 247, 0.84);
+        backdrop-filter: blur(4px);
+      }
+
+      .catalog-section-head::after {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        color: rgba(20, 19, 18, 0.07);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1;
+        white-space: nowrap;
+        content: attr(data-watermark);
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .catalog-section-head .catalog-section-title {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 1px;
+        font-size: 20px;
+        line-height: 1.08;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1180px) {
+        .site-header {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-nav {
+          flex-wrap: wrap;
+          justify-content: start;
+          gap: 22px;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .primary-nav,
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        body.is-menu-open .primary-nav,
+        body.is-menu-open .header-actions {
+          display: flex;
+        }
+
+        .primary-nav {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+          padding-top: 12px;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          width: min(100% - 24px, 720px);
+        }
+
+        .site-header,
+        .hero:not(.product-center-hero) {
+          padding: 18px;
+        }
+
+        .product-center-hero-image {
+          width: 100%;
+          transform: none;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .stats,
+        .category-grid,
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .side-stack,
+        .side {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .catalog-rail {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
+          <span class="brand-logo">
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+          </span>
+        </a>
+        <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="../index.html">Home</a>
+          <a class="active" href="./product-center-preview.html">Products</a>
+          <a href="../index.html#solutions">Solutions</a>
+          <a href="./company-presence-preview.html">About</a>
+          <a href="../index.html#market">Market</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <select class="language-select" aria-label="Language">
+            <option value="zh">Chinese</option>
+            <option value="en" selected>English</option>
+            <option value="es">Spanish</option>
+            <option value="hi">Hindi</option>
+          </select>
+          <a class="quote-button" href="../index.html#contact">Get Quote -></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero card product-center-hero" aria-label="Product Center hero">
+          <img
+            class="product-center-hero-image"
+            src="../images/product-center-hero.png"
+            alt="TRAVELDAY product center hero image showing luggage materials and global supply chain capability"
+          />
+        </section>
+
+        <section class="workspace card" id="catalog">
+          <div class="catalog-rail" data-catalog></div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="../shared-shell.js?v=20260529-1"></script>
+
+    <script>
+      const LANGS = ["zh", "en", "es", "hi"];
+
+      const pageCopy = {
+        zh: {
+          title: "TRAVELDAY | 产品中心",
+          nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系我们"],
+          quote: "获取报价 →",
+          brandLabel: "TRAVELDAY 首页",
+          navLabel: "主导航",
+          heroLabel: "产品中心主图",
+          heroAlt: "上海戴承实业有限公司产品中心主图，展示行李箱材料与全球供应链理念",
+          catalog: {
+            abspc: "ABS / PC 行李箱",
+            pp: "PP 行李箱",
+            eva: "EVA 行李箱",
+            accessories: "ACCESORIES 配件",
+          },
+        },
+        en: {
+          title: "TRAVELDAY | Product Center",
+          nav: ["Home", "Products", "Solutions", "About", "Market", "Contact"],
+          quote: "Get Quote ->",
+          brandLabel: "TRAVELDAY home",
+          navLabel: "Primary navigation",
+          heroLabel: "Product Center hero",
+          heroAlt: "TRAVELDAY product center hero image showing luggage materials and global supply chain capability",
+          catalog: {
+            abspc: "ABS / PC Luggage",
+            pp: "PP Luggage",
+            eva: "EVA Luggage",
+            accessories: "ACCESORIES Parts",
+          },
+        },
+        es: {
+          title: "TRAVELDAY | Centro de productos",
+          nav: ["Inicio", "Productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
+          quote: "Solicitar cotización →",
+          brandLabel: "Inicio de TRAVELDAY",
+          navLabel: "Navegación principal",
+          heroLabel: "Imagen principal del centro de productos",
+          heroAlt: "Imagen principal del centro de productos TRAVELDAY con materiales de equipaje y capacidad de suministro global",
+          catalog: {
+            abspc: "Equipaje ABS / PC",
+            pp: "Equipaje PP",
+            eva: "Equipaje EVA",
+            accessories: "ACCESORIES piezas",
+          },
+        },
+        hi: {
+          title: "TRAVELDAY | उत्पाद केंद्र",
+          nav: ["होम", "उत्पाद", "समाधान", "हमारे बारे में", "बाजार", "संपर्क"],
+          quote: "कोटेशन लें →",
+          brandLabel: "TRAVELDAY होम",
+          navLabel: "मुख्य नेविगेशन",
+          heroLabel: "उत्पाद केंद्र हीरो",
+          heroAlt: "TRAVELDAY उत्पाद केंद्र की मुख्य छवि, जिसमें लगेज सामग्री और वैश्विक सप्लाई चेन क्षमता दिखाई गई है",
+          catalog: {
+            abspc: "ABS / PC लगेज",
+            pp: "PP लगेज",
+            eva: "EVA लगेज",
+            accessories: "ACCESORIES पार्ट्स",
+          },
+        },
+      };
+
+      const catalogSections = [
+        {
+          key: "abspc",
+          label: "ABS/PC",
+          image: "../images/product-gallery/04-series-luggage111.jpg",
+          href: "product-detail-preview.html?product=luggage",
+        },
+        {
+          key: "pp",
+          label: "PP",
+          image: "../images/product-gallery/17-series-production.jpg",
+          href: "product-detail-preview.html?product=semi-shell",
+        },
+        {
+          key: "eva",
+          label: "EVA",
+          image: "../images/product-gallery/15-oem-odm222.jpg",
+          href: "product-detail-preview.html?product=eva-soft-shell",
+        },
+        {
+          key: "accessories",
+          label: "ACCESORIES",
+          image: "../images/product-gallery/10-series-handle.jpg",
+          href: "product-detail-preview.html?product=trolley-handle",
+        },
+      ];
+
+      const catalogRoot = document.querySelector("[data-catalog]");
+
+      const readActiveLang = () => {
+        const fromShell = window.traveldayShell?.readLanguage?.("en") || window.traveldayShell?.getLanguage?.();
+        return LANGS.includes(fromShell) ? fromShell : "en";
+      };
+
+      const addLang = (href, lang) => {
+        const url = new URL(href, window.location.href);
+        url.searchParams.set("lang", lang);
+        return url.toString();
+      };
+
+      function renderSectionCard(section, lang) {
+        const t = pageCopy[lang] || pageCopy.en;
+        return `
+          <a class="catalog-section" href="${addLang(section.href, lang)}" id="catalog-${section.key}">
+            <div class="catalog-section-frame">
+              <div class="catalog-section-head" data-watermark="${section.label}">
+                <h2 class="catalog-section-title">${t.catalog[section.key]}</h2>
+              </div>
+              <div class="catalog-section-image" style="--image: url('${section.image}')"></div>
+            </div>
+          </a>
+        `;
+      }
+
+      function applyProductCenterCopy(lang) {
+        const activeLang = LANGS.includes(lang) ? lang : "en";
+        const t = pageCopy[activeLang] || pageCopy.en;
+        document.title = t.title;
+        document.documentElement.lang = activeLang === "zh" ? "zh-CN" : activeLang;
+        document.documentElement.dataset.lang = activeLang;
+
+        document.querySelector(".brand")?.setAttribute("aria-label", t.brandLabel);
+        document.querySelector(".primary-nav")?.setAttribute("aria-label", t.navLabel);
+        document.querySelector(".product-center-hero")?.setAttribute("aria-label", t.heroLabel);
+        document.querySelector(".product-center-hero-image")?.setAttribute("alt", t.heroAlt);
+        document.querySelectorAll(".primary-nav a").forEach((link, index) => {
+          if (t.nav[index]) link.textContent = t.nav[index];
+        });
+        const quoteButton = document.querySelector(".quote-button");
+        if (quoteButton) quoteButton.textContent = t.quote;
+        const select = document.querySelector(".language-select");
+        if (select && select.value !== activeLang) select.value = activeLang;
+        if (catalogRoot) {
+          catalogRoot.innerHTML = catalogSections.map((section) => renderSectionCard(section, activeLang)).join("");
+        }
+        window.traveldayShell?.syncLanguageLinks?.(activeLang);
+        document.documentElement.dataset.navReady = "true";
+      }
+
+      window.traveldayShell?.init?.({ defaultLang: "en" });
+      applyProductCenterCopy(readActiveLang());
+      window.addEventListener("travelday:languagechange", (event) => {
+        const nextLang = LANGS.includes(event.detail?.lang) ? event.detail.lang : readActiveLang();
+        applyProductCenterCopy(nextLang);
+      });
+    </script>
+  </body>
+</html>
+
