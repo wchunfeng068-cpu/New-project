@@ -445,6 +445,22 @@
     return url.toString();
   };
 
+  const getActiveLanguage = () => (LANGS.includes(state.lang) ? state.lang : readInitialLanguage());
+
+  const addLanguageToAnchor = (anchor, lang) => {
+    const rawHref = anchor?.getAttribute('href');
+    if (!rawHref || rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
+
+    try {
+      const url = new URL(rawHref, document.baseURI);
+      if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
+      url.searchParams.set('lang', lang);
+      anchor.setAttribute('href', url.toString());
+    } catch {
+      // Keep the original href if the browser cannot normalize it.
+    }
+  };
+
   const getCurrentPageKey = () => {
     const pathname = window.location.pathname.toLowerCase();
     if (pathname.endsWith('/product-center-preview.html')) return 'products';
@@ -583,6 +599,22 @@
 
   const schedulePrimaryNavigationSync = (lang) => {
     window.setTimeout(() => syncPrimaryNavigation(lang), 0);
+  };
+
+  const bindNavigationLanguageFallback = () => {
+    $$('.primary-nav, .brand, .quote-button').forEach((target) => {
+      if (target.dataset.languageFallbackBound === 'true') return;
+      target.dataset.languageFallbackBound = 'true';
+      target.addEventListener(
+        'click',
+        (event) => {
+          const anchor = event.target.closest?.('a[href]');
+          if (!anchor || !target.contains(anchor)) return;
+          addLanguageToAnchor(anchor, getActiveLanguage());
+        },
+        true,
+      );
+    });
   };
 
   const syncLanguageLinks = (lang) => {
@@ -1006,6 +1038,7 @@
     bindVideo();
     bindContactForm();
     bindTopButton();
+    bindNavigationLanguageFallback();
     window.setSiteLanguage = setSiteLanguage;
 
     const select = $('.language-select');

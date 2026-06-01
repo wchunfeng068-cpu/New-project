@@ -15,6 +15,14 @@
       "use": "@vercel/static"
     },
     {
+      "src": "shared-shell.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "shared-inquiry.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "mockups/product-center-preview.html",
       "use": "@vercel/static"
     },
@@ -23,7 +31,23 @@
       "use": "@vercel/static"
     },
     {
+      "src": "mockups/solution-preview.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "mockups/market-preview.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "mockups/company-presence-preview.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "mockups/company-presence-preview.js",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "mockups/assets/**/*",
       "use": "@vercel/static"
     },
     {

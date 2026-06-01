@@ -622,9 +622,9 @@
         <nav class="primary-nav" id="primaryNav" aria-label="???">
           <a href="../index.html">??</a>
           <a class="active" href="./product-center-preview.html">????</a>
-          <a href="../index.html#solutions">????</a>
+          <a href="./solution-preview.html">????</a>
           <a href="./company-presence-preview.html">????</a>
-          <a href="../index.html#market">??</a>
+          <a href="./market-preview.html">??</a>
           <a href="#contact">????</a>
         </nav>
         <div class="header-actions">
@@ -693,7 +693,7 @@
       </main>
     </div>
 
-    <script src="../shared-shell.js?v=20260529-1"></script>
+    <script src="../shared-shell.js?v=20260601-langfix"></script>
 
     <script>
       (() => {
@@ -810,16 +810,16 @@
         };
 
         const readLang = () => {
-          const fromShell = window.traveldayShell?.getLanguage?.();
-          if (LANGS.includes(fromShell)) return fromShell;
-          const optionValue = document.querySelector('.language-select')?.value;
-          if (LANGS.includes(optionValue)) return optionValue;
           try {
             const queryLang = new URLSearchParams(window.location.search).get('lang');
             if (LANGS.includes(queryLang)) return queryLang;
           } catch {
             // Ignore malformed URLs.
           }
+          const fromShell = window.traveldayShell?.getLanguage?.();
+          if (LANGS.includes(fromShell)) return fromShell;
+          const optionValue = document.querySelector('.language-select')?.value;
+          if (LANGS.includes(optionValue)) return optionValue;
           return 'zh';
         };
 
@@ -1181,14 +1181,14 @@
         };
 
         const readLang = () => {
-          const fromShell = window.traveldayShell?.getLanguage?.();
-          if (LANGS.includes(fromShell)) return fromShell;
           try {
             const queryLang = new URLSearchParams(window.location.search).get("lang");
             if (LANGS.includes(queryLang)) return queryLang;
           } catch {
             // Ignore malformed URLs.
           }
+          const fromShell = window.traveldayShell?.getLanguage?.();
+          if (LANGS.includes(fromShell)) return fromShell;
           return "zh";
         };
 

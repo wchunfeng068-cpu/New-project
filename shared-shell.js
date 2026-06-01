@@ -60,6 +60,22 @@
     return url.toString();
   };
 
+  const getActiveLanguage = () => (isValidLang(state.lang) ? state.lang : readLanguage());
+
+  const addLanguageToAnchor = (anchor, lang) => {
+    const rawHref = anchor?.getAttribute('href');
+    if (!rawHref || rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
+
+    try {
+      const url = new URL(rawHref, document.baseURI);
+      if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
+      url.searchParams.set('lang', lang);
+      anchor.setAttribute('href', url.toString());
+    } catch {
+      // Navigation still works if a browser refuses URL parsing for an unusual href.
+    }
+  };
+
   const getCurrentPageKey = () => {
     const pathname = window.location.pathname.toLowerCase();
     if (pathname.endsWith('/product-center-preview.html')) return 'products';
@@ -275,6 +291,22 @@
     });
   };
 
+  const bindNavigationLanguageFallback = () => {
+    document.querySelectorAll('.primary-nav, .brand, .quote-button').forEach((target) => {
+      if (target.dataset.languageFallbackBound === 'true') return;
+      target.dataset.languageFallbackBound = 'true';
+      target.addEventListener(
+        'click',
+        (event) => {
+          const anchor = event.target.closest?.('a[href]');
+          if (!anchor || !target.contains(anchor)) return;
+          addLanguageToAnchor(anchor, getActiveLanguage());
+        },
+        true,
+      );
+    });
+  };
+
   const bindMobileMenu = () => {
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const nav = document.getElementById('primaryNav');
@@ -419,6 +451,7 @@
     syncDocumentLanguage(state.lang);
     persistLanguage(state.lang);
     bindLanguageSelects();
+    bindNavigationLanguageFallback();
     bindMobileMenu();
     ensureTopButton();
     ensureInquiryStandardStyles();

@@ -2,16 +2,16 @@
   const LANGS = ["zh", "en", "es", "hi"];
 
   const readLang = () => {
-    const fromShell = window.traveldayShell?.getLanguage?.();
-    if (LANGS.includes(fromShell)) return fromShell;
-    const docLang = document.documentElement.dataset.lang;
-    if (LANGS.includes(docLang)) return docLang;
     try {
       const queryLang = new URLSearchParams(window.location.search).get("lang");
       if (LANGS.includes(queryLang)) return queryLang;
     } catch {
       // Ignore malformed URLs.
     }
+    const fromShell = window.traveldayShell?.getLanguage?.();
+    if (LANGS.includes(fromShell)) return fromShell;
+    const docLang = document.documentElement.dataset.lang;
+    if (LANGS.includes(docLang)) return docLang;
     return "en";
   };
 
@@ -175,6 +175,16 @@
     if (node && value !== undefined) node.setAttribute(attr, value);
   };
 
+  const withLanguage = (href, lang) => {
+    const url = new URL(href, document.baseURI);
+    if (LANGS.includes(lang)) {
+      url.searchParams.set("lang", lang);
+    } else {
+      url.searchParams.delete("lang");
+    }
+    return url.href;
+  };
+
   const applyPageCopy = (lang) => {
     const t = copy[lang] || copy.en;
     const team = teamCopy[lang] || teamCopy.en;
@@ -191,9 +201,20 @@
     setAttr(".hero-points", "aria-label", t.heroPointsLabel);
     setAttr(".hero-visual img", "alt", t.heroImageAlt);
     setAttr(".story-visual img", "alt", t.storyImageAlt);
+    setAttr(".brand", "href", withLanguage("../index.html", lang));
+
+    const navTargets = [
+      "../index.html",
+      "./product-center-preview.html",
+      "./solution-preview.html",
+      "./company-presence-preview.html",
+      "./market-preview.html",
+      "../index.html#contact",
+    ];
 
     document.querySelectorAll(".primary-nav a").forEach((link, index) => {
       if (t.nav[index]) link.textContent = t.nav[index];
+      if (navTargets[index]) link.setAttribute("href", withLanguage(navTargets[index], lang));
     });
 
     document.querySelectorAll(".language-select option").forEach((option) => {
@@ -242,6 +263,9 @@
       const expanded = button.getAttribute("aria-pressed") === "true";
       button.textContent = expanded ? t.memberToggleHide : t.memberToggleShow;
     });
+
+    const quoteButton = document.querySelector(".quote-button");
+    if (quoteButton) quoteButton.setAttribute("href", withLanguage("../index.html#contact", lang));
 
     document.documentElement.dataset.navReady = "true";
   };
