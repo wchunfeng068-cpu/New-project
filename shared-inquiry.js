@@ -437,7 +437,8 @@
         <span data-inquiry-copy="formHint">One step to start the conversation</span>
       </div>
       <form class="inquiry-form" aria-label="Quick inquiry form" action="${SUBMIT_ENDPOINT}" method="post">
-        <input type="hidden" name="_next" data-inquiry-next />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
         <div class="inquiry-field">
           <label for="inq-name" data-inquiry-copy="nameLabel">Name</label>
           <input id="inq-name" name="name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" required />
@@ -488,16 +489,29 @@
     if (!form || !status || form.dataset.inquiryBound === 'true') return;
 
     form.dataset.inquiryBound = 'true';
-    // Submit as a regular form rather than through fetch. This works when the
-    // site is opened directly from a local file as well as when it is hosted.
-    form.addEventListener('submit', () => {
-      const next = form.querySelector('[data-inquiry-next]');
-      if (next) {
-        const url = new URL('thank-you.html', window.location.href);
-        url.searchParams.set('lang', getLanguage());
-        next.value = url.toString();
-      }
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const submitButton = form.querySelector('[type="submit"]');
+      const returnUrl = new URL('thank-you.html', window.location.href);
+      returnUrl.searchParams.set('lang', getLanguage());
+      const payload = new FormData(form);
+      payload.set('_captcha', 'false');
+
       status.textContent = copy.status;
+      if (submitButton) submitButton.disabled = true;
+
+      try {
+        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`, {
+          method: 'POST',
+          body: payload,
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`Inquiry submission failed: ${response.status}`);
+        window.location.assign(returnUrl.toString());
+      } catch (error) {
+        status.textContent = 'Unable to send your inquiry right now. Please email us directly.';
+        if (submitButton) submitButton.disabled = false;
+      }
     });
   };
 
