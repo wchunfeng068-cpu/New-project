@@ -3,6 +3,8 @@
   const MODULE_CLASS = 'inquiry-standard';
   const TARGET_SELECTOR = 'section#contact';
   const DEFAULT_LANG = 'en';
+  const INQUIRY_RECIPIENT = 'wchunfeng068@gmail.com';
+  const SUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`;
 
   const COPY = {
     zh: {
@@ -13,8 +15,8 @@
       pill2: '资源协同',
       pill3: '统一报价',
       contactTitle: '直接联系',
-      contactDesc: 'sales@travelday.com · 详细需求可直接沟通。',
-      email: 'sales@travelday.com',
+      contactDesc: 'wchunfeng068@gmail.com · 详细需求可直接沟通。',
+      email: INQUIRY_RECIPIENT,
       formTitle: '快速询盘',
       formHint: '第一步就能开始对接',
       formAria: '快速询盘',
@@ -31,6 +33,7 @@
       button: '提交询盘',
       note: '我们会尽快与您联系，并给出适合的资源匹配方案。',
       status: '我们已收到您的需求，会尽快联系您。',
+      submitError: '发送遇到问题，请直接通过邮箱联系我们。',
     },
     en: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -40,8 +43,8 @@
       pill2: 'Resource coordination',
       pill3: 'Unified quote',
       contactTitle: 'Direct contact',
-      contactDesc: 'sales@travelday.com · More details can be discussed in one step.',
-      email: 'sales@travelday.com',
+      contactDesc: 'wchunfeng068@gmail.com · More details can be discussed in one step.',
+      email: INQUIRY_RECIPIENT,
       formTitle: 'Quick inquiry form',
       formHint: 'One step to start the conversation',
       formAria: 'Quick inquiry form',
@@ -58,6 +61,7 @@
       button: 'Send inquiry',
       note: 'We will get back to you quickly with a suitable resource-matching plan.',
       status: 'We have received your request and will contact you soon.',
+      submitError: 'We could not send your inquiry. Please contact us directly by email.',
     },
     es: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -67,8 +71,8 @@
       pill2: 'Coordinación de recursos',
       pill3: 'Cotización unificada',
       contactTitle: 'Contacto directo',
-      contactDesc: 'sales@travelday.com · Se pueden discutir más detalles en un solo paso.',
-      email: 'sales@travelday.com',
+      contactDesc: 'wchunfeng068@gmail.com · Se pueden discutir más detalles en un solo paso.',
+      email: INQUIRY_RECIPIENT,
       formTitle: 'Formulario rápido',
       formHint: 'Un solo paso para iniciar la conversación',
       formAria: 'Formulario rápido',
@@ -85,6 +89,7 @@
       button: 'Enviar consulta',
       note: 'Te responderemos pronto con una propuesta adecuada de recursos.',
       status: 'Hemos recibido tu consulta y te contactaremos pronto.',
+      submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por correo.',
     },
     hi: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -94,8 +99,8 @@
       pill2: 'रिसोर्स समन्वय',
       pill3: 'एकीकृत कोटेशन',
       contactTitle: 'सीधा संपर्क',
-      contactDesc: 'sales@travelday.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।',
-      email: 'sales@travelday.com',
+      contactDesc: 'wchunfeng068@gmail.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।',
+      email: INQUIRY_RECIPIENT,
       formTitle: 'त्वरित पूछताछ फॉर्म',
       formHint: 'बातचीत शुरू करने के लिए एक ही चरण',
       formAria: 'त्वरित पूछताछ फॉर्म',
@@ -112,6 +117,7 @@
       button: 'पूछताछ भेजें',
       note: 'हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।',
       status: 'हमने आपकी पूछताछ प्राप्त कर ली है और जल्द ही संपर्क करेंगे।',
+      submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे ईमेल से संपर्क करें।',
     },
   };
 
@@ -419,9 +425,9 @@
       <div class="inquiry-contact">
         <div>
           <strong data-inquiry-copy="contactTitle">Direct contact</strong>
-          <span data-inquiry-copy="contactDesc">sales@travelday.com · More details can be discussed in one step.</span>
+          <span data-inquiry-copy="contactDesc">wchunfeng068@gmail.com · More details can be discussed in one step.</span>
         </div>
-        <a class="inquiry-email" href="mailto:sales@travelday.com" data-inquiry-copy="email">sales@travelday.com</a>
+        <a class="inquiry-email" href="mailto:wchunfeng068@gmail.com" data-inquiry-copy="email">wchunfeng068@gmail.com</a>
       </div>
     </div>
 
@@ -430,31 +436,32 @@
         <p data-inquiry-copy="formTitle">Quick inquiry form</p>
         <span data-inquiry-copy="formHint">One step to start the conversation</span>
       </div>
-      <form class="inquiry-form" aria-label="Quick inquiry form">
+      <form class="inquiry-form" aria-label="Quick inquiry form" action="${SUBMIT_ENDPOINT}" method="post">
         <div class="inquiry-field">
           <label for="inq-name" data-inquiry-copy="nameLabel">Name</label>
-          <input id="inq-name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" />
+          <input id="inq-name" name="name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" required />
         </div>
         <div class="inquiry-field">
           <label for="inq-company" data-inquiry-copy="companyLabel">Company</label>
-          <input id="inq-company" type="text" autocomplete="organization" data-inquiry-placeholder="companyPlaceholder" placeholder="Company name" />
+          <input id="inq-company" name="company" type="text" autocomplete="organization" data-inquiry-placeholder="companyPlaceholder" placeholder="Company name" />
         </div>
         <div class="inquiry-field">
           <label for="inq-email" data-inquiry-copy="emailLabel">Email</label>
-          <input id="inq-email" type="email" autocomplete="email" data-inquiry-placeholder="emailPlaceholder" placeholder="Email address" />
+          <input id="inq-email" name="email" type="email" autocomplete="email" data-inquiry-placeholder="emailPlaceholder" placeholder="Email address" required />
         </div>
         <div class="inquiry-field">
           <label for="inq-need" data-inquiry-copy="needLabel">Need</label>
-          <input id="inq-need" type="text" data-inquiry-placeholder="needPlaceholder" placeholder="Market direction, product line or customization request" />
+          <input id="inq-need" name="need" type="text" data-inquiry-placeholder="needPlaceholder" placeholder="Market direction, product line or customization request" />
         </div>
         <div class="inquiry-field full">
           <label for="inq-message" data-inquiry-copy="messageLabel">Notes</label>
-          <textarea id="inq-message" data-inquiry-placeholder="messagePlaceholder" placeholder="Please tell us quantity, target market and timeline"></textarea>
+          <textarea id="inq-message" name="message" data-inquiry-placeholder="messagePlaceholder" placeholder="Please tell us quantity, target market and timeline" required></textarea>
         </div>
         <div class="inquiry-form-footer">
           <p class="inquiry-note" data-inquiry-copy="note">We will get back to you quickly with a suitable resource-matching plan.</p>
           <button class="button button-primary form-submit" type="submit" data-inquiry-copy="button">Send inquiry</button>
         </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   `;
@@ -480,10 +487,26 @@
     if (!form || !status || form.dataset.inquiryBound === 'true') return;
 
     form.dataset.inquiryBound = 'true';
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      status.textContent = copy.status;
-      form.reset();
+      const submitButton = form.querySelector('[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      status.textContent = '';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!response.ok) throw new Error('Inquiry submission failed');
+        status.textContent = copy.status;
+        form.reset();
+      } catch {
+        status.textContent = copy.submitError;
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
     });
   };
 
