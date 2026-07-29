@@ -23,6 +23,18 @@
       "use": "@vercel/static"
     },
     {
+      "src": "thank-you.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "thank-you.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "thank-you.js",
+      "use": "@vercel/static"
+    },
+    {
       "src": "mockups/product-center-preview.html",
       "use": "@vercel/static"
     },

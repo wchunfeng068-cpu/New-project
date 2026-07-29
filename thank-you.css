@@ -1,0 +1,16 @@
+.thank-you-page .thank-you-main { padding: 34px 0 26px; }
+.thank-you-hero { position: relative; min-height: 680px; overflow: hidden; border: 1px solid #e6dccf; border-radius: 28px; background: linear-gradient(135deg, #ece5da 0%, #f6f1e9 58%, #e9dfd1 100%); box-shadow: 0 18px 46px rgba(62, 47, 29, .09); }
+.thank-you-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; max-width: 760px; margin: 0 auto; padding: 76px 24px 0; text-align: center; }
+.thank-you-check { display: grid; place-items: center; width: 64px; height: 64px; border: 3px solid #d79c00; border-radius: 50%; color: #d79c00; font-size: 38px; font-weight: 500; line-height: 1; }
+.thank-you-copy h1 { margin: 24px 0 12px; color: #181614; font-family: "SimHei", "Microsoft YaHei", sans-serif; font-size: clamp(40px, 5vw, 72px); font-weight: 900; letter-spacing: -.06em; line-height: 1.05; }
+.thank-you-copy p { margin: 0; color: #554d45; font-size: 18px; line-height: 1.8; }
+.thank-you-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 28px; }
+.thank-you-actions .button { min-width: 158px; }
+.thank-you-products { position: absolute; right: 0; bottom: 0; left: 0; display: flex; align-items: end; height: 360px; overflow: hidden; background: linear-gradient(180deg, rgba(246, 241, 233, 0) 0%, rgba(226, 213, 197, .42) 100%); }
+.thank-you-products::before { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; height: 34%; content: ""; background: linear-gradient(180deg, rgba(220, 202, 181, .02), rgba(214, 194, 171, .46)); }
+.thank-you-products img { position: relative; z-index: 2; display: block; width: 52%; height: 100%; object-fit: cover; object-position: center bottom; mix-blend-mode: multiply; }
+.thank-you-products .thank-you-luggage { width: 46%; object-position: 52% 75%; }
+.thank-you-products .thank-you-components { width: 54%; object-position: 47% 68%; }
+.thank-you-page .site-footer { margin-top: 0; }
+@media (max-width: 980px) { .thank-you-page .thank-you-main { padding: 20px 0; } .thank-you-hero { min-height: 650px; border-radius: 22px; } .thank-you-copy { padding-top: 54px; } .thank-you-products { height: 315px; } }
+@media (max-width: 640px) { .thank-you-page .page-shell { padding: 0 14px; } .thank-you-hero { min-height: 590px; border-radius: 18px; } .thank-you-copy { padding: 42px 18px 0; } .thank-you-check { width: 54px; height: 54px; font-size: 31px; } .thank-you-copy h1 { margin-top: 18px; font-size: 42px; } .thank-you-copy p { font-size: 15px; } .thank-you-actions { width: 100%; gap: 10px; } .thank-you-actions .button { flex: 1 1 140px; min-width: 0; } .thank-you-products { height: 255px; } .thank-you-products img { height: 90%; } .thank-you-products .thank-you-luggage { width: 48%; } .thank-you-products .thank-you-components { width: 58%; margin-left: -6%; } }

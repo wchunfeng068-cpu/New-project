@@ -437,6 +437,7 @@
         <span data-inquiry-copy="formHint">One step to start the conversation</span>
       </div>
       <form class="inquiry-form" aria-label="Quick inquiry form" action="${SUBMIT_ENDPOINT}" method="post">
+        <input type="hidden" name="_next" data-inquiry-next />
         <div class="inquiry-field">
           <label for="inq-name" data-inquiry-copy="nameLabel">Name</label>
           <input id="inq-name" name="name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" required />
@@ -490,6 +491,12 @@
     // Submit as a regular form rather than through fetch. This works when the
     // site is opened directly from a local file as well as when it is hosted.
     form.addEventListener('submit', () => {
+      const next = form.querySelector('[data-inquiry-next]');
+      if (next) {
+        const url = new URL('thank-you.html', window.location.href);
+        url.searchParams.set('lang', getLanguage());
+        next.value = url.toString();
+      }
       status.textContent = copy.status;
     });
   };
