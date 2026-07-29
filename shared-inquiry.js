@@ -4,7 +4,7 @@
   const TARGET_SELECTOR = 'section#contact';
   const DEFAULT_LANG = 'en';
   const INQUIRY_RECIPIENT = 'wchunfeng068@gmail.com';
-  const SUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`;
+  const SUBMIT_ENDPOINT = `https://formsubmit.co/${encodeURIComponent(INQUIRY_RECIPIENT)}`;
 
   const COPY = {
     zh: {
@@ -487,26 +487,10 @@
     if (!form || !status || form.dataset.inquiryBound === 'true') return;
 
     form.dataset.inquiryBound = 'true';
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const submitButton = form.querySelector('[type="submit"]');
-      if (submitButton) submitButton.disabled = true;
-      status.textContent = '';
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: new FormData(form),
-        });
-        if (!response.ok) throw new Error('Inquiry submission failed');
-        status.textContent = copy.status;
-        form.reset();
-      } catch {
-        status.textContent = copy.submitError;
-      } finally {
-        if (submitButton) submitButton.disabled = false;
-      }
+    // Submit as a regular form rather than through fetch. This works when the
+    // site is opened directly from a local file as well as when it is hosted.
+    form.addEventListener('submit', () => {
+      status.textContent = copy.status;
     });
   };
 
