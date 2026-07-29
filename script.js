@@ -23,7 +23,7 @@
       heroButtonPrimary: '获取报价 →',
       heroButtonSecondary: '查看产品',
       heroStats: [
-        ['自2016年起', '行业经验'],
+        ['自2006年起', '行业经验'],
         ['400+ 集装箱', '年出口量'],
         ['OEM & ODM', '一站式解决方案'],
         ['全球市场', '值得信赖的合作伙伴'],
@@ -63,7 +63,7 @@
       stats: [
         ['20+', '年行业经验'],
         ['50+', '团队成员'],
-        ['100+', '全球客户'],
+        ['1000+', '全球客户'],
         ['5%', '净利润率'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
@@ -86,7 +86,7 @@
       formEmail: '邮箱地址',
       formMessage: '留言内容',
       formSubmit: '提交询盘',
-      footer: '© 2016-2024 TRAVELDAY. 保留所有权利。',
+      footer: '© 2006-2024 TRAVELDAY. 保留所有权利。',
       footerLinks: ['隐私政策', '服务条款', '网站地图'],
       modalClose: '关闭视频',
     },
@@ -95,10 +95,10 @@
       description:
         'TRAVELDAY, Shanghai Daicheng Industrial Co., Ltd., focuses on luggage and component supply chains, offering OEM, ODM, and supply chain solutions for global importers, wholesalers, and overseas factories.',
       nav: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
-      quote: 'Get Quote ->',
+      quote: 'Get Quote →',
       heroEyebrow: 'Luggage and component supply chain partner',
       heroTitle: 'From China supply chain\nto global production',
-      heroButtonPrimary: 'Get Quote ->',
+      heroButtonPrimary: 'Get Quote →',
       heroButtonSecondary: 'View Products',
       heroStats: [
         ['Since 2006', 'Industry experience'],
@@ -141,14 +141,14 @@
       stats: [
         ['Since 2006', 'Years in business'],
         ['50+', 'Team members'],
-        ['100+', 'Global customers'],
+        ['1000+', 'Global customers'],
         ['5%', 'Net profit margin'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'Global footprint',
       globalDesc:
         'Rooted in China, serving emerging markets across Asia, Africa, the Middle East, and Europe with efficient, reliable supply chain services.',
-      globalButton: 'Learn more ->',
+      globalButton: 'Learn more →',
       contactTitle: 'Contact us',
       contactPhoneLabel: 'Phone:',
       contactEmailLabel: 'Email:',
@@ -164,7 +164,7 @@
       formEmail: 'Email address',
       formMessage: 'Message',
       formSubmit: 'Send inquiry',
-      footer: '© 2016-2024 TRAVELDAY. All rights reserved.',
+      footer: '© 2006-2024 TRAVELDAY. All rights reserved.',
       footerLinks: ['Privacy Policy', 'Terms of Service', 'Sitemap'],
       modalClose: 'Close video',
     },
@@ -179,7 +179,7 @@
       heroButtonPrimary: 'Solicitar cotización →',
       heroButtonSecondary: 'Ver productos',
       heroStats: [
-        ['Desde 2016', 'Experiencia'],
+        ['Desde 2006', 'Experiencia'],
         ['400+ contenedores', 'Volumen anual'],
         ['OEM & ODM', 'Solución integral'],
         ['Mercado global', 'Socio de confianza'],
@@ -217,9 +217,9 @@
       productionProofTwoDesc: 'Pruebas estrictas para una entrega estable y fiable',
       statsTitle: 'Un socio de suministro en quien puedes confiar',
       stats: [
-        ['Desde 2016', 'Años de experiencia'],
+        ['Desde 2006', 'Años de experiencia'],
         ['50+', 'Miembros del equipo'],
-        ['100+', 'Clientes globales'],
+        ['1000+', 'Clientes globales'],
         ['5%', 'Margen neto'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
@@ -242,7 +242,7 @@
       formEmail: 'Correo electrónico',
       formMessage: 'Mensaje',
       formSubmit: 'Enviar consulta',
-      footer: '© 2016-2024 TRAVELDAY. Todos los derechos reservados.',
+      footer: '© 2006-2024 TRAVELDAY. Todos los derechos reservados.',
       footerLinks: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'],
       modalClose: 'Cerrar video',
     },
@@ -257,7 +257,7 @@
       heroButtonPrimary: 'कोटेशन लें →',
       heroButtonSecondary: 'उत्पाद देखें',
       heroStats: [
-        ['2016 से', 'उद्योग अनुभव'],
+        ['2006 से', 'उद्योग अनुभव'],
         ['400+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
         ['OEM & ODM', 'वन-स्टॉप समाधान'],
         ['वैश्विक बाज़ार', 'विश्वसनीय साझेदार'],
@@ -295,9 +295,9 @@
       productionProofTwoDesc: 'स्थिर और विश्वसनीय डिलीवरी के लिए कठोर परीक्षण',
       statsTitle: 'एक सप्लाई चेन पार्टनर जिस पर आप भरोसा कर सकते हैं',
       stats: [
-        ['2016 से', 'वर्षों का अनुभव'],
+        ['2006 से', 'वर्षों का अनुभव'],
         ['50+', 'टीम सदस्य'],
-        ['100+', 'वैश्विक ग्राहक'],
+        ['1000+', 'वैश्विक ग्राहक'],
         ['5%', 'शुद्ध लाभ मार्जिन'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
@@ -320,7 +320,7 @@
       formEmail: 'ईमेल पता',
       formMessage: 'संदेश',
       formSubmit: 'पूछताछ भेजें',
-      footer: '© 2016-2024 TRAVELDAY. सर्वाधिकार सुरक्षित।',
+      footer: '© 2006-2024 TRAVELDAY. सर्वाधिकार सुरक्षित।',
       footerLinks: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'],
       modalClose: 'वीडियो बंद करें',
     },
@@ -471,8 +471,11 @@
   };
 
   const ensureNavStandardStyles = () => {
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
     if (document.getElementById(NAV_STYLE_ID)) return;
-
     const style = document.createElement('style');
     style.id = NAV_STYLE_ID;
     style.textContent = `
@@ -522,8 +525,11 @@
   };
 
   const ensureInquiryStandardStyles = () => {
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
     if (document.getElementById(INQUIRY_STYLE_ID)) return;
-
     const style = document.createElement('style');
     style.id = INQUIRY_STYLE_ID;
     style.textContent = `
@@ -559,6 +565,66 @@
       body .contact-card .inquiry-form textarea:focus {
         border-color: rgba(211, 154, 0, 0.5);
         box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+/* shared-shell.js variant (comprehensive) */
+      body .inquiry-panel,
+      body .inquiry,
+      body .contact-card {
+        border: 1px solid rgba(227, 214, 197, 0.96);
+        border-radius: 28px;
+        background: linear-gradient(180deg, #fbf7f0 0%, #f4eadf 100%);
+        box-shadow: 0 16px 40px rgba(59, 43, 24, 0.06);
+      }
+
+      body .inquiry-panel .inquiry-title,
+      body .inquiry-head h2,
+      body .contact-card .inquiry-form h2 {
+        color: #171514;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        font-size: clamp(32px, 3.6vw, 48px);
+        font-weight: 900;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      body .inquiry-panel .inquiry-desc,
+      body .inquiry-head p,
+      body .contact-card .footer-brand-copy p,
+      body .contact-card .contact-info li,
+      body .contact-card .contact-info .company-name,
+      body .contact-card .form-status,
+      body .inquiry-note {
+        color: #6d6257;
+      }
+
+      body .inquiry-panel .inquiry-form-wrap,
+      body .inquiry-form,
+      body .contact-card .inquiry-form {
+        border: 1px solid rgba(225, 213, 198, 0.86);
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(251, 247, 240, 0.96), rgba(243, 234, 223, 0.96));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      }
+
+      body .inquiry-form input,
+      body .inquiry-form textarea {
+        border: 1px solid #e1d6c7;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      body .inquiry-form input:focus,
+      body .inquiry-form textarea:focus {
+        border-color: rgba(211, 154, 0, 0.5);
+        box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+      @media (max-width: 1180px) {
+        body .inquiry-panel,
+        body .inquiry {
+          grid-template-columns: 1fr;
+        }
       }
     `;
     document.head.appendChild(style);
@@ -758,9 +824,6 @@
       productionTitle,
       (productionTuning[bucket] || productionTuning.desktop)[lang] || productionTuning[bucket].zh,
     );
-
-    if (!heroTitle) clearTypeTuning(heroTitle);
-    if (!productionTitle) clearTypeTuning(productionTitle);
   };
 
   const applyI18n = (lang) => {
@@ -770,13 +833,11 @@
     document.documentElement.dataset.lang = lang;
     document.documentElement.style.setProperty('--hover-entry-label', `"${t.hoverEntry}"`);
     syncLanguageLinks(lang);
-    syncPrimaryNavigation(lang);
 
     // Header
     $$('#primaryNav a').forEach((link, index) => {
       if (t.nav[index]) link.textContent = t.nav[index];
     });
-    syncPrimaryNavigation(lang);
     setText('.quote-button', t.quote);
     const langSelect = $('.language-select');
     if (langSelect && langSelect.value !== lang) langSelect.value = lang;
@@ -883,7 +944,7 @@
       contactItems[0].innerHTML = `<span>${t.contactPhoneLabel}</span><strong>+86 133 1234 5678</strong>`;
     }
     if (contactItems[1]) {
-      contactItems[1].innerHTML = `<span>${t.contactEmailLabel}</span><a href="mailto:info@traveldaysuitcase.com">info@traveldaysuitcase.com</a>`;
+      contactItems[1].innerHTML = `<span>${t.contactEmailLabel}</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a>`;
     }
     if (contactItems[2]) {
       contactItems[2].innerHTML = `<span>${t.contactAddressLabel}</span>${t.contactAddress}`;
@@ -915,23 +976,12 @@
     const closeLabel = t.modalClose;
     const modalDialog = $('.modal-dialog');
     if (modalDialog) modalDialog.setAttribute('aria-label', closeLabel);
-
-    requestAnimationFrame(() => applyFixedDesktopStage());
   };
 
   const openVideo = async () => {
     const modal = $('[data-video-modal]');
     const player = $('[data-video-player]');
     if (!modal || !player) return;
-    if (!state.videoReady) {
-      const src = player.getAttribute('data-src');
-      if (src) {
-        player.src = src;
-        state.videoReady = true;
-      }
-    }
-    player.preload = 'none';
-    player.muted = false;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     try {
@@ -1001,16 +1051,8 @@
     );
   };
 
-  const bindContactForm = () => {
-    const form = $('.inquiry-form');
-    const status = $('.form-status');
-    if (!form || !status) return;
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      status.textContent = state.lang === 'zh' ? '我们已收到您的需求，会尽快联系您。' : 'We have received your request and will contact you soon.';
-      form.reset();
-    });
-  };
+  // bindContactForm removed — shared-inquiry.js handles real form submission to formsubmit.co
+  // The old handler showed a fake success message without sending data anywhere.
 
   const bindTopButton = () => {
     const topButton = $('.floating-top');
@@ -1029,14 +1071,12 @@
     updateLanguageInUrl(next);
     applyI18n(next);
     ensureInquiryStandardStyles();
-    schedulePrimaryNavigationSync(next);
     window.dispatchEvent(new CustomEvent('travelday:languagechange', { detail: { lang: next } }));
   };
 
   const init = () => {
     bindMobileMenu();
     bindVideo();
-    bindContactForm();
     bindTopButton();
     bindNavigationLanguageFallback();
     window.setSiteLanguage = setSiteLanguage;
@@ -1049,12 +1089,15 @@
 
     applyFixedDesktopStage();
     setSiteLanguage(readInitialLanguage());
+    let resizeRaf = 0;
     window.addEventListener(
       'resize',
       () => {
-        applyFixedDesktopStage();
-        applyResponsiveTypeTuning(state.lang);
-        requestAnimationFrame(() => applyFixedDesktopStage());
+        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+        resizeRaf = requestAnimationFrame(() => {
+          applyFixedDesktopStage();
+          applyResponsiveTypeTuning(state.lang);
+        });
       },
       { passive: true },
     );

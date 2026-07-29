@@ -4,6 +4,7 @@
   const STORAGE_KEY = 'travelday-site-language';
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
+  const TOP_BUTTON_STYLE_ID = 'travelday-top-button-styles';
   const NAV_LABELS = {
     zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
     en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
@@ -86,8 +87,11 @@
   };
 
   const ensureNavStandardStyles = () => {
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
     if (document.getElementById(NAV_STYLE_ID)) return;
-
     const style = document.createElement('style');
     style.id = NAV_STYLE_ID;
     style.textContent = `
@@ -137,11 +141,49 @@
   };
 
   const ensureInquiryStandardStyles = () => {
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
     if (document.getElementById(INQUIRY_STYLE_ID)) return;
-
     const style = document.createElement('style');
     style.id = INQUIRY_STYLE_ID;
     style.textContent = `
+      body .contact-card {
+        border: 1px solid rgba(227, 214, 197, 0.96);
+        border-radius: 28px;
+        background: linear-gradient(180deg, #fbf7f0 0%, #f4eadf 100%);
+        box-shadow: 0 16px 40px rgba(59, 43, 24, 0.06);
+      }
+
+      body .contact-card h2,
+      body .contact-card .inquiry-form h2 {
+        color: #171514;
+        font-family: "SimHei", "Microsoft YaHei", sans-serif;
+        letter-spacing: -0.03em;
+      }
+
+      body .contact-card .inquiry-form {
+        border: 1px solid rgba(225, 213, 198, 0.86);
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(251, 247, 240, 0.96), rgba(243, 234, 223, 0.96));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
+      }
+
+      body .contact-card .inquiry-form input,
+      body .contact-card .inquiry-form textarea {
+        border: 1px solid #e1d6c7;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      body .contact-card .inquiry-form input:focus,
+      body .contact-card .inquiry-form textarea:focus {
+        border-color: rgba(211, 154, 0, 0.5);
+        box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
+      }
+
+/* shared-shell.js variant (comprehensive) */
       body .inquiry-panel,
       body .inquiry,
       body .contact-card {
@@ -341,10 +383,13 @@
   };
 
   const ensureTopButtonStyles = () => {
-    if (document.getElementById('travelday-top-button-styles')) return;
-
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
+    if (document.getElementById(TOP_BUTTON_STYLE_ID)) return;
     const style = document.createElement('style');
-    style.id = 'travelday-top-button-styles';
+    style.id = TOP_BUTTON_STYLE_ID;
     style.textContent = `
       .floating-top {
         position: fixed;

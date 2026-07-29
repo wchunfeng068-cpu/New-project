@@ -8,6 +8,8 @@
       name="description"
       content="TRAVELDAY company presence page showcasing the team, meeting culture, and brand atmosphere."
     />
+    <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
+    <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
     <style>
       :root {
         --page: #f6f1e8;
@@ -511,6 +513,7 @@
           1
         );
         transform-origin: center top;
+        will-change: transform, opacity;
         transition:
           transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
           opacity 0.42s ease,
@@ -602,10 +605,12 @@
       .member-progress::after {
         content: "";
         display: block;
-        width: var(--active-progress);
+        width: 100%;
         height: 100%;
         background: linear-gradient(90deg, rgba(185, 137, 34, 0.2), rgba(185, 137, 34, 0.82));
-        transition: width 0.45s ease;
+        transform: scaleX(var(--active-progress, 0));
+        transform-origin: left center;
+        transition: transform 0.45s ease;
       }
 
       .menu-actions {
@@ -1051,7 +1056,7 @@
             <header class="site-header">
         <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
           <span class="brand-logo">
-            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
           </span>
         </a>
         <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
@@ -1097,7 +1102,7 @@
           </div>
 
           <figure class="hero-visual">
-            <img src="../images/company-presence/hero-portrait.png" alt="Brand portrait with a luggage showcase" />
+            <img src="../images/company-presence/hero-portrait.png" alt="Brand portrait with a luggage showcase" width="1024" height="1536" loading="lazy" decoding="async" />
             <div class="hero-note">
               <strong>Travel in Style</strong>
               <span>Light, materials, posture, and rhythm work together for a calm premium feel.</span>
@@ -1115,7 +1120,7 @@
           </div>
 
           <figure class="story-visual">
-            <img src="../images/company-presence/meeting-room.png" alt="Meeting room scene with the team discussing a luggage solution" />
+            <img src="../images/company-presence/meeting-room.png" alt="Meeting room scene with the team discussing a luggage solution" width="1402" height="1122" loading="lazy" decoding="async" />
           </figure>
         </section>
 
@@ -1133,42 +1138,42 @@
           <div class="strip-wrap" aria-label="Employee photo carousel">
             <div class="strip-track">
               <article class="strip-card">
-                <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" />
+                <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Lucky</strong>
                   <span>Sales · Professional in every word, trusted on every trip.</span>
                 </div>
               </article>
               <article class="strip-card">
-                <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" />
+                <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Rita</strong>
                   <span>Sales · Warm service and steady follow-through for each client.</span>
                 </div>
               </article>
               <article class="strip-card">
-                <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" />
+                <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Zoe</strong>
                   <span>Sales · Professional execution with calm, confident delivery.</span>
                 </div>
               </article>
               <article class="strip-card">
-                <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" />
+                <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Beauty</strong>
                   <span>Sales · 15+ years in luggage sourcing and one-stop support.</span>
                 </div>
               </article>
               <article class="strip-card">
-                <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" />
+                <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Alice</strong>
                   <span>Sales · Integrity builds trust and long-term partnerships.</span>
                 </div>
               </article>
               <article class="strip-card">
-                <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" />
+                <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" width="1086" height="1448" loading="lazy" decoding="async" />
                 <div class="strip-copy">
                   <strong>Sunny</strong>
                   <span>Finance · Consistent effort, patient follow-through, precise control.</span>
@@ -1193,7 +1198,7 @@
             <div class="member-viewport">
               <div class="member-track" data-member-track>
                 <button class="member-card" type="button" data-member-card data-index="0" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" />
+                  <img src="../images/company-presence/team-member-01.png" alt="员工照片 01" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Lucky</span>
@@ -1201,7 +1206,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card data-index="1" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" />
+                  <img src="../images/company-presence/team-member-02.png" alt="员工照片 02" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Rita</span>
@@ -1209,7 +1214,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card data-index="2" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" />
+                  <img src="../images/company-presence/team-member-03.png" alt="员工照片 03" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Zoe</span>
@@ -1217,7 +1222,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card data-index="3" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" />
+                  <img src="../images/company-presence/team-member-04.png" alt="员工照片 04" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Beauty</span>
@@ -1225,7 +1230,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card data-index="4" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" />
+                  <img src="../images/company-presence/team-sales-portrait.png" alt="员工照片 05" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Alice</span>
@@ -1233,7 +1238,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card data-index="5" style="--image-position: 50%;">
-                  <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" />
+                  <img src="../images/company-presence/team-finance-portrait.png" alt="员工照片 06" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Finance</span>
                     <span class="member-name">Sunny</span>
@@ -1255,7 +1260,7 @@
             <div class="member-viewport">
               <div class="member-track" data-member-track>
                 <button class="member-card" type="button" data-member-card>
-                  <img src="../images/company-presence/team-member-01.png" alt="团队成员一" />
+                  <img src="../images/company-presence/team-member-01.png" alt="团队成员一" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Member 01</span>
@@ -1263,7 +1268,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card>
-                  <img src="../images/company-presence/team-member-02.png" alt="团队成员二" />
+                  <img src="../images/company-presence/team-member-02.png" alt="团队成员二" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Sales</span>
                     <span class="member-name">Member 02</span>
@@ -1271,7 +1276,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card>
-                  <img src="../images/company-presence/team-member-03.png" alt="团队成员三" />
+                  <img src="../images/company-presence/team-member-03.png" alt="团队成员三" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Finance</span>
                     <span class="member-name">Member 03</span>
@@ -1279,7 +1284,7 @@
                   </span>
                 </button>
                 <button class="member-card" type="button" data-member-card>
-                  <img src="../images/company-presence/team-member-04.png" alt="团队成员四" />
+                  <img src="../images/company-presence/team-member-04.png" alt="团队成员四" width="1086" height="1448" loading="lazy" decoding="async" />
                   <span class="member-meta">
                     <span class="member-role">Operations</span>
                     <span class="member-name">Member 04</span>
@@ -1320,16 +1325,16 @@
 
           <div class="gallery-grid">
             <figure>
-              <img src="../images/company-presence/travel-lifestyle-grid-a.png" alt="旅行场景编辑图一" />
+              <img src="../images/company-presence/travel-lifestyle-grid-a.png" alt="旅行场景编辑图一" width="1536" height="1024" loading="lazy" decoding="async" />
             </figure>
             <figure>
-              <img src="../images/company-presence/travel-lifestyle-grid-b.png" alt="旅行场景编辑图二" />
+              <img src="../images/company-presence/travel-lifestyle-grid-b.png" alt="旅行场景编辑图二" width="1536" height="1024" loading="lazy" decoding="async" />
             </figure>
             <figure>
-              <img src="../images/company-presence/travel-lifestyle-grid-c.png" alt="旅行场景编辑图三" />
+              <img src="../images/company-presence/travel-lifestyle-grid-c.png" alt="旅行场景编辑图三" width="1402" height="1122" loading="lazy" decoding="async" />
             </figure>
             <figure>
-              <img src="../images/company-presence/meeting-room.png" alt="会谈场景编辑图" />
+              <img src="../images/company-presence/meeting-room.png" alt="会谈场景编辑图" width="1402" height="1122" loading="lazy" decoding="async" />
             </figure>
           </div>
         </section>
@@ -1341,129 +1346,8 @@
       </main>
     </div>
 
-    <!-- <script>
-      (() => {
-      const carousel = document.querySelector("[data-member-carousel]");
-        if (!carousel) return;
-
-        const viewport = carousel.querySelector("[data-carousel-viewport]");
-        const track = carousel.querySelector("[data-carousel-track]");
-        const cards = Array.from(carousel.querySelectorAll("[data-carousel-card]"));
-        const prevButton = carousel.querySelector("[data-carousel-prev]");
-        const nextButton = carousel.querySelector("[data-carousel-next]");
-        const dotsWrap = carousel.querySelector("[data-carousel-dots]");
-
-        if (!viewport || !track || !cards.length || !dotsWrap) return;
-
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        let activeIndex = 0;
-        let timer = null;
-
-        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-
-        const dots = cards.map((card, index) => {
-          const dot = document.createElement("button");
-          dot.type = "button";
-          dot.className = "member-dot";
-          dot.setAttribute("aria-label", `切换到成员 ${index + 1}`);
-          dot.addEventListener("click", () => goTo(index));
-          dotsWrap.appendChild(dot);
-          return dot;
-        });
-
-        function renderCarousel() {
-          const baseX = Math.min(280, Math.max(190, viewport.clientWidth * 0.18));
-          const baseY = Math.min(28, Math.max(10, viewport.clientHeight * 0.03));
-
-          cards.forEach((card, index) => {
-            let diff = index - activeIndex;
-            if (diff > cards.length / 2) diff -= cards.length;
-            if (diff < -cards.length / 2) diff += cards.length;
-
-            const absDiff = Math.abs(diff);
-            const x = clamp(diff * baseX, -baseX * 2.25, baseX * 2.25);
-            const y = absDiff === 0 ? 0 : clamp(absDiff * baseY, 6, 42);
-            const scale = absDiff === 0 ? 1 : absDiff === 1 ? 0.9 : 0.78;
-            const rotateY = clamp(diff * 18, -24, 24);
-            const rotateZ = clamp(diff * -2.4, -4.5, 4.5);
-            const opacity = absDiff === 0 ? 1 : absDiff === 1 ? 0.58 : 0.28;
-            const blur = absDiff === 0 ? 0 : absDiff === 1 ? 0.35 : 0.8;
-            const saturate = absDiff === 0 ? 1 : 0.92;
-
-            card.style.setProperty("--card-x", `${x}px`);
-            card.style.setProperty("--card-y", `${y}px`);
-            card.style.setProperty("--card-scale", scale.toFixed(3));
-            card.style.setProperty("--card-rotate-y", `${rotateY.toFixed(2)}deg`);
-            card.style.setProperty("--card-rotate-z", `${rotateZ.toFixed(2)}deg`);
-            card.style.setProperty("--card-opacity", opacity.toFixed(3));
-            card.style.setProperty("--card-blur", `${blur.toFixed(2)}px`);
-            card.style.setProperty("--card-saturate", saturate.toFixed(3));
-            card.style.zIndex = String(10 - absDiff);
-            card.classList.toggle("is-active", absDiff === 0);
-            card.classList.toggle("is-near", absDiff === 1);
-          });
-
-          dots.forEach((dot, dotIndex) => {
-            dot.classList.toggle("is-active", dotIndex === activeIndex);
-          });
-        }
-
-        function goTo(index) {
-          activeIndex = (index + cards.length) % cards.length;
-          renderCarousel();
-        }
-
-        function startAutoPlay() {
-          if (prefersReducedMotion || timer) return;
-          timer = window.setInterval(() => {
-            goTo(activeIndex + 1);
-          }, 3600);
-        }
-
-        function stopAutoPlay() {
-          if (!timer) return;
-          window.clearInterval(timer);
-          timer = null;
-        }
-
-        prevButton?.addEventListener("click", () => goTo(activeIndex - 1));
-        nextButton?.addEventListener("click", () => goTo(activeIndex + 1));
-
-        cards.forEach((card, index) => {
-          card.addEventListener("click", () => goTo(index));
-          card.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              goTo(index);
-            }
-          });
-        });
-
-        viewport.addEventListener("mouseenter", stopAutoPlay);
-        viewport.addEventListener("mouseleave", startAutoPlay);
-        carousel.addEventListener("focusin", stopAutoPlay);
-        carousel.addEventListener("focusout", () => {
-          if (!carousel.contains(document.activeElement)) {
-            startAutoPlay();
-          }
-        });
-
-        document.addEventListener("visibilitychange", () => {
-          if (document.hidden) {
-            stopAutoPlay();
-          } else {
-            startAutoPlay();
-          }
-        });
-
-        window.addEventListener("resize", renderCarousel);
-
-        renderCarousel();
-        startAutoPlay();
-      })();
-    </script> -->
-    <script src="../shared-shell.js?v=20260601-langfix"></script>
-    <script src="./company-presence-preview.js?v=20260601-langfix"></script>
+    <script src="../shared-shell.js?v=20260729-1" defer></script>
+    <script src="./company-presence-preview.js?v=20260601-langfix" defer></script>
 
   </body>
 </html>

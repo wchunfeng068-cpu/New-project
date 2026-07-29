@@ -33,6 +33,7 @@
       button: '提交询盘',
       note: '我们会尽快与您联系，并给出适合的资源匹配方案。',
       status: '我们已收到您的需求，会尽快联系您。',
+      sending: '发送中...',
       submitError: '发送遇到问题，请直接通过邮箱联系我们。',
     },
     en: {
@@ -61,6 +62,7 @@
       button: 'Send inquiry',
       note: 'We will get back to you quickly with a suitable resource-matching plan.',
       status: 'We have received your request and will contact you soon.',
+      sending: 'Sending...',
       submitError: 'We could not send your inquiry. Please contact us directly by email.',
     },
     es: {
@@ -89,6 +91,7 @@
       button: 'Enviar consulta',
       note: 'Te responderemos pronto con una propuesta adecuada de recursos.',
       status: 'Hemos recibido tu consulta y te contactaremos pronto.',
+      sending: 'Enviando...',
       submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por correo.',
     },
     hi: {
@@ -117,6 +120,7 @@
       button: 'पूछताछ भेजें',
       note: 'हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।',
       status: 'हमने आपकी पूछताछ प्राप्त कर ली है और जल्द ही संपर्क करेंगे।',
+      sending: 'भेजा जा रहा है...',
       submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे ईमेल से संपर्क करें।',
     },
   };
@@ -139,12 +143,17 @@
   };
 
   const ensureStyles = () => {
-    if (document.getElementById(STYLE_ID)) return;
+    // If styles.css is loaded, the inquiry module CSS is already available
+    const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
+      (link) => link.href.includes('styles.css'),
+    );
+    if (hasStylesCSS) return;
 
+    if (document.getElementById(STYLE_ID)) return;
     const style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
-      body .${MODULE_CLASS} {
+      body .inquiry-standard {
         display: grid;
         grid-template-columns: minmax(360px, 0.88fr) minmax(540px, 1.12fr);
         align-items: stretch;
@@ -157,14 +166,14 @@
         box-shadow: 0 16px 40px rgba(59, 43, 24, 0.06);
       }
 
-      body .${MODULE_CLASS} .inquiry-copy {
+      body .inquiry-standard .inquiry-copy {
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 44px 44px 44px 48px;
       }
 
-      body .${MODULE_CLASS} .inquiry-eyebrow {
+      body .inquiry-standard .inquiry-eyebrow {
         margin: 0 0 16px;
         color: #a87300;
         font-size: 12px;
@@ -172,7 +181,7 @@
         letter-spacing: 0.22em;
       }
 
-      body .${MODULE_CLASS} .inquiry-title {
+      body .inquiry-standard .inquiry-title {
         margin: 0;
         color: #171514;
         font-family: "SimHei", "Microsoft YaHei", sans-serif;
@@ -182,7 +191,7 @@
         letter-spacing: -0.03em;
       }
 
-      body .${MODULE_CLASS} .inquiry-desc {
+      body .inquiry-standard .inquiry-desc {
         max-width: 500px;
         margin: 18px 0 0;
         color: #6d6257;
@@ -190,14 +199,14 @@
         line-height: 1.8;
       }
 
-      body .${MODULE_CLASS} .inquiry-meta {
+      body .inquiry-standard .inquiry-meta {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         margin-top: 24px;
       }
 
-      body .${MODULE_CLASS} .meta-pill {
+      body .inquiry-standard .meta-pill {
         display: inline-flex;
         align-items: center;
         min-height: 36px;
@@ -210,7 +219,7 @@
         font-weight: 800;
       }
 
-      body .${MODULE_CLASS} .inquiry-contact {
+      body .inquiry-standard .inquiry-contact {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -220,14 +229,14 @@
         border-top: 1px solid rgba(226, 215, 200, 0.95);
       }
 
-      body .${MODULE_CLASS} .inquiry-contact strong {
+      body .inquiry-standard .inquiry-contact strong {
         display: block;
         color: #171514;
         font-size: 15px;
         font-weight: 900;
       }
 
-      body .${MODULE_CLASS} .inquiry-contact span {
+      body .inquiry-standard .inquiry-contact span {
         display: block;
         margin-top: 4px;
         color: #6d6257;
@@ -235,7 +244,7 @@
         line-height: 1.6;
       }
 
-      body .${MODULE_CLASS} .inquiry-email {
+      body .inquiry-standard .inquiry-email {
         display: inline-flex;
         align-items: center;
         min-height: 42px;
@@ -249,7 +258,7 @@
         box-shadow: 0 10px 18px rgba(49, 39, 27, 0.05);
       }
 
-      body .${MODULE_CLASS} .inquiry-form-wrap {
+      body .inquiry-standard .inquiry-form-wrap {
         margin: 16px 16px 16px 0;
         padding: 26px;
         border-radius: 26px;
@@ -258,7 +267,7 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.54);
       }
 
-      body .${MODULE_CLASS} .inquiry-form-head {
+      body .inquiry-standard .inquiry-form-head {
         display: flex;
         align-items: end;
         justify-content: space-between;
@@ -266,7 +275,7 @@
         margin-bottom: 18px;
       }
 
-      body .${MODULE_CLASS} .inquiry-form-head p {
+      body .inquiry-standard .inquiry-form-head p {
         margin: 0;
         color: #171514;
         font-size: 18px;
@@ -274,29 +283,29 @@
         letter-spacing: -0.02em;
       }
 
-      body .${MODULE_CLASS} .inquiry-form-head span {
+      body .inquiry-standard .inquiry-form-head span {
         color: #6d6257;
         font-size: 13px;
         font-weight: 700;
       }
 
-      body .${MODULE_CLASS} .inquiry-form {
+      body .inquiry-standard .inquiry-form {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
       }
 
-      body .${MODULE_CLASS} .inquiry-field {
+      body .inquiry-standard .inquiry-field {
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
 
-      body .${MODULE_CLASS} .inquiry-field.full {
+      body .inquiry-standard .inquiry-field.full {
         grid-column: 1 / -1;
       }
 
-      body .${MODULE_CLASS} .inquiry-field label {
+      body .inquiry-standard .inquiry-field label {
         color: #675d52;
         font-size: 12px;
         font-weight: 800;
@@ -304,8 +313,8 @@
         text-transform: uppercase;
       }
 
-      body .${MODULE_CLASS} .inquiry-field input,
-      body .${MODULE_CLASS} .inquiry-field textarea {
+      body .inquiry-standard .inquiry-field input,
+      body .inquiry-standard .inquiry-field textarea {
         width: 100%;
         border: 1px solid #e1d6c7;
         border-radius: 18px;
@@ -318,25 +327,25 @@
         box-shadow: 0 8px 18px rgba(43, 34, 24, 0.04);
       }
 
-      body .${MODULE_CLASS} .inquiry-field input::placeholder,
-      body .${MODULE_CLASS} .inquiry-field textarea::placeholder {
+      body .inquiry-standard .inquiry-field input::placeholder,
+      body .inquiry-standard .inquiry-field textarea::placeholder {
         color: #8a7f74;
         font-weight: 500;
       }
 
-      body .${MODULE_CLASS} .inquiry-field input:focus,
-      body .${MODULE_CLASS} .inquiry-field textarea:focus {
+      body .inquiry-standard .inquiry-field input:focus,
+      body .inquiry-standard .inquiry-field textarea:focus {
         border-color: rgba(211, 154, 0, 0.5);
         box-shadow: 0 0 0 4px rgba(211, 154, 0, 0.09);
       }
 
-      body .${MODULE_CLASS} .inquiry-field textarea {
+      body .inquiry-standard .inquiry-field textarea {
         min-height: 138px;
         resize: none;
         line-height: 1.7;
       }
 
-      body .${MODULE_CLASS} .inquiry-form-footer {
+      body .inquiry-standard .inquiry-form-footer {
         grid-column: 1 / -1;
         display: flex;
         align-items: center;
@@ -345,64 +354,64 @@
         margin-top: 4px;
       }
 
-      body .${MODULE_CLASS} .inquiry-note {
+      body .inquiry-standard .inquiry-note {
         max-width: 320px;
         color: #7b7166;
         font-size: 12px;
         line-height: 1.6;
       }
 
-      body .${MODULE_CLASS} .inquiry-form .button {
+      body .inquiry-standard .inquiry-form .button {
         min-width: 168px;
       }
 
-      body .${MODULE_CLASS} .form-status {
+      body .inquiry-standard .form-status {
         margin: 0;
       }
 
       @media (max-width: 1180px) {
-        body .${MODULE_CLASS} {
+        body .inquiry-standard {
           grid-template-columns: 1fr;
         }
 
-        body .${MODULE_CLASS} .inquiry-form-wrap {
+        body .inquiry-standard .inquiry-form-wrap {
           margin: 0 16px 16px;
         }
       }
 
       @media (max-width: 720px) {
-        body .${MODULE_CLASS} .inquiry-copy {
+        body .inquiry-standard .inquiry-copy {
           padding: 34px 24px 18px;
         }
 
-        body .${MODULE_CLASS} .inquiry-form-wrap {
+        body .inquiry-standard .inquiry-form-wrap {
           padding: 20px;
           margin: 0 12px 12px;
         }
 
-        body .${MODULE_CLASS} .inquiry-form {
+        body .inquiry-standard .inquiry-form {
           grid-template-columns: 1fr;
         }
 
-        body .${MODULE_CLASS} .inquiry-form-footer {
+        body .inquiry-standard .inquiry-form-footer {
           flex-direction: column;
           align-items: stretch;
         }
 
-        body .${MODULE_CLASS} .inquiry-form .button {
+        body .inquiry-standard .inquiry-form .button {
           width: 100%;
         }
 
-        body .${MODULE_CLASS} .inquiry-note {
+        body .inquiry-standard .inquiry-note {
           max-width: none;
         }
 
-        body .${MODULE_CLASS} .inquiry-contact {
+        body .inquiry-standard .inquiry-contact {
           flex-direction: column;
           align-items: stretch;
         }
 
-        body .${MODULE_CLASS} .inquiry-email {
+        body .inquiry-standard .inquiry-email {
           justify-content: center;
         }
       }
@@ -497,8 +506,12 @@
       const payload = new FormData(form);
       payload.set('_captcha', 'false');
 
-      status.textContent = copy.status;
-      if (submitButton) submitButton.disabled = true;
+      status.textContent = copy.sending || 'Sending...';
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.dataset.originalText = submitButton.textContent;
+        submitButton.textContent = '...';
+      }
 
       try {
         const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`, {
@@ -507,10 +520,17 @@
           headers: { Accept: 'application/json' },
         });
         if (!response.ok) throw new Error(`Inquiry submission failed: ${response.status}`);
-        window.location.assign(returnUrl.toString());
+        if (response.ok) {
+          status.textContent = copy.status;
+          window.location.assign(returnUrl.toString());
+        }
       } catch (error) {
-        status.textContent = 'Unable to send your inquiry right now. Please email us directly.';
-        if (submitButton) submitButton.disabled = false;
+        status.textContent = copy.submitError || 'Unable to send your inquiry right now. Please email us directly.';
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = submitButton.dataset.originalText || '';
+          delete submitButton.dataset.originalText;
+        }
       }
     });
   };

@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Detail</title>
+    <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
+    <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
     <style>
       :root {
         --page: #f4f0e9;
@@ -609,9 +611,9 @@
   <body>
     <div class="page">
             <header class="site-header">
-        <a class="brand" href="../index.html" aria-label="TRAVELDAY ??">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY 品牌">
           <span class="brand-logo">
-            <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+            <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
           </span>
         </a>
         <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
@@ -619,22 +621,22 @@
           <span></span>
           <span></span>
         </button>
-        <nav class="primary-nav" id="primaryNav" aria-label="???">
-          <a href="../index.html">??</a>
-          <a class="active" href="./product-center-preview.html">????</a>
-          <a href="./solution-preview.html">????</a>
-          <a href="./company-presence-preview.html">????</a>
-          <a href="./market-preview.html">??</a>
-          <a href="#contact">????</a>
+        <nav class="primary-nav" id="primaryNav" aria-label="主导航">
+          <a href="../index.html">首页</a>
+          <a class="active" href="./product-center-preview.html">产品中心</a>
+          <a href="./solution-preview.html">解决方案</a>
+          <a href="./company-presence-preview.html">关于我们</a>
+          <a href="./market-preview.html">市场</a>
+          <a href="#contact">联系我们</a>
         </nav>
         <div class="header-actions">
           <select class="language-select" aria-label="Language">
-            <option value="zh">??</option>
+            <option value="zh">中文</option>
             <option value="en">English</option>
-            <option value="es">Espa?ol</option>
-            <option value="hi">??????</option>
+            <option value="es">Español</option>
+            <option value="hi">हिन्दी</option>
           </select>
-          <a class="quote-button" href="#contact">???? ?</a>
+          <a class="quote-button" href="#contact">获取报价 →</a>
         </div>
       </header>
 
@@ -693,7 +695,7 @@
       </main>
     </div>
 
-    <script src="../shared-shell.js?v=20260601-langfix"></script>
+    <script src="../shared-shell.js?v=20260729-1" defer></script>
 
     <script>
       (() => {
@@ -883,16 +885,6 @@
         window.addEventListener('travelday:languagechange', (event) => {
           applyText(event.detail?.lang || readLang());
         });
-
-        const form = document.querySelector('.inquiry-form');
-        const status = document.querySelector('.form-status');
-        if (form && status) {
-          form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            status.textContent = (copy[readLang()] || copy.zh).status;
-            form.reset();
-          });
-        }
       })();
     </script>
 
@@ -932,16 +924,6 @@
       }
 
       renderDetailGallery(detailGalleryItems, document.querySelector('[data-detail-gallery]'));
-
-      const form = document.querySelector('.inquiry-form');
-      const status = document.querySelector('.form-status');
-      if (form && status) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          status.textContent = 'Inquiry received. We will reply shortly.';
-          form.reset();
-        });
-      }
     </script>
 
     <script>
@@ -1309,6 +1291,6 @@
         }
       })();
     </script>
-    <script src="../shared-inquiry.js?v=20260531-1"></script>
+    <script src="../shared-inquiry.js?v=20260729-1" defer></script>
   </body>
 </html>

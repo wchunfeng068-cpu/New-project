@@ -4,5 +4,16 @@ node_modules
 .npm-cache
 _publish/
 _tmp/
+.DS_Store
+*.cmd
+*.ps1
 verify-video-section.png
+*-check.png
 images/raw-products
+mockups/*.png
+mockups/*.svg
+mockups/generate-*.js
+mockups/make-*.ps1
+mockups/*-draft.html
+mockups/*-render.html
+mockups/*-minimal.html

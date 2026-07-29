@@ -5,7 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Solutions</title>
-    <link rel="stylesheet" href="../styles.css?v=20260530-1" />
+    <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
+    <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
+    <link rel="stylesheet" href="../styles.css?v=20260729-1" />
     <style>
       .preview-main {
         display: grid;
@@ -808,7 +810,7 @@
         <header class="site-header" data-section="navigation">
           <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
             <span class="brand-logo">
-              <img src="../images/logo-travelday.png" alt="TRAVELDAY" />
+              <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
             </span>
           </a>
 
@@ -856,7 +858,7 @@
             </div>
             <div class="solution-visual">
               <div class="solution-image-wrap">
-                <img src="../images/solution-hero-resource-integration.jpg" alt="Premium luggage resource integration scene in a bright sample studio" />
+                <img src="../images/solution-hero-resource-integration.jpg" alt="Premium luggage resource integration scene in a bright sample studio" width="1536" height="1024" loading="lazy" decoding="async" />
                 <div class="solution-image-overlay"></div>
                 <div class="chip-card" data-copy="heroChip">Integration / Matching / Delivery</div>
               </div>
@@ -896,6 +898,7 @@
                 class="qa-visual-image"
                 src="../images/solution-resource-integration-graph.jpg"
                 alt="Luggage resource integration diagram"
+                width="1536" height="1024" loading="lazy" decoding="async"
               />
             </div>
           </section>
@@ -915,9 +918,9 @@
               <div class="inquiry-contact">
                 <div>
                   <strong data-copy="inquiryContactTitle">Direct contact</strong>
-                  <span data-copy="inquiryContactDesc">sales@travelday.com · More details can be discussed in one step.</span>
+                  <span data-copy="inquiryContactDesc">wchunfeng068@gmail.com · More details can be discussed in one step.</span>
                 </div>
-                <a class="inquiry-email" href="mailto:sales@travelday.com" data-copy="inquiryEmail">sales@travelday.com</a>
+                <a class="inquiry-email" href="mailto:wchunfeng068@gmail.com" data-copy="inquiryEmail">wchunfeng068@gmail.com</a>
               </div>
             </div>
 
@@ -958,7 +961,7 @@
       </div>
     </div>
 
-    <script src="../shared-shell.js?v=20260601-langfix"></script>
+    <script src="../shared-shell.js?v=20260729-1" defer></script>
     <script>
       const LANG_COPY = {
         zh: {
@@ -1100,8 +1103,8 @@
           inquiryPill2: "资源协同",
           inquiryPill3: "统一报价",
           inquiryContactTitle: "直接联系",
-          inquiryContactDesc: "sales@travelday.com · 详细需求可直接沟通。",
-          inquiryEmail: "sales@travelday.com",
+          inquiryContactDesc: "wchunfeng068@gmail.com · 详细需求可直接沟通。",
+          inquiryEmail: "wchunfeng068@gmail.com",
           inquiryFormTitle: "快速询盘",
           inquiryFormHint: "第一步就能开始对接",
           inquiryNameLabel: "姓名",
@@ -1125,8 +1128,8 @@
           inquiryPill2: "Resource coordination",
           inquiryPill3: "Unified quote",
           inquiryContactTitle: "Direct contact",
-          inquiryContactDesc: "sales@travelday.com · More details can be discussed in one step.",
-          inquiryEmail: "sales@travelday.com",
+          inquiryContactDesc: "wchunfeng068@gmail.com · More details can be discussed in one step.",
+          inquiryEmail: "wchunfeng068@gmail.com",
           inquiryFormTitle: "Quick inquiry form",
           inquiryFormHint: "One step to start the conversation",
           inquiryNameLabel: "Name",
@@ -1150,8 +1153,8 @@
           inquiryPill2: "Coordinación de recursos",
           inquiryPill3: "Cotización unificada",
           inquiryContactTitle: "Contacto directo",
-          inquiryContactDesc: "sales@travelday.com · Se pueden discutir más detalles en un solo paso.",
-          inquiryEmail: "sales@travelday.com",
+          inquiryContactDesc: "wchunfeng068@gmail.com · Se pueden discutir más detalles en un solo paso.",
+          inquiryEmail: "wchunfeng068@gmail.com",
           inquiryFormTitle: "Formulario rápido",
           inquiryFormHint: "Un solo paso para iniciar la conversación",
           inquiryNameLabel: "Nombre",
@@ -1175,8 +1178,8 @@
           inquiryPill2: "रिसोर्स समन्वय",
           inquiryPill3: "एकीकृत कोटेशन",
           inquiryContactTitle: "सीधा संपर्क",
-          inquiryContactDesc: "sales@travelday.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।",
-          inquiryEmail: "sales@travelday.com",
+          inquiryContactDesc: "wchunfeng068@gmail.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।",
+          inquiryEmail: "wchunfeng068@gmail.com",
           inquiryFormTitle: "त्वरित पूछताछ फॉर्म",
           inquiryFormHint: "बातचीत शुरू करने के लिए एक ही चरण",
           inquiryNameLabel: "नाम",
@@ -1439,10 +1442,14 @@
       window.addEventListener("travelday:languagechange", (event) => {
         applySolutionCopy(event.detail?.lang || window.traveldayShell?.getLanguage?.() || "en");
       });
+      let solResizeRaf = 0;
       window.addEventListener("resize", () => {
-        applySolutionTypeTuning(window.traveldayShell?.getLanguage?.() || "en");
-      });
+        if (solResizeRaf) cancelAnimationFrame(solResizeRaf);
+        solResizeRaf = requestAnimationFrame(() => {
+          applySolutionTypeTuning(window.traveldayShell?.getLanguage?.() || "en");
+        });
+      }, { passive: true });
     </script>
-    <script src="../shared-inquiry.js?v=20260531-1"></script>
+    <script src="../shared-inquiry.js?v=20260729-1" defer></script>
   </body>
 </html>
