@@ -1,8 +1,8 @@
 .thank-you-page .thank-you-main { padding: 34px 0 26px; }
 .thank-you-hero { overflow: visible; }
-.thank-you-products { position: relative; overflow: hidden; border-radius: 28px; background: #e8dece; box-shadow: 0 18px 46px rgba(62, 47, 29, .09); }
+.thank-you-products { position: relative; aspect-ratio: 1500 / 560; overflow: hidden; border-radius: var(--radius-card); background: #e8dece; box-shadow: var(--shadow-soft); }
 .thank-you-products::after { position: absolute; inset: 0; pointer-events: none; content: ""; background: linear-gradient(90deg, rgba(30, 23, 17, .04), transparent 42%, rgba(30, 23, 17, .08)); }
-.thank-you-products img { display: block; width: 100%; height: auto; }
+.thank-you-products img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 48%; }
 .thank-you-copy { position: absolute; z-index: 2; top: 8%; right: 5%; width: min(31%, 465px); padding: 30px 32px 31px; border: 1px solid rgba(219, 178, 87, .48); border-radius: 20px; background: rgba(255, 252, 246, .88); box-shadow: 0 16px 36px rgba(46, 34, 20, .14); text-align: left; backdrop-filter: blur(8px); }
 .thank-you-check { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid #d79c00; border-radius: 50%; color: #c98f00; font-size: 27px; font-weight: 600; line-height: 1; }
 .thank-you-copy h1 { margin: 16px 0 8px; color: #181614; font-family: "SimHei", "Microsoft YaHei", sans-serif; font-size: clamp(30px, 2.45vw, 48px); font-weight: 900; letter-spacing: -.05em; line-height: 1.08; }
@@ -10,5 +10,5 @@
 .thank-you-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 .thank-you-actions .button { flex: 1 1 128px; min-width: 0; padding: 12px 14px; font-size: 14px; text-align: center; }
 .thank-you-page .site-footer { margin-top: 0; }
-@media (max-width: 980px) { .thank-you-page .thank-you-main { padding: 20px 0; } .thank-you-products { border-radius: 22px; } .thank-you-copy { top: 6%; right: 4%; width: min(40%, 400px); padding: 23px 25px; } .thank-you-copy h1 { font-size: clamp(28px, 3.6vw, 40px); } .thank-you-actions { margin-top: 16px; } }
+@media (max-width: 980px) { .thank-you-page .thank-you-main { padding: 20px 0; } .thank-you-products { border-radius: var(--radius-card); } .thank-you-copy { top: 6%; right: 4%; width: min(40%, 400px); padding: 23px 25px; } .thank-you-copy h1 { font-size: clamp(28px, 3.6vw, 40px); } .thank-you-actions { margin-top: 16px; } }
 @media (max-width: 640px) { .thank-you-page .page-shell { padding: 0 14px; } .thank-you-products { border-radius: 18px; } .thank-you-copy { top: 5%; right: 5%; left: 5%; width: auto; padding: 18px 20px; border-radius: 15px; } .thank-you-check { width: 36px; height: 36px; font-size: 22px; } .thank-you-copy h1 { margin: 10px 0 5px; font-size: 28px; } .thank-you-copy p { font-size: 13px; } .thank-you-actions { gap: 8px; margin-top: 13px; } .thank-you-actions .button { padding: 10px 8px; font-size: 12px; } }
