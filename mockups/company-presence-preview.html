@@ -1315,6 +1315,288 @@
         z-index: 0 !important;
       }
 
+      /* Team Carousel — Spotlight (two-column) */
+      .team-carousel-section {
+        margin-top: 48px;
+        padding: 40px 34px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+        background: #fff;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        box-shadow: 0 16px 40px rgba(35, 28, 20, 0.08);
+      }
+
+      .team-carousel-intro {
+        padding: 20px 0;
+      }
+
+      .team-carousel-intro .section-kicker {
+        color: var(--gold-dark, #a87300);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin: 0 0 12px;
+      }
+
+      .team-carousel-title {
+        font-size: clamp(28px, 3.5vw, 42px);
+        font-weight: 900;
+        color: #141312;
+        margin: 0 0 16px;
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.15;
+      }
+
+      .team-carousel-desc {
+        font-size: 15px;
+        line-height: 1.8;
+        color: #6d6257;
+        margin: 0 0 24px;
+      }
+
+      .team-carousel-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 24px;
+      }
+
+      .team-carousel-stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .team-carousel-stat strong {
+        font-size: 32px;
+        font-weight: 900;
+        color: var(--gold, #d39a00);
+        font-family: Georgia, "Times New Roman", serif;
+      }
+
+      .team-carousel-stat span {
+        font-size: 13px;
+        color: #6d6257;
+        font-weight: 700;
+      }
+
+      .team-carousel-right {
+        position: relative;
+      }
+
+      .team-carousel-stage {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 480px;
+        overflow: hidden;
+      }
+
+      .team-spotlight-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: clamp(260px, 28vw, 340px);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 24px 60px rgba(20, 15, 10, 0.25);
+        transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+        background: #1a1714;
+        line-height: 0;
+      }
+
+      .team-spotlight-card.is-active {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        z-index: 10;
+        pointer-events: auto;
+      }
+
+      .team-spotlight-card.is-prev {
+        opacity: 0;
+        transform: translate(-150%, -50%) scale(0.7);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .team-spotlight-card.is-next {
+        opacity: 0;
+        transform: translate(50%, -50%) scale(0.7);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .team-spotlight-card.is-hidden {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .team-card-img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        object-position: 50% 15%;
+        display: block;
+        border: 0;
+        outline: 0;
+        filter: contrast(1.08) brightness(0.92);
+      }
+
+      .team-card-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 80px 28px 28px;
+        background: linear-gradient(to top, rgba(10, 8, 6, 0.95) 0%, rgba(10, 8, 6, 0.85) 40%, rgba(10, 8, 6, 0.4) 70%, transparent 100%);
+        text-align: center;
+      }
+
+      .team-card-name {
+        font-size: 24px;
+        font-weight: 900;
+        color: #fff;
+        margin: 0 0 4px;
+        font-family: Georgia, "Times New Roman", serif;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .team-card-role {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--gold, #d39a00);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: 0 0 10px;
+      }
+
+      .team-card-divider {
+        width: 32px;
+        height: 2px;
+        border-radius: 999px;
+        background: var(--gold, #d39a00);
+        margin: 0 auto 10px;
+      }
+
+      .team-card-quote {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+        margin: 0;
+        font-style: italic;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      }
+
+      .team-carousel-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 28px;
+      }
+
+      .team-carousel-arrow {
+        display: grid;
+        place-items: center;
+        width: 48px;
+        height: 48px;
+        border: 1px solid #ddd4c9;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--gold, #d39a00);
+        font-size: 24px;
+        font-weight: 900;
+        cursor: pointer;
+        transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+        flex-shrink: 0;
+      }
+
+      .team-carousel-arrow:hover {
+        background: var(--gold, #d39a00);
+        color: #fff;
+        border-color: var(--gold, #d39a00);
+        transform: scale(1.08);
+      }
+
+      .team-carousel-arrow:active {
+        transform: scale(0.94);
+      }
+
+      .team-carousel-arrow:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .team-carousel-thumbs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        max-width: 360px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 4px 0;
+      }
+
+      .team-carousel-thumbs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .team-thumb {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        padding: 0;
+        cursor: pointer;
+        overflow: hidden;
+        transition: border-color 200ms ease, transform 200ms ease, opacity 200ms ease;
+        flex-shrink: 0;
+        background: #e9e1d6;
+      }
+
+      .team-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 25%;
+        display: block;
+      }
+
+      .team-thumb.is-active {
+        border-color: var(--gold, #d39a00);
+        transform: scale(1.15);
+      }
+
+      .team-thumb:hover {
+        border-color: var(--gold-dark, #a87300);
+      }
+
+      @media (max-width: 860px) {
+        .team-carousel-section {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          padding: 0 16px;
+        }
+        .team-carousel-stage {
+          min-height: 400px;
+        }
+        .team-carousel-thumbs {
+          max-width: 100%;
+        }
+        .team-thumb {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
     </style>
   </head>
   <body class="i18n-loading">
@@ -1397,6 +1679,40 @@
           </figure>
         </section>
 
+      <section class="team-carousel-section" data-reveal>
+        <div class="team-carousel-intro">
+          <p class="section-kicker">OUR TEAM</p>
+          <h2 class="team-carousel-title">Meet the People Behind TRAVELDAY</h2>
+          <p class="team-carousel-desc">Our sales and finance teams bring decades of combined experience in the luggage supply chain. From first inquiry to final delivery, every member is dedicated to professional service and lasting partnerships.</p>
+          <div class="team-carousel-stats">
+            <div class="team-carousel-stat">
+              <strong>12+</strong>
+              <span>Team members</span>
+            </div>
+            <div class="team-carousel-stat">
+              <strong>15+</strong>
+              <span>Years experience</span>
+            </div>
+            <div class="team-carousel-stat">
+              <strong>1000+</strong>
+              <span>Global clients</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-carousel-right">
+          <div class="team-carousel-stage" data-team-stage>
+            <!-- Cards rendered by JS -->
+          </div>
+          <div class="team-carousel-controls">
+            <button class="team-carousel-arrow team-carousel-prev" type="button" aria-label="Previous">‹</button>
+            <div class="team-carousel-thumbs" data-team-thumbs>
+              <!-- Thumbnails rendered by JS -->
+            </div>
+            <button class="team-carousel-arrow team-carousel-next" type="button" aria-label="Next">›</button>
+          </div>
+        </div>
+      </section>
+
         <section class="section gallery" aria-labelledby="gallery-title">
           <div class="section-head">
             <div>
@@ -1434,6 +1750,132 @@
     </div>
 
     <script src="../shared-shell.js?v=20260730-3" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const teamMembers = [
+          { name: 'Lucky', role: 'Sales', img: 'member-lucky.jpg', quote: 'Speciality in every word and action, trust in every trip' },
+          { name: 'Rita', role: 'Sales', img: 'member-rita.jpg', quote: 'Experience and professional is my name card' },
+          { name: 'Zoe', role: 'Sales', img: 'member-zoe.jpg', quote: 'Professionalism and dedication in every order' },
+          { name: 'Beauty', role: 'Sales', img: 'member-beauty.jpg', quote: '15+ years in luggage industry, one-stop service' },
+          { name: 'Alice', role: 'Sales', img: 'member-alice.jpg', quote: 'Trust builds business, service makes long-term partners' },
+          { name: 'MrXiang', role: 'Sales', img: 'member-mrxiang.jpg', quote: 'Great things come from small beginnings' },
+          { name: 'Jason', role: 'Sales', img: 'member-jason.jpg', quote: 'Know your limits to strive harder' },
+          { name: 'Coco', role: 'Sales', img: 'member-coco.jpg', quote: 'Every question gets an answer, every task gets a result' },
+          { name: 'Talya', role: 'Sales', img: 'member-talya.jpg', quote: 'Eyes on the world, hands on expertise' },
+          { name: 'Stella', role: 'Sales', img: 'member-stella.jpg', quote: 'What does not kill me makes me stronger' },
+          { name: 'Cassie', role: 'Finance', img: 'member-cassie.jpg', quote: 'The more we do, the more we can do' },
+          { name: 'Sunny', role: 'Finance', img: 'member-sunny.jpg', quote: 'Like water wearing away stone, endless and unceasing' },
+        ];
+
+        const stage = document.querySelector('[data-team-stage]');
+        const thumbsContainer = document.querySelector('[data-team-thumbs]');
+        const prevBtn = document.querySelector('.team-carousel-prev');
+        const nextBtn = document.querySelector('.team-carousel-next');
+        if (!stage) return;
+
+        let activeIndex = 0;
+
+        // Render spotlight cards
+        stage.innerHTML = teamMembers.map((m, i) => `
+          <article class="team-spotlight-card" data-index="${i}">
+            <img class="team-card-img" src="../images/team-members/${m.img}" alt="${m.name} - ${m.role}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" />
+            <div class="team-card-overlay">
+              <h3 class="team-card-name">${m.name}</h3>
+              <p class="team-card-role">${m.role}</p>
+              <div class="team-card-divider"></div>
+              <p class="team-card-quote">${m.quote}</p>
+            </div>
+          </article>
+        `).join('');
+
+        // Render thumbnails
+        thumbsContainer.innerHTML = teamMembers.map((m, i) => `
+          <button class="team-thumb${i === 0 ? ' is-active' : ''}" data-thumb="${i}" aria-label="View ${m.name}">
+            <img src="../images/team-members/${m.img}" alt="${m.name}" loading="lazy" />
+          </button>
+        `).join('');
+
+        const cards = stage.querySelectorAll('.team-spotlight-card');
+        const thumbs = thumbsContainer.querySelectorAll('.team-thumb');
+
+        function updateCarousel() {
+          cards.forEach((card, i) => {
+            card.classList.remove('is-active', 'is-prev', 'is-next', 'is-hidden');
+            if (i === activeIndex) card.classList.add('is-active');
+            else if (i === activeIndex - 1) card.classList.add('is-prev');
+            else if (i === activeIndex + 1) card.classList.add('is-next');
+            else card.classList.add('is-hidden');
+          });
+
+          thumbs.forEach((thumb, i) => {
+            thumb.classList.toggle('is-active', i === activeIndex);
+          });
+
+          prevBtn.disabled = activeIndex === 0;
+          nextBtn.disabled = activeIndex === teamMembers.length - 1;
+          scrollThumbIntoView();
+        }
+
+        function goTo(index) {
+          activeIndex = Math.max(0, Math.min(teamMembers.length - 1, index));
+          updateCarousel();
+        }
+
+        prevBtn.addEventListener('click', () => goTo(activeIndex - 1));
+        nextBtn.addEventListener('click', () => goTo(activeIndex + 1));
+
+        thumbs.forEach((thumb, i) => {
+          thumb.addEventListener('click', () => goTo(i));
+        });
+
+        // Auto-scroll active thumb into view
+        function scrollThumbIntoView() {
+          const activeThumb = thumbs[activeIndex];
+          if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        // Keyboard navigation when carousel is in viewport
+        document.addEventListener('keydown', (e) => {
+          const rect = stage.getBoundingClientRect();
+          if (rect.top > window.innerHeight || rect.bottom < 0) return;
+          if (e.key === 'ArrowLeft') goTo(activeIndex - 1);
+          if (e.key === 'ArrowRight') goTo(activeIndex + 1);
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        stage.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        stage.addEventListener('touchend', (e) => {
+          const diff = touchStartX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) {
+            if (diff > 0) goTo(activeIndex + 1);
+            else goTo(activeIndex - 1);
+          }
+        }, { passive: true });
+
+        // Auto-advance every 5 seconds, pause on hover
+        let autoTimer = null;
+        function startAuto() {
+          stopAuto();
+          autoTimer = setInterval(() => {
+            if (activeIndex < teamMembers.length - 1) goTo(activeIndex + 1);
+            else goTo(0);
+          }, 5000);
+        }
+        function stopAuto() {
+          if (autoTimer) clearInterval(autoTimer);
+        }
+        stage.addEventListener('mouseenter', stopAuto);
+        stage.addEventListener('mouseleave', startAuto);
+        thumbsContainer.addEventListener('mouseenter', stopAuto);
+        thumbsContainer.addEventListener('mouseleave', startAuto);
+
+        updateCarousel();
+        startAuto();
+      });
+    </script>
     <script src="./company-presence-preview.js?v=20260601-langfix" defer></script>
 
     <script>
