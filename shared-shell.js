@@ -79,7 +79,7 @@
 
   const getCurrentPageKey = () => {
     const pathname = window.location.pathname.toLowerCase();
-    if (pathname.endsWith('/product-center-preview.html')) return 'products';
+    if (pathname.endsWith('/product-center-preview.html') || pathname.endsWith('/product-detail-preview.html')) return 'products';
     if (pathname.endsWith('/solution-preview.html')) return 'solutions';
     if (pathname.endsWith('/company-presence-preview.html')) return 'about';
     if (pathname.endsWith('/market-preview.html')) return 'market';
