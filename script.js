@@ -993,6 +993,28 @@
     }
   };
 
+  const bindRevealAnimations = () => {
+    const elements = $$('[data-reveal]');
+    if (!elements.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, instance) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          instance.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -80px 0px', threshold: 0.12 },
+    );
+    elements.forEach((el) => observer.observe(el));
+  };
+
   const bindLazyBackgrounds = () => {
     const elements = $$('[data-lazy-background]');
     if (!elements.length) return;
@@ -1142,6 +1164,7 @@
     bindMobileMenu();
     bindVideo();
     bindLazyBackgrounds();
+    bindRevealAnimations();
     bindTopButton();
     bindNavigationLanguageFallback();
     window.setSiteLanguage = setSiteLanguage;
@@ -1165,6 +1188,22 @@
       },
       { passive: true },
     );
+
+    // Page transition: fade out before navigating to internal links
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+      // Only intercept links to internal pages
+      try {
+        const url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+      } catch { return; }
+      event.preventDefault();
+      document.body.classList.add('is-exiting');
+      setTimeout(() => { window.location.href = href; }, 200);
+    });
   };
 
   if (document.readyState === 'loading') {

@@ -36,6 +36,7 @@
       sending: '发送中...',
       submitError: '发送遇到问题，请直接通过邮箱联系我们。',
       invalidEmail: '请输入有效的邮箱地址。',
+      requiredError: '请填写所有必填字段。',
     },
     en: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -66,6 +67,7 @@
       sending: 'Sending...',
       submitError: 'We could not send your inquiry. Please contact us directly by email.',
       invalidEmail: 'Please enter a valid email address.',
+      requiredError: 'Please fill in all required fields.',
     },
     es: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -96,6 +98,7 @@
       sending: 'Enviando...',
       submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por correo.',
       invalidEmail: 'Por favor, introduce un correo electrónico válido.',
+      requiredError: 'Por favor, completa todos los campos obligatorios.',
     },
     hi: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -126,6 +129,7 @@
       sending: 'भेजा जा रहा है...',
       submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे ईमेल से संपर्क करें।',
       invalidEmail: 'कृपया एक मान्य ईमेल पता दर्ज करें।',
+      requiredError: 'कृपया सभी आवश्यक फ़ील्ड भरें।',
     },
   };
 
@@ -510,6 +514,25 @@
       const payload = new FormData(form);
       payload.set('_captcha', 'false');
 
+      // Validate all required fields
+      const requiredFields = form.querySelectorAll('[required]');
+      let firstInvalid = null;
+      requiredFields.forEach((field) => {
+        if (!field.value.trim()) {
+          field.classList.add('is-invalid');
+          if (!firstInvalid) firstInvalid = field;
+        } else {
+          field.classList.remove('is-invalid');
+        }
+      });
+      if (firstInvalid) {
+        status.textContent = copy.requiredError || 'Please fill in all required fields.';
+        status.classList.add('is-error');
+        status.classList.remove('is-success');
+        firstInvalid.focus();
+        return;
+      }
+
       const email = form.querySelector('[type="email"]');
       if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
         status.textContent = copy.invalidEmail || 'Please enter a valid email address.';
@@ -526,7 +549,7 @@
       if (submitButton) {
         submitButton.disabled = true;
         submitButton.dataset.originalText = submitButton.textContent;
-        submitButton.textContent = '...';
+        submitButton.innerHTML = '<span class="btn-spinner"></span> ' + (copy.sending || 'Sending...');
       }
 
       try {
@@ -551,7 +574,7 @@
         status.textContent = copy.submitError || 'Unable to send your inquiry right now. Please email us directly.';
         if (submitButton) {
           submitButton.disabled = false;
-          submitButton.textContent = submitButton.dataset.originalText || '';
+          submitButton.innerHTML = submitButton.dataset.originalText || '';
           delete submitButton.dataset.originalText;
         }
       }
