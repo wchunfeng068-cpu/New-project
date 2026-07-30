@@ -986,6 +986,7 @@
 
     <script src="../shared-shell.js?v=20260730-3" defer></script>
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
       const LANG_COPY = {
         zh: {
           nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系我们"],
@@ -1472,6 +1473,7 @@
           applySolutionTypeTuning(window.traveldayShell?.getLanguage?.() || "en");
         });
       }, { passive: true });
+      });
     </script>
     <script src="../shared-inquiry.js?v=20260730-1" defer></script>
   </body>

@@ -1169,10 +1169,92 @@
     bindNavigationLanguageFallback();
     window.setSiteLanguage = setSiteLanguage;
 
+    // Custom language dropdown
     const select = $('.language-select');
-    if (select) {
+    if (select && !select.dataset.shellBound) {
+      select.dataset.shellBound = 'true';
+      select.value = state.lang;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'lang-dropdown';
+      select.parentNode.insertBefore(wrapper, select);
+      wrapper.appendChild(select);
+      select.style.position = 'absolute';
+      select.style.opacity = '0';
+      select.style.width = '100%';
+      select.style.height = '100%';
+      select.style.top = '0';
+      select.style.left = '0';
+      select.style.pointerEvents = 'none';
+      select.style.zIndex = '0';
+
+      const trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'lang-dropdown-trigger';
+      trigger.setAttribute('aria-label', 'Language');
+      trigger.setAttribute('aria-haspopup', 'listbox');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      const panel = document.createElement('div');
+      panel.className = 'lang-dropdown-panel';
+      panel.setAttribute('role', 'listbox');
+
+      const LANG_NAMES = { zh: '中文', en: 'English', es: 'Español', hi: 'हिन्दी' };
+
+      Object.entries(LANG_NAMES).forEach(([value, label]) => {
+        const option = document.createElement('div');
+        option.className = 'lang-dropdown-option';
+        option.setAttribute('role', 'option');
+        option.dataset.value = value;
+        option.textContent = label;
+        if (value === state.lang) option.classList.add('is-active');
+        option.addEventListener('click', () => {
+          select.value = value;
+          setSiteLanguage(value);
+          closeDropdown();
+        });
+        panel.appendChild(option);
+      });
+
+      wrapper.appendChild(trigger);
+      wrapper.appendChild(panel);
+
+      function updateTrigger() {
+        trigger.textContent = LANG_NAMES[state.lang] || 'English';
+      }
+      function updateActive() {
+        panel.querySelectorAll('.lang-dropdown-option').forEach((opt) => {
+          opt.classList.toggle('is-active', opt.dataset.value === state.lang);
+        });
+      }
+      function openDropdown() {
+        wrapper.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        updateActive();
+      }
+      function closeDropdown() {
+        wrapper.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      updateTrigger();
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (wrapper.classList.contains('is-open')) closeDropdown();
+        else openDropdown();
+      });
+      document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) closeDropdown();
+      });
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDropdown();
+      });
+      window.addEventListener('travelday:languagechange', (e) => {
+        const lang = e.detail?.lang || state.lang;
+        trigger.textContent = LANG_NAMES[lang] || 'English';
+        updateActive();
+      });
       select.addEventListener('change', (event) => setSiteLanguage(event.target.value));
-      select.addEventListener('input', (event) => setSiteLanguage(event.target.value));
     }
 
     setSiteLanguage(readInitialLanguage());
