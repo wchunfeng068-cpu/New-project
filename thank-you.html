@@ -8,28 +8,50 @@
     <link rel="canonical" href="https://www.traveldaysuitcase.com/thank-you.html" />
     <link rel="icon" type="image/png" href="images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="images/logo-travelday.png" />
+    <noscript>
+      <style>
+        .primary-nav { visibility: visible !important; }
+        .mobile-menu-button { display: none !important; }
+      </style>
+    </noscript>
     <link rel="stylesheet" href="styles.css?v=20260729-1" />
     <link rel="stylesheet" href="thank-you.css?v=20260729-1" />
   </head>
-  <body class="thank-you-page">
+  <body class="thank-you-page i18n-loading">
     <div class="page-stage">
       <div class="page-shell" id="top">
         <header class="site-header" data-section="navigation">
           <a class="brand" href="index.html" aria-label="TRAVELDAY home">
-            <span class="brand-logo"><img src="images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" /></span>
+            <span class="brand-logo">
+              <img
+                src="images/logo-travelday.png"
+                alt="TRAVELDAY"
+                width="480" height="240" loading="eager" decoding="async"
+              />
+            </span>
           </a>
-          <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav"><span></span><span></span><span></span></button>
+
+          <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
           <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
-            <a href="index.html" class="active">Home</a>
+            <a href="index.html">Home</a>
             <a href="mockups/product-center-preview.html">Products</a>
             <a href="index.html#solutions">Solutions</a>
             <a href="mockups/company-presence-preview.html">About</a>
-            <a href="index.html#market">Market</a>
+            <a href="index.html#global">Market</a>
             <a href="index.html#contact">Contact</a>
           </nav>
+
           <div class="header-actions">
             <select class="language-select" aria-label="Language" onchange="window.setSiteLanguage && window.setSiteLanguage(this.value)" oninput="window.setSiteLanguage && window.setSiteLanguage(this.value)">
-              <option value="zh">Chinese</option><option value="en" selected>English</option><option value="es">Spanish</option><option value="hi">Hindi</option>
+              <option value="zh">Chinese</option>
+              <option value="en" selected>English</option>
+              <option value="es">Spanish</option>
+              <option value="hi">Hindi</option>
             </select>
             <a class="quote-button" href="index.html#contact">Get Quote →</a>
           </div>
@@ -53,13 +75,13 @@
         </main>
 
         <footer class="site-footer" data-section="footer">
-          <p>© 2006-2024 TRAVELDAY. 保留所有权利。</p>
-          <nav aria-label="Footer navigation"><a href="#">隐私政策</a><a href="#">服务条款</a><a href="#">网站地图</a></nav>
+          <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
+          <nav aria-label="Footer navigation"><a href="privacy.html">隐私政策</a><a href="terms.html">服务条款</a><a href="sitemap.html">网站地图</a></nav>
           <a class="back-top" href="#top" aria-label="返回顶部">↑</a>
         </footer>
       </div>
     </div>
-    <script src="shared-shell.js?v=20260729-1" defer></script>
+    <script src="shared-shell.js?v=20260730-3" defer></script>
     <script src="thank-you.js?v=20260729-1" defer></script>
   </body>
 </html>

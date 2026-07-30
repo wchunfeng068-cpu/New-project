@@ -51,7 +51,7 @@
       title: "TRAVELDAY | Company Presence",
       description: "TRAVELDAY company presence page showcasing team, meeting culture, and brand atmosphere.",
       nav: ["Home", "Products", "Solutions", "About", "Market", "Contact"],
-      quote: "Get Quote ->",
+      quote: "Get Quote →",
       lang: ["Chinese", "English", "Spanish", "Hindi"],
       brandLabel: "TRAVELDAY home",
       navLabel: "Primary navigation",

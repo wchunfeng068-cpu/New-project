@@ -1,11 +1,21 @@
 <!doctype html>
-<html lang="zh-CN" data-default-lang="zh">
+<html lang="en" data-default-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Detail</title>
+    <meta name="description" content="Review TRAVELDAY luggage specifications and request OEM, ODM or component supply support." />
+    <link rel="canonical" href="https://www.traveldaysuitcase.com/mockups/product-detail-preview.html" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
+    <link rel="preconnect" href="https://formsubmit.co" />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
+    <noscript>
+      <style>
+        .primary-nav { visibility: visible !important; }
+        .mobile-menu-button { display: none !important; }
+      </style>
+    </noscript>
     <style>
       :root {
         --page: #f4f0e9;
@@ -39,6 +49,12 @@
         background:
           radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
           var(--page);
+        opacity: 1;
+        transition: opacity 150ms ease;
+      }
+
+      body.i18n-loading {
+        opacity: 0;
       }
 
       a {
@@ -52,6 +68,7 @@
       }
 
       .site-header {
+        position: relative;
         display: grid;
         grid-template-columns: 280px 1fr auto;
         align-items: center;
@@ -94,11 +111,22 @@
         color: #171514;
         font-size: 18px;
         font-weight: 800;
+        font-family: var(--font-sans);
+      }
+
+      @media (min-width: 981px) {
+        .primary-nav {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
 
       .primary-nav a {
         position: relative;
         padding: 22px 0;
+        transition: color 180ms ease;
       }
 
       html:not([data-nav-ready="true"]) .primary-nav {
@@ -129,7 +157,7 @@
       }
 
       .language-select {
-        height: 38px;
+        min-height: 44px;
         min-width: 108px;
         border: 1px solid #ddd4c9;
         border-radius: 8px;
@@ -146,7 +174,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 42px;
+        min-height: 44px;
         border-radius: 8px;
         border: 0;
         padding: 0 22px;
@@ -171,8 +199,8 @@
 
       .mobile-menu-button {
         display: none;
-        width: 42px;
-        height: 38px;
+        width: 44px;
+        height: 44px;
         border: 1px solid var(--line);
         border-radius: 9px;
         background: #fff;
@@ -185,6 +213,19 @@
         margin: 5px 0;
         border-radius: 999px;
         background: var(--ink);
+      }
+
+      .primary-nav a:hover {
+        color: var(--gold-dark);
+      }
+
+      .quote-button:hover,
+      .button-primary:hover {
+        filter: brightness(1.1);
+      }
+
+      .language-select:hover {
+        border-color: var(--gold);
       }
 
       .card {
@@ -450,7 +491,7 @@
       }
 
       .inquiry-form input {
-        height: 42px;
+        min-height: 44px;
         padding: 0 13px;
       }
 
@@ -525,23 +566,55 @@
           display: block;
         }
 
-        .primary-nav,
         .header-actions {
           grid-column: 1 / -1;
           display: none;
           width: 100%;
         }
 
-        body.is-menu-open .primary-nav,
-        body.is-menu-open .header-actions {
-          display: flex;
-        }
-
         .primary-nav {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 280px;
+          height: 100vh;
           flex-direction: column;
           align-items: stretch;
           gap: 0;
           padding-top: 10px;
+          background: var(--surface);
+          transform: translateX(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+          z-index: 1000;
+        }
+
+        body.is-menu-open .primary-nav {
+          transform: translateX(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body.is-menu-open .header-actions {
+          position: fixed;
+          left: 0;
+          bottom: 24px;
+          z-index: 1001;
+          display: flex;
+          width: 280px;
+          padding: 18px;
+          background: var(--surface);
+          box-shadow: 0 -12px 28px rgba(35, 28, 20, 0.08);
+        }
+
+        body.is-menu-open::before {
+          position: fixed;
+          z-index: 999;
+          inset: 0;
+          background: rgba(20, 19, 18, 0.32);
+          content: "";
         }
 
         .primary-nav a {
@@ -551,7 +624,6 @@
 
         .header-actions {
           justify-content: flex-start;
-          padding-top: 12px;
         }
       }
 
@@ -606,37 +678,109 @@
           padding: 18px;
         }
       }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto 44px;
+        align-items: center;
+        gap: 18px;
+        min-height: 62px;
+        margin-top: 48px;
+        border-radius: 12px;
+        padding: 0 22px;
+        background: #11100f;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .site-footer p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .site-footer nav {
+        display: flex;
+        gap: 22px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .site-footer nav a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .site-footer nav a:hover {
+        color: var(--gold, #d39a00);
+      }
+
+      .back-top {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold, #d39a00);
+        color: #fff;
+        font-weight: 900;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .back-top:hover {
+        color: var(--gold-dark, #a87300);
+      }
+
+      @media (max-width: 640px) {
+        .site-footer {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 16px 22px;
+          text-align: center;
+        }
+        .site-footer nav {
+          justify-content: center;
+        }
+      }
     </style>
   </head>
-  <body>
+  <body class="i18n-loading">
     <div class="page">
-            <header class="site-header">
-        <a class="brand" href="../index.html" aria-label="TRAVELDAY 品牌">
+            <header class="site-header" data-section="navigation">
+        <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
           <span class="brand-logo">
-            <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
+            <img
+              src="../images/logo-travelday.png"
+              alt="TRAVELDAY"
+              width="480" height="240" loading="eager" decoding="async"
+            />
           </span>
         </a>
+
         <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <nav class="primary-nav" id="primaryNav" aria-label="主导航">
-          <a href="../index.html">首页</a>
-          <a class="active" href="./product-center-preview.html">产品中心</a>
-          <a href="./solution-preview.html">解决方案</a>
-          <a href="./company-presence-preview.html">关于我们</a>
-          <a href="./market-preview.html">市场</a>
-          <a href="#contact">联系我们</a>
+
+        <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+          <a href="../index.html">Home</a>
+          <a href="product-center-preview.html">Products</a>
+          <a href="solution-preview.html">Solutions</a>
+          <a href="company-presence-preview.html">About</a>
+          <a href="market-preview.html">Market</a>
+          <a href="#contact">Contact</a>
         </nav>
+
         <div class="header-actions">
-          <select class="language-select" aria-label="Language">
-            <option value="zh">中文</option>
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="hi">हिन्दी</option>
+          <select class="language-select" aria-label="Language" onchange="window.setSiteLanguage && window.setSiteLanguage(this.value)" oninput="window.setSiteLanguage && window.setSiteLanguage(this.value)">
+            <option value="zh">Chinese</option>
+            <option value="en" selected>English</option>
+            <option value="es">Spanish</option>
+            <option value="hi">Hindi</option>
           </select>
-          <a class="quote-button" href="#contact">获取报价 →</a>
+          <a class="quote-button" href="#contact">Get Quote →</a>
         </div>
       </header>
 
@@ -693,9 +837,18 @@
           </form>
         </section>
       </main>
+      <footer class="site-footer" data-section="footer">
+        <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
+        <nav aria-label="页脚导航">
+          <a href="../privacy.html">隐私政策</a>
+          <a href="../terms.html">服务条款</a>
+          <a href="../sitemap.html">网站地图</a>
+        </nav>
+        <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+      </footer>
     </div>
 
-    <script src="../shared-shell.js?v=20260729-1" defer></script>
+    <script src="../shared-shell.js?v=20260730-3" defer></script>
 
     <script>
       (() => {
@@ -822,11 +975,11 @@
           if (LANGS.includes(fromShell)) return fromShell;
           const optionValue = document.querySelector('.language-select')?.value;
           if (LANGS.includes(optionValue)) return optionValue;
-          return 'zh';
+          return 'en';
         };
 
         const applyText = (lang) => {
-          const t = copy[lang] || copy.zh;
+          const t = copy[lang] || copy.en;
 
           document.querySelectorAll('.primary-nav a').forEach((link, index) => {
             if (t.nav[index]) link.textContent = t.nav[index];
@@ -1128,22 +1281,22 @@
             heroImage: "../images/detail/accessories-1.png",
             copy: {
               zh: {
-                title: "ACCESORIES 配件",
+                title: "ACCESSORIES 配件",
                 intro: "配件方案覆盖拉杆、手把、轮组和箱体零件，适合工厂配套、维修替换和整箱开发项目。",
                 proof: ["拉杆、手把、轮组等关键部件可按项目需求组合。", "适合海外工厂采购零部件并接入本地装配。", "支持从单个配件到整箱结构的一站式供应链服务。"],
               },
               en: {
-                title: "ACCESORIES Parts",
+                title: "ACCESSORIES Parts",
                 intro: "The accessories program covers trolley handles, carry handles, wheels, and case components for factory support, replacement, and full luggage development.",
                 proof: ["Key parts such as trolley handles, handles, and wheels can be combined by project need.", "Suitable for overseas factories sourcing components for local assembly.", "Supports one-stop supply from single parts to full luggage structures."],
               },
               es: {
-                title: "ACCESORIES piezas",
+                title: "ACCESSORIES piezas",
                 intro: "El programa de accesorios cubre tiradores, asas, ruedas y componentes para soporte de fábrica, reemplazo y desarrollo completo de maletas.",
                 proof: ["Las piezas clave se pueden combinar según cada proyecto.", "Adecuado para fábricas en el extranjero que compran componentes para ensamblaje local.", "Soporta suministro integral desde piezas individuales hasta estructuras completas."],
               },
               hi: {
-                title: "ACCESORIES पार्ट्स",
+                title: "ACCESSORIES पार्ट्स",
                 intro: "एक्सेसरीज़ प्रोग्राम में ट्रॉली हैंडल, कैरी हैंडल, पहिए और केस कंपोनेंट शामिल हैं, जो फैक्ट्री सपोर्ट, रिप्लेसमेंट और पूरे लगेज विकास के लिए उपयुक्त हैं।",
                 proof: ["ट्रॉली हैंडल, हैंडल और पहिए जैसे मुख्य पार्ट्स प्रोजेक्ट जरूरत के अनुसार जोड़े जा सकते हैं।", "लोकल असेंबली के लिए कंपोनेंट खरीदने वाली ओवरसीज फैक्ट्री के लिए उपयुक्त।", "सिंगल पार्ट से पूरे लगेज स्ट्रक्चर तक वन-स्टॉप सप्लाई सपोर्ट।"],
               },
@@ -1171,7 +1324,7 @@
           }
           const fromShell = window.traveldayShell?.getLanguage?.();
           if (LANGS.includes(fromShell)) return fromShell;
-          return "zh";
+          return "en";
         };
 
         const readProduct = () => {
@@ -1280,17 +1433,8 @@
         window.addEventListener("travelday:languagechange", (event) => {
           applyDetailPage(LANGS.includes(event.detail?.lang) ? event.detail.lang : readLang());
         });
-
-        const form = document.querySelector(".inquiry-form");
-        const status = document.querySelector(".form-status");
-        if (form && status && form.dataset.productDetailBound !== "true") {
-          form.dataset.productDetailBound = "true";
-          form.addEventListener("submit", () => {
-            status.textContent = (pageCopy[readLang()] || pageCopy.zh).status;
-          });
-        }
       })();
     </script>
-    <script src="../shared-inquiry.js?v=20260729-1" defer></script>
+    <script src="../shared-inquiry.js?v=20260730-1" defer></script>
   </body>
 </html>

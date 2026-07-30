@@ -35,6 +35,7 @@
       status: '我们已收到您的需求，会尽快联系您。',
       sending: '发送中...',
       submitError: '发送遇到问题，请直接通过邮箱联系我们。',
+      invalidEmail: '请输入有效的邮箱地址。',
     },
     en: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -64,6 +65,7 @@
       status: 'We have received your request and will contact you soon.',
       sending: 'Sending...',
       submitError: 'We could not send your inquiry. Please contact us directly by email.',
+      invalidEmail: 'Please enter a valid email address.',
     },
     es: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -93,6 +95,7 @@
       status: 'Hemos recibido tu consulta y te contactaremos pronto.',
       sending: 'Enviando...',
       submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por correo.',
+      invalidEmail: 'Por favor, introduce un correo electrónico válido.',
     },
     hi: {
       eyebrow: 'INQUIRY / CONTACT',
@@ -122,6 +125,7 @@
       status: 'हमने आपकी पूछताछ प्राप्त कर ली है और जल्द ही संपर्क करेंगे।',
       sending: 'भेजा जा रहा है...',
       submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे ईमेल से संपर्क करें।',
+      invalidEmail: 'कृपया एक मान्य ईमेल पता दर्ज करें।',
     },
   };
 
@@ -506,6 +510,18 @@
       const payload = new FormData(form);
       payload.set('_captcha', 'false');
 
+      const email = form.querySelector('[type="email"]');
+      if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        status.textContent = copy.invalidEmail || 'Please enter a valid email address.';
+        status.classList.add('is-error');
+        if (submitButton) submitButton.disabled = false;
+        return;
+      }
+
+      form.setAttribute('aria-busy', 'true');
+      status.setAttribute('role', 'status');
+      status.classList.remove('is-success');
+      status.classList.remove('is-error');
       status.textContent = copy.sending || 'Sending...';
       if (submitButton) {
         submitButton.disabled = true;
@@ -521,10 +537,17 @@
         });
         if (!response.ok) throw new Error(`Inquiry submission failed: ${response.status}`);
         if (response.ok) {
+          form.setAttribute('aria-busy', 'false');
+          status.classList.add('is-success');
+          status.classList.remove('is-error');
           status.textContent = copy.status;
           window.location.assign(returnUrl.toString());
         }
       } catch (error) {
+        form.setAttribute('aria-busy', 'false');
+        status.setAttribute('role', 'alert');
+        status.classList.add('is-error');
+        status.classList.remove('is-success');
         status.textContent = copy.submitError || 'Unable to send your inquiry right now. Please email us directly.';
         if (submitButton) {
           submitButton.disabled = false;

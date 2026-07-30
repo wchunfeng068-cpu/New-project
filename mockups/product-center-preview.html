@@ -4,8 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Center</title>
+    <meta name="description" content="Explore TRAVELDAY luggage, components and OEM/ODM supply options for global buyers." />
+    <link rel="canonical" href="https://www.traveldaysuitcase.com/mockups/product-center-preview.html" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
+    <noscript>
+      <style>
+        .primary-nav { visibility: visible !important; }
+        .mobile-menu-button { display: none !important; }
+      </style>
+    </noscript>
     <style>
       :root {
         --page: #f4f0e9;
@@ -19,7 +27,8 @@
         --soft: #f6f1e9;
         --shadow: 0 18px 48px rgba(35, 28, 20, 0.1);
         --radius: 18px;
-        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        font-family: var(--font-sans);
       }
 
       * {
@@ -32,6 +41,12 @@
         background:
           radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
           var(--page);
+        opacity: 1;
+        transition: opacity 150ms ease;
+      }
+
+      body.i18n-loading {
+        opacity: 0;
       }
 
       a {
@@ -51,6 +66,7 @@
       }
 
       .site-header {
+        position: relative;
         display: grid;
         grid-template-columns: 280px 1fr auto;
         align-items: center;
@@ -93,11 +109,22 @@
         color: #171514;
         font-size: 18px;
         font-weight: 800;
+        font-family: var(--font-sans);
+      }
+
+      @media (min-width: 981px) {
+        .primary-nav {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
       }
 
       .primary-nav a {
         position: relative;
         padding: 22px 0;
+        transition: color 180ms ease;
       }
 
       html:not([data-nav-ready="true"]) .primary-nav {
@@ -128,7 +155,7 @@
       }
 
       .language-select {
-        height: 38px;
+        min-height: 44px;
         min-width: 108px;
         border: 1px solid #ddd4c9;
         border-radius: 8px;
@@ -145,7 +172,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 42px;
+        min-height: 44px;
         border-radius: 8px;
         border: 0;
         padding: 0 22px;
@@ -187,6 +214,19 @@
         background: var(--ink);
       }
 
+      .primary-nav a:hover {
+        color: var(--gold-dark);
+      }
+
+      .quote-button:hover,
+      .button-primary:hover {
+        filter: brightness(1.1);
+      }
+
+      .language-select:hover {
+        border-color: var(--gold);
+      }
+
       .card {
         overflow: hidden;
         border: 1px solid rgba(232, 224, 212, 0.92);
@@ -218,6 +258,23 @@
         margin: 0 auto;
         transform: scaleX(1.333333);
         transform-origin: center center;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 2000;
+        top: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #141312;
+        color: #fff;
+        font-weight: 800;
+        transform: translateY(-160%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
       }
 
       .kicker {
@@ -462,23 +519,55 @@
           display: block;
         }
 
-        .primary-nav,
         .header-actions {
           grid-column: 1 / -1;
           display: none;
           width: 100%;
         }
 
-        body.is-menu-open .primary-nav,
-        body.is-menu-open .header-actions {
-          display: flex;
-        }
-
         .primary-nav {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 280px;
+          height: 100vh;
           flex-direction: column;
           align-items: stretch;
           gap: 0;
           padding-top: 10px;
+          background: var(--card);
+          transform: translateX(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+          z-index: 1000;
+        }
+
+        body.is-menu-open .primary-nav {
+          transform: translateX(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body.is-menu-open .header-actions {
+          position: fixed;
+          left: 0;
+          bottom: 24px;
+          z-index: 1001;
+          display: flex;
+          width: 280px;
+          padding: 18px;
+          background: var(--card);
+          box-shadow: 0 -12px 28px rgba(35, 28, 20, 0.08);
+        }
+
+        body.is-menu-open::before {
+          position: fixed;
+          z-index: 999;
+          inset: 0;
+          background: rgba(20, 19, 18, 0.32);
+          content: "";
         }
 
         .primary-nav a {
@@ -488,7 +577,6 @@
 
         .header-actions {
           justify-content: flex-start;
-          padding-top: 12px;
         }
       }
 
@@ -528,37 +616,109 @@
           grid-template-columns: 1fr;
         }
       }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto 44px;
+        align-items: center;
+        gap: 18px;
+        min-height: 62px;
+        margin-top: 48px;
+        border-radius: 12px;
+        padding: 0 22px;
+        background: #11100f;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .site-footer p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .site-footer nav {
+        display: flex;
+        gap: 22px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .site-footer nav a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .site-footer nav a:hover {
+        color: var(--gold, #d39a00);
+      }
+
+      .back-top {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold, #d39a00);
+        color: #fff;
+        font-weight: 900;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .back-top:hover {
+        color: var(--gold-dark, #a87300);
+      }
+
+      @media (max-width: 640px) {
+        .site-footer {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 16px 22px;
+          text-align: center;
+        }
+        .site-footer nav {
+          justify-content: center;
+        }
+      }
     </style>
   </head>
-  <body>
+  <body class="i18n-loading">
     <div class="page">
-      <header class="site-header">
+      <header class="site-header" data-section="navigation">
         <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
           <span class="brand-logo">
-            <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
+            <img
+              src="../images/logo-travelday.png"
+              alt="TRAVELDAY"
+              width="480" height="240" loading="eager" decoding="async"
+            />
           </span>
         </a>
+
         <button class="mobile-menu-button" type="button" aria-expanded="false" aria-controls="primaryNav">
           <span></span>
           <span></span>
           <span></span>
         </button>
+
         <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
           <a href="../index.html">Home</a>
-          <a class="active" href="./product-center-preview.html">Products</a>
-          <a href="./solution-preview.html">Solutions</a>
-          <a href="./company-presence-preview.html">About</a>
-          <a href="./market-preview.html">Market</a>
+          <a href="product-center-preview.html">Products</a>
+          <a href="solution-preview.html">Solutions</a>
+          <a href="company-presence-preview.html">About</a>
+          <a href="market-preview.html">Market</a>
           <a href="../index.html#contact">Contact</a>
         </nav>
+
         <div class="header-actions">
-          <select class="language-select" aria-label="Language">
+          <select class="language-select" aria-label="Language" onchange="window.setSiteLanguage && window.setSiteLanguage(this.value)" oninput="window.setSiteLanguage && window.setSiteLanguage(this.value)">
             <option value="zh">Chinese</option>
             <option value="en" selected>English</option>
             <option value="es">Spanish</option>
             <option value="hi">Hindi</option>
           </select>
-          <a class="quote-button" href="../index.html#contact">Get Quote -></a>
+          <a class="quote-button" href="../index.html#contact">Get Quote →</a>
         </div>
       </header>
 
@@ -568,7 +728,7 @@
             class="product-center-hero-image"
             src="../images/product-center-hero.png"
             alt="TRAVELDAY product center hero image showing luggage materials and global supply chain capability"
-            width="1534" height="1024" loading="lazy" decoding="async"
+            width="1534" height="1024" loading="eager" fetchpriority="high" decoding="async"
           />
         </section>
 
@@ -577,9 +737,18 @@
         </section>
 
       </main>
+      <footer class="site-footer" data-section="footer">
+        <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
+        <nav aria-label="页脚导航">
+          <a href="../privacy.html">隐私政策</a>
+          <a href="../terms.html">服务条款</a>
+          <a href="../sitemap.html">网站地图</a>
+        </nav>
+        <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+      </footer>
     </div>
 
-    <script src="../shared-shell.js?v=20260729-1" defer></script>
+    <script src="../shared-shell.js?v=20260730-3" defer></script>
 
     <script>
       const LANGS = ["zh", "en", "es", "hi"];
@@ -597,13 +766,13 @@
             abspc: "ABS / PC 行李箱",
             pp: "PP 行李箱",
             eva: "EVA 行李箱",
-            accessories: "ACCESORIES 配件",
+            accessories: "ACCESSORIES 配件",
           },
         },
         en: {
           title: "TRAVELDAY | Product Center",
           nav: ["Home", "Products", "Solutions", "About", "Market", "Contact"],
-          quote: "Get Quote ->",
+          quote: "Get Quote →",
           brandLabel: "TRAVELDAY home",
           navLabel: "Primary navigation",
           heroLabel: "Product Center hero",
@@ -612,7 +781,7 @@
             abspc: "ABS / PC Luggage",
             pp: "PP Luggage",
             eva: "EVA Luggage",
-            accessories: "ACCESORIES Parts",
+            accessories: "ACCESSORIES Parts",
           },
         },
         es: {
@@ -627,7 +796,7 @@
             abspc: "Equipaje ABS / PC",
             pp: "Equipaje PP",
             eva: "Equipaje EVA",
-            accessories: "ACCESORIES piezas",
+            accessories: "ACCESSORIES piezas",
           },
         },
         hi: {
@@ -642,7 +811,7 @@
             abspc: "ABS / PC लगेज",
             pp: "PP लगेज",
             eva: "EVA लगेज",
-            accessories: "ACCESORIES पार्ट्स",
+            accessories: "ACCESSORIES पार्ट्स",
           },
         },
       };
@@ -668,7 +837,7 @@
         },
         {
           key: "accessories",
-          label: "ACCESORIES",
+          label: "ACCESSORIES",
           image: "../images/catalog-accessories-v1.png",
           href: "product-detail-preview.html?product=trolley-handle",
         },
@@ -695,10 +864,38 @@
               <div class="catalog-section-head" data-watermark="${section.label}">
                 <h2 class="catalog-section-title">${t.catalog[section.key]}</h2>
               </div>
-              <div class="catalog-section-image" style="--image: url('${section.image}')"></div>
+              <div class="catalog-section-image" data-lazy-image="${section.image}"></div>
             </div>
           </a>
         `;
+      }
+
+      let catalogImageObserver;
+
+      function bindCatalogImageLoading() {
+        const images = Array.from(document.querySelectorAll(".catalog-section-image[data-lazy-image]"));
+        if (catalogImageObserver) catalogImageObserver.disconnect();
+
+        const loadImage = (node) => {
+          const src = node.dataset.lazyImage;
+          if (!src || node.dataset.imageLoaded === "true") return;
+          node.style.setProperty("--image", `url("${src}")`);
+          node.dataset.imageLoaded = "true";
+        };
+
+        if (!("IntersectionObserver" in window)) {
+          images.forEach(loadImage);
+          return;
+        }
+
+        catalogImageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            loadImage(entry.target);
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: "300px 0px" });
+        images.forEach((image) => catalogImageObserver.observe(image));
       }
 
       function applyProductCenterCopy(lang) {
@@ -721,6 +918,7 @@
         if (select && select.value !== activeLang) select.value = activeLang;
         if (catalogRoot) {
           catalogRoot.innerHTML = catalogSections.map((section) => renderSectionCard(section, activeLang)).join("");
+          bindCatalogImageLoading();
         }
         window.traveldayShell?.syncLanguageLinks?.(activeLang);
         document.documentElement.dataset.navReady = "true";

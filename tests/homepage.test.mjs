@@ -52,15 +52,20 @@ assert.match(stylesCss, /\.series-copy\s*\{[\s\S]*?color:\s*var\(--color-ink\);/
 assert.match(stylesCss, /\.dual-copy\s*\{[\s\S]*?inset:\s*0 auto 0 0;/);
 assert.match(stylesCss, /\.dual-copy\s*\{[\s\S]*?justify-content:\s*center;/);
 assert.match(stylesCss, /\.dual-copy\s*\{[\s\S]*?color:\s*var\(--color-ink\);/);
-assert.match(stylesCss, /\.series-copy h2,\s*\.dual-copy h2,\s*\.series-copy p:last-child,\s*\.dual-copy p:last-child \{\s*text-shadow:\s*none;/m);
-assert.ok(stylesCss.includes('url("images/server-map.jpg")'));
+assert.doesNotMatch(stylesCss, /\.series-copy h2,\s*\.dual-copy h2,\s*\.series-copy p:last-child,\s*\.dual-copy p:last-child \{[\s\S]*?text-shadow:/m);
+assert.match(stylesCss, /\.world-map\s*\{[\s\S]*?var\(--lazy-background\)/);
+assert.match(indexHtml, /data-lazy-background="images\/server-map\.jpg"/);
 
-assert.match(scriptJs, /preload\s*=\s*['"]none['"]/);
+assert.match(indexHtml, /<video[\s\S]*?preload="none"/);
 assert.match(scriptJs, /key\s*===\s*['"]Escape['"]/);
 assert.match(scriptJs, /mobileMenuButton/);
 assert.match(scriptJs, /document\.documentElement\.dataset\.lang\s*=\s*lang/);
 assert.match(scriptJs, /const getViewportBucket = \(\) =>/);
 assert.match(scriptJs, /const applyResponsiveTypeTuning = \(lang\) =>/);
 assert.match(scriptJs, /document\.body\.classList\.toggle\('is-menu-open'/);
+assert.doesNotMatch(scriptJs, /fixed-desktop-stage/);
+assert.match(scriptJs, /bindLazyBackgrounds/);
+assert.match(indexHtml, /data-lazy-background="images\/series-luggage\.jpg"/);
+assert.match(indexHtml, /data-src="videos\/xuanchuan\.mp4"/);
 
 console.log('homepage tests passed');

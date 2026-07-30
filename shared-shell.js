@@ -5,6 +5,7 @@
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
   const TOP_BUTTON_STYLE_ID = 'travelday-top-button-styles';
+  const SKIP_LINK_STYLE_ID = 'travelday-skip-link-styles';
   const NAV_LABELS = {
     zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
     en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
@@ -255,14 +256,31 @@
 
     const root = getProjectRootUrl();
     const hasLocalContact = Boolean(document.getElementById('contact'));
+    const hasLocalSolutions = Boolean(document.getElementById('solutions'));
+    const hasLocalGlobal = Boolean(document.getElementById('global'));
+    const isThankYouPage = window.location.pathname.toLowerCase().endsWith('/thank-you.html');
     const homeUrl = new URL('index.html', root);
     const labels = NAV_LABELS[lang] || NAV_LABELS[DEFAULT_LANG];
     const targets = [
       { key: 'home', href: withLanguage(new URL('index.html', root), lang) },
       { key: 'products', href: withLanguage(new URL('mockups/product-center-preview.html', root), lang) },
-      { key: 'solutions', href: withLanguage(new URL('mockups/solution-preview.html', root), lang) },
+      {
+        key: 'solutions',
+        href: hasLocalSolutions
+          ? '#solutions'
+          : isThankYouPage
+            ? `${withLanguage(homeUrl, lang)}#solutions`
+            : withLanguage(new URL('mockups/solution-preview.html', root), lang),
+      },
       { key: 'about', href: withLanguage(new URL('mockups/company-presence-preview.html', root), lang) },
-      { key: 'market', href: withLanguage(new URL('mockups/market-preview.html', root), lang) },
+      {
+        key: 'market',
+        href: hasLocalGlobal
+          ? '#global'
+          : isThankYouPage
+            ? `${withLanguage(homeUrl, lang)}#global`
+            : withLanguage(new URL('mockups/market-preview.html', root), lang),
+      },
       {
         key: 'contact',
         href: hasLocalContact ? '#contact' : `${withLanguage(homeUrl, lang)}#contact`,
@@ -356,9 +374,28 @@
 
     mobileMenuButton.dataset.shellBound = 'true';
 
+    const menuLabels = () => {
+      const labels = {
+        zh: ['打开导航菜单', '关闭导航菜单'],
+        en: ['Open navigation menu', 'Close navigation menu'],
+        es: ['Abrir menú de navegación', 'Cerrar menú de navegación'],
+        hi: ['नेविगेशन मेनू खोलें', 'नेविगेशन मेनू बंद करें'],
+      };
+      return labels[getActiveLanguage()] || labels.en;
+    };
+
+    const syncMenuLabel = () => {
+      const [openLabel, closeLabel] = menuLabels();
+      mobileMenuButton.setAttribute(
+        'aria-label',
+        mobileMenuButton.getAttribute('aria-expanded') === 'true' ? closeLabel : openLabel,
+      );
+    };
+
     const closeMobileMenu = () => {
       document.body.classList.remove('is-menu-open');
       mobileMenuButton.setAttribute('aria-expanded', 'false');
+      syncMenuLabel();
       nav.classList.remove('is-open');
     };
 
@@ -366,6 +403,7 @@
       const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
       document.body.classList.toggle('is-menu-open', !expanded);
       mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+      syncMenuLabel();
       nav.classList.toggle('is-open', !expanded);
     });
 
@@ -380,6 +418,35 @@
       },
       { passive: true },
     );
+    window.addEventListener('travelday:languagechange', syncMenuLabel);
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeMobileMenu();
+    });
+    syncMenuLabel();
+  };
+
+  const ensureSkipLink = () => {
+    const main = document.querySelector('main');
+    if (!main || document.querySelector('.skip-link')) return;
+    if (!document.getElementById(SKIP_LINK_STYLE_ID)) {
+      const style = document.createElement('style');
+      style.id = SKIP_LINK_STYLE_ID;
+      style.textContent = `
+        .skip-link { position: fixed; z-index: 2000; top: 12px; left: 12px; padding: 10px 14px; border-radius: 8px; background: #141312; color: #fff; font-weight: 800; transform: translateY(-160%); }
+        .skip-link:focus { transform: translateY(0); }
+      `;
+      document.head.appendChild(style);
+    }
+    if (!main.id) main.id = 'main-content';
+    main.setAttribute('tabindex', '-1');
+    const link = document.createElement('a');
+    link.className = 'skip-link';
+    link.href = `#${main.id}`;
+    link.textContent = getActiveLanguage() === 'zh' ? '跳至主要内容' : 'Skip to main content';
+    document.body.prepend(link);
+    window.addEventListener('travelday:languagechange', (event) => {
+      link.textContent = event.detail?.lang === 'zh' ? '跳至主要内容' : 'Skip to main content';
+    });
   };
 
   const ensureTopButtonStyles = () => {
@@ -498,12 +565,14 @@
     bindLanguageSelects();
     bindNavigationLanguageFallback();
     bindMobileMenu();
+    ensureSkipLink();
     ensureTopButton();
     ensureInquiryStandardStyles();
     syncLanguageLinks(state.lang);
     syncPrimaryNavigation(state.lang);
     const next = setLanguage(state.lang, { updateHistory: false });
     schedulePrimaryNavigationSync(next);
+    document.body.classList.remove('i18n-loading');
     return next;
   };
 

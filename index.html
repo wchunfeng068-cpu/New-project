@@ -49,11 +49,18 @@
     }
     </script>
     <link rel="preload" as="image" href="images/hero-travelday-candy.jpg" />
-    <link rel="preload" as="video" href="videos/xuanchuan.mp4" />
-    <link rel="preload" as="style" href="styles.css?v=20260729-1" />
-    <link rel="stylesheet" href="styles.css?v=20260729-1" />
+    <link rel="preconnect" href="https://formsubmit.co" />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
+    <noscript>
+      <style>
+        .primary-nav { visibility: visible !important; }
+        .mobile-menu-button { display: none !important; }
+      </style>
+    </noscript>
+    <link rel="stylesheet" href="styles.css?v=20260730-2" />
   </head>
-  <body>
+  <body class="i18n-loading">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="page-stage">
     <div class="page-shell" id="top">
       <header class="site-header" data-section="navigation">
@@ -74,7 +81,7 @@
         </button>
 
         <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
-          <a href="#top" class="active">Home</a>
+          <a href="#top">Home</a>
           <a href="mockups/product-center-preview.html">Products</a>
           <a href="#solutions">Solutions</a>
           <a href="mockups/company-presence-preview.html">About</a>
@@ -93,7 +100,7 @@
         </div>
       </header>
 
-      <main>
+      <main id="main-content" tabindex="-1">
         <section class="hero card" data-section="hero">
           <img class="hero-cover" src="images/hero-travelday-candy.jpg" alt="Candy founder portrait" width="5120" height="1708" loading="eager" fetchpriority="high" decoding="async" />
           <div class="hero-content hero-content-expanded">
@@ -117,7 +124,7 @@
           <article>
             <span class="line-icon icon-container" aria-hidden="true"></span>
             <div>
-              <strong>400+ containers</strong>
+              <strong>1000+ containers</strong>
               <p>Annual export volume</p>
             </div>
           </article>
@@ -140,19 +147,19 @@
         <section class="section-block" id="products" data-section="categories">
           <div class="product-grid">
             <a class="product-card product-card-luggage" href="mockups/product-center-preview.html" aria-label="Open product center">
-              <div class="product-image product-card-image product-card-image-luggage" aria-label="Multiple luggage showcase image"></div>
+              <div class="product-image product-card-image product-card-image-luggage" data-lazy-background="images/product-card-luggage.png" aria-label="Multiple luggage showcase image"></div>
               <div class="product-body">
                 <h3>Luggage</h3>
               </div>
             </a>
             <a class="product-card product-card-accessories" href="mockups/product-center-preview.html" aria-label="Open product center">
-              <div class="product-image product-card-image product-card-image-accessories" aria-label="Accessories showcase image"></div>
+              <div class="product-image product-card-image product-card-image-accessories" data-lazy-background="images/product-card-accessories.png" aria-label="Accessories showcase image"></div>
               <div class="product-body">
-                <h3>ACCESORIES</h3>
+                <h3>ACCESSORIES</h3>
               </div>
             </a>
             <a class="product-card product-card-presence" href="mockups/company-presence-preview.html" aria-label="Open company presence page">
-              <div class="product-image product-card-image product-card-image-presence" aria-label="Company presence image"></div>
+              <div class="product-image product-card-image product-card-image-presence" data-lazy-background="images/product-card-company-presence.png" aria-label="Company presence image"></div>
               <div class="product-body">
                 <h3>Company Presence</h3>
               </div>
@@ -161,15 +168,15 @@
         </section>
 
         <section class="video-section card" data-section="video">
-          <button class="video-hit-area" type="button" data-open-video aria-label="播放产品实拍展示视频"></button>
-          <img class="video-cover-image" src="images/luggage-video-cover.jpg" alt="产品实拍展示视频封面" width="2048" height="768" loading="eager" decoding="async" />
+          <button class="video-hit-area" type="button" data-open-video aria-label="Play product showcase video"></button>
+          <img class="video-cover-image" src="images/luggage-video-cover.jpg" alt="Product showcase video cover" width="2048" height="768" loading="lazy" decoding="async" />
           <div class="video-copy">
             <p class="section-kicker">SHOWCASE VIDEO</p>
-            <h2>产品实拍展示</h2>
-            <p>深入了解行李箱的结构、工艺、轮子与细节。</p>
-            <button class="button button-video" type="button" data-open-video>观看视频 ▶</button>
+            <h2>Product Showcase</h2>
+            <p>Explore the structure, craftsmanship, wheels, and details of our luggage.</p>
+            <button class="button button-video" type="button" data-open-video>Watch video ▶</button>
           </div>
-          <button class="play-button" type="button" data-open-video aria-label="播放视频">
+          <button class="play-button" type="button" data-open-video aria-label="Play video">
             <span></span>
           </button>
         </section>
@@ -178,44 +185,44 @@
           <div class="service-grid">
             <article class="mini-card">
               <span class="line-icon icon-importer" aria-hidden="true"></span>
-              <h3>进口商</h3>
-              <p>我们有稳定的产品供应，保障您的全球需求。</p>
+              <h3>Importers</h3>
+              <p>We provide stable product supply for your global demand.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-wholesale" aria-hidden="true"></span>
-              <h3>批发商</h3>
-              <p>我们具有竞争力的价格与灵活的订单方案。</p>
+              <h3>Wholesalers</h3>
+              <p>Competitive pricing with flexible order options.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-factory" aria-hidden="true"></span>
-              <h3>海外工厂</h3>
-              <p>我们有半成品与零部件供应，支持全球工厂生产。</p>
+              <h3>Overseas factories</h3>
+              <p>Semi-finished and component supply for factory production.</p>
             </article>
           </div>
         </section>
 
         <section class="series-banner card" data-section="series">
           <div class="series-copy">
-            <h2>行李箱系列</h2>
-            <p>覆盖登机箱、托运行李箱、零售批发和贴牌项目。</p>
+            <h2>Luggage Series</h2>
+            <p>Covering carry-ons, checked luggage, wholesale, and private-label projects.</p>
           </div>
-          <div class="series-image series-image--luggage" aria-hidden="true"></div>
+          <div class="series-image series-image--luggage" data-lazy-background="images/series-luggage.jpg" aria-hidden="true"></div>
         </section>
 
         <section class="dual-showcase" data-section="showcase">
           <article class="dual-card">
             <div class="dual-copy">
-              <h2>行李箱的拉杆</h2>
-              <p>电脑包、通勤包和旅行背包，兼顾功能分区与商务外观。</p>
+              <h2>Luggage Handles</h2>
+              <p>For business bags and travel bags with functional and professional appeal.</p>
             </div>
-            <div class="dual-image dual-image-left" aria-hidden="true"></div>
+            <div class="dual-image dual-image-left" data-lazy-background="images/series-handle.jpg" aria-hidden="true"></div>
           </article>
           <article class="dual-card">
             <div class="dual-copy">
-              <h2>行李箱轮子</h2>
-              <p>公文包、托特包和高端商务携行解决方案。</p>
+              <h2>Luggage Wheels</h2>
+              <p>Solutions for briefcases, totes, and premium business carrying needs.</p>
             </div>
-            <div class="dual-image dual-image-right" aria-hidden="true"></div>
+            <div class="dual-image dual-image-right" data-lazy-background="images/series-wheels.jpg" aria-hidden="true"></div>
           </article>
         </section>
 
@@ -223,43 +230,43 @@
           <div class="why-grid">
             <article class="mini-card">
               <span class="line-icon icon-chain" aria-hidden="true"></span>
-              <h3>稳定的供应链</h3>
-              <p>长期合作的优质供应商，保障稳定交付。</p>
+              <h3>Stable supply chain</h3>
+              <p>Trusted suppliers for long-term, stable delivery.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-quality" aria-hidden="true"></span>
-              <h3>严格的品质控制</h3>
-              <p>从原料到成品，层层把控品质。</p>
+              <h3>Strict quality control</h3>
+              <p>Quality is checked step by step from raw material to finished goods.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-custom" aria-hidden="true"></span>
-              <h3>灵活的定制服务</h3>
-              <p>OEM &amp; ODM 支持，满足不同市场需求。</p>
+              <h3>Flexible customization</h3>
+              <p>OEM &amp; ODM support for different market needs.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-price" aria-hidden="true"></span>
-              <h3>有竞争力的价格</h3>
-              <p>高效供应链管理，提供更具竞争力的价格。</p>
+              <h3>Competitive pricing</h3>
+              <p>Efficient supply chain management for stronger pricing.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-delivery" aria-hidden="true"></span>
-              <h3>准时交付保障</h3>
-              <p>成熟的生产与物流体系，确保准时交付。</p>
+              <h3>On-time delivery</h3>
+              <p>Mature production and logistics for reliable delivery.</p>
             </article>
             <article class="mini-card">
               <span class="line-icon icon-team" aria-hidden="true"></span>
-              <h3>专业团队支持</h3>
-              <p>专业的销售与售后团队，为您保驾护航。</p>
+              <h3>Professional support</h3>
+              <p>Dedicated sales and after-sales teams at your service.</p>
             </article>
           </div>
         </section>
 
         <section class="series-banner card series-banner--dark production-panel" data-section="production">
-          <div class="series-image series-image--factory" aria-hidden="true"></div>
+          <div class="series-image series-image--factory" data-lazy-background="images/series-production.jpg" aria-hidden="true"></div>
           <div class="production-copy">
             <h2 data-i18n="productionTitle">立足中国供应链，<br />服务全球交付。</h2>
             <p class="production-kicker" data-i18n="productionEyebrow">行李箱及零部件供应链合作伙伴</p>
-            <div class="production-proof-grid" aria-label="TRAVELDAY 服务优势">
+            <div class="production-proof-grid" aria-label="TRAVELDAY service advantages">
               <article>
                 <span class="line-icon icon-globe" aria-hidden="true"></span>
                 <div>
@@ -280,24 +287,24 @@
 
         <section class="stats-band card" data-section="stats">
           <div class="stats-title">
-            <p>您值得信赖的供应链合作伙伴。</p>
+            <p>A supply chain partner you can trust.</p>
           </div>
           <dl>
             <div>
-              <dt>20+</dt>
-              <dd>年行业经验</dd>
+              <dt>Since 2006</dt>
+              <dd>Years in business</dd>
             </div>
             <div>
               <dt>50+</dt>
-              <dd>团队成员</dd>
+              <dd>Team members</dd>
             </div>
             <div>
-              <dt>100+</dt>
-              <dd>全球客户</dd>
+              <dt>1000+</dt>
+              <dd>Global customers</dd>
             </div>
             <div>
               <dt>5%</dt>
-              <dd>净利润率</dd>
+              <dd>Net profit margin</dd>
             </div>
           </dl>
         </section>
@@ -305,25 +312,25 @@
         <section class="global-panel card" id="global" data-section="global">
           <div class="global-copy">
             <p class="section-kicker">GLOBAL FOOTPRINT</p>
-            <h2>全球布局</h2>
+            <h2>Global footprint</h2>
             <p>
-              以中国为核心，辐射亚洲、非洲、中东及欧洲新兴市场，为全球客户提供高效、可靠的供应链服务。
+              Rooted in China, serving emerging markets across Asia, Africa, the Middle East, and Europe with efficient, reliable supply chain services.
             </p>
-            <a class="button button-primary" href="#contact">了解更多 →</a>
+            <a class="button button-primary" href="#contact">Learn more →</a>
           </div>
-          <div class="world-map large-map" aria-label="全球布局地图">
+          <div class="world-map large-map" data-lazy-background="images/server-map.jpg" aria-label="Global footprint map">
           </div>
         </section>
 
         <section class="contact-card card" id="contact" data-section="contact">
           <div class="footer-brand">
-            <div class="social-links" aria-label="社交媒体">
-              <a href="#">LinkedIn</a>
-              <a href="#">Facebook</a>
-              <a href="#">YouTube</a>
+            <div class="social-links" aria-label="Social media">
+              <a href="#contact">LinkedIn</a>
+              <a href="#contact">Facebook</a>
+              <a href="#contact">YouTube</a>
             </div>
             <div class="footer-brand-copy">
-              <a class="brand brand-footer" href="#top" aria-label="TRAVELDAY 首页">
+              <a class="brand brand-footer" href="#top" aria-label="TRAVELDAY home">
                 <span class="brand-logo">
                   <img
                     src="images/logo-travelday.png"
@@ -333,17 +340,16 @@
                 </span>
               </a>
               <p>
-                专注于行李箱及零部件供应链，致力于为全球客户提供高品质的产品与专业的供应链解决方案。
+                Focused on luggage and component supply chains, delivering high-quality products and professional supply chain solutions for global customers.
               </p>
             </div>
           </div>
 
           <div class="contact-info">
-            <h2>联系我们</h2>
+            <h2>Contact us</h2>
             <ul>
-              <li><span>电话：</span><strong>+86 133 1234 5678</strong></li>
-              <li><span>邮箱：</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a></li>
-              <li><span>地址：</span>中国广东省佛山市南海区里水镇里水大道 88 号</li>
+              <li><span>Email:</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a></li>
+              <li><span>Address:</span>No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China</li>
             </ul>
             <p class="company-name">
               上海戴承实业有限公司<br />
@@ -354,19 +360,19 @@
           <form class="inquiry-form" aria-label="Quick inquiry form">
             <h2>Turn every inquiry into one elegant entry point.</h2>
             <label>
-              <span>您的姓名</span>
+              <span>Your name</span>
               <input name="name" type="text" autocomplete="name" />
             </label>
             <label>
-              <span>公司名称</span>
+              <span>Company name</span>
               <input name="company" type="text" autocomplete="organization" />
             </label>
             <label>
-              <span>邮箱地址</span>
+              <span>Email address</span>
               <input name="email" type="email" autocomplete="email" />
             </label>
             <label>
-              <span>留言内容</span>
+              <span>Message</span>
               <textarea name="message" rows="4"></textarea>
             </label>
             <button class="button button-primary form-submit" type="submit">Send inquiry</button>
@@ -376,11 +382,11 @@
       </main>
 
       <footer class="site-footer" data-section="footer">
-        <p>© 2006-2024 TRAVELDAY. 保留所有权利。</p>
-        <nav aria-label="页脚导航">
-          <a href="#">隐私政策</a>
-          <a href="#">服务条款</a>
-          <a href="#">网站地图</a>
+        <p>© 2006-2026 TRAVELDAY. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+          <a href="sitemap.html">Sitemap</a>
         </nav>
         <a class="back-top" href="#top" aria-label="Back to top">↑</a>
       </footer>
@@ -389,9 +395,9 @@
     </div>
 
     <div class="video-modal" data-video-modal aria-hidden="true">
-      <button class="modal-backdrop" type="button" data-close-video aria-label="关闭视频"></button>
-      <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="产品实拍展示视频">
-        <button class="modal-close" type="button" data-close-video aria-label="关闭视频">×</button>
+      <button class="modal-backdrop" type="button" data-close-video aria-label="Close video"></button>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-label="Product showcase video">
+        <button class="modal-close" type="button" data-close-video aria-label="Close video">×</button>
         <video
           data-video-player
           controls
@@ -403,7 +409,7 @@
       </div>
     </div>
 
-    <script src="script.js?v=20260729-1" defer></script>
-    <script src="shared-inquiry.js?v=20260729-1" defer></script>
+    <script src="script.js?v=20260730-2" defer></script>
+    <script src="shared-inquiry.js?v=20260730-1" defer></script>
   </body>
 </html>

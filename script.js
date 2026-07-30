@@ -86,7 +86,7 @@
       formEmail: '邮箱地址',
       formMessage: '留言内容',
       formSubmit: '提交询盘',
-      footer: '© 2006-2024 TRAVELDAY. 保留所有权利。',
+      footer: '© 2006-2026 TRAVELDAY. 保留所有权利。',
       footerLinks: ['隐私政策', '服务条款', '网站地图'],
       modalClose: '关闭视频',
     },
@@ -164,7 +164,7 @@
       formEmail: 'Email address',
       formMessage: 'Message',
       formSubmit: 'Send inquiry',
-      footer: '© 2006-2024 TRAVELDAY. All rights reserved.',
+      footer: '© 2006-2026 TRAVELDAY. All rights reserved.',
       footerLinks: ['Privacy Policy', 'Terms of Service', 'Sitemap'],
       modalClose: 'Close video',
     },
@@ -242,7 +242,7 @@
       formEmail: 'Correo electrónico',
       formMessage: 'Mensaje',
       formSubmit: 'Enviar consulta',
-      footer: '© 2006-2024 TRAVELDAY. Todos los derechos reservados.',
+      footer: '© 2006-2026 TRAVELDAY. Todos los derechos reservados.',
       footerLinks: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'],
       modalClose: 'Cerrar video',
     },
@@ -320,7 +320,7 @@
       formEmail: 'ईमेल पता',
       formMessage: 'संदेश',
       formSubmit: 'पूछताछ भेजें',
-      footer: '© 2006-2024 TRAVELDAY. सर्वाधिकार सुरक्षित।',
+      footer: '© 2006-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
       footerLinks: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'],
       modalClose: 'वीडियो बंद करें',
     },
@@ -333,7 +333,7 @@
 
   const PRODUCT_LABELS = {
     zh: ['行李箱', '配件', '公司风采'],
-    en: ['Luggage', 'ACCESORIES', 'Company Presence'],
+    en: ['Luggage', 'ACCESSORIES', 'Company Presence'],
     es: ['Equipaje', 'Accesorios', 'Presencia de la empresa'],
     hi: ['सामान', 'सहायक उपकरण', 'कंपनी की उपस्थिति'],
   };
@@ -391,10 +391,6 @@
       ['5%', 'शुद्ध लाभ मार्जिन'],
     ],
   };
-
-  const FIXED_DESKTOP_BREAKPOINT = 1280;
-  const DESKTOP_CANVAS_WIDTH = 1500;
-  const DESKTOP_CANVAS_MARGIN = 46;
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -639,14 +635,31 @@
 
     const root = getProjectRootUrl();
     const hasLocalContact = Boolean(document.getElementById('contact'));
+    const hasLocalSolutions = Boolean(document.getElementById('solutions'));
+    const hasLocalGlobal = Boolean(document.getElementById('global'));
+    const isThankYouPage = window.location.pathname.toLowerCase().endsWith('/thank-you.html');
     const homeUrl = new URL('index.html', root);
     const labels = NAV_LABELS[lang] || NAV_LABELS[DEFAULT_LANG];
     const targets = [
       { key: 'home', href: withLanguage(new URL('index.html', root), lang) },
       { key: 'products', href: withLanguage(new URL('mockups/product-center-preview.html', root), lang) },
-      { key: 'solutions', href: withLanguage(new URL('mockups/solution-preview.html', root), lang) },
+      {
+        key: 'solutions',
+        href: hasLocalSolutions
+          ? '#solutions'
+          : isThankYouPage
+            ? `${withLanguage(homeUrl, lang)}#solutions`
+            : withLanguage(new URL('mockups/solution-preview.html', root), lang),
+      },
       { key: 'about', href: withLanguage(new URL('mockups/company-presence-preview.html', root), lang) },
-      { key: 'market', href: withLanguage(new URL('mockups/market-preview.html', root), lang) },
+      {
+        key: 'market',
+        href: hasLocalGlobal
+          ? '#global'
+          : isThankYouPage
+            ? `${withLanguage(homeUrl, lang)}#global`
+            : withLanguage(new URL('mockups/market-preview.html', root), lang),
+      },
       {
         key: 'contact',
         href: hasLocalContact ? '#contact' : `${withLanguage(homeUrl, lang)}#contact`,
@@ -719,34 +732,7 @@
     document.documentElement.lang = value.langTag || value.lang || 'zh-CN';
   };
 
-  const applyFixedDesktopStage = () => {
-    const stage = $('.page-stage');
-    const shell = $('.page-shell');
-    if (!stage || !shell) return;
-
-    const shouldUseDesktopScale = window.innerWidth <= FIXED_DESKTOP_BREAKPOINT;
-    document.body.classList.toggle('fixed-desktop-stage', shouldUseDesktopScale);
-
-    if (!shouldUseDesktopScale) {
-      document.documentElement.style.setProperty('--desktop-scale', '1');
-      document.documentElement.style.setProperty('--scaled-shell-height', 'auto');
-      stage.style.minHeight = '';
-      stage.style.height = '';
-      return;
-    }
-
-    const availableWidth = Math.max(320, window.innerWidth - 20);
-    const scale = Math.min(1, availableWidth / DESKTOP_CANVAS_WIDTH);
-    const scaledHeight = Math.ceil((shell.offsetHeight + DESKTOP_CANVAS_MARGIN) * scale);
-
-    document.documentElement.style.setProperty('--desktop-scale', scale.toFixed(5));
-    document.documentElement.style.setProperty('--scaled-shell-height', `${scaledHeight}px`);
-    stage.style.minHeight = `${scaledHeight}px`;
-    stage.style.height = `${scaledHeight}px`;
-  };
-
   const getViewportBucket = () => {
-    if (document.body.classList.contains('fixed-desktop-stage')) return 'desktop';
     if (window.innerWidth <= 640) return 'phone';
     if (window.innerWidth <= 980) return 'tablet';
     return 'desktop';
@@ -841,6 +827,19 @@
     setText('.quote-button', t.quote);
     const langSelect = $('.language-select');
     if (langSelect && langSelect.value !== lang) langSelect.value = lang;
+    const menuButton = $('.mobile-menu-button');
+    if (menuButton) {
+      const menuLabels = {
+        zh: ['打开导航菜单', '关闭导航菜单'],
+        en: ['Open navigation menu', 'Close navigation menu'],
+        es: ['Abrir menú de navegación', 'Cerrar menú de navegación'],
+        hi: ['नेविगेशन मेनू खोलें', 'नेविगेशन मेनू बंद करें'],
+      };
+      const [openLabel, closeLabel] = menuLabels[lang] || menuLabels.en;
+      menuButton.dataset.menuOpenLabel = openLabel;
+      menuButton.dataset.menuCloseLabel = closeLabel;
+      menuButton.setAttribute('aria-label', menuButton.getAttribute('aria-expanded') === 'true' ? closeLabel : openLabel);
+    }
     document.documentElement.dataset.navReady = 'true';
 
     // Hero
@@ -848,7 +847,6 @@
     setHTML('[data-i18n="heroTitle"]', t.heroTitle.replace(/\n/g, '<br />'));
     setText('[data-i18n="heroButtonPrimary"]', t.heroButtonPrimary);
     setText('[data-i18n="heroButtonSecondary"]', t.heroButtonSecondary);
-    applyFixedDesktopStage();
     applyResponsiveTypeTuning(lang);
 
     const heroStats = HERO_STAT_LABELS[lang] || t.heroStats;
@@ -941,13 +939,10 @@
     setText('#contact .contact-info h2', t.contactTitle);
     const contactItems = $$('#contact .contact-info ul li');
     if (contactItems[0]) {
-      contactItems[0].innerHTML = `<span>${t.contactPhoneLabel}</span><strong>+86 133 1234 5678</strong>`;
+      contactItems[0].innerHTML = `<span>${t.contactEmailLabel}</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a>`;
     }
     if (contactItems[1]) {
-      contactItems[1].innerHTML = `<span>${t.contactEmailLabel}</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a>`;
-    }
-    if (contactItems[2]) {
-      contactItems[2].innerHTML = `<span>${t.contactAddressLabel}</span>${t.contactAddress}`;
+      contactItems[1].innerHTML = `<span>${t.contactAddressLabel}</span>${t.contactAddress}`;
     }
     setHTML('#contact .company-name', `${t.companyCn}<br />${t.companyEn}`);
     setText('#contact .footer-brand-copy p', t.contactDesc);
@@ -978,18 +973,54 @@
     if (modalDialog) modalDialog.setAttribute('aria-label', closeLabel);
   };
 
+  let videoTrigger = null;
+
   const openVideo = async () => {
     const modal = $('[data-video-modal]');
     const player = $('[data-video-player]');
     if (!modal || !player) return;
-    modal.classList.add('is-open');
+    videoTrigger = document.activeElement;
+    modal.classList.add('is-open', 'is-loading');
     modal.setAttribute('aria-hidden', 'false');
+    const closeBtn = modal.querySelector('[data-close-video]');
+    if (closeBtn) closeBtn.focus();
     try {
       player.currentTime = 0;
       await player.play();
+      modal.classList.remove('is-loading');
     } catch {
-      // If autoplay policies block it, the user still gets the ready player.
+      modal.classList.remove('is-loading');
     }
+  };
+
+  const bindLazyBackgrounds = () => {
+    const elements = $$('[data-lazy-background]');
+    if (!elements.length) return;
+
+    const loadBackground = (element) => {
+      const src = element.dataset.lazyBackground;
+      if (!src || element.dataset.backgroundLoaded === 'true') return;
+      element.style.setProperty('--lazy-background', `url("${src}")`);
+      element.dataset.backgroundLoaded = 'true';
+      element.classList.add('bg-loaded');
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach(loadBackground);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, instance) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          loadBackground(entry.target);
+          instance.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '300px 0px' },
+    );
+    elements.forEach((element) => observer.observe(element));
   };
 
   const closeVideo = () => {
@@ -1000,6 +1031,7 @@
     player.currentTime = 0;
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
+    if (videoTrigger) videoTrigger.focus();
   };
 
   const bindVideo = () => {
@@ -1013,6 +1045,20 @@
     if (modal) {
       modal.addEventListener('click', (event) => {
         if (event.target === modal) closeVideo();
+      });
+      modal.addEventListener('keydown', (event) => {
+        if (event.key !== 'Tab') return;
+        const focusable = modal.querySelectorAll('button, [href], video, [tabindex]:not([tabindex="-1"])');
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       });
     }
     window.addEventListener('keydown', (event) => {
@@ -1028,6 +1074,7 @@
     const closeMobileMenu = () => {
       document.body.classList.remove('is-menu-open');
       mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenuButton.setAttribute('aria-label', mobileMenuButton.dataset.menuOpenLabel || 'Open navigation menu');
       nav.classList.remove('is-open');
     };
 
@@ -1035,7 +1082,24 @@
       const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
       document.body.classList.toggle('is-menu-open', !expanded);
       mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+      mobileMenuButton.setAttribute(
+        'aria-label',
+        !expanded ? mobileMenuButton.dataset.menuCloseLabel || 'Close navigation menu' : mobileMenuButton.dataset.menuOpenLabel || 'Open navigation menu',
+      );
       nav.classList.toggle('is-open', !expanded);
+      if (!expanded) {
+        const firstLink = nav.querySelector('a');
+        if (firstLink) setTimeout(() => firstLink.focus(), 100);
+      } else {
+        mobileMenuButton.focus();
+      }
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && nav.classList.contains('is-open')) {
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        mobileMenuButton.focus();
+      }
     });
     $$('#primaryNav a').forEach((link) => {
       link.addEventListener('click', () => {
@@ -1077,6 +1141,7 @@
   const init = () => {
     bindMobileMenu();
     bindVideo();
+    bindLazyBackgrounds();
     bindTopButton();
     bindNavigationLanguageFallback();
     window.setSiteLanguage = setSiteLanguage;
@@ -1087,21 +1152,19 @@
       select.addEventListener('input', (event) => setSiteLanguage(event.target.value));
     }
 
-    applyFixedDesktopStage();
     setSiteLanguage(readInitialLanguage());
+    document.body.classList.remove('i18n-loading');
     let resizeRaf = 0;
     window.addEventListener(
       'resize',
       () => {
         if (resizeRaf) cancelAnimationFrame(resizeRaf);
         resizeRaf = requestAnimationFrame(() => {
-          applyFixedDesktopStage();
           applyResponsiveTypeTuning(state.lang);
         });
       },
       { passive: true },
     );
-    window.addEventListener('load', () => applyFixedDesktopStage(), { once: true });
   };
 
   if (document.readyState === 'loading') {

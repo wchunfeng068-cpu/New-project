@@ -5,8 +5,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Solutions</title>
+    <meta name="description" content="One-stop luggage resource integration for importers, wholesalers and overseas factories." />
+    <link rel="canonical" href="https://www.traveldaysuitcase.com/mockups/solution-preview.html" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
+    <link rel="preconnect" href="https://formsubmit.co" />
+    <link rel="dns-prefetch" href="https://formsubmit.co" />
+    <noscript>
+      <style>
+        .primary-nav { visibility: visible !important; }
+        .mobile-menu-button { display: none !important; }
+      </style>
+    </noscript>
     <link rel="stylesheet" href="../styles.css?v=20260729-1" />
     <style>
       .preview-main {
@@ -804,13 +814,17 @@
       }
     </style>
   </head>
-  <body>
+  <body class="i18n-loading">
     <div class="page-stage">
       <div class="page-shell" id="top">
         <header class="site-header" data-section="navigation">
           <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
             <span class="brand-logo">
-              <img src="../images/logo-travelday.png" alt="TRAVELDAY" width="480" height="240" loading="lazy" decoding="async" />
+              <img
+                src="../images/logo-travelday.png"
+                alt="TRAVELDAY"
+                width="480" height="240" loading="eager" decoding="async"
+              />
             </span>
           </a>
 
@@ -822,21 +836,21 @@
 
           <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
             <a href="../index.html">Home</a>
-            <a href="product-center-preview.html">Product Center</a>
-            <a href="solution-preview.html" class="active">Solutions</a>
-            <a href="company-presence-preview.html">About Us</a>
+            <a href="product-center-preview.html">Products</a>
+            <a href="solution-preview.html">Solutions</a>
+            <a href="company-presence-preview.html">About</a>
             <a href="market-preview.html">Market</a>
             <a href="#contact">Contact</a>
           </nav>
 
           <div class="header-actions">
-            <select class="language-select" aria-label="Language">
+            <select class="language-select" aria-label="Language" onchange="window.setSiteLanguage && window.setSiteLanguage(this.value)" oninput="window.setSiteLanguage && window.setSiteLanguage(this.value)">
               <option value="zh">Chinese</option>
               <option value="en" selected>English</option>
               <option value="es">Spanish</option>
               <option value="hi">Hindi</option>
             </select>
-            <a class="quote-button" href="#contact">Get Quote -></a>
+            <a class="quote-button" href="#contact">Get Quote →</a>
           </div>
         </header>
 
@@ -929,7 +943,7 @@
                 <p data-copy="inquiryFormTitle">Quick inquiry form</p>
                 <span data-copy="inquiryFormHint">One step to start the conversation</span>
               </div>
-              <form class="inquiry-form" onsubmit="return false;">
+              <form class="inquiry-form">
                 <div class="inquiry-field">
                   <label for="inq-name" data-copy="inquiryNameLabel">Name</label>
                   <input id="inq-name" type="text" data-placeholder="inquiryNamePlaceholder" placeholder="Your name" />
@@ -952,20 +966,29 @@
                 </div>
                 <div class="inquiry-form-footer">
                   <p class="inquiry-note" data-copy="inquiryNote">We will get back to you quickly with a suitable resource-matching plan.</p>
-                  <button class="button button-primary" type="button" data-copy="inquiryButton">Send inquiry</button>
+                  <button class="button button-primary" type="submit" data-copy="inquiryButton">Send inquiry</button>
                 </div>
               </form>
             </div>
           </section>
         </main>
+        <footer class="site-footer" data-section="footer">
+          <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
+          <nav aria-label="页脚导航">
+            <a href="../privacy.html">隐私政策</a>
+            <a href="../terms.html">服务条款</a>
+            <a href="../sitemap.html">网站地图</a>
+          </nav>
+          <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+        </footer>
       </div>
     </div>
 
-    <script src="../shared-shell.js?v=20260729-1" defer></script>
+    <script src="../shared-shell.js?v=20260730-3" defer></script>
     <script>
       const LANG_COPY = {
         zh: {
-          nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系"],
+          nav: ["首页", "产品中心", "解决方案", "关于我们", "市场", "联系我们"],
           quote: "获取报价",
           brand: "TRAVELDAY 首页",
           navLabel: "主导航",
@@ -997,8 +1020,8 @@
           qaNote: "拉杆 · 手把 · 轮子 · 整箱配套",
         },
         en: {
-          nav: ["Home", "Product Center", "Solutions", "About Us", "Market", "Contact"],
-          quote: "Get Quote ->",
+          nav: ["Home", "Products", "Solutions", "About", "Market", "Contact"],
+          quote: "Get Quote →",
           brand: "TRAVELDAY Home",
           navLabel: "Primary navigation",
           solutionEyebrow: "Solutions",
@@ -1029,15 +1052,15 @@
           qaNote: "Trolley handles / grips / wheels / full luggage sets",
         },
         es: {
-          nav: ["Inicio", "Centro de productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
-          quote: "Obtener cotización ?",
+          nav: ["Inicio", "Productos", "Soluciones", "Nosotros", "Mercado", "Contacto"],
+          quote: "Obtener cotización →",
           brand: "Inicio de TRAVELDAY",
           navLabel: "Navegación principal",
           solutionEyebrow: "Soluciones",
           heroTitle: "Convertir la integración en una sola entrada",
           heroDesc: "Unificar manijas, ruedas y más recursos en una sola entrada.",
-          heroPill1: "Menos explicación ? más claro",
-          heroPill2: "Integración ? una sola entrada",
+          heroPill1: "Menos explicación, más claro",
+          heroPill2: "Integración en una sola entrada",
           heroPill3: "Mejor soporte",
           heroPrimary: "Ver productos",
           heroSecondary: "Ver estructura",
@@ -1057,11 +1080,11 @@
           qaNodeTwo: "Ruedas",
           qaNodeThree: "Suministro integrado",
           qaHubTitle: "Integrador de recursos",
-          qaHubDesc: "Una entrada ? múltiples recursos",
-          qaNote: "Cotización unificada ? matching unificado ? entrega unificada",
+          qaHubDesc: "Una entrada, múltiples recursos",
+          qaNote: "Cotización unificada, matching unificado, entrega unificada",
         },
         hi: {
-          nav: ["होम", "प्रोडक्ट सेंटर", "समाधान", "हमारे बारे में", "बाज़ार", "संपर्क"],
+          nav: ["होम", "उत्पाद", "समाधान", "हमारे बारे में", "बाज़ार", "संपर्क"],
           quote: "कोटेशन लें →",
           brand: "TRAVELDAY होम",
           navLabel: "मुख्य नेविगेशन",
@@ -1450,6 +1473,6 @@
         });
       }, { passive: true });
     </script>
-    <script src="../shared-inquiry.js?v=20260729-1" defer></script>
+    <script src="../shared-inquiry.js?v=20260730-1" defer></script>
   </body>
 </html>
