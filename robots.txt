@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.traveldaysuitcase.com/sitemap.xml
+Sitemap: https://www.dc-luggage.com/sitemap.xml
