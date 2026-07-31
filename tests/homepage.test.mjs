@@ -6,10 +6,12 @@ const root = path.resolve(process.cwd());
 const indexPath = path.join(root, 'index.html');
 const stylesPath = path.join(root, 'styles.css');
 const scriptPath = path.join(root, 'script.js');
+const shellPath = path.join(root, 'src/shell.js');
 
 const indexHtml = await fs.readFile(indexPath, 'utf8');
 const stylesCss = await fs.readFile(stylesPath, 'utf8');
 const scriptJs = await fs.readFile(scriptPath, 'utf8');
+const shellJs = await fs.readFile(shellPath, 'utf8');
 
 const requiredAssets = [
   'images/series-luggage.jpg',
@@ -58,11 +60,11 @@ assert.match(indexHtml, /data-lazy-background="images\/server-map\.jpg"/);
 
 assert.match(indexHtml, /<video[\s\S]*?preload="none"/);
 assert.match(scriptJs, /key\s*===\s*['"]Escape['"]/);
-assert.match(scriptJs, /mobileMenuButton/);
+assert.match(shellJs, /mobileMenuButton/);
 assert.match(scriptJs, /document\.documentElement\.dataset\.lang\s*=\s*lang/);
 assert.match(scriptJs, /const getViewportBucket = \(\) =>/);
 assert.match(scriptJs, /const applyResponsiveTypeTuning = \(lang\) =>/);
-assert.match(scriptJs, /document\.body\.classList\.toggle\('is-menu-open'/);
+assert.match(shellJs, /document\.body\.classList\.toggle\('is-menu-open'/);
 assert.doesNotMatch(scriptJs, /fixed-desktop-stage/);
 assert.match(scriptJs, /bindLazyBackgrounds/);
 assert.match(indexHtml, /data-lazy-background="images\/series-luggage\.jpg"/);

@@ -1,13 +1,13 @@
 {
+  "type": "module",
   "scripts": {
+    "dev": "node tools/dev-server.mjs",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "node tests/homepage.test.mjs && node tests/responsive.test.mjs",
+    "test:smoke": "node tests/homepage.test.mjs",
     "test:unit": "vitest run",
     "test:e2e": "node tests/responsive.test.mjs"
-  },
-  "dependencies": {
-    "ws": "^8.21.0"
   },
   "devDependencies": {
     "eslint": "^9.39.5",
