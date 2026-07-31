@@ -17,9 +17,6 @@
       contactTitle: '直接联系',
       contactDesc: 'wchunfeng068@gmail.com · 详细需求可直接沟通。',
       email: INQUIRY_RECIPIENT,
-      companyName: '上海戴承实业有限公司',
-      address: '上海市奉贤区茂园路260号4幢801室',
-      phone: '+86 21 37599980',
       formTitle: '快速询盘',
       formHint: '第一步就能开始对接',
       formAria: '快速询盘',
@@ -51,9 +48,6 @@
       contactTitle: 'Direct contact',
       contactDesc: 'wchunfeng068@gmail.com · More details can be discussed in one step.',
       email: INQUIRY_RECIPIENT,
-      companyName: 'Shanghai Daicheng Industrial Co., Ltd.',
-      address: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
-      phone: '+86 21 37599980',
       formTitle: 'Quick inquiry form',
       formHint: 'One step to start the conversation',
       formAria: 'Quick inquiry form',
@@ -85,9 +79,6 @@
       contactTitle: 'Contacto directo',
       contactDesc: 'wchunfeng068@gmail.com · Se pueden discutir más detalles en un solo paso.',
       email: INQUIRY_RECIPIENT,
-      companyName: 'Shanghai Daicheng Industrial Co., Ltd.',
-      address: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
-      phone: '+86 21 37599980',
       formTitle: 'Formulario rápido',
       formHint: 'Un solo paso para iniciar la conversación',
       formAria: 'Formulario rápido',
@@ -119,9 +110,6 @@
       contactTitle: 'सीधा संपर्क',
       contactDesc: 'wchunfeng068@gmail.com · अधिक विवरण एक ही चरण में चर्चा किए जा सकते हैं।',
       email: INQUIRY_RECIPIENT,
-      companyName: 'Shanghai Daicheng Industrial Co., Ltd.',
-      address: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
-      phone: '+86 21 37599980',
       formTitle: 'त्वरित पूछताछ फॉर्म',
       formHint: 'बातचीत शुरू करने के लिए एक ही चरण',
       formAria: 'त्वरित पूछताछ फॉर्म',
@@ -440,28 +428,6 @@
   };
 
   const template = () => `
-      <div class="footer-brand">
-        <div class="social-links" aria-label="Social media">
-          <a href="#contact">LinkedIn</a>
-          <a href="#contact">Facebook</a>
-          <a href="#contact">YouTube</a>
-        </div>
-        <div class="footer-brand-copy">
-          <a class="brand brand-footer" href="#top" aria-label="TRAVELDAY home">
-            <span class="brand-logo">
-              <img
-                src="images/logo-travelday.png"
-                alt="TRAVELDAY"
-                width="480" height="240" loading="eager" decoding="async"
-              />
-            </span>
-          </a>
-          <p>
-            Focused on luggage and component supply chains, delivering high-quality products and professional supply chain solutions for global customers.
-          </p>
-        </div>
-      </div>
-
     <div class="inquiry-copy">
       <p class="inquiry-eyebrow" data-inquiry-copy="eyebrow">INQUIRY / CONTACT</p>
       <h2 class="inquiry-title" data-inquiry-copy="title">Turn every inquiry into one elegant entry point.</h2>
@@ -476,9 +442,6 @@
       <div class="inquiry-contact">
         <div>
           <strong data-inquiry-copy="contactTitle">Direct contact</strong>
-          <span data-inquiry-copy="companyName">Shanghai Daicheng Industrial Co., Ltd.</span>
-          <span data-inquiry-copy="address">Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China</span>
-          <span data-inquiry-copy="phone">+86 21 37599980</span>
           <span data-inquiry-copy="contactDesc">wchunfeng068@gmail.com · More details can be discussed in one step.</span>
         </div>
         <a class="inquiry-email" href="mailto:wchunfeng068@gmail.com" data-inquiry-copy="email">wchunfeng068@gmail.com</a>
@@ -603,7 +566,7 @@
           status.textContent = copy.status;
           window.location.assign(returnUrl.toString());
         }
-      } catch (_error) {
+      } catch (error) {
         form.setAttribute('aria-busy', 'false');
         status.setAttribute('role', 'alert');
         status.classList.add('is-error');
@@ -633,9 +596,6 @@
     setText(section, '[data-inquiry-copy="pill2"]', copy.pill2);
     setText(section, '[data-inquiry-copy="pill3"]', copy.pill3);
     setText(section, '[data-inquiry-copy="contactTitle"]', copy.contactTitle);
-    setText(section, '[data-inquiry-copy="companyName"]', copy.companyName);
-    setText(section, '[data-inquiry-copy="address"]', copy.address);
-    setText(section, '[data-inquiry-copy="phone"]', copy.phone);
     setText(section, '[data-inquiry-copy="contactDesc"]', copy.contactDesc);
     setText(section, '[data-inquiry-copy="email"]', copy.email);
     setText(section, '[data-inquiry-copy="formTitle"]', copy.formTitle);

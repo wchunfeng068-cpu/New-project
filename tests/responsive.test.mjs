@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { setTimeout as delay } from 'node:timers/promises';
 
@@ -17,39 +17,13 @@ const edgeCandidates = [
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
 ];
 
-const unixCandidates = [
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
-  '/Applications/Chromium.app/Contents/MacOS/Chromium',
-  '/usr/bin/google-chrome',
-  '/usr/bin/chromium',
-  '/usr/bin/chromium-browser',
-  '/usr/bin/microsoft-edge',
-];
-
-let browserPath = [...edgeCandidates, ...unixCandidates].find((candidate) => {
+const browserPath = edgeCandidates.find((candidate) => {
   try {
     return candidate && existsSync(candidate);
   } catch {
     return false;
   }
 });
-
-if (!browserPath) {
-  const whichCmd = process.platform === 'win32' ? 'where' : 'which';
-  for (const cmd of ['google-chrome', 'chromium', 'chromium-browser', 'microsoft-edge', 'chrome']) {
-    try {
-      const result = spawnSync(whichCmd, [cmd], { encoding: 'utf8' });
-      const found = (result.stdout || '').trim().split(/\r?\n/)[0];
-      if (found) {
-        browserPath = found;
-        break;
-      }
-    } catch {
-      // ignore lookup failures
-    }
-  }
-}
 
 assert.ok(browserPath, 'No compatible Chromium browser was found for responsive testing.');
 
@@ -297,10 +271,11 @@ const main = async () => {
       }
 
       const baseline = results[0];
-      // Cross-language top/height equality intentionally skipped: translated copy has
-      // different lengths per language, so absolute positions legitimately shift. Layout
-      // stability is enforced by scrollOverflow (no horizontal overflow) and the grid-column
-      // assertions that follow.
+      for (const metrics of results.slice(1)) {
+        approxEqual(metrics.heroHeight, baseline.heroHeight, 1, `Hero height mismatch at ${viewport.width}x${viewport.height}`);
+        approxEqual(metrics.statsTop, baseline.statsTop, 1, `Stats top mismatch at ${viewport.width}x${viewport.height}`);
+        approxEqual(metrics.productsTop, baseline.productsTop, 1, `Products top mismatch at ${viewport.width}x${viewport.height}`);
+      }
 
       return baseline;
     };
@@ -311,6 +286,7 @@ const main = async () => {
     await assertStableForViewport({ width: 390, height: 844 });
 
     const desktop = await loadScenario({ width: 1440, height: 900, lang: 'en' });
+    assert.equal(desktop.fixedDesktopMode, false, 'Large desktop should use the normal desktop layout.');
     assert.equal(desktop.mobileMenuVisible, false, 'Large desktop should keep the full navigation visible.');
     assert.equal(desktop.heroCols, 2, 'Large desktop Hero should remain a two-column layout.');
     assert.equal(desktop.productCols, 3, 'Large desktop product grid should render in three columns.');
@@ -321,34 +297,46 @@ const main = async () => {
     assert.equal(desktop.contactCols, 3, 'Large desktop contact section should remain three columns.');
     approxEqual(desktop.playCenterOffset, 0, 1, 'Large desktop video play button should stay centered.');
 
-    const mid = await loadScenario({ width: 1280, height: 800, lang: 'en' });
-    assert.equal(mid.heroCols, 2, '1280px Hero should remain a two-column layout.');
-    assert.equal(mid.productCols, 2, '1280px product grid collapses to two columns.');
-    assert.equal(mid.serviceCols, 3, '1280px service grid should render in three columns.');
-    assert.equal(mid.whyCols, 3, '1280px advantage grid should render in three columns.');
-    assert.equal(mid.heroStatsCols, 4, '1280px hero stats should render in four columns.');
-    assert.equal(mid.statsCols, 4, '1280px stats band should render in four columns.');
-    assert.equal(mid.contactCols, 3, '1280px contact section should remain three columns.');
-    approxEqual(mid.playCenterOffset, 0, 1, '1280px video play button should stay centered.');
+    const desktopScaled = await loadScenario({ width: 1280, height: 800, lang: 'en' });
+    assert.equal(desktopScaled.fixedDesktopMode, true, '1280px viewport should switch into fixed desktop scaling mode.');
+    assert.equal(desktopScaled.mobileMenuVisible, false, 'Fixed desktop scaling should keep the desktop navigation visible.');
+    assert.equal(desktopScaled.heroCols, 2, 'Scaled desktop Hero should remain a two-column layout.');
+    assert.equal(desktopScaled.productCols, 3, 'Scaled desktop product grid should remain three columns.');
+    assert.equal(desktopScaled.serviceCols, 3, 'Scaled desktop service grid should remain three columns.');
+    assert.equal(desktopScaled.whyCols, 3, 'Scaled desktop advantage grid should remain three columns.');
+    assert.equal(desktopScaled.heroStatsCols, 4, 'Scaled desktop hero stats should remain four columns.');
+    assert.equal(desktopScaled.statsCols, 4, 'Scaled desktop stats band should remain four columns.');
+    assert.equal(desktopScaled.contactCols, 3, 'Scaled desktop contact section should remain three columns.');
+    assert.equal(desktopScaled.pageShellCanvasWidth, 1500, 'Scaled desktop canvas should keep the fixed desktop width.');
+    assert.ok(desktopScaled.desktopScale < 1 && desktopScaled.desktopScale > 0.8, '1280px viewport should scale the desktop canvas down slightly.');
+    approxEqual(desktopScaled.playCenterOffset, 0, 1, 'Scaled desktop video play button should stay centered.');
 
     const tablet = await loadScenario({ width: 768, height: 1024, lang: 'en' });
-    assert.equal(tablet.heroCols, 1, 'Tablet Hero should stack to a single column.');
-    assert.equal(tablet.productCols, 2, 'Tablet product grid should render in two columns.');
-    assert.equal(tablet.serviceCols, 2, 'Tablet service grid should render in two columns.');
-    assert.equal(tablet.whyCols, 2, 'Tablet advantage grid should render in two columns.');
-    assert.equal(tablet.heroStatsCols, 2, 'Tablet hero stats should render in two columns.');
-    assert.equal(tablet.statsCols, 2, 'Tablet stats band should render in two columns.');
-    assert.equal(tablet.contactCols, 1, 'Tablet contact section should stack to a single column.');
+    assert.equal(tablet.fixedDesktopMode, true, 'Tablet should use fixed desktop scaling mode.');
+    assert.equal(tablet.mobileMenuVisible, false, 'Tablet should keep the desktop navigation visible in fixed scaling mode.');
+    assert.equal(tablet.heroCols, 2, 'Tablet Hero should stay in desktop two-column mode.');
+    assert.equal(tablet.productCols, 3, 'Tablet product grid should stay in desktop three-column mode.');
+    assert.equal(tablet.serviceCols, 3, 'Tablet service grid should stay in desktop three-column mode.');
+    assert.equal(tablet.whyCols, 3, 'Tablet advantage grid should stay in desktop three-column mode.');
+    assert.equal(tablet.heroStatsCols, 4, 'Tablet hero stats should stay in desktop four-column mode.');
+    assert.equal(tablet.statsCols, 4, 'Tablet stats band should stay in desktop four-column mode.');
+    assert.equal(tablet.contactCols, 3, 'Tablet contact section should stay in desktop three-column mode.');
+    assert.equal(tablet.pageShellCanvasWidth, 1500, 'Tablet should still render the fixed desktop canvas width.');
+    assert.ok(tablet.desktopScale < desktopScaled.desktopScale && tablet.desktopScale > 0.45, 'Tablet should scale the desktop canvas further down while keeping proportions.');
     approxEqual(tablet.playCenterOffset, 0, 1, 'Tablet video play button should stay centered.');
 
     const phone = await loadScenario({ width: 390, height: 844, lang: 'en' });
-    assert.equal(phone.heroCols, 1, 'Phone Hero should stack to a single column.');
-    assert.equal(phone.productCols, 1, 'Phone product grid should stack to a single column.');
-    assert.equal(phone.serviceCols, 1, 'Phone service grid should stack to a single column.');
-    assert.equal(phone.whyCols, 1, 'Phone advantage grid should stack to a single column.');
-    assert.equal(phone.heroStatsCols, 1, 'Phone hero stats should stack to a single column.');
-    assert.equal(phone.statsCols, 1, 'Phone stats band should stack to a single column.');
-    assert.equal(phone.contactCols, 1, 'Phone contact section should stack to a single column.');
+    assert.equal(phone.fixedDesktopMode, true, 'Phone should use fixed desktop scaling mode.');
+    assert.equal(phone.mobileMenuVisible, false, 'Phone should keep the desktop navigation visible in fixed scaling mode.');
+    assert.equal(phone.heroCols, 2, 'Phone Hero should stay in desktop two-column mode.');
+    assert.equal(phone.productCols, 3, 'Phone product grid should stay in desktop three-column mode.');
+    assert.equal(phone.serviceCols, 3, 'Phone service grid should stay in desktop three-column mode.');
+    assert.equal(phone.whyCols, 3, 'Phone advantage grid should stay in desktop three-column mode.');
+    assert.equal(phone.heroStatsCols, 4, 'Phone hero stats should stay in desktop four-column mode.');
+    assert.equal(phone.statsCols, 4, 'Phone stats band should stay in desktop four-column mode.');
+    assert.equal(phone.contactCols, 3, 'Phone contact section should stay in desktop three-column mode.');
+    assert.equal(phone.pageShellCanvasWidth, 1500, 'Phone should still render the fixed desktop canvas width.');
+    assert.ok(phone.desktopScale < tablet.desktopScale && phone.desktopScale > 0.2, 'Phone should scale the desktop canvas down the furthest.');
     approxEqual(phone.playCenterOffset, 0, 1, 'Phone video play button should stay centered.');
 
     await client.send('Emulation.setDeviceMetricsOverride', {
