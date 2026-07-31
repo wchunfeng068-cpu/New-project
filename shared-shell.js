@@ -1,91 +1,20 @@
+import { LANGS, DEFAULT_LANG, LANGUAGE_STORAGE_KEY, NAV_LABELS, isValidLang, getDefaultLang, readLanguage, persistLanguage, getProjectRootUrl, withLanguage, addLanguageToAnchor, getCurrentPageKey } from './src/i18n.js';
+
 (() => {
-  const LANGS = ['zh', 'en', 'es', 'hi'];
-  const DEFAULT_LANG = 'en';
-  const STORAGE_KEY = 'travelday-site-language';
+  // Disable browser scroll restoration — always start at top on navigation
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
   const TOP_BUTTON_STYLE_ID = 'travelday-top-button-styles';
   const SKIP_LINK_STYLE_ID = 'travelday-skip-link-styles';
-  const NAV_LABELS = {
-    zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
-    en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
-    es: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
-    hi: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
-  };
 
   const state = {
     lang: DEFAULT_LANG,
     initialized: false,
   };
 
-  const isValidLang = (value) => LANGS.includes(value);
-
-  const getDefaultLang = (fallback = DEFAULT_LANG) => {
-    const declared = document.documentElement?.dataset?.defaultLang;
-    if (isValidLang(declared)) return declared;
-    return isValidLang(fallback) ? fallback : DEFAULT_LANG;
-  };
-
-  const readLanguage = (fallback = DEFAULT_LANG) => {
-    try {
-      const queryLang = new URLSearchParams(window.location.search).get('lang');
-      if (isValidLang(queryLang)) return queryLang;
-    } catch {
-      // Ignore malformed URLs and fall back to storage/default language.
-    }
-
-    try {
-      const storedLang = localStorage.getItem(STORAGE_KEY);
-      if (isValidLang(storedLang)) return storedLang;
-    } catch {
-      // Some file:// contexts can block storage access.
-    }
-
-    return getDefaultLang(fallback);
-  };
-
-  const persistLanguage = (lang) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, lang);
-    } catch {
-      // Storage is best-effort only.
-    }
-  };
-
-  const getProjectRootUrl = () => {
-    const current = new URL(window.location.href);
-    return new URL(current.pathname.includes('/mockups/') ? '../' : './', current);
-  };
-
-  const withLanguage = (url, lang) => {
-    url.searchParams.set('lang', lang);
-    return url.toString();
-  };
-
   const getActiveLanguage = () => (isValidLang(state.lang) ? state.lang : readLanguage());
-
-  const addLanguageToAnchor = (anchor, lang) => {
-    const rawHref = anchor?.getAttribute('href');
-    if (!rawHref || rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
-
-    try {
-      const url = new URL(rawHref, document.baseURI);
-      if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
-      url.searchParams.set('lang', lang);
-      anchor.setAttribute('href', url.toString());
-    } catch {
-      // Navigation still works if a browser refuses URL parsing for an unusual href.
-    }
-  };
-
-  const getCurrentPageKey = () => {
-    const pathname = window.location.pathname.toLowerCase();
-    if (pathname.endsWith('/product-center-preview.html') || pathname.endsWith('/product-detail-preview.html')) return 'products';
-    if (pathname.endsWith('/solution-preview.html')) return 'solutions';
-    if (pathname.endsWith('/company-presence-preview.html')) return 'about';
-    if (pathname.endsWith('/market-preview.html')) return 'market';
-    return 'home';
-  };
 
   const ensureNavStandardStyles = () => {
     const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
@@ -658,6 +587,8 @@
     state.lang = readLanguage(options.defaultLang);
     syncDocumentLanguage(state.lang);
     persistLanguage(state.lang);
+    // Ensure page starts at top on navigation (not cached scroll position)
+    window.scrollTo(0, 0);
     bindLanguageSelects();
     bindNavigationLanguageFallback();
     bindMobileMenu();
@@ -674,7 +605,7 @@
 
   window.traveldayShell = {
     LANGS,
-    STORAGE_KEY,
+    LANGUAGE_STORAGE_KEY,
     getLanguage: () => state.lang,
     readLanguage,
     setLanguage,

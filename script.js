@@ -1,15 +1,11 @@
+import { LANGS, DEFAULT_LANG, NAV_LABELS, readLanguage, persistLanguage, getProjectRootUrl, withLanguage, addLanguageToAnchor, getCurrentPageKey } from './src/i18n.js';
+
 (() => {
-  const LANGS = ['zh', 'en', 'es', 'hi'];
-  const DEFAULT_LANG = 'en';
-  const LANGUAGE_STORAGE_KEY = 'travelday-site-language';
+  // Disable browser scroll restoration — always start at top on navigation
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
-  const NAV_LABELS = {
-    zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
-    en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
-    es: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
-    hi: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
-  };
 
   const translations = {
     zh: {
@@ -75,7 +71,8 @@
       contactPhoneLabel: '电话：',
       contactEmailLabel: '邮箱：',
       contactAddressLabel: '地址：',
-      contactAddress: '中国广东省佛山市南海区里水镇里水大道 88 号',
+      contactAddress: '上海市奉贤区茂园路260号4幢801室',
+      contactPhone: '+86 21 37599980',
       companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
@@ -153,8 +150,9 @@
       contactPhoneLabel: 'Phone:',
       contactEmailLabel: 'Email:',
       contactAddressLabel: 'Address:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      contactAddress: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
+      contactPhone: '+86 21 37599980',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Focused on luggage and component supply chains, delivering high-quality products and professional supply chain solutions for global customers.',
@@ -231,8 +229,9 @@
       contactPhoneLabel: 'Teléfono:',
       contactEmailLabel: 'Correo:',
       contactAddressLabel: 'Dirección:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      contactAddress: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
+      contactPhone: '+86 21 37599980',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Especializados en equipaje y componentes, ofrecemos productos de alta calidad y soluciones profesionales de cadena de suministro para clientes globales.',
@@ -309,8 +308,9 @@
       contactPhoneLabel: 'फ़ोन:',
       contactEmailLabel: 'ईमेल:',
       contactAddressLabel: 'पता:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      contactAddress: 'Room 801, Building 4, No. 260 Maoyuan Road, Fengxian District, Shanghai, China',
+      contactPhone: '+86 21 37599980',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'लगेज और कंपोनेंट सप्लाई चेन में विशेषज्ञ, वैश्विक ग्राहकों के लिए उच्च गुणवत्ता के उत्पाद और पेशेवर सप्लाई चेन समाधान।',
@@ -395,32 +395,6 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-  const readInitialLanguage = () => {
-    try {
-      const queryLang = new URLSearchParams(window.location.search).get('lang');
-      if (LANGS.includes(queryLang)) return queryLang;
-    } catch {
-      // Ignore malformed URLs and fall back to stored/default language.
-    }
-
-    try {
-      const storedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      if (LANGS.includes(storedLang)) return storedLang;
-    } catch {
-      // Some file:// contexts can block storage access.
-    }
-
-    return DEFAULT_LANG;
-  };
-
-  const persistLanguage = (lang) => {
-    try {
-      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
-    } catch {
-      // Storage is best-effort only.
-    }
-  };
-
   const updateLanguageInUrl = (lang) => {
     try {
       const url = new URL(window.location.href);
@@ -431,40 +405,7 @@
     }
   };
 
-  const getProjectRootUrl = () => {
-    const current = new URL(window.location.href);
-    return new URL(current.pathname.includes('/mockups/') ? '../' : './', current);
-  };
-
-  const withLanguage = (url, lang) => {
-    url.searchParams.set('lang', lang);
-    return url.toString();
-  };
-
-  const getActiveLanguage = () => (LANGS.includes(state.lang) ? state.lang : readInitialLanguage());
-
-  const addLanguageToAnchor = (anchor, lang) => {
-    const rawHref = anchor?.getAttribute('href');
-    if (!rawHref || rawHref.startsWith('#') || /^(mailto:|tel:|javascript:)/i.test(rawHref)) return;
-
-    try {
-      const url = new URL(rawHref, document.baseURI);
-      if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
-      url.searchParams.set('lang', lang);
-      anchor.setAttribute('href', url.toString());
-    } catch {
-      // Keep the original href if the browser cannot normalize it.
-    }
-  };
-
-  const getCurrentPageKey = () => {
-    const pathname = window.location.pathname.toLowerCase();
-    if (pathname.endsWith('/product-center-preview.html') || pathname.endsWith('/product-detail-preview.html')) return 'products';
-    if (pathname.endsWith('/solution-preview.html')) return 'solutions';
-    if (pathname.endsWith('/company-presence-preview.html')) return 'about';
-    if (pathname.endsWith('/market-preview.html')) return 'market';
-    return 'home';
-  };
+  const getActiveLanguage = () => (LANGS.includes(state.lang) ? state.lang : readLanguage());
 
   const ensureNavStandardStyles = () => {
     const hasStylesCSS = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(
@@ -676,10 +617,6 @@
     });
   };
 
-  const schedulePrimaryNavigationSync = (lang) => {
-    window.setTimeout(() => syncPrimaryNavigation(lang), 0);
-  };
-
   const bindNavigationLanguageFallback = () => {
     $$('.primary-nav, .brand, .quote-button').forEach((target) => {
       if (target.dataset.languageFallbackBound === 'true') return;
@@ -746,16 +683,6 @@
     node.style.minHeight = tuning.minHeight;
     node.style.paddingTop = tuning.paddingTop;
     node.style.letterSpacing = '0';
-  };
-
-  const clearTypeTuning = (node) => {
-    if (!node) return;
-    node.style.fontSize = '';
-    node.style.lineHeight = '';
-    node.style.maxWidth = '';
-    node.style.minHeight = '';
-    node.style.paddingTop = '';
-    node.style.letterSpacing = '';
   };
 
   const applyResponsiveTypeTuning = (lang) => {
@@ -936,15 +863,6 @@
     setText('#global .button-primary', t.globalButton);
 
     // Contact
-    setText('#contact .contact-info h2', t.contactTitle);
-    const contactItems = $$('#contact .contact-info ul li');
-    if (contactItems[0]) {
-      contactItems[0].innerHTML = `<span>${t.contactEmailLabel}</span><a href="mailto:wchunfeng068@gmail.com">wchunfeng068@gmail.com</a>`;
-    }
-    if (contactItems[1]) {
-      contactItems[1].innerHTML = `<span>${t.contactAddressLabel}</span>${t.contactAddress}`;
-    }
-    setHTML('#contact .company-name', `${t.companyCn}<br />${t.companyEn}`);
     setText('#contact .footer-brand-copy p', t.contactDesc);
     setText('#contact .inquiry-form h2', t.quoteTitle);
     $$('#contact .inquiry-form label').forEach((label, index) => {
@@ -979,6 +897,9 @@
     const modal = $('[data-video-modal]');
     const player = $('[data-video-player]');
     if (!modal || !player) return;
+    if (!player.src && player.dataset.src) {
+      player.src = player.dataset.src;
+    }
     videoTrigger = document.activeElement;
     modal.classList.add('is-open', 'is-loading');
     modal.setAttribute('aria-hidden', 'false');
@@ -1257,7 +1178,7 @@
       select.addEventListener('change', (event) => setSiteLanguage(event.target.value));
     }
 
-    setSiteLanguage(readInitialLanguage());
+    setSiteLanguage(readLanguage());
     document.body.classList.remove('i18n-loading');
     let resizeRaf = 0;
     window.addEventListener(
@@ -1284,7 +1205,7 @@
       } catch { return; }
       event.preventDefault();
       document.body.classList.add('is-exiting');
-      setTimeout(() => { window.location.href = href; }, 200);
+      setTimeout(() => { window.location.assign(href); }, 200);
     });
   };
 
