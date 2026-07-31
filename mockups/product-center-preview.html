@@ -62,7 +62,7 @@
 
       .page {
         width: min(1500px, calc(100% - 42px));
-        margin: 16px auto 30px;
+        margin: 32px auto 30px;
       }
 
       .site-header {
@@ -71,6 +71,7 @@
         grid-template-columns: 280px 1fr auto;
         align-items: center;
         min-height: 64px;
+        margin-bottom: 24px;
         gap: 22px;
         padding: 0 34px;
       }
@@ -246,16 +247,60 @@
       }
 
       .hero.product-center-hero {
-        min-height: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 560px;
+        border: 0;
         padding: 0;
+        overflow: hidden;
         background: none;
       }
 
       .product-center-hero-image {
         display: block;
         width: 100%;
-        height: auto;
+        height: 560px;
+        object-fit: cover;
+        object-position: center;
         margin: 0 auto;
+      }
+
+      .product-center-hero-copy {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: clamp(32px, 6.2vw, 104px);
+        width: min(42%, 560px);
+        transform: translateY(-50%);
+      }
+
+      .product-center-hero-copy .kicker {
+        margin-bottom: 24px;
+        color: #786958;
+        font-size: 13px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      .product-center-hero-copy h1 {
+        margin-bottom: 20px;
+        color: #1e1b18;
+        font-size: clamp(42px, 4.4vw, 68px);
+        line-height: 1.03;
+      }
+
+      .product-center-hero-copy p:not(.kicker) {
+        max-width: 390px;
+        margin: 0;
+        color: #625b52;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.65;
+      }
+
+      .product-center-hero-copy .hero-actions {
+        margin-top: 30px;
       }
 
       .skip-link {
@@ -594,6 +639,15 @@
           transform: none;
         }
 
+        .product-center-hero-copy {
+          left: 30px;
+          width: min(52%, 390px);
+        }
+
+        .product-center-hero-copy h1 {
+          font-size: 40px;
+        }
+
         h1 {
           font-size: 42px;
         }
@@ -843,10 +897,18 @@
         <section class="hero card product-center-hero" aria-label="Product Center hero">
           <img
             class="product-center-hero-image"
-            src="../images/product-center-hero-selected-clean.png"
+            src="../images/product-center-hero-luxury-minimal.png"
             alt="Premium luggage shell, zipper, handle and wheel materials"
-            width="2072" height="724" loading="eager" fetchpriority="high" decoding="async"
+            width="1774" height="887" loading="eager" fetchpriority="high" decoding="async"
           />
+          <div class="product-center-hero-copy">
+            <p class="kicker" data-i18n="heroKicker">TRAVELDAY PRODUCT CENTER</p>
+            <h1 data-i18n="heroTitle">Crafted for<br />every journey.</h1>
+            <p data-i18n="heroDescription">Premium luggage and components, engineered for global brands.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#catalog" data-i18n="heroButton">Explore Products</a>
+            </div>
+          </div>
         </section>
 
         <section class="workspace card" id="catalog">
@@ -880,6 +942,10 @@
           navLabel: "主导航",
           heroLabel: "产品中心主图",
           heroAlt: "上海戴承实业有限公司产品中心主图，展示行李箱材料与全球供应链理念",
+          heroKicker: "TRAVELDAY 产品中心",
+          heroTitle: "为每一段旅程<br />精工而制。",
+          heroDescription: "面向全球品牌的高品质行李箱及配件解决方案。",
+          heroButton: "探索产品",
           catalog: {
             abspc: "ABS / PC 行李箱",
             pp: "PP 行李箱",
@@ -895,6 +961,10 @@
           navLabel: "Primary navigation",
           heroLabel: "Product Center hero",
           heroAlt: "TRAVELDAY product center hero image showing luggage materials and global supply chain capability",
+          heroKicker: "TRAVELDAY PRODUCT CENTER",
+          heroTitle: "Crafted for<br />every journey.",
+          heroDescription: "Premium luggage and components, engineered for global brands.",
+          heroButton: "Explore Products",
           catalog: {
             abspc: "ABS / PC Luggage",
             pp: "PP Luggage",
@@ -910,6 +980,10 @@
           navLabel: "Navegación principal",
           heroLabel: "Imagen principal del centro de productos",
           heroAlt: "Imagen principal del centro de productos TRAVELDAY con materiales de equipaje y capacidad de suministro global",
+          heroKicker: "CENTRO DE PRODUCTOS TRAVELDAY",
+          heroTitle: "Creado para<br />cada viaje.",
+          heroDescription: "Equipaje y componentes premium para marcas globales.",
+          heroButton: "Explorar productos",
           catalog: {
             abspc: "Equipaje ABS / PC",
             pp: "Equipaje PP",
@@ -925,6 +999,10 @@
           navLabel: "मुख्य नेविगेशन",
           heroLabel: "उत्पाद केंद्र हीरो",
           heroAlt: "TRAVELDAY उत्पाद केंद्र की मुख्य छवि, जिसमें लगेज सामग्री और वैश्विक सप्लाई चेन क्षमता दिखाई गई है",
+          heroKicker: "TRAVELDAY उत्पाद केंद्र",
+          heroTitle: "हर यात्रा के लिए<br />बारीकी से निर्मित।",
+          heroDescription: "वैश्विक ब्रांडों के लिए प्रीमियम लगेज और कंपोनेंट्स।",
+          heroButton: "उत्पाद देखें",
           catalog: {
             abspc: "ABS / PC लगेज",
             pp: "PP लगेज",
@@ -1027,6 +1105,11 @@
         document.querySelector(".primary-nav")?.setAttribute("aria-label", t.navLabel);
         document.querySelector(".product-center-hero")?.setAttribute("aria-label", t.heroLabel);
         document.querySelector(".product-center-hero-image")?.setAttribute("alt", t.heroAlt);
+        document.querySelector('[data-i18n="heroKicker"]')?.replaceChildren(t.heroKicker);
+        const heroTitle = document.querySelector('[data-i18n="heroTitle"]');
+        if (heroTitle) heroTitle.innerHTML = t.heroTitle;
+        document.querySelector('[data-i18n="heroDescription"]')?.replaceChildren(t.heroDescription);
+        document.querySelector('[data-i18n="heroButton"]')?.replaceChildren(t.heroButton);
         document.querySelectorAll(".primary-nav a").forEach((link, index) => {
           if (t.nav[index]) link.textContent = t.nav[index];
         });

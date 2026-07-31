@@ -73,7 +73,7 @@
 
       .page {
         width: min(1500px, calc(100vw - 42px));
-        margin: 16px auto 30px;
+        margin: 32px auto 30px;
       }
 
       .topbar {
@@ -168,7 +168,7 @@
         grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
         min-height: 640px;
         gap: 18px;
-        margin-top: 8px;
+        margin-top: 0;
         padding: 18px;
       }
 
@@ -337,7 +337,7 @@
 
       @media (min-width: 1081px) {
         .story {
-          margin-top: 8px;
+          margin-top: 0;
         }
       }
 
@@ -900,6 +900,7 @@
         grid-template-columns: 280px 1fr auto;
         align-items: center;
         min-height: 64px;
+        margin-bottom: 24px;
         gap: 22px;
         padding: 0 34px;
         font-family: var(--font-sans);
@@ -1439,13 +1440,12 @@
 
       .team-card-img {
         width: 100%;
-        height: auto;
+        height: clamp(360px, 42vw, 480px);
         object-fit: cover;
-        object-position: 50% 15%;
+        object-position: 50% 8%;
         display: block;
         border: 0;
         outline: 0;
-        filter: contrast(1.08) brightness(0.92);
       }
 
       .team-card-overlay {
@@ -1453,44 +1453,55 @@
         bottom: 0;
         left: 0;
         right: 0;
-        padding: 80px 28px 28px;
-        background: linear-gradient(to top, rgba(10, 8, 6, 0.95) 0%, rgba(10, 8, 6, 0.85) 40%, rgba(10, 8, 6, 0.4) 70%, transparent 100%);
+        padding: 24px 28px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0.7) 100%);
         text-align: center;
       }
 
+      .team-card-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 0 6px;
+      }
+
       .team-card-name {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: 900;
         color: #fff;
-        margin: 0 0 4px;
+        margin: 0;
         font-family: Georgia, "Times New Roman", serif;
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        line-height: 1.2;
       }
 
       .team-card-role {
-        font-size: 12px;
-        font-weight: 700;
+        font-size: 11px;
+        font-weight: 800;
         color: var(--gold, #d39a00);
-        letter-spacing: 0.12em;
+        letter-spacing: 0.15em;
         text-transform: uppercase;
-        margin: 0 0 10px;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--gold, #d39a00);
       }
 
       .team-card-divider {
-        width: 32px;
-        height: 2px;
-        border-radius: 999px;
-        background: var(--gold, #d39a00);
-        margin: 0 auto 10px;
+        display: none;
       }
 
       .team-card-quote {
         font-size: 13px;
         line-height: 1.6;
-        color: rgba(255, 255, 255, 0.85);
-        margin: 0;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 6px 0 0;
         font-style: italic;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
       }
 
       .team-carousel-controls {
@@ -1753,18 +1764,18 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const teamMembers = [
-          { name: 'Lucky', role: 'Sales', img: 'member-lucky.jpg', quote: 'Speciality in every word and action, trust in every trip' },
-          { name: 'Rita', role: 'Sales', img: 'member-rita.jpg', quote: 'Experience and professional is my name card' },
-          { name: 'Zoe', role: 'Sales', img: 'member-zoe.jpg', quote: 'Professionalism and dedication in every order' },
-          { name: 'Beauty', role: 'Sales', img: 'member-beauty.jpg', quote: '15+ years in luggage industry, one-stop service' },
-          { name: 'Alice', role: 'Sales', img: 'member-alice.jpg', quote: 'Trust builds business, service makes long-term partners' },
-          { name: 'MrXiang', role: 'Sales', img: 'member-mrxiang.jpg', quote: 'Great things come from small beginnings' },
-          { name: 'Jason', role: 'Sales', img: 'member-jason.jpg', quote: 'Know your limits to strive harder' },
-          { name: 'Coco', role: 'Sales', img: 'member-coco.jpg', quote: 'Every question gets an answer, every task gets a result' },
-          { name: 'Talya', role: 'Sales', img: 'member-talya.jpg', quote: 'Eyes on the world, hands on expertise' },
-          { name: 'Stella', role: 'Sales', img: 'member-stella.jpg', quote: 'What does not kill me makes me stronger' },
-          { name: 'Cassie', role: 'Finance', img: 'member-cassie.jpg', quote: 'The more we do, the more we can do' },
-          { name: 'Sunny', role: 'Finance', img: 'member-sunny.jpg', quote: 'Like water wearing away stone, endless and unceasing' },
+          { name: 'Lucky', role: 'Sales', img: 'clean/member-lucky-clean.png', quote: 'Speciality in every word and action, trust in every trip', pos: '50% 8%' },
+          { name: 'Rita', role: 'Sales', img: 'clean/member-rita-clean.png', quote: 'Experience and professional is my name card', pos: '50% 8%' },
+          { name: 'Zoe', role: 'Sales', img: 'clean/member-zoe-clean.png', quote: 'Professionalism and dedication in every order', pos: '50% 8%' },
+          { name: 'Beauty', role: 'Sales', img: 'clean/member-beauty-clean.png', quote: '15+ years in luggage industry, one-stop service', pos: '50% 8%' },
+          { name: 'Alice', role: 'Sales', img: 'clean/member-alice-clean.png', quote: 'Trust builds business, service makes long-term partners', pos: '50% 8%' },
+          { name: 'MrXiang', role: 'Sales', img: 'clean/member-mrxiang-clean.png', quote: 'Great things come from small beginnings', pos: '50% 8%' },
+          { name: 'Jason', role: 'Sales', img: 'clean/member-jason-clean.png', quote: 'Know your limits to strive harder', pos: '50% 8%' },
+          { name: 'Coco', role: 'Sales', img: 'clean/member-coco-clean.png', quote: 'Every question gets an answer, every task gets a result', pos: '50% 8%' },
+          { name: 'Talya', role: 'Sales', img: 'clean/member-talya-clean.png', quote: 'Eyes on the world, hands on expertise', pos: '50% 8%' },
+          { name: 'Stella', role: 'Sales', img: 'clean/member-stella-clean.png', quote: 'What does not kill me makes me stronger', pos: '50% 8%' },
+          { name: 'Cassie', role: 'Finance', img: 'clean/member-cassie-clean.png', quote: 'The more we do, the more we can do', pos: '50% 8%' },
+          { name: 'Sunny', role: 'Finance', img: 'clean/member-sunny-clean.png', quote: 'Like water wearing away stone, endless and unceasing', pos: '50% 8%' },
         ];
 
         const stage = document.querySelector('[data-team-stage]');
@@ -1778,10 +1789,12 @@
         // Render spotlight cards
         stage.innerHTML = teamMembers.map((m, i) => `
           <article class="team-spotlight-card" data-index="${i}">
-            <img class="team-card-img" src="../images/team-members/${m.img}" alt="${m.name} - ${m.role}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" />
+            <img class="team-card-img" src="../images/team-members/${m.img}" alt="${m.name} - ${m.role}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" style="object-position: ${m.pos || '50% 8%'}" />
             <div class="team-card-overlay">
-              <h3 class="team-card-name">${m.name}</h3>
-              <p class="team-card-role">${m.role}</p>
+              <div class="team-card-header">
+                <h3 class="team-card-name">${m.name}</h3>
+                <span class="team-card-role">${m.role}</span>
+              </div>
               <div class="team-card-divider"></div>
               <p class="team-card-quote">${m.quote}</p>
             </div>
@@ -1828,10 +1841,20 @@
           thumb.addEventListener('click', () => goTo(i));
         });
 
-        // Auto-scroll active thumb into view
+        // Auto-scroll active thumb into view without moving the page.
         function scrollThumbIntoView() {
           const activeThumb = thumbs[activeIndex];
-          if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          if (!activeThumb) return;
+          const container = thumbsContainer;
+          const thumbLeft = activeThumb.offsetLeft;
+          const thumbRight = thumbLeft + activeThumb.offsetWidth;
+          const viewLeft = container.scrollLeft;
+          const viewRight = viewLeft + container.clientWidth;
+          if (thumbLeft < viewLeft) {
+            container.scrollLeft = thumbLeft - 8;
+          } else if (thumbRight > viewRight) {
+            container.scrollLeft = thumbRight - container.clientWidth + 8;
+          }
         }
 
         // Keyboard navigation when carousel is in viewport
