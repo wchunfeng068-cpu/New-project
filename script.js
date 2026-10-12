@@ -19,7 +19,7 @@
       nav: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
       quote: '获取报价 →',
       heroEyebrow: '行李箱及零部件供应链合作伙伴',
-      heroTitle: '中国箱包配件制造商\n成品箱定制工厂',
+      heroTitle: '从中国供应链\n到全球制造。',
       heroButtonPrimary: '获取报价 →',
       heroButtonSecondary: '查看产品',
       heroStats: [
@@ -97,7 +97,7 @@
       nav: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
       quote: 'Get Quote →',
       heroEyebrow: 'Luggage and component supply chain partner',
-      heroTitle: 'China B2B Luggage Parts Manufacturer\n& Custom Suitcase Factory',
+      heroTitle: 'From China supply chain\nto global production',
       heroButtonPrimary: 'Get Quote →',
       heroButtonSecondary: 'View Products',
       heroStats: [
@@ -175,7 +175,7 @@
       nav: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
       quote: 'Solicitar cotización →',
       heroEyebrow: 'Tu socio en equipaje y componentes',
-      heroTitle: 'Fabricante B2B de Accesorios para Maletas\ny Fábrica de Maletas a Medida',
+      heroTitle: 'De la cadena de suministro de China\na la producción global',
       heroButtonPrimary: 'Solicitar cotización →',
       heroButtonSecondary: 'Ver productos',
       heroStats: [
@@ -253,7 +253,7 @@
       nav: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
       quote: 'कोटेशन लें →',
       heroEyebrow: 'लगेज और कंपोनेंट सप्लाई चेन पार्टनर',
-      heroTitle: 'चीन की B2B लगेज पार्ट्स मैन्युफैक्चरर\nऔर कस्टम सूटकेस फैक्ट्री',
+      heroTitle: 'चीन की सप्लाई चेन से\nवैश्विक उत्पादन तक',
       heroButtonPrimary: 'कोटेशन लें →',
       heroButtonSecondary: 'उत्पाद देखें',
       heroStats: [
