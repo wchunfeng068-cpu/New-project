@@ -2033,7 +2033,7 @@ h2 {
   .site-header {
     grid-template-columns: 1fr auto;
     min-height: auto;
-    padding: 14px 18px;
+    padding: 10px 16px;
   }
 
   .mobile-menu-button {
@@ -2046,19 +2046,21 @@ h2 {
     width: 100%;
   }
 
+  /* Right-hand mobile drawer (matches hamburger on the right, big-brand pattern). */
   .primary-nav {
     display: flex;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 280px;
+    right: 0;
+    left: auto;
+    width: 240px;
     height: 100vh;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0;
-    padding-top: 10px;
+    padding-top: 16px;
     background: var(--color-surface);
-    transform: translateX(-100%);
+    transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
     transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
@@ -2073,13 +2075,15 @@ h2 {
 
   body.is-menu-open .header-actions {
     position: fixed;
-    left: 0;
+    right: 0;
+    left: auto;
     top: auto;
     bottom: 0;
     z-index: 1001;
     display: flex;
-    width: 280px;
-    padding: 18px;
+    justify-content: center;
+    width: 240px;
+    padding: 16px;
     background: var(--color-surface);
     box-shadow: 0 -12px 28px rgba(35, 28, 20, 0.08);
     transform: translateX(0);
@@ -2087,7 +2091,7 @@ h2 {
   }
 
   .header-actions {
-    transform: translateX(-100%);
+    transform: translateX(100%);
     transition: transform 0.3s ease;
   }
 
@@ -2097,13 +2101,29 @@ h2 {
     pointer-events: auto;
   }
 
+  /* Narrower, centered nav rows */
   .primary-nav a {
-    padding: 13px 0;
+    width: 100%;
+    padding: 11px 14px;
+    font-size: 17px;
+    text-align: center;
     border-bottom: 1px solid var(--color-line);
   }
 
-  .header-actions {
-    justify-content: flex-start;
+  .primary-nav a.active {
+    color: var(--color-gold-dark);
+  }
+
+  .primary-nav a.active::after {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    width: 24px;
+    height: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--color-gold);
+    content: "";
+    transform: translateX(-50%);
   }
 
   .hero {
@@ -2232,8 +2252,9 @@ h2 {
   }
 
   .hero {
-    min-height: 620px;
-    padding: 32px 20px;
+    min-height: 560px;
+    align-items: start;
+    padding: 300px 20px 40px;
     border-radius: 15px;
   }
 
@@ -2245,16 +2266,21 @@ h2 {
     inset: 0;
     z-index: 0;
     background: linear-gradient(180deg,
-      rgba(226, 216, 205, 0.94) 0%,
-      rgba(226, 216, 205, 0.78) 32%,
-      rgba(226, 216, 205, 0.32) 58%,
-      rgba(226, 216, 205, 0) 78%);
+      rgba(226, 216, 205, 0.22) 0%,
+      rgba(226, 216, 205, 0.45) 24%,
+      rgba(226, 216, 205, 0.82) 45%,
+      rgba(226, 216, 205, 0.32) 66%,
+      rgba(226, 216, 205, 0) 86%);
     pointer-events: none;
   }
 
   .hero .eyebrow {
     font-size: 13px;
     line-height: 1.35;
+  }
+
+  .hero-content-expanded {
+    min-height: 220px;
   }
 
   .hero-content-expanded {
