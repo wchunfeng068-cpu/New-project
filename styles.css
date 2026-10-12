@@ -1538,7 +1538,7 @@ h2 {
 
 .contact-card {
   display: grid;
-  grid-template-columns: 1fr 1.4fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: 0;
   margin-top: var(--space-section);
   padding: 40px 34px 36px;
@@ -1572,17 +1572,6 @@ h2 {
   max-width: 360px;
 }
 
-.footer-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 28px 8px 0;
-}
-
-.footer-logo .brand-logo {
-  width: 220px;
-}
-
 .footer-brand {
   display: flex;
   flex-direction: column;
@@ -1590,8 +1579,7 @@ h2 {
   align-items: flex-start;
   min-height: 100%;
   gap: 22px;
-  padding: 8px 36px;
-  border-left: 1px solid var(--color-line);
+  padding: 8px 40px 8px 0;
 }
 
 .footer-brand-copy {
@@ -1680,20 +1668,10 @@ h2 {
 }
 
 /* Compact company strip under the inquiry module (home #contact). */
-.contact-inquiry ~ .footer-logo {
-  min-height: 0;
-  padding: 8px 28px 8px 0;
-}
-
-.contact-inquiry ~ .footer-logo .brand-logo {
-  width: 200px;
-}
-
 .contact-inquiry ~ .footer-brand {
   min-height: 0;
   gap: 18px;
-  padding: 8px 36px;
-  border-left: 1px solid var(--color-line);
+  padding: 8px 36px 8px 0;
 }
 
 .contact-inquiry ~ .footer-brand .social-links {
@@ -2181,7 +2159,6 @@ h2 {
     grid-template-columns: 1fr;
   }
 
-  .contact-card .footer-logo,
   .contact-card .footer-brand,
   .contact-card .contact-info {
     padding: 24px 0 0;
@@ -2190,11 +2167,6 @@ h2 {
     text-align: center;
   }
 
-  .contact-card .footer-logo {
-    padding-top: 8px;
-  }
-
-  .contact-card .footer-brand,
   .contact-card .contact-info {
     border-top: 1px solid var(--color-line);
     margin-top: 8px;
