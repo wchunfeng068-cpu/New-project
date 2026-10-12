@@ -75,7 +75,7 @@
       contactPhoneLabel: '电话：',
       contactEmailLabel: '邮箱：',
       contactAddressLabel: '地址：',
-      contactAddress: '中国广东省佛山市南海区里水镇里水大道 88 号',
+      contactAddress: '中国上海',
       companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
@@ -153,7 +153,7 @@
       contactPhoneLabel: 'Phone:',
       contactEmailLabel: 'Email:',
       contactAddressLabel: 'Address:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      contactAddress: 'Shanghai, China',
       companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
@@ -231,7 +231,7 @@
       contactPhoneLabel: 'Teléfono:',
       contactEmailLabel: 'Correo:',
       contactAddressLabel: 'Dirección:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      contactAddress: 'Shanghai, China',
       companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
@@ -309,7 +309,7 @@
       contactPhoneLabel: 'फ़ोन:',
       contactEmailLabel: 'ईमेल:',
       contactAddressLabel: 'पता:',
-      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      contactAddress: 'Shanghai, China',
       companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
