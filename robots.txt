@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /mockups/
 Allow: /
 
 Sitemap: https://luggage-dc.com/sitemap.xml
