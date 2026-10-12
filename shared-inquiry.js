@@ -5,11 +5,22 @@
   const DEFAULT_LANG = 'en';
   const INQUIRY_RECIPIENT = 'wchunfeng068@gmail.com';
   const SUBMIT_ENDPOINT = `https://formsubmit.co/${encodeURIComponent(INQUIRY_RECIPIENT)}`;
+  const AJAX_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`;
+  const SUBMIT_TIMEOUT_MS = 30000;
+  const WHATSAPP_NUMBER = window.SITE_CONFIG?.whatsappNumber || '8613333998848';
+  const WHATSAPP_DISPLAY = window.SITE_CONFIG?.whatsappDisplay || '+86 133 3399 8848';
+  const WHATSAPP_FALLBACK_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    'Hi TRAVELDAY, I am interested in your luggage parts and suitcases.',
+  )}`;
+  const AUTORESPONSE =
+    'Thank you for contacting TRAVELDAY (Shanghai Daicheng Industrial Co., Ltd.). ' +
+    'We have received your inquiry and will reply within 24 hours. ' +
+    `For a faster response, message us on WhatsApp: ${WHATSAPP_DISPLAY} (https://wa.me/${WHATSAPP_NUMBER}).`;
 
   const COPY = {
     zh: {
       eyebrow: 'INQUIRY / CONTACT',
-      title: '让合作更快发生',
+      title: '24小时内获取工厂直供价格与产品目录',
       desc: '告诉我们你的市场、产品或定制需求，我们会在同一条资源链里快速响应。',
       pill1: '24小时内回复',
       pill2: '资源协同',
@@ -34,13 +45,13 @@
       note: '我们会尽快与您联系，并给出适合的资源匹配方案。',
       status: '我们已收到您的需求，会尽快联系您。',
       sending: '发送中...',
-      submitError: '发送遇到问题，请直接通过邮箱联系我们。',
+      submitError: '发送遇到问题，请直接通过 WhatsApp 或邮箱联系我们：',
       invalidEmail: '请输入有效的邮箱地址。',
       requiredError: '请填写所有必填字段。',
     },
     en: {
       eyebrow: 'INQUIRY / CONTACT',
-      title: 'Turn every inquiry into one elegant entry point.',
+      title: 'Get factory-direct price & catalog in 24 hours',
       desc: 'Tell us your market, product or customization needs and we will respond through one integrated resource chain.',
       pill1: 'Reply within 24h',
       pill2: 'Resource coordination',
@@ -65,13 +76,13 @@
       note: 'We will get back to you quickly with a suitable resource-matching plan.',
       status: 'We have received your request and will contact you soon.',
       sending: 'Sending...',
-      submitError: 'We could not send your inquiry. Please contact us directly by email.',
+      submitError: 'We could not send your inquiry. Please reach us directly on WhatsApp or by email:',
       invalidEmail: 'Please enter a valid email address.',
       requiredError: 'Please fill in all required fields.',
     },
     es: {
       eyebrow: 'INQUIRY / CONTACT',
-      title: 'Convierte cada consulta en una entrada clara y elegante.',
+      title: 'Recibe precio directo de fábrica y catálogo en 24 horas',
       desc: 'Cuéntanos tu mercado, producto o necesidad de personalización y responderemos con una cadena integrada de recursos.',
       pill1: 'Respuesta en 24h',
       pill2: 'Coordinación de recursos',
@@ -96,13 +107,13 @@
       note: 'Te responderemos pronto con una propuesta adecuada de recursos.',
       status: 'Hemos recibido tu consulta y te contactaremos pronto.',
       sending: 'Enviando...',
-      submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por correo.',
+      submitError: 'No se pudo enviar tu consulta. Escríbenos directamente por WhatsApp o por correo:',
       invalidEmail: 'Por favor, introduce un correo electrónico válido.',
       requiredError: 'Por favor, completa todos los campos obligatorios.',
     },
     hi: {
       eyebrow: 'INQUIRY / CONTACT',
-      title: 'हर पूछताछ को एक स्पष्ट और सुरुचिपूर्ण प्रवेश बिंदु में बदलें।',
+      title: '24 घंटे में फ़ैक्टरी-डायरेक्ट कीमत और कैटलॉग पाएं',
       desc: 'हमें अपना बाज़ार, उत्पाद या कस्टमाइज़ेशन आवश्यकता बताएं, हम एकीकृत संसाधन श्रृंखला के साथ जवाब देंगे।',
       pill1: '24 घंटे में जवाब',
       pill2: 'रिसोर्स समन्वय',
@@ -127,7 +138,7 @@
       note: 'हम उपयुक्त संसाधन-मिलान योजना के साथ जल्द ही आपसे संपर्क करेंगे।',
       status: 'हमने आपकी पूछताछ प्राप्त कर ली है और जल्द ही संपर्क करेंगे।',
       sending: 'भेजा जा रहा है...',
-      submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे ईमेल से संपर्क करें।',
+      submitError: 'पूछताछ नहीं भेजी जा सकी। कृपया सीधे WhatsApp या ईमेल से संपर्क करें:',
       invalidEmail: 'कृपया एक मान्य ईमेल पता दर्ज करें।',
       requiredError: 'कृपया सभी आवश्यक फ़ील्ड भरें।',
     },
@@ -377,6 +388,11 @@
         margin: 0;
       }
 
+      body .inquiry-standard .form-status a {
+        font-weight: 900;
+        text-decoration: underline;
+      }
+
       @media (max-width: 1180px) {
         body .inquiry-standard {
           grid-template-columns: 1fr;
@@ -430,7 +446,7 @@
   const template = () => `
     <div class="inquiry-copy">
       <p class="inquiry-eyebrow" data-inquiry-copy="eyebrow">INQUIRY / CONTACT</p>
-      <h2 class="inquiry-title" data-inquiry-copy="title">Turn every inquiry into one elegant entry point.</h2>
+      <h2 class="inquiry-title" data-inquiry-copy="title">Get factory-direct price &amp; catalog in 24 hours</h2>
       <p class="inquiry-desc" data-inquiry-copy="desc">Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
 
       <div class="inquiry-meta">
@@ -456,6 +472,7 @@
       <form class="inquiry-form" aria-label="Quick inquiry form" action="${SUBMIT_ENDPOINT}" method="post">
         <input type="hidden" name="_captcha" value="false" />
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <input type="hidden" name="page" value="" />
         <div class="inquiry-field">
           <label for="inq-name" data-inquiry-copy="nameLabel">Name</label>
           <input id="inq-name" name="name" type="text" autocomplete="name" data-inquiry-placeholder="namePlaceholder" placeholder="Your name" required />
@@ -500,19 +517,40 @@
     if (node && value !== undefined && value !== null) node.setAttribute('placeholder', value);
   };
 
-  const bindSubmit = (section, copy) => {
-    const form = section.querySelector('.inquiry-form');
-    const status = section.querySelector('.form-status');
+  const showSubmitError = (status, copy) => {
+    status.setAttribute('role', 'alert');
+    status.classList.add('is-error');
+    status.classList.remove('is-success');
+    status.textContent = `${copy.submitError || 'Unable to send your inquiry right now. Please contact us directly:'} `;
+
+    const waLink = document.createElement('a');
+    waLink.href = WHATSAPP_FALLBACK_URL;
+    waLink.target = '_blank';
+    waLink.rel = 'noopener';
+    waLink.dataset.waSource = 'form_error';
+    waLink.textContent = `WhatsApp ${WHATSAPP_DISPLAY}`;
+
+    const mailLink = document.createElement('a');
+    mailLink.href = `mailto:${INQUIRY_RECIPIENT}`;
+    mailLink.dataset.emailSource = 'form_error';
+    mailLink.textContent = INQUIRY_RECIPIENT;
+
+    status.append(waLink, ' · ', mailLink);
+  };
+
+  const bindSubmit = (root) => {
+    const form = root.querySelector('.inquiry-form');
+    const status = root.querySelector('.form-status');
     if (!form || !status || form.dataset.inquiryBound === 'true') return;
 
     form.dataset.inquiryBound = 'true';
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      // Read copy at submit time so messages follow the current language.
+      const copy = COPY[getLanguage()] || COPY[DEFAULT_LANG];
       const submitButton = form.querySelector('[type="submit"]');
       const returnUrl = new URL('thank-you.html', window.location.href);
       returnUrl.searchParams.set('lang', getLanguage());
-      const payload = new FormData(form);
-      payload.set('_captcha', 'false');
 
       // Validate all required fields
       const requiredFields = form.querySelectorAll('[required]');
@@ -537,88 +575,106 @@
       if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
         status.textContent = copy.invalidEmail || 'Please enter a valid email address.';
         status.classList.add('is-error');
-        if (submitButton) submitButton.disabled = false;
+        status.classList.remove('is-success');
+        email.focus();
         return;
       }
+
+      const pageField = form.querySelector('input[name="page"]');
+      if (pageField) pageField.value = window.location.href;
+
+      const payload = new FormData(form);
+      const name = String(payload.get('name') || '').trim();
+      const company = String(payload.get('company') || '').trim();
+      payload.set('_captcha', 'false');
+      payload.set('_subject', `[Inquiry] ${name}${company ? ` - ${company}` : ''}`);
+      payload.set('_template', 'table');
+      payload.set('_autoresponse', AUTORESPONSE);
+      payload.set('page', window.location.href);
+      payload.set('lang', getLanguage());
 
       form.setAttribute('aria-busy', 'true');
       status.setAttribute('role', 'status');
       status.classList.remove('is-success');
       status.classList.remove('is-error');
       status.textContent = copy.sending || 'Sending...';
+      const originalLabel = submitButton ? submitButton.textContent : '';
       if (submitButton) {
         submitButton.disabled = true;
-        submitButton.dataset.originalText = submitButton.textContent;
         submitButton.innerHTML = '<span class="btn-spinner"></span> ' + (copy.sending || 'Sending...');
       }
 
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+
       try {
-        const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(INQUIRY_RECIPIENT)}`, {
+        const response = await fetch(AJAX_ENDPOINT, {
           method: 'POST',
           body: payload,
           headers: { Accept: 'application/json' },
+          signal: controller.signal,
         });
         if (!response.ok) throw new Error(`Inquiry submission failed: ${response.status}`);
-        if (response.ok) {
-          form.setAttribute('aria-busy', 'false');
-          status.classList.add('is-success');
-          status.classList.remove('is-error');
-          status.textContent = copy.status;
-          window.location.assign(returnUrl.toString());
-        }
+
+        status.classList.add('is-success');
+        status.textContent = copy.status;
+        window.siteTrack?.('generate_lead', { form_id: 'inquiry', page_location: window.location.href });
+        form.reset();
+        window.location.assign(returnUrl.toString());
       } catch (error) {
+        showSubmitError(status, copy);
+      } finally {
+        window.clearTimeout(timeoutId);
         form.setAttribute('aria-busy', 'false');
-        status.setAttribute('role', 'alert');
-        status.classList.add('is-error');
-        status.classList.remove('is-success');
-        status.textContent = copy.submitError || 'Unable to send your inquiry right now. Please email us directly.';
         if (submitButton) {
           submitButton.disabled = false;
-          submitButton.innerHTML = submitButton.dataset.originalText || '';
-          delete submitButton.dataset.originalText;
+          submitButton.textContent = originalLabel || copy.button;
         }
       }
     });
   };
 
   const renderSection = (section, copy) => {
-    section.classList.add(MODULE_CLASS);
+    // Pages with a [data-inquiry-mount] keep the rest of #contact (company name, address, email);
+    // pages without one let the module own the whole section.
+    const root = section.querySelector('[data-inquiry-mount]') || section;
+    root.classList.add(MODULE_CLASS);
 
-    if (section.dataset.inquiryStandardMounted !== 'true') {
-      section.innerHTML = template();
-      section.dataset.inquiryStandardMounted = 'true';
+    if (root.dataset.inquiryStandardMounted !== 'true') {
+      root.innerHTML = template();
+      root.dataset.inquiryStandardMounted = 'true';
     }
 
-    setText(section, '[data-inquiry-copy="eyebrow"]', copy.eyebrow);
-    setText(section, '[data-inquiry-copy="title"]', copy.title);
-    setText(section, '[data-inquiry-copy="desc"]', copy.desc);
-    setText(section, '[data-inquiry-copy="pill1"]', copy.pill1);
-    setText(section, '[data-inquiry-copy="pill2"]', copy.pill2);
-    setText(section, '[data-inquiry-copy="pill3"]', copy.pill3);
-    setText(section, '[data-inquiry-copy="contactTitle"]', copy.contactTitle);
-    setText(section, '[data-inquiry-copy="contactDesc"]', copy.contactDesc);
-    setText(section, '[data-inquiry-copy="email"]', copy.email);
-    setText(section, '[data-inquiry-copy="formTitle"]', copy.formTitle);
-    setText(section, '[data-inquiry-copy="formHint"]', copy.formHint);
-    setText(section, '[data-inquiry-copy="nameLabel"]', copy.nameLabel);
-    setText(section, '[data-inquiry-copy="companyLabel"]', copy.companyLabel);
-    setText(section, '[data-inquiry-copy="emailLabel"]', copy.emailLabel);
-    setText(section, '[data-inquiry-copy="needLabel"]', copy.needLabel);
-    setText(section, '[data-inquiry-copy="messageLabel"]', copy.messageLabel);
-    setText(section, '[data-inquiry-copy="note"]', copy.note);
-    setText(section, '[data-inquiry-copy="button"]', copy.button);
-    setPlaceholder(section, '[data-inquiry-placeholder="namePlaceholder"]', copy.namePlaceholder);
-    setPlaceholder(section, '[data-inquiry-placeholder="companyPlaceholder"]', copy.companyPlaceholder);
-    setPlaceholder(section, '[data-inquiry-placeholder="emailPlaceholder"]', copy.emailPlaceholder);
-    setPlaceholder(section, '[data-inquiry-placeholder="needPlaceholder"]', copy.needPlaceholder);
-    setPlaceholder(section, '[data-inquiry-placeholder="messagePlaceholder"]', copy.messagePlaceholder);
+    setText(root, '[data-inquiry-copy="eyebrow"]', copy.eyebrow);
+    setText(root, '[data-inquiry-copy="title"]', copy.title);
+    setText(root, '[data-inquiry-copy="desc"]', copy.desc);
+    setText(root, '[data-inquiry-copy="pill1"]', copy.pill1);
+    setText(root, '[data-inquiry-copy="pill2"]', copy.pill2);
+    setText(root, '[data-inquiry-copy="pill3"]', copy.pill3);
+    setText(root, '[data-inquiry-copy="contactTitle"]', copy.contactTitle);
+    setText(root, '[data-inquiry-copy="contactDesc"]', copy.contactDesc);
+    setText(root, '[data-inquiry-copy="email"]', copy.email);
+    setText(root, '[data-inquiry-copy="formTitle"]', copy.formTitle);
+    setText(root, '[data-inquiry-copy="formHint"]', copy.formHint);
+    setText(root, '[data-inquiry-copy="nameLabel"]', copy.nameLabel);
+    setText(root, '[data-inquiry-copy="companyLabel"]', copy.companyLabel);
+    setText(root, '[data-inquiry-copy="emailLabel"]', copy.emailLabel);
+    setText(root, '[data-inquiry-copy="needLabel"]', copy.needLabel);
+    setText(root, '[data-inquiry-copy="messageLabel"]', copy.messageLabel);
+    setText(root, '[data-inquiry-copy="note"]', copy.note);
+    setText(root, '[data-inquiry-copy="button"]', copy.button);
+    setPlaceholder(root, '[data-inquiry-placeholder="namePlaceholder"]', copy.namePlaceholder);
+    setPlaceholder(root, '[data-inquiry-placeholder="companyPlaceholder"]', copy.companyPlaceholder);
+    setPlaceholder(root, '[data-inquiry-placeholder="emailPlaceholder"]', copy.emailPlaceholder);
+    setPlaceholder(root, '[data-inquiry-placeholder="needPlaceholder"]', copy.needPlaceholder);
+    setPlaceholder(root, '[data-inquiry-placeholder="messagePlaceholder"]', copy.messagePlaceholder);
 
-    const form = section.querySelector('.inquiry-form');
+    const form = root.querySelector('.inquiry-form');
     if (form) form.setAttribute('aria-label', copy.formAria || copy.formTitle);
-    const email = section.querySelector('.inquiry-email');
+    const email = root.querySelector('.inquiry-email');
     if (email) email.setAttribute('href', `mailto:${copy.email}`);
 
-    bindSubmit(section, copy);
+    bindSubmit(root);
   };
 
   const sync = (lang = getLanguage()) => {

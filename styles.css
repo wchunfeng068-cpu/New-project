@@ -1550,6 +1550,17 @@ h2 {
   min-width: 0;
 }
 
+/* shared-inquiry.js renders into this mount; company details stay visible below it. */
+.contact-card > .contact-inquiry {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 981px) {
+  .contact-card > .contact-info {
+    grid-column: span 2;
+  }
+}
+
 .footer-brand p,
 .contact-info li,
 .contact-info .company-name {
@@ -1659,6 +1670,53 @@ h2 {
   margin: 0;
 }
 
+/* Compact company strip under the inquiry module (home #contact). */
+.contact-inquiry ~ .footer-brand {
+  grid-template-rows: none;
+  align-content: start;
+  min-height: 0;
+  gap: 18px;
+  padding: 6px 0 0;
+}
+
+.contact-inquiry ~ .footer-brand .social-links {
+  order: 2;
+  align-self: start;
+}
+
+.contact-inquiry ~ .footer-brand .footer-brand-copy {
+  gap: 12px;
+}
+
+.contact-inquiry ~ .footer-brand .brand-footer .brand-logo {
+  width: 160px;
+}
+
+.contact-inquiry ~ .contact-info {
+  grid-template-rows: none;
+  align-content: start;
+  min-height: 0;
+  gap: 14px;
+  padding-top: 6px;
+}
+
+.contact-inquiry ~ .contact-info h2 {
+  margin: 0;
+  font-size: clamp(26px, 2.4vw, 34px);
+}
+
+.contact-inquiry ~ .contact-info ul {
+  align-content: start;
+  min-height: 0;
+  gap: 8px;
+}
+
+.contact-inquiry ~ .contact-info li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+}
+
 .inquiry-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1751,6 +1809,11 @@ h2 {
 
 .form-status.is-error {
   color: #c0392b;
+}
+
+.form-status a {
+  font-weight: 900;
+  text-decoration: underline;
 }
 
 .btn-spinner {

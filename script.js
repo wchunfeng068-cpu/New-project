@@ -94,12 +94,6 @@
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         '专注于行李箱及零部件供应链，致力于为全球客户提供高品质的产品与专业的供应链解决方案。',
-      quoteTitle: '让合作更快发生',
-      formName: '您的姓名',
-      formCompany: '公司名称',
-      formEmail: '邮箱地址',
-      formMessage: '留言内容',
-      formSubmit: '提交询盘',
       footer: '© 2016-2026 TRAVELDAY. 保留所有权利。',
       footerLinks: ['隐私政策', '服务条款', '网站地图'],
       modalClose: '关闭视频',
@@ -168,16 +162,10 @@
       contactEmailLabel: 'Email:',
       contactAddressLabel: 'Address:',
       contactAddress: 'Shanghai, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Focused on luggage and component supply chains, delivering high-quality products and professional supply chain solutions for global customers.',
-      quoteTitle: 'Turn every inquiry into one elegant entry point.',
-      formName: 'Your name',
-      formCompany: 'Company name',
-      formEmail: 'Email address',
-      formMessage: 'Message',
-      formSubmit: 'Send inquiry',
       footer: '© 2016-2026 TRAVELDAY. All rights reserved.',
       footerLinks: ['Privacy Policy', 'Terms of Service', 'Sitemap'],
       modalClose: 'Close video',
@@ -246,16 +234,10 @@
       contactEmailLabel: 'Correo:',
       contactAddressLabel: 'Dirección:',
       contactAddress: 'Shanghai, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Especializados en equipaje y componentes, ofrecemos productos de alta calidad y soluciones profesionales de cadena de suministro para clientes globales.',
-      quoteTitle: 'Convierte cada consulta en una entrada clara y elegante.',
-      formName: 'Tu nombre',
-      formCompany: 'Nombre de la empresa',
-      formEmail: 'Correo electrónico',
-      formMessage: 'Mensaje',
-      formSubmit: 'Enviar consulta',
       footer: '© 2016-2026 TRAVELDAY. Todos los derechos reservados.',
       footerLinks: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'],
       modalClose: 'Cerrar video',
@@ -324,16 +306,10 @@
       contactEmailLabel: 'ईमेल:',
       contactAddressLabel: 'पता:',
       contactAddress: 'Shanghai, China',
-      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
+      companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'लगेज और कंपोनेंट सप्लाई चेन में विशेषज्ञ, वैश्विक ग्राहकों के लिए उच्च गुणवत्ता के उत्पाद और पेशेवर सप्लाई चेन समाधान।',
-      quoteTitle: 'हर पूछताछ को एक ही प्रवेश बिंदु में लाएं।',
-      formName: 'आपका नाम',
-      formCompany: 'कंपनी का नाम',
-      formEmail: 'ईमेल पता',
-      formMessage: 'संदेश',
-      formSubmit: 'पूछताछ भेजें',
       footer: '© 2016-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
       footerLinks: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'],
       modalClose: 'वीडियो बंद करें',
@@ -960,16 +936,7 @@
     }
     setHTML('#contact .company-name', `${t.companyCn}<br />${t.companyEn}`);
     setText('#contact .footer-brand-copy p', t.contactDesc);
-    setText('#contact .inquiry-form h2', t.quoteTitle);
-    $$('#contact .inquiry-form label').forEach((label, index) => {
-      const span = $('span', label);
-      if (!span) return;
-      if (index === 0) span.textContent = t.formName;
-      if (index === 1) span.textContent = t.formCompany;
-      if (index === 2) span.textContent = t.formEmail;
-      if (index === 3) span.textContent = t.formMessage;
-    });
-    setText('.form-submit', t.formSubmit);
+    // The inquiry form inside #contact is rendered and translated by shared-inquiry.js.
 
     // Footer
     setText('.site-footer > p', t.footer);
