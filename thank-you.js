@@ -1,9 +1,9 @@
 (() => {
   const COPY = {
-    zh: { title: '询盘已收到', description: '感谢您的咨询，我们将在 24 小时内与您联系。', home: '返回首页 →', products: '查看产品' },
-    en: { title: 'Inquiry received', description: 'Thank you for your inquiry. We will contact you within 24 hours.', home: 'Back to home →', products: 'View products' },
-    es: { title: 'Consulta recibida', description: 'Gracias por tu consulta. Te contactaremos en un plazo de 24 horas.', home: 'Volver al inicio →', products: 'Ver productos' },
-    hi: { title: 'पूछताछ प्राप्त हुई', description: 'आपकी पूछताछ के लिए धन्यवाद। हम 24 घंटों के भीतर आपसे संपर्क करेंगे।', home: 'होम पर लौटें →', products: 'उत्पाद देखें' },
+    zh: { title: '询盘已收到', description: '感谢您的咨询，我们将在 24 小时内与您联系。', home: '返回首页 →', products: '查看产品', whatsapp: '通过 WhatsApp 联系我们' },
+    en: { title: 'Inquiry received', description: 'Thank you for your inquiry. We will contact you within 24 hours.', home: 'Back to home →', products: 'View products', whatsapp: 'Chat with us on WhatsApp' },
+    es: { title: 'Consulta recibida', description: 'Gracias por tu consulta. Te contactaremos en un plazo de 24 horas.', home: 'Volver al inicio →', products: 'Ver productos', whatsapp: 'Escríbenos por WhatsApp' },
+    hi: { title: 'पूछताछ प्राप्त हुई', description: 'आपकी पूछताछ के लिए धन्यवाद। हम 24 घंटों के भीतर आपसे संपर्क करेंगे।', home: 'होम पर लौटें →', products: 'उत्पाद देखें', whatsapp: 'WhatsApp पर हमसे बात करें' },
   };
   const sync = (lang) => {
     const copy = COPY[lang] || COPY.en;
