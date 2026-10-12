@@ -4,6 +4,20 @@
   const LANGUAGE_STORAGE_KEY = 'travelday-site-language';
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
+
+  // Shared WhatsApp widgets + analytics live in site-widgets.js (config in site-config.js).
+  const SITE_WIDGETS_VERSION = '20261012-ux1b';
+  const SITE_WIDGETS_BASE = document.currentScript?.src || window.location.href;
+  const loadSiteWidgets = () => {
+    if (window.__siteWidgetsRequested) return;
+    window.__siteWidgetsRequested = true;
+    ['site-config.js', 'site-widgets.js'].forEach((file) => {
+      const script = document.createElement('script');
+      script.src = new URL(`${file}?v=${SITE_WIDGETS_VERSION}`, SITE_WIDGETS_BASE).toString();
+      script.async = false;
+      document.head.appendChild(script);
+    });
+  };
   const NAV_LABELS = {
     zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
     en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
@@ -1269,6 +1283,7 @@
 
     setSiteLanguage(readInitialLanguage());
     document.body.classList.remove('i18n-loading');
+    loadSiteWidgets();
     let resizeRaf = 0;
     window.addEventListener(
       'resize',
