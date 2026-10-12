@@ -1623,21 +1623,38 @@ h2 {
 .social-links a {
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
-  border: 1px solid var(--color-line);
-  border-radius: 8px;
-  padding: 0 14px;
-  color: #302b25;
-  background: var(--color-surface);
-  font-size: 14px;
-  font-weight: 900;
-  min-width: 92px;
-  transition: color 180ms ease;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  min-width: auto;
+  color: #fff;
+  background: var(--color-gold-dark);
+  transition: transform 180ms ease, filter 180ms ease;
 }
 
 .social-links a:hover {
-  color: var(--color-gold-dark);
+  transform: scale(1.08);
+  filter: brightness(1.1);
 }
+
+.social-links a svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.social-links .social-facebook { background: #1877F2; }
+
+.social-links .social-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-links .social-youtube { background: #FF0000; }
+
+.social-links .social-linkedin { background: #0A66C2; }
 
 .contact-info {
   display: flex;
