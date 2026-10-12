@@ -3176,3 +3176,6 @@ img.world-map { display: block; width: 100%; height: auto; aspect-ratio: 1637 / 
     backdrop-filter: none;
   }
 }
+
+/* <picture> wrapper must not generate a box, so layout stays identical to a bare <img> */
+picture { display: contents; }

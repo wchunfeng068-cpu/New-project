@@ -56,6 +56,9 @@
   margin: 0;
 }
 
+/* <picture> wrapper must not generate a box, so layout stays identical to a bare <img> */
+picture { display: contents; }
+
 .mk-hero-media img {
   display: block;
   width: 100%;
