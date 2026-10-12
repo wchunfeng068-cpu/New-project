@@ -98,7 +98,7 @@
         position: fixed;
         right: max(16px, calc((100vw - min(var(--container), calc(100vw - 42px))) / 2 - 72px));
         top: auto;
-        bottom: 160px;
+        bottom: 190px;
         z-index: 95;
         display: inline-flex;
         align-items: center;
