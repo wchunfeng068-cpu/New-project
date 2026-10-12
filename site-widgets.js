@@ -114,6 +114,25 @@
       .site-wa-float:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(18, 140, 126, 0.42); }
       .site-wa-float svg { width: 26px; height: 26px; }
 
+      /* Continuous attention pulse: expanding green ring, draws the eye and invites a tap. */
+      .site-wa-float::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: waPulse 1.8s ease-out infinite;
+      }
+      @keyframes waPulse {
+        0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+        70%  { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      }
+      .site-wa-float:hover::after { animation-duration: 1.2s; }
+      @media (prefers-reduced-motion: reduce) {
+        .site-wa-float::after { animation: none; box-shadow: none; }
+      }
+
       .site-cta-bar { display: none; }
 
       @media (max-width: 980px) {
