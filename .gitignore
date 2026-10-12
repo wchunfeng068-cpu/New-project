@@ -17,3 +17,4 @@ mockups/make-*.ps1
 mockups/*-draft.html
 mockups/*-render.html
 mockups/*-minimal.html
+.playwright-cli/
