@@ -1102,19 +1102,28 @@
       nav.classList.toggle('is-open', !expanded);
       if (!expanded) {
         const firstLink = nav.querySelector('a');
-        if (firstLink) setTimeout(() => firstLink.focus(), 100);
+        if (firstLink) setTimeout(() => {
+          if (nav.classList.contains('is-open')) firstLink.focus();
+        }, 100);
       } else {
         mobileMenuButton.focus();
       }
     });
+    document.addEventListener('click', (event) => {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(event.target) || mobileMenuButton.contains(event.target)) return;
+      // The drawer's language and quote controls are separate siblings of nav.
+      if (event.target.closest('.header-actions')) return;
+      closeMobileMenu();
+      mobileMenuButton.focus();
+    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
+        closeMobileMenu();
         mobileMenuButton.focus();
       }
     });
-    $$('#primaryNav a').forEach((link) => {
+    $$('#primaryNav a, .header-actions .quote-button').forEach((link) => {
       link.addEventListener('click', () => {
         closeMobileMenu();
       });

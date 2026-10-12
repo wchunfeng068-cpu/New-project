@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Detail</title>
-    <meta name="description" content="Review TRAVELDAY luggage specifications and request OEM, ODM or component supply support." />
+    <meta name="description" content="TRAVELDAY product detail: luggage and accessories gallery with OEM/ODM customization for overseas buyers." />
     <link rel="canonical" href="https://luggage-dc.com/mockups/product-detail-preview.html" />
     <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
@@ -17,856 +17,16 @@
         .mobile-menu-button { display: none !important; }
       </style>
     </noscript>
-    <style>
-      :root {
-        --page: #f4f0e9;
-        --surface: #fffdfa;
-        --ink: #171411;
-        --text: #2b2824;
-        --muted: #756f66;
-        --line: #e9e1d6;
-        --gold: #d39a00;
-        --gold-dark: #a87300;
-        --radius-card: 18px;
-        --radius-inner: 14px;
-        --shadow-soft: 0 18px 48px rgba(35, 28, 20, 0.1);
-        --shadow-card: 0 10px 28px rgba(37, 30, 21, 0.08);
-        --font-serif: Georgia, "Times New Roman", "SimSun", serif;
-        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
-        font-family: var(--font-sans);
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        color: var(--text);
-        background:
-          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
-          var(--page);
-        opacity: 1;
-        transition: opacity 150ms ease;
-      }
-
-      body.i18n-loading {
-        opacity: 0;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .page {
-        width: min(1500px, calc(100% - 42px));
-        margin: 16px auto 32px;
-      }
-
-      .site-header {
-        position: relative;
-        display: grid;
-        grid-template-columns: 280px 1fr auto;
-        align-items: center;
-        min-height: 64px;
-        gap: 22px;
-        padding: 0 34px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        width: fit-content;
-        min-width: 0;
-        gap: 0;
-        color: var(--gold);
-        font-weight: 900;
-      }
-
-      .brand-logo {
-        position: relative;
-        display: grid;
-        width: 160px;
-        height: 70px;
-        place-items: center;
-        overflow: visible;
-      }
-
-      .brand-logo img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-
-      .primary-nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 42px;
-        color: #171514;
-        font-size: 18px;
-        font-weight: 800;
-        font-family: var(--font-sans);
-      }
-
-      @media (min-width: 981px) {
-        .primary-nav {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-
-      .primary-nav a {
-        position: relative;
-        padding: 22px 0;
-        transition: color 180ms ease;
-      }
-
-      html:not([data-nav-ready="true"]) .primary-nav {
-        visibility: hidden;
-      }
-
-      .primary-nav a.active {
-        color: var(--gold-dark);
-      }
-
-      .primary-nav a.active::after {
-        position: absolute;
-        left: 50%;
-        bottom: 12px;
-        width: 24px;
-        height: 3px;
-        border-radius: 999px;
-        background: var(--gold);
-        content: "";
-        transform: translateX(-50%);
-      }
-
-      .header-actions {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 12px;
-      }
-
-      .language-select {
-        min-height: 44px;
-        min-width: 108px;
-        border: 1px solid #ddd4c9;
-        border-radius: 8px;
-        padding: 0 12px;
-        background: #fff;
-        color: #5b554e;
-        font-size: 13px;
-        font-weight: 700;
-        outline: 0;
-      }
-
-      .quote-button,
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 44px;
-        border-radius: 8px;
-        border: 0;
-        padding: 0 22px;
-        font-size: 13px;
-        font-weight: 900;
-        cursor: pointer;
-      }
-
-      .quote-button,
-      .button-primary {
-        background: var(--gold);
-        color: #fff;
-        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
-      }
-
-      .button-outline {
-        border: 1px solid rgba(184, 128, 21, 0.42);
-        background: rgba(255, 255, 255, 0.65);
-        color: #1c1916;
-        box-shadow: none;
-      }
-
-      .mobile-menu-button {
-        display: none;
-        width: 44px;
-        height: 44px;
-        border: 1px solid var(--line);
-        border-radius: 9px;
-        background: #fff;
-        padding: 8px;
-      }
-
-      .mobile-menu-button span {
-        display: block;
-        height: 2px;
-        margin: 5px 0;
-        border-radius: 999px;
-        background: var(--ink);
-      }
-
-      .primary-nav a:hover {
-        color: var(--gold-dark);
-      }
-
-      .quote-button:hover,
-      .button-primary:hover {
-        filter: brightness(1.1);
-      }
-
-      .language-select:hover {
-        border-color: var(--gold);
-      }
-
-      .card {
-        overflow: hidden;
-        border: 1px solid rgba(232, 224, 212, 0.92);
-        border-radius: var(--radius-card);
-        background: var(--surface);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .kicker {
-        margin: 0 0 14px;
-        color: var(--gold-dark);
-        font-size: 13px;
-        font-weight: 900;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
-      }
-
-      h1,
-      h2 {
-        margin-bottom: 0;
-        color: var(--ink);
-        font-family: var(--font-serif);
-        font-weight: 500;
-        letter-spacing: 0;
-      }
-
-      .detail-hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 420px;
-        gap: 24px;
-        min-height: 560px;
-        margin-top: 8px;
-        padding: 24px;
-      }
-
-      .hero-visual {
-        position: relative;
-        overflow: hidden;
-        min-height: 512px;
-        border-radius: var(--radius-inner);
-        background:
-          radial-gradient(circle at 52% 86%, rgba(110, 85, 52, 0.16), transparent 34%),
-          linear-gradient(135deg, #f0ebe3, #d8cfc3);
-      }
-
-      .hero-visual::before {
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(90deg, rgba(255, 248, 239, 0.04), rgba(60, 53, 45, 0.06)),
-          var(--hero-image, url("../images/product-card-luggage.png")) center / cover no-repeat;
-        content: "";
-      }
-
-      .hero-visual::after {
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 48%),
-          linear-gradient(90deg, rgba(255, 253, 250, 0.2), rgba(255, 253, 250, 0) 36%, rgba(255, 253, 250, 0.1));
-        content: "";
-        pointer-events: none;
-      }
-
-      .detail-copy {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 32px;
-        border-radius: var(--radius-inner);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 244, 236, 0.98));
-      }
-
-      .detail-copy h1 {
-        margin-bottom: 18px;
-        font-size: 54px;
-        line-height: 1.08;
-      }
-
-      .intro {
-        margin-bottom: 24px;
-        color: #4d463f;
-        font-size: 15px;
-        font-weight: 700;
-        line-height: 1.85;
-      }
-
-      .proof-list {
-        display: grid;
-        gap: 14px;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .proof-list li {
-        display: grid;
-        grid-template-columns: 32px 1fr;
-        gap: 12px;
-        align-items: start;
-        color: var(--muted);
-        font-size: 13px;
-        font-weight: 800;
-        line-height: 1.55;
-      }
-
-      .proof-list span {
-        display: grid;
-        width: 32px;
-        height: 32px;
-        place-items: center;
-        border: 1px solid rgba(211, 154, 0, 0.45);
-        border-radius: 8px;
-        color: var(--gold-dark);
-        font-size: 12px;
-        font-weight: 900;
-      }
-
-      .detail-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
-      }
-
-      .gallery-shell {
-        margin-top: 8px;
-        padding: 22px;
-      }
-
-      .detail-gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .detail-shot {
-        min-width: 0;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-card);
-        background: var(--surface);
-        box-shadow: var(--shadow-card);
-      }
-
-      .detail-shot-image-wrap {
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--radius-card);
-        background:
-          linear-gradient(rgba(242, 236, 226, 0.18), rgba(218, 208, 195, 0.12)),
-          var(--image) var(--position, center) / var(--size, cover) no-repeat,
-          linear-gradient(135deg, #f0ebe3, #d8cfc3);
-      }
-
-      .detail-shot-image-wrap::after {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(circle at 50% 100%, rgba(110, 85, 52, 0.12), transparent 34%),
-          linear-gradient(180deg, rgba(246, 241, 233, 0.16), rgba(218, 208, 195, 0.1));
-        content: "";
-        pointer-events: none;
-      }
-
-      .detail-shot-image {
-        display: block;
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        min-height: 220px;
-      }
-
-      .inquiry {
-        display: grid;
-        grid-template-columns: minmax(280px, 0.88fr) minmax(0, 1.12fr);
-        gap: 26px;
-        align-items: start;
-        margin-top: 24px;
-        padding: 30px;
-      }
-
-      .inquiry-head {
-        align-self: center;
-        padding: 8px 4px 8px 6px;
-      }
-
-      .inquiry-head h2 {
-        margin-bottom: 10px;
-        font-family: var(--font-serif);
-        font-size: 34px;
-        font-weight: 500;
-        line-height: 1.08;
-      }
-
-      .inquiry-head p {
-        max-width: 460px;
-        margin-bottom: 0;
-        color: var(--muted);
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 1.7;
-      }
-
-      .inquiry-form {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px 16px;
-        width: 100%;
-        padding: 24px;
-        border: 1px solid rgba(232, 224, 212, 0.92);
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.82);
-        box-shadow: 0 10px 28px rgba(37, 30, 21, 0.05);
-      }
-
-      .inquiry-form h3 {
-        grid-column: 1 / -1;
-        margin: 0 0 2px;
-        color: var(--ink);
-        font-family: var(--font-sans);
-        font-size: 22px;
-        font-weight: 900;
-        line-height: 1.2;
-      }
-
-      .inquiry-form label {
-        display: grid;
-        gap: 7px;
-      }
-
-      .inquiry-form label:nth-of-type(3),
-      .inquiry-form label:nth-of-type(4),
-      .inquiry-form .form-submit,
-      .inquiry-form .form-status {
-        grid-column: 1 / -1;
-      }
-
-      .inquiry-form label span {
-        color: #625b53;
-        font-size: 13px;
-        font-weight: 800;
-      }
-
-      .inquiry-form input,
-      .inquiry-form textarea {
-        width: 100%;
-        border: 1px solid #ded5ca;
-        border-radius: 8px;
-        background: #fff;
-        color: var(--ink);
-        outline: 0;
-        transition: border-color 160ms ease, box-shadow 160ms ease;
-        font: inherit;
-      }
-
-      .inquiry-form input {
-        min-height: 44px;
-        padding: 0 13px;
-      }
-
-      .inquiry-form textarea {
-        min-height: 84px;
-        padding: 11px 13px;
-        resize: vertical;
-      }
-
-      .inquiry-form input:focus,
-      .inquiry-form textarea:focus {
-        border-color: rgba(211, 154, 0, 0.55);
-        box-shadow: 0 0 0 3px rgba(211, 154, 0, 0.12);
-      }
-
-      .form-submit {
-        justify-self: start;
-        min-height: 44px;
-        border-radius: 10px;
-        padding-inline: 22px;
-      }
-
-      .form-status {
-        min-height: 18px;
-        margin: 0;
-        color: var(--gold-dark);
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      @media (max-width: 1180px) {
-        .detail-hero,
-        .inquiry {
-          grid-template-columns: 1fr;
-        }
-
-        .site-header {
-          grid-template-columns: 1fr;
-        }
-
-        .primary-nav {
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 22px;
-        }
-
-        .detail-gallery-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .hero-visual {
-          min-height: 430px;
-        }
-
-        .inquiry-head {
-          padding: 0;
-        }
-
-        .inquiry-form {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 980px) {
-        .site-header {
-          grid-template-columns: 1fr auto;
-          min-height: auto;
-          padding: 14px 18px;
-        }
-
-        .mobile-menu-button {
-          display: block;
-        }
-
-        .header-actions {
-          grid-column: 1 / -1;
-          display: none;
-          width: 100%;
-        }
-
-        .primary-nav {
-          display: flex;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 280px;
-          height: 100vh;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 0;
-          padding-top: 10px;
-          background: var(--surface);
-          transform: translateX(-100%);
-          opacity: 0;
-          visibility: hidden;
-          transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
-          z-index: 1000;
-        }
-
-        body.is-menu-open .primary-nav {
-          transform: translateX(0);
-          opacity: 1;
-          visibility: visible;
-        }
-
-        body.is-menu-open .header-actions {
-          position: fixed;
-          left: 0;
-          bottom: 24px;
-          z-index: 1001;
-          display: flex;
-          width: 280px;
-          padding: 18px;
-          background: var(--surface);
-          box-shadow: 0 -12px 28px rgba(35, 28, 20, 0.08);
-        }
-
-        body.is-menu-open::before {
-          position: fixed;
-          z-index: 999;
-          inset: 0;
-          background: rgba(20, 19, 18, 0.32);
-          content: "";
-        }
-
-        .primary-nav a {
-          padding: 13px 0;
-          border-bottom: 1px solid var(--line);
-        }
-
-        .header-actions {
-          justify-content: flex-start;
-        }
-      }
-
-      @media (max-width: 760px) {
-        .page {
-          width: min(100% - 22px, 720px);
-          margin-top: 10px;
-        }
-
-        .site-header,
-        .detail-hero,
-        .detail-copy,
-        .gallery-shell,
-        .inquiry {
-          padding: 18px;
-        }
-
-        .brand {
-          width: 140px;
-          height: 58px;
-        }
-
-        .primary-nav {
-          justify-content: flex-start;
-          width: 100%;
-          overflow-x: auto;
-          font-size: 15px;
-          scrollbar-width: none;
-        }
-
-        .primary-nav::-webkit-scrollbar {
-          display: none;
-        }
-
-        .detail-copy h1 {
-          font-size: 36px;
-        }
-
-        .hero-visual {
-          min-height: 330px;
-        }
-
-        .detail-gallery-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .inquiry {
-          gap: 18px;
-        }
-
-        .inquiry-form {
-          padding: 18px;
-        }
-      }
-
-      .site-footer {
-        display: grid;
-        grid-template-columns: 1fr auto 44px;
-        align-items: center;
-        gap: 18px;
-        min-height: 62px;
-        margin-top: 48px;
-        border-radius: 12px;
-        padding: 0 22px;
-        background: #11100f;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .site-footer p {
-        margin: 0;
-        font-size: 13px;
-        font-weight: 700;
-      }
-
-      .site-footer nav {
-        display: flex;
-        gap: 22px;
-        font-size: 13px;
-        font-weight: 800;
-      }
-
-      .site-footer nav a {
-        color: rgba(255, 255, 255, 0.72);
-        text-decoration: none;
-        transition: color 180ms ease;
-      }
-
-      .site-footer nav a:hover {
-        color: var(--gold, #d39a00);
-      }
-
-      .back-top {
-        display: grid;
-        min-width: 44px;
-        min-height: 44px;
-        place-items: center;
-        border-radius: 50%;
-        background: var(--gold, #d39a00);
-        color: #fff;
-        font-weight: 900;
-        text-decoration: none;
-        transition: color 180ms ease;
-      }
-
-      .back-top:hover {
-        color: var(--gold-dark, #a87300);
-      }
-
-      @media (max-width: 640px) {
-        .site-footer {
-          grid-template-columns: 1fr;
-          gap: 12px;
-          padding: 16px 22px;
-          text-align: center;
-        }
-        .site-footer nav {
-          justify-content: center;
-        }
-      }
-
-      /* Custom language dropdown */
-      .lang-dropdown {
-        position: relative;
-        display: inline-block;
-      }
-
-      .lang-dropdown-trigger {
-        display: flex;
-        align-items: center;
-        min-height: 44px;
-        min-width: 108px;
-        border: 1px solid #ddd4c9;
-        border-radius: 8px;
-        padding: 0 28px 0 12px;
-        background: #fff;
-        color: #5b554e;
-        font-size: 13px;
-        font-weight: 700;
-        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
-        cursor: pointer;
-        outline: none;
-        transition: border-color 180ms ease;
-        position: relative;
-        z-index: 1;
-        -webkit-appearance: none;
-        appearance: none;
-      }
-
-      .lang-dropdown-trigger::after {
-        content: "";
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        width: 10px;
-        height: 6px;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23766f65' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat center;
-        transform: translateY(-50%);
-        transition: transform 200ms ease;
-      }
-
-      .lang-dropdown.is-open .lang-dropdown-trigger::after {
-        transform: translateY(-50%) rotate(180deg);
-      }
-
-      .lang-dropdown-trigger:hover {
-        border-color: var(--gold, #d39a00);
-      }
-
-      .lang-dropdown-trigger:focus-visible {
-        outline: 3px solid var(--gold, #d39a00);
-        outline-offset: 2px;
-      }
-
-      .lang-dropdown-panel {
-        position: absolute;
-        top: calc(100% + 6px);
-        left: 0;
-        min-width: 100%;
-        border: 1px solid #ddd4c9;
-        border-radius: 8px;
-        background: #fff;
-        box-shadow: 0 12px 28px rgba(35, 28, 20, 0.14);
-        overflow: hidden;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-6px);
-        transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
-        z-index: 1100;
-      }
-
-      .lang-dropdown.is-open .lang-dropdown-panel {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-
-      .lang-dropdown-option {
-        display: flex;
-        align-items: center;
-        min-height: 40px;
-        padding: 0 14px;
-        font-size: 13px;
-        font-weight: 700;
-        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
-        color: #5b554e;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: background 120ms ease, color 120ms ease;
-      }
-
-      .lang-dropdown-option:hover {
-        background: rgba(211, 154, 0, 0.08);
-        color: var(--gold-dark, #a87300);
-      }
-
-      .lang-dropdown-option.is-active {
-        color: var(--gold-dark, #a87300);
-        font-weight: 900;
-      }
-
-      .lang-dropdown-option.is-active::after {
-        content: "✓";
-        margin-left: auto;
-        padding-left: 8px;
-        color: var(--gold, #d39a00);
-      }
-
-      .language-select {
-        position: absolute !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        width: 100% !important;
-        height: 100% !important;
-        top: 0 !important;
-        left: 0 !important;
-        z-index: 0 !important;
-      }
-    </style>
+    <!-- Main site design system (header, nav drawer, cards, buttons, footer) -->
+    <link rel="stylesheet" href="../styles.css?v=20261012-audit2" />
+    <!-- Shared mockup page layout helpers built on styles.css tokens -->
+    <link rel="stylesheet" href="mockup-pages.css?v=20261012-audit2" />
   </head>
-  <body class="i18n-loading">
-    <div class="page">
-            <header class="site-header" data-section="navigation">
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="page-stage">
+    <div class="page-shell" id="top">
+      <header class="site-header" data-section="navigation">
         <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
           <span class="brand-logo">
             <img
@@ -903,308 +63,94 @@
         </div>
       </header>
 
-      <main>
-        <section class="detail-hero card" aria-label="产品顶图">
-          <div class="hero-visual" role="img" aria-label="ABS / PC 拉链箱产品顶图"></div>
-          <aside class="detail-copy">
-            <p class="kicker">PRODUCT DETAIL</p>
-            <h1>ABS / PC 拉链箱</h1>
-            <p class="intro">延续首页的暖色视觉、金色强调和大图展示方式，用于海外批发、进口商与品牌客户快速了解产品外观、结构细节和定制能力。</p>
-            <ul class="proof-list">
-              <li><span>01</span><strong>顶图突出产品整体外观，和首页产品卡片保持同一套图片质感。</strong></li>
-              <li><span>02</span><strong>九宫格补充拉杆、轮组、手把、箱体与工厂方案，适合作为详情页核心内容。</strong></li>
-              <li><span>03</span><strong>页面底部保留询盘入口，让客户看完整套图片后再进入报价沟通。</strong></li>
-            </ul>
-            <div class="detail-actions">
-              <a class="button button-outline" data-lang-link href="product-center-preview.html#catalog">返回产品图片</a>
-              <a class="button button-primary" data-lang-link href="#contact">发送询盘</a>
+      <main class="mk-main" id="main-content" tabindex="-1">
+        <section class="card mk-hero" aria-label="Product detail" data-section="product-detail-hero">
+          <div class="mk-hero-copy">
+            <p class="eyebrow" data-detail="kicker">PRODUCT DETAIL</p>
+            <h1 data-detail="title">ABS / PC Luggage</h1>
+            <p class="mk-lead" data-detail="intro"></p>
+            <div class="mk-grid" data-detail="proof"></div>
+            <div class="mk-actions">
+              <a class="button button-outline" data-detail="back" href="product-center-preview.html#catalog">Back to product center</a>
+              <a class="button button-primary" data-detail="inquiry" href="#contact">Send inquiry</a>
             </div>
-          </aside>
-        </section>
-
-        <section class="gallery-shell card" id="detail-gallery" aria-label="行李箱 3x3 详情图">
-          <div class="detail-gallery-grid" data-detail-gallery></div>
-        </section>
-
-        <section class="inquiry card" id="contact">
-          <div class="inquiry-head">
-            <p class="kicker">INQUIRY / CONTACT</p>
-            <h2>Turn every inquiry into one elegant entry point.</h2>
-            <p>Tell us your market, product or customization needs and we will respond through one integrated resource chain.</p>
           </div>
-
-          <form class="inquiry-form" aria-label="Quick inquiry form">
-            <h3>Quick inquiry form</h3>
-            <label>
-              <span>Your name</span>
-              <input name="name" type="text" autocomplete="name" />
-            </label>
-            <label>
-              <span>Company name</span>
-              <input name="company" type="text" autocomplete="organization" />
-            </label>
-            <label>
-              <span>Email address</span>
-              <input name="email" type="email" autocomplete="email" />
-            </label>
-            <label>
-              <span>Message</span>
-              <textarea name="message" rows="3"></textarea>
-            </label>
-            <button class="button button-primary form-submit" type="submit">Send inquiry</button>
-            <p class="form-status" role="status" aria-live="polite"></p>
-          </form>
+          <figure class="mk-hero-media mk-hero-media--wide">
+            <img data-detail="heroImage" src="../images/detail/abs-pc-1.png" alt="" width="1774" height="887" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
         </section>
+
+        <section class="card mk-section" id="detail-gallery" data-reveal data-section="product-detail-gallery">
+          <div class="mk-head">
+            <p class="section-kicker">GALLERY</p>
+            <h2 data-detail="galleryTitle">Detail gallery</h2>
+          </div>
+          <div class="mk-gallery" data-detail-gallery></div>
+        </section>
+
+        <!-- Inquiry form is rendered by ../shared-inquiry.js (same module as the homepage). -->
+        <section class="card mk-inquiry" id="contact" data-reveal data-section="product-detail-inquiry"></section>
       </main>
+
       <footer class="site-footer" data-section="footer">
-        <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
-        <nav aria-label="页脚导航">
-          <a href="../privacy.html">隐私政策</a>
-          <a href="../terms.html">服务条款</a>
-          <a href="../sitemap.html">网站地图</a>
+        <p>© 2016-2026 TRAVELDAY. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../sitemap.html">Sitemap</a>
         </nav>
         <a class="back-top" href="#top" aria-label="Back to top">↑</a>
       </footer>
+      <a class="floating-top" href="#top" aria-label="Back to top">Top</a>
+    </div>
     </div>
 
-    <script src="../shared-shell.js?v=20261012-ux1b" defer></script>
-
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      (() => {
-        const LANGS = ['zh', 'en', 'es', 'hi'];
-        const copy = {
-          zh: {
-            nav: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
-            quote: '获取报价 →',
-            lang: ['中文', 'English', 'Español', 'हिन्दी'],
-            heroLabel: 'ABS / PC 拉链箱产品详情',
-            heroTitle: 'ABS / PC 拉链箱',
-            heroIntro:
-              '延续首页的暖色视觉、金色强调和大图展示方式，用于海外批发、进口商与品牌客户快速了解产品外观、结构细节和定制能力。',
-            proof: [
-              '顶图突出产品整体外观，和首页产品卡片保持同一套图片质感。',
-              '九宫格补充拉杆、轮组、手把、箱体与工厂方案，适合作为详情页核心内容。',
-              '页面底部保留询盘入口，让客户看完整套图片后再进入报价沟通。',
-            ],
-            back: '返回产品图集',
-            inquiry: '发送询盘',
-            galleryLabel: '行李箱 3x3 详情图',
-            inquiryKicker: '询盘',
-            inquiryTitle: '获取专属报价',
-            inquiryCopy: '留下姓名、公司、邮箱和简短留言。我们会尽快回复你需要的细节。',
-            formTitle: '发送询盘',
-            formName: '你的姓名',
-            formCompany: '公司名称',
-            formEmail: '邮箱地址',
-            formMessage: '留言内容',
-            formSubmit: '提交需求 →',
-            status: '我们已收到你的询盘，会尽快回复。',
-          },
-          en: {
-            nav: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
-            quote: 'Get Quote →',
-            lang: ['Chinese', 'English', 'Spanish', 'Hindi'],
-            heroLabel: 'ABS / PC zipper luggage detail',
-            heroTitle: 'ABS / PC Zipper Luggage',
-            heroIntro:
-              'Carry forward the warm visual language, gold accents, and large-scale presentation from the homepage so overseas buyers and brand clients can quickly review the product look, structure, and customization options.',
-            proof: [
-              'The hero image keeps the same product-card visual quality as the homepage.',
-              'The 3x3 grid adds handles, wheels, shell, and factory options for a compact product story.',
-              'The inquiry area stays at the bottom so customers can move straight from browsing to quoting.',
-            ],
-            back: 'Back to catalog',
-            inquiry: 'Send inquiry',
-            galleryLabel: 'Luggage 3x3 detail gallery',
-            inquiryKicker: 'Inquiry',
-            inquiryTitle: 'Get a custom quote',
-            inquiryCopy: 'Leave your name, company, email, and a short message. We will reply with the details you need.',
-            formTitle: 'Send an inquiry',
-            formName: 'Your name',
-            formCompany: 'Company name',
-            formEmail: 'Email address',
-            formMessage: 'Message',
-            formSubmit: 'Submit request →',
-            status: 'Inquiry received. We will reply shortly.',
-          },
-          es: {
-            nav: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
-            quote: 'Solicitar cotización →',
-            lang: ['Chino', 'English', 'Español', 'Hindi'],
-            heroLabel: 'Detalle de maleta ABS / PC con cremallera',
-            heroTitle: 'Maleta ABS / PC con cremallera',
-            heroIntro:
-              'Conserva el lenguaje visual cálido, los acentos dorados y la presentación a gran formato para que compradores internacionales y marcas revisen rápidamente el aspecto, la estructura y las opciones de personalización.',
-            proof: [
-              'La imagen principal mantiene la misma calidad visual que la tarjeta de producto de inicio.',
-              'La cuadrícula 3x3 añade asas, ruedas, carcasa y opciones de fábrica para contar el producto.',
-              'El área de consulta queda al final para pasar del recorrido visual al presupuesto.',
-            ],
-            back: 'Volver al catálogo',
-            inquiry: 'Enviar consulta',
-            galleryLabel: 'Galería de detalle 3x3 de equipaje',
-            inquiryKicker: 'Consulta',
-            inquiryTitle: 'Obtén una cotización personalizada',
-            inquiryCopy: 'Deja tu nombre, empresa, correo y un breve mensaje. Te responderemos con los detalles necesarios.',
-            formTitle: 'Enviar una consulta',
-            formName: 'Tu nombre',
-            formCompany: 'Nombre de la empresa',
-            formEmail: 'Correo electrónico',
-            formMessage: 'Mensaje',
-            formSubmit: 'Enviar solicitud →',
-            status: 'Consulta recibida. Responderemos en breve.',
-          },
-          hi: {
-            nav: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
-            quote: 'कोटेशन लें →',
-            lang: ['चीनी', 'English', 'Español', 'हिन्दी'],
-            heroLabel: 'ABS / PC ज़िपर सूटकेस विवरण',
-            heroTitle: 'ABS / PC ज़िपर सूटकेस',
-            heroIntro:
-              'होमपेज के गर्म दृश्य, गोल्ड एक्सेंट और बड़े डिस्प्ले स्टाइल को आगे बढ़ाते हुए, यह पेज विदेशी खरीदारों और ब्रांड ग्राहकों को उत्पाद का रूप, संरचना और कस्टमाइज़ेशन जल्दी समझने देता है।',
-            proof: [
-              'हीरो इमेज होमपेज के प्रोडक्ट कार्ड जैसी ही दृश्य गुणवत्ता रखती है।',
-              '3x3 ग्रिड में हैंडल, व्हील, शेल और फ़ैक्ट्री विकल्प जोड़कर कहानी पूरी होती है।',
-              'क्वेरी सेक्शन नीचे रखा गया है ताकि देखने के बाद सीधे कोटेशन तक जाया जा सके।',
-            ],
-            back: 'कैटलॉग पर वापस',
-            inquiry: 'पूछताछ भेजें',
-            galleryLabel: 'लगेज 3x3 विवरण गैलरी',
-            inquiryKicker: 'पूछताछ',
-            inquiryTitle: 'कस्टम कोटेशन लें',
-            inquiryCopy: 'अपना नाम, कंपनी, ईमेल और छोटा संदेश छोड़ें। हम आपको ज़रूरी विवरण के साथ जवाब देंगे।',
-            formTitle: 'पूछताछ भेजें',
-            formName: 'आपका नाम',
-            formCompany: 'कंपनी का नाम',
-            formEmail: 'ईमेल पता',
-            formMessage: 'संदेश',
-            formSubmit: 'अनुरोध भेजें →',
-            status: 'पूछताछ मिल गई है। हम जल्द जवाब देंगे।',
-          },
-        };
-
-        const readLang = () => {
-          try {
-            const queryLang = new URLSearchParams(window.location.search).get('lang');
-            if (LANGS.includes(queryLang)) return queryLang;
-          } catch {
-            // Ignore malformed URLs.
-          }
-          const fromShell = window.traveldayShell?.getLanguage?.();
-          if (LANGS.includes(fromShell)) return fromShell;
-          const optionValue = document.querySelector('.language-select')?.value;
-          if (LANGS.includes(optionValue)) return optionValue;
-          return 'en';
-        };
-
-        const applyText = (lang) => {
-          const t = copy[lang] || copy.en;
-
-          document.querySelectorAll('.primary-nav a').forEach((link, index) => {
-            if (t.nav[index]) link.textContent = t.nav[index];
-          });
-
-          const quote = document.querySelector('.quote-button');
-          if (quote) quote.textContent = t.quote;
-
-          document.querySelectorAll('.language-select option').forEach((option) => {
-            // Language option labels managed by shared-shell.js custom dropdown
-          });
-
-          const hero = document.querySelector('.detail-hero');
-          if (hero) hero.setAttribute('aria-label', t.heroLabel);
-          const visual = document.querySelector('.hero-visual');
-          if (visual) visual.setAttribute('aria-label', t.heroLabel);
-
-          const h1 = document.querySelector('.detail-copy h1');
-          if (h1) h1.textContent = t.heroTitle;
-
-          const intro = document.querySelector('.detail-copy .intro');
-          if (intro) intro.textContent = t.heroIntro;
-
-          document.querySelectorAll('.proof-list li strong').forEach((node, index) => {
-            if (t.proof[index]) node.textContent = t.proof[index];
-          });
-
-          const back = document.querySelector('.detail-actions .button-outline');
-          if (back) back.textContent = t.back;
-          const inquiry = document.querySelector('.detail-actions .button-primary');
-          if (inquiry) inquiry.textContent = t.inquiry;
-
-          const gallery = document.querySelector('.gallery-shell');
-          if (gallery) gallery.setAttribute('aria-label', t.galleryLabel);
-
-          const inquiryKicker = document.querySelector('.inquiry .kicker');
-          if (inquiryKicker) inquiryKicker.textContent = t.inquiryKicker;
-          const inquiryTitle = document.querySelector('.inquiry-head h2');
-          if (inquiryTitle) inquiryTitle.textContent = t.inquiryTitle;
-          const inquiryCopy = document.querySelector('.inquiry-head p:last-of-type');
-          if (inquiryCopy) inquiryCopy.textContent = t.inquiryCopy;
-          const formTitle = document.querySelector('.inquiry-form h3');
-          if (formTitle) formTitle.textContent = t.formTitle;
-          const labels = document.querySelectorAll('.inquiry-form label span');
-          if (labels[0]) labels[0].textContent = t.formName;
-          if (labels[1]) labels[1].textContent = t.formCompany;
-          if (labels[2]) labels[2].textContent = t.formEmail;
-          if (labels[3]) labels[3].textContent = t.formMessage;
-          const submit = document.querySelector('.form-submit');
-          if (submit) submit.textContent = t.formSubmit;
-        };
-
-        const activeLang = readLang();
-        applyText(activeLang);
-        window.addEventListener('travelday:languagechange', (event) => {
-          applyText(event.detail?.lang || readLang());
+      // Page copy. Runs on DOMContentLoaded, i.e. after ../script.js (defer) has applied the
+      // shared i18n + nav; re-runs on every "travelday:languagechange" fired by script.js.
+      document.addEventListener("DOMContentLoaded", () => {
+      const LANGS = ["zh", "en", "es", "hi"];
+      const PAGE_DESCRIPTION = "TRAVELDAY product detail: luggage and accessories gallery with OEM/ODM customization for overseas buyers.";
+      const readLang = () => {
+        const fromDoc = document.documentElement.dataset.lang;
+        if (LANGS.includes(fromDoc)) return fromDoc;
+        try {
+          const fromQuery = new URLSearchParams(window.location.search).get("lang");
+          if (LANGS.includes(fromQuery)) return fromQuery;
+        } catch {
+          // Ignore malformed URLs.
+        }
+        try {
+          const stored = localStorage.getItem("travelday-site-language");
+          if (LANGS.includes(stored)) return stored;
+        } catch {
+          // Storage can be blocked in some file:// contexts.
+        }
+        return "en";
+      };
+      const addLang = (href, lang) => {
+        const url = new URL(href, window.location.href);
+        url.searchParams.set("lang", lang);
+        return url.toString();
+      };
+      // script.js writes the homepage title/description; restore this page's own.
+      const setPageMeta = (title, lang) => {
+        document.title = title;
+        document.querySelector('meta[name="description"]')?.setAttribute("content", PAGE_DESCRIPTION);
+        document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      };
+      const fillCopy = (map) => {
+        document.querySelectorAll("[data-copy]").forEach((node) => {
+          const value = map[node.dataset.copy];
+          if (value != null) node.innerHTML = value;
         });
-      })();
-      });
-    </script>
-
-    <script>
-      const detailGalleryItems = [
-        { title: '正面主图', src: '../images/product-card-luggage.png', position: 'center' },
-        { title: '系列展示', src: '../images/series-luggage.jpg', position: 'center' },
-        { title: '套装展示', src: '../images/product-card-luggage.png', position: '80% 58%', size: '155%' },
-        { title: '拉杆细节', src: '../images/product-card-luggage.png', position: '78% 19%', size: '205%' },
-        { title: '轮组细节', src: '../images/product-card-luggage.png', position: '77% 92%', size: '215%' },
-        { title: '箱体侧面', src: '../images/product-card-luggage.png', position: '67% 62%', size: '165%' },
-        { title: '手把部件', src: '../images/product-card-luggage.png', position: '76% 18%', size: '235%' },
-        { title: '工厂定制', src: '../images/product-card-luggage.png', position: '43% 42%', size: '145%' },
-        { title: '材料与方案', src: '../images/product-card-luggage.png', position: '18% 42%', size: '160%' },
-      ];
-
-      function renderDetailGallery(items, target) {
-        target.innerHTML = items.slice(0, 9).map(function (item) {
-          return (
-            '<article class="detail-shot" aria-label="' +
-            item.title +
-            '">' +
-            '<div class="detail-shot-image-wrap" style="--image: url(\'' +
-            item.src +
-            '\'); --position: ' +
-            (item.position || 'center') +
-            '; --size: ' +
-            (item.size || 'cover') +
-            '">' +
-            '<div class="detail-shot-image" role="img" aria-label="' +
-            item.title +
-            '"></div>' +
-            '</div>' +
-            '</article>'
-          );
-        }).join('');
-      }
-
-      renderDetailGallery(detailGalleryItems, document.querySelector('[data-detail-gallery]'));
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-      (() => {
-        const LANGS = ["zh", "en", "es", "hi"];
-        const DEFAULT_PRODUCT = "luggage";
-        const productKeys = ["luggage", "semi-shell", "eva-soft-shell", "trolley-handle"];
+      };
+      const onLanguage = (apply) => {
+        apply(readLang());
+        window.addEventListener("travelday:languagechange", (event) => {
+          apply(LANGS.includes(event.detail?.lang) ? event.detail.lang : readLang());
+        });
+      };
 
         const pageCopy = {
           zh: {
@@ -1436,126 +382,56 @@
           },
         };
 
-        const readLang = () => {
-          try {
-            const queryLang = new URLSearchParams(window.location.search).get("lang");
-            if (LANGS.includes(queryLang)) return queryLang;
-          } catch {
-            // Ignore malformed URLs.
-          }
-          const fromShell = window.traveldayShell?.getLanguage?.();
-          if (LANGS.includes(fromShell)) return fromShell;
-          return "en";
-        };
+      const DEFAULT_PRODUCT = "luggage";
+      const readProduct = () => {
+        try {
+          const key = new URLSearchParams(window.location.search).get("product");
+          if (productDetailData[key]) return key;
+        } catch {
+          // Ignore malformed URLs.
+        }
+        return DEFAULT_PRODUCT;
+      };
+      const $detail = (key) => document.querySelector(`[data-detail="${key}"]`);
+      const escapeAttr = (value) => String(value).replace(/"/g, "&quot;");
 
-        const readProduct = () => {
-          try {
-            const queryProduct = new URLSearchParams(window.location.search).get("product");
-            if (productKeys.includes(queryProduct)) return queryProduct;
-          } catch {
-            // Ignore malformed URLs.
-          }
-          return DEFAULT_PRODUCT;
-        };
+      onLanguage((lang) => {
+        const page = pageCopy[lang] || pageCopy.en;
+        const product = productDetailData[readProduct()];
+        const detail = product.copy[lang] || product.copy.en;
+        const galleryLabel = `${detail.title} ${page.gallerySuffix}`;
+        setPageMeta(`TRAVELDAY | ${detail.title}`, lang);
 
-        const setText = (selector, value, root = document) => {
-          const node = root.querySelector(selector);
-          if (node && value !== undefined) node.textContent = value;
-        };
+        $detail("kicker").textContent = page.productDetail;
+        $detail("title").textContent = detail.title;
+        $detail("intro").textContent = detail.intro;
+        $detail("proof").innerHTML = detail.proof
+          .map((text, index) => `<div class="mini-card mk-point mk-point--simple"><span class="mk-index">0${index + 1}</span><strong>${text}</strong></div>`)
+          .join("");
+        const back = $detail("back");
+        back.textContent = page.back;
+        back.href = addLang("product-center-preview.html#catalog", lang);
+        $detail("inquiry").textContent = page.inquiry;
+        const hero = $detail("heroImage");
+        hero.src = product.heroImage;
+        hero.alt = detail.title;
+        document.querySelector(".mk-hero")?.setAttribute("aria-label", galleryLabel);
+        $detail("galleryTitle").textContent = galleryLabel;
 
-        const addLang = (href, lang) => {
-          const url = new URL(href, window.location.href);
-          url.searchParams.set("lang", lang);
-          return url.toString();
-        };
+        document.querySelector("[data-detail-gallery]").innerHTML = product.gallery
+          .slice(0, 9)
+          .map(([title, src, position = "center"]) => {
+            // Gallery captions are authored in Chinese; show them only for zh.
+            const caption = lang === "zh" ? `<figcaption>${title}</figcaption>` : "";
+            const alt = lang === "zh" ? title : galleryLabel;
+            return `<figure class="mk-shot"><img src="${src}" alt="${escapeAttr(alt)}" style="object-position: ${position}" loading="lazy" decoding="async" />${caption}</figure>`;
+          })
+          .join("");
+      });
 
-        const renderGallery = (items, lang, galleryLabel) => {
-          const target = document.querySelector("[data-detail-gallery]");
-          if (!target) return;
-          target.innerHTML = items.slice(0, 9).map((item) => {
-            const [title, src, position = "center", size = "cover"] = item;
-            const label = lang === "en" ? title.replace(/[一-龥]/g, "").trim() || galleryLabel : title;
-            return `
-              <article class="detail-shot" aria-label="${label}">
-                <div class="detail-shot-image-wrap" style="--image: url('${src}'); --position: ${position}; --size: ${size}">
-                  <div class="detail-shot-image" role="img" aria-label="${label}"></div>
-                </div>
-              </article>
-            `;
-          }).join("");
-        };
-
-        const applyDetailPage = (lang = readLang()) => {
-          const productKey = readProduct();
-          const page = pageCopy[lang] || pageCopy.zh;
-          const product = productDetailData[productKey] || productDetailData[DEFAULT_PRODUCT];
-          const detail = product.copy[lang] || product.copy.zh;
-          const title = `TRAVELDAY | ${detail.title}`;
-          const galleryLabel = `${detail.title} ${page.gallerySuffix}`;
-
-          document.title = title;
-          document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-          document.documentElement.dataset.lang = lang;
-
-          document.querySelectorAll(".primary-nav a").forEach((link, index) => {
-            if (page.nav[index]) link.textContent = page.nav[index];
-          });
-          document.querySelectorAll(".language-select option").forEach((option) => {
-            // Language option labels managed by shared-shell.js custom dropdown
-          });
-
-          setText(".quote-button", page.quote);
-          setText(".detail-copy .kicker", page.productDetail);
-          setText(".detail-copy h1", detail.title);
-          setText(".detail-copy .intro", detail.intro);
-          document.querySelectorAll(".proof-list li strong").forEach((node, index) => {
-            if (detail.proof[index]) node.textContent = detail.proof[index];
-          });
-
-          const hero = document.querySelector(".detail-hero");
-          if (hero) hero.setAttribute("aria-label", galleryLabel);
-          const visual = document.querySelector(".hero-visual");
-          if (visual) {
-            visual.setAttribute("aria-label", galleryLabel);
-            visual.style.setProperty("--hero-image", `url("${product.heroImage}")`);
-          }
-
-          const back = document.querySelector(".detail-actions .button-outline");
-          if (back) {
-            back.textContent = page.back;
-            back.href = addLang("product-center-preview.html#catalog", lang);
-          }
-          const inquiry = document.querySelector(".detail-actions .button-primary");
-          if (inquiry) inquiry.textContent = page.inquiry;
-
-          const gallery = document.querySelector(".gallery-shell");
-          if (gallery) gallery.setAttribute("aria-label", galleryLabel);
-          renderGallery(product.gallery, lang, galleryLabel);
-
-          setText(".inquiry .kicker", page.inquiryKicker);
-          setText(".inquiry-head h2", page.inquiryTitle);
-          setText(".inquiry-head p:last-of-type", page.inquiryCopy);
-          const form = document.querySelector(".inquiry-form");
-          if (form) form.setAttribute("aria-label", page.formLabel);
-          setText(".inquiry-form h3", page.formTitle);
-          const labels = document.querySelectorAll(".inquiry-form label span");
-          if (labels[0]) labels[0].textContent = page.formName;
-          if (labels[1]) labels[1].textContent = page.formCompany;
-          if (labels[2]) labels[2].textContent = page.formEmail;
-          if (labels[3]) labels[3].textContent = page.formMessage;
-          setText(".form-submit", page.formSubmit);
-
-          window.traveldayShell?.syncLanguageLinks?.(lang);
-          document.documentElement.dataset.navReady = "true";
-        };
-
-        applyDetailPage(readLang());
-        window.addEventListener("travelday:languagechange", (event) => {
-          applyDetailPage(LANGS.includes(event.detail?.lang) ? event.detail.lang : readLang());
-        });
-      })();
       });
     </script>
+    <script src="../script.js?v=20261012-audit2" defer></script>
     <script src="../shared-inquiry.js?v=20261012-ux1b" defer></script>
   </body>
 </html>
