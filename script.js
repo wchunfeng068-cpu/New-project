@@ -735,7 +735,7 @@
     node.style.maxWidth = tuning.maxWidth;
     node.style.minHeight = tuning.minHeight;
     node.style.paddingTop = tuning.paddingTop;
-    node.style.letterSpacing = '0';
+    node.style.letterSpacing = tuning.letterSpacing || '';
   };
 
   const clearTypeTuning = (node) => {
@@ -767,10 +767,10 @@
         hi: { fontSize: '38px', lineHeight: '1.12', maxWidth: '500px', minHeight: '150px', paddingTop: '12px' },
       },
       phone: {
-        zh: { fontSize: '36px', lineHeight: '1.08', maxWidth: '100%', minHeight: '126px', paddingTop: '0px' },
-        en: { fontSize: '28px', lineHeight: '1.14', maxWidth: '100%', minHeight: '126px', paddingTop: '18px' },
-        es: { fontSize: '30px', lineHeight: '1.12', maxWidth: '100%', minHeight: '126px', paddingTop: '14px' },
-        hi: { fontSize: '30px', lineHeight: '1.12', maxWidth: '100%', minHeight: '126px', paddingTop: '10px' },
+        zh: { fontSize: '34px', lineHeight: '1.1', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.5px' },
+        en: { fontSize: '26px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
+        es: { fontSize: '28px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
+        hi: { fontSize: '28px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
       },
     };
 
