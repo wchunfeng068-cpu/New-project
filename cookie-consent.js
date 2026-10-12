@@ -142,6 +142,24 @@
         .cookie-consent__text { font-size: 13px; }
         .cookie-consent__actions .cookie-consent__btn { flex: 1 1 0; }
       }
+
+      /* While the banner is visible, lift the floating contact buttons above it so
+         WhatsApp and back-to-top stay reachable. --cc-offset is the banner's
+         measured height (including its bottom gap), set by JS below. */
+      body.has-cookie-banner .site-wa-float {
+        bottom: calc(190px + var(--cc-offset, 0px));
+      }
+      body.has-cookie-banner .floating-top {
+        bottom: calc(86px + var(--cc-offset, 0px));
+      }
+      @media (max-width: 980px) {
+        body.has-cookie-banner .site-wa-float {
+          bottom: calc(16px + var(--cc-offset, 0px));
+        }
+        body.has-cookie-banner .floating-top {
+          bottom: calc(80px + var(--cc-offset, 0px));
+        }
+      }
       @media (prefers-reduced-motion: reduce) {
         .cookie-consent { transition: none; }
       }
@@ -165,6 +183,9 @@
     if (!banner) return;
     const node = banner;
     banner = null;
+    // Floating buttons go back to their normal position.
+    document.body.classList.remove('has-cookie-banner');
+    document.documentElement.style.setProperty('--cc-offset', '0px');
     node.classList.add('is-leaving');
     window.setTimeout(() => node.remove(), 240);
   };
@@ -173,6 +194,22 @@
     saveChoice(value);
     if (value === GRANTED) grantConsent();
     closeBanner();
+  };
+
+  // Measures the banner so the floating buttons can be lifted by exactly its height.
+  const updateOffset = () => {
+    if (!banner) {
+      document.documentElement.style.setProperty('--cc-offset', '0px');
+      return;
+    }
+    try {
+      const style = window.getComputedStyle(banner);
+      const gap = parseFloat(style.bottom) || 0;
+      const height = banner.offsetHeight || 0;
+      document.documentElement.style.setProperty('--cc-offset', `${Math.ceil(height + gap + 12)}px`);
+    } catch {
+      document.documentElement.style.setProperty('--cc-offset', '0px');
+    }
   };
 
   const mountBanner = () => {
@@ -192,6 +229,11 @@
     banner.querySelector('.cookie-consent__btn--decline').addEventListener('click', () => choose(DENIED));
     syncLabels();
     document.body.appendChild(banner);
+    // Tell the page a banner is up, and expose its real height so the floating
+    // WhatsApp / back-to-top buttons can sit above it instead of underneath.
+    document.body.classList.add('has-cookie-banner');
+    updateOffset();
+    window.addEventListener('resize', updateOffset);
   };
 
   // Lets a future "Cookie settings" link reopen the banner.
