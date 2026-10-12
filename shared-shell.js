@@ -8,7 +8,7 @@
   const SKIP_LINK_STYLE_ID = 'travelday-skip-link-styles';
 
   // Shared WhatsApp widgets + analytics live in site-widgets.js (config in site-config.js).
-  const SITE_WIDGETS_VERSION = '20261012-ux1c';
+  const SITE_WIDGETS_VERSION = '20261012-ux1d';
   const SITE_WIDGETS_BASE = document.currentScript?.src || window.location.href;
   const loadSiteWidgets = () => {
     if (window.__siteWidgetsRequested) return;

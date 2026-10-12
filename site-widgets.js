@@ -96,9 +96,9 @@
     style.textContent = `
       .site-wa-float {
         position: fixed;
-        right: 24px;
-        top: clamp(520px, 64vh, 720px);
-        bottom: auto;
+        right: max(16px, calc((100vw - min(var(--container), calc(100vw - 42px))) / 2 - 72px));
+        top: auto;
+        bottom: 150px;
         z-index: 95;
         display: inline-flex;
         align-items: center;
@@ -109,7 +109,7 @@
         background: #25d366;
         color: #fff;
         box-shadow: 0 10px 24px rgba(18, 140, 126, 0.35);
-        transition: transform 180ms ease, box-shadow 180ms ease, top 220ms ease;
+        transition: transform 180ms ease, box-shadow 180ms ease, bottom 220ms ease;
       }
       .site-wa-float:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(18, 140, 126, 0.42); }
       .site-wa-float svg { width: 30px; height: 30px; }
