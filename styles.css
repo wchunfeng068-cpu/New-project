@@ -1538,8 +1538,8 @@ h2 {
 
 .contact-card {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
   margin-top: var(--space-section);
   padding: 32px 34px 30px;
   background: linear-gradient(180deg, #fffdf9, #fbf7f0);
@@ -1553,12 +1553,6 @@ h2 {
 /* shared-inquiry.js renders into this mount; company details stay visible below it. */
 .contact-card > .contact-inquiry {
   grid-column: 1 / -1;
-}
-
-@media (min-width: 981px) {
-  .contact-card > .contact-info {
-    grid-column: span 2;
-  }
 }
 
 .footer-brand p,
@@ -1580,25 +1574,26 @@ h2 {
 }
 
 .footer-brand {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) minmax(0, 2fr);
-  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100%;
-  gap: 40px;
-  padding: 8px 0 4px;
+  gap: 28px;
+  padding: 16px 24px 16px 0;
 }
 
 .footer-brand-copy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 22px;
+  align-items: flex-start;
+  gap: 18px;
   align-self: stretch;
   padding-top: 0;
 }
 
 .footer-brand-copy p {
-  max-width: 300px;
+  max-width: 380px;
   margin: 0;
 }
 
@@ -1610,7 +1605,7 @@ h2 {
   width: fit-content;
   margin-top: 0;
   margin-bottom: 0;
-  align-self: center;
+  align-self: flex-start;
   padding-top: 0;
 }
 
@@ -1634,19 +1629,22 @@ h2 {
 }
 
 .contact-info {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  align-content: stretch;
-  gap: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
   min-height: 100%;
+  padding: 16px 0 16px 40px;
+  border-left: 1px solid var(--color-line);
 }
 
 .contact-info ul {
   list-style: none;
-  display: grid;
-  align-content: space-between;
-  gap: 18px;
-  min-height: 238px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 0;
   margin: 0;
   padding: 0;
 }
@@ -1672,20 +1670,17 @@ h2 {
 
 /* Compact company strip under the inquiry module (home #contact). */
 .contact-inquiry ~ .footer-brand {
-  grid-template-rows: none;
-  align-content: start;
   min-height: 0;
-  gap: 18px;
-  padding: 6px 0 0;
+  gap: 20px;
+  padding: 12px 24px 12px 0;
 }
 
 .contact-inquiry ~ .footer-brand .social-links {
-  order: 2;
-  align-self: start;
+  align-self: flex-start;
 }
 
 .contact-inquiry ~ .footer-brand .footer-brand-copy {
-  gap: 12px;
+  gap: 14px;
 }
 
 .contact-inquiry ~ .footer-brand .brand-footer .brand-logo {
@@ -1693,11 +1688,10 @@ h2 {
 }
 
 .contact-inquiry ~ .contact-info {
-  grid-template-rows: none;
-  align-content: start;
   min-height: 0;
-  gap: 14px;
-  padding-top: 6px;
+  gap: 18px;
+  padding: 12px 0 12px 40px;
+  border-left: 1px solid var(--color-line);
 }
 
 .contact-inquiry ~ .contact-info h2 {
@@ -1706,9 +1700,7 @@ h2 {
 }
 
 .contact-inquiry ~ .contact-info ul {
-  align-content: start;
-  min-height: 0;
-  gap: 8px;
+  gap: 10px;
 }
 
 .contact-inquiry ~ .contact-info li {
@@ -2170,6 +2162,30 @@ h2 {
   .stats-band,
   .contact-card {
     grid-template-columns: 1fr;
+  }
+
+  .contact-card .footer-brand,
+  .contact-card .contact-info {
+    padding: 0;
+    border: 0;
+    align-items: stretch;
+  }
+
+  .contact-card .contact-info {
+    border-top: 1px solid var(--color-line);
+    padding-top: 28px;
+    margin-top: 4px;
+  }
+
+  .contact-card .footer-brand-copy,
+  .contact-card .social-links {
+    align-items: center;
+    align-self: center;
+  }
+
+  .contact-card .footer-brand-copy p {
+    max-width: 100%;
+    text-align: center;
   }
 
   .hero-stats {
