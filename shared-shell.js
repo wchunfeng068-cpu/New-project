@@ -683,6 +683,10 @@
   };
   window.setSiteLanguage = setLanguage;
 
+  window.addEventListener('pageshow', () => {
+    document.body.classList.remove('is-exiting', 'i18n-loading');
+  });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => init(), { once: true });
   } else {

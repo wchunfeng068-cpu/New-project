@@ -985,6 +985,11 @@
     const closeBtn = modal.querySelector('[data-close-video]');
     if (closeBtn) closeBtn.focus();
     try {
+      if (!player.getAttribute('src')) {
+        player.src = player.dataset.src;
+        player.poster = player.dataset.poster;
+        player.load();
+      }
       player.currentTime = 0;
       await player.play();
       modal.classList.remove('is-loading');
@@ -1006,13 +1011,18 @@
       (entries, instance) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
+          entry.target.classList.remove('reveal-pending');
           entry.target.classList.add('is-visible');
           instance.unobserve(entry.target);
         });
       },
       { rootMargin: '0px 0px -80px 0px', threshold: 0.12 },
     );
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => {
+      if (el.classList.contains('hero-stats')) return;
+      el.classList.add('reveal-pending');
+      observer.observe(el);
+    });
   };
 
   const bindLazyBackgrounds = () => {
@@ -1270,23 +1280,11 @@
       },
       { passive: true },
     );
-
-    // Page transition: fade out before navigating to internal links
-    document.addEventListener('click', (event) => {
-      const link = event.target.closest('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
-      // Only intercept links to internal pages
-      try {
-        const url = new URL(href, window.location.href);
-        if (url.origin !== window.location.origin) return;
-      } catch { return; }
-      event.preventDefault();
-      document.body.classList.add('is-exiting');
-      setTimeout(() => { window.location.href = href; }, 200);
-    });
   };
+
+  window.addEventListener('pageshow', () => {
+    document.body.classList.remove('is-exiting', 'i18n-loading');
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });
