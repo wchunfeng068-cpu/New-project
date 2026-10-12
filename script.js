@@ -33,7 +33,7 @@
       nav: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
       quote: '获取报价 →',
       heroEyebrow: '行李箱及零部件供应链合作伙伴',
-      heroTitle: '从中国供应链\n到全球制造。',
+      heroTitle: '从中国供应链\n到全球制造',
       heroButtonPrimary: '获取报价 →',
       heroButtonSecondary: '查看产品',
       heroStats: [
