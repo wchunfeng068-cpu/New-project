@@ -1,5 +1,7 @@
 User-agent: *
-Disallow: /mockups/
 Allow: /
+
+# Post-submit page — no search value
+Disallow: /thank-you.html
 
 Sitemap: https://luggage-dc.com/sitemap.xml
