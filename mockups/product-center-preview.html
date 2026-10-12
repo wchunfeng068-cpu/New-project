@@ -260,11 +260,16 @@
       const extraCopy = {"zh": {"heroQuote": "获取报价 →", "catalogKicker": "产品目录", "catalogTitle": "选择产品系列"}, "en": {"heroQuote": "Get Quote →", "catalogKicker": "PRODUCT CATALOG", "catalogTitle": "Choose a product line"}, "es": {"heroQuote": "Solicitar cotización →", "catalogKicker": "CATÁLOGO", "catalogTitle": "Elija una línea de producto"}, "hi": {"heroQuote": "कोटेशन लें →", "catalogKicker": "उत्पाद कैटलॉग", "catalogTitle": "उत्पाद श्रृंखला चुनें"}};
       const catalogRoot = document.querySelector("[data-catalog]");
 
+      // Keep original paths in the data; request WebP first and fall back once.
+      const optimizedImagePath = (src) => src
+        .replace("../images/", "../images/optimized/")
+        .replace(/\.(png|jpe?g)$/i, ".webp");
+
       const renderCatalog = (lang) => {
         const t = pageCopy[lang] || pageCopy.en;
         catalogRoot.innerHTML = catalogSections.map((section, index) => `
           <a class="product-card" href="${addLang(section.href, lang)}" id="catalog-${section.key}">
-            <img class="product-image" src="${section.image}" alt="${t.catalog[section.key]}" width="1774" height="887" loading="${index < 2 ? "eager" : "lazy"}" decoding="async" />
+            <img class="product-image" src="${optimizedImagePath(section.image)}" data-original-src="${section.image}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${t.catalog[section.key]}" width="1774" height="887" loading="${index < 2 ? "eager" : "lazy"}" decoding="async" />
             <div class="product-body">
               <h3>${t.catalog[section.key]}</h3>
               <small>${section.label}</small>

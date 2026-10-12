@@ -76,7 +76,7 @@
             </div>
           </div>
           <figure class="mk-hero-media mk-hero-media--wide">
-            <picture><source srcset="../images/optimized/detail/abs-pc-1.webp" type="image/webp" /><img data-detail="heroImage" src="../images/detail/abs-pc-1.png" alt="" width="1774" height="887" loading="eager" fetchpriority="high" decoding="async" /></picture>
+            <img data-detail="heroImage" src="../images/optimized/detail/abs-pc-1.webp" onerror="this.onerror=null;this.src='../images/detail/abs-pc-1.png'" alt="" width="1774" height="887" loading="eager" fetchpriority="high" decoding="async" />
           </figure>
         </section>
 
@@ -395,6 +395,18 @@
       const $detail = (key) => document.querySelector(`[data-detail="${key}"]`);
       const escapeAttr = (value) => String(value).replace(/"/g, "&quot;");
 
+      // Keep original paths in the data; request WebP first and fall back once.
+      const optimizedImagePath = (src) => src
+        .replace("../images/", "../images/optimized/")
+        .replace(/\.(png|jpe?g)$/i, ".webp");
+      const setOptimizedImage = (image, original) => {
+        image.onerror = () => {
+          image.onerror = null;
+          image.src = original;
+        };
+        image.src = optimizedImagePath(original);
+      };
+
       onLanguage((lang) => {
         const page = pageCopy[lang] || pageCopy.en;
         const product = productDetailData[readProduct()];
@@ -413,7 +425,7 @@
         back.href = addLang("product-center-preview.html#catalog", lang);
         $detail("inquiry").textContent = page.inquiry;
         const hero = $detail("heroImage");
-        hero.src = product.heroImage;
+        setOptimizedImage(hero, product.heroImage);
         hero.alt = detail.title;
         document.querySelector(".mk-hero")?.setAttribute("aria-label", galleryLabel);
         $detail("galleryTitle").textContent = galleryLabel;
@@ -424,7 +436,7 @@
             // Gallery captions are authored in Chinese; show them only for zh.
             const caption = lang === "zh" ? `<figcaption>${title}</figcaption>` : "";
             const alt = lang === "zh" ? title : galleryLabel;
-            return `<figure class="mk-shot"><img src="${src}" alt="${escapeAttr(alt)}" style="object-position: ${position}" loading="lazy" decoding="async" />${caption}</figure>`;
+            return `<figure class="mk-shot"><img src="${optimizedImagePath(src)}" data-original-src="${escapeAttr(src)}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${escapeAttr(alt)}" style="object-position: ${position}" loading="lazy" decoding="async" />${caption}</figure>`;
           })
           .join("");
       });

@@ -62,7 +62,7 @@
       ]
     }
     </script>
-    <link rel="preload" as="image" href="images/hero-travelday-candy.jpg" />
+    <link rel="preload" as="image" href="images/optimized/hero-travelday-candy.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://formsubmit.co" />
     <link rel="dns-prefetch" href="https://formsubmit.co" />
     <noscript>
@@ -80,11 +80,11 @@
       <header class="site-header" data-section="navigation">
         <a class="brand" href="#top" aria-label="TRAVELDAY home">
           <span class="brand-logo">
-            <img
+            <picture style="display:contents"><source srcset="images/optimized/logo-travelday.webp" type="image/webp" /><img
               src="images/logo-travelday.png"
               alt="TRAVELDAY"
               width="480" height="240" loading="eager" decoding="async"
-            />
+            /></picture>
           </span>
         </a>
 
@@ -116,7 +116,7 @@
 
       <main id="main-content" tabindex="-1">
         <section class="hero card" data-section="hero">
-          <img class="hero-cover" src="images/hero-travelday-candy.jpg" alt="Candy founder portrait" width="2560" height="854" loading="eager" fetchpriority="high" decoding="async" />
+          <picture style="display:contents"><source srcset="images/optimized/hero-travelday-candy.webp" type="image/webp" /><img class="hero-cover" src="images/hero-travelday-candy.jpg" alt="Candy founder portrait" width="2560" height="854" loading="eager" fetchpriority="high" decoding="async" /></picture>
           <div class="hero-content hero-content-expanded">
             <p class="eyebrow" data-i18n="heroEyebrow">Luggage and component supply chain partner</p>
             <h1 data-i18n="heroTitle">Luggage Parts Manufacturer<br />&amp; Suitcase Factory China</h1>
@@ -276,7 +276,7 @@
         </section>
 
         <section class="series-banner card series-banner--dark production-panel" data-reveal data-section="production">
-          <img class="series-image series-image--factory" src="images/series-production.jpg" width="1920" height="640" loading="lazy" decoding="async" alt="" />
+          <picture><source srcset="images/optimized/series-production.webp" type="image/webp" /><img class="series-image series-image--factory" src="images/series-production.jpg" width="1920" height="640" loading="lazy" decoding="async" alt="" /></picture>
           <div class="production-copy">
             <h2 data-i18n="productionTitle">Rooted in China's supply chain,<br />delivering worldwide.</h2>
             <p class="production-kicker" data-i18n="productionEyebrow">Luggage &amp; components supply chain partner</p>
@@ -341,11 +341,11 @@
           <div class="footer-logo">
             <a class="brand brand-footer" href="#top" aria-label="TRAVELDAY home">
               <span class="brand-logo">
-                <img
+                <picture style="display:contents"><source srcset="images/optimized/logo-travelday.webp" type="image/webp" /><img
                   src="images/logo-travelday.png"
                   alt="TRAVELDAY"
-                  width="480" height="240" loading="eager" decoding="async"
-                />
+                  width="480" height="240" loading="lazy" decoding="async"
+                /></picture>
               </span>
             </a>
           </div>
@@ -409,7 +409,7 @@
           playsinline
           preload="none"
           data-poster="images/optimized/luggage-video-cover-480.webp"
-          data-src="videos/xuanchuan.mp4"
+          data-src="videos/xuanchuan-optimized.mp4"
         ></video>
       </div>
     </div>
