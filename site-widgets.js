@@ -270,7 +270,9 @@
   };
 
   const init = () => {
-    loadAnalytics();
+    // Cookie consent gate (cookie-consent.js): analytics only load after the visitor accepts.
+    if (window.SITE_ANALYTICS_CONSENT === true) loadAnalytics();
+    else window.addEventListener('travelday:analytics-consent', loadAnalytics, { once: true });
     bindClickTracking();
     ensureStyles();
     mountWidgets();
