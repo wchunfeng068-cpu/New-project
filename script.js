@@ -6,7 +6,7 @@
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
 
   // Shared WhatsApp widgets + analytics live in site-widgets.js (config in site-config.js).
-  const SITE_WIDGETS_VERSION = '20261012-ux1b';
+  const SITE_WIDGETS_VERSION = '20261012-ux1c';
   const SITE_WIDGETS_BASE = document.currentScript?.src || window.location.href;
   const loadSiteWidgets = () => {
     if (window.__siteWidgetsRequested) return;

@@ -97,7 +97,8 @@
       .site-wa-float {
         position: fixed;
         right: 24px;
-        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+        top: clamp(520px, 64vh, 720px);
+        bottom: auto;
         z-index: 95;
         display: inline-flex;
         align-items: center;
@@ -108,38 +109,23 @@
         background: #25d366;
         color: #fff;
         box-shadow: 0 10px 24px rgba(18, 140, 126, 0.35);
-        transition: transform 180ms ease, box-shadow 180ms ease, bottom 220ms ease;
+        transition: transform 180ms ease, box-shadow 180ms ease, top 220ms ease;
       }
       .site-wa-float:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(18, 140, 126, 0.42); }
       .site-wa-float svg { width: 30px; height: 30px; }
 
-      .site-wa-header {
-        display: inline-flex;
-        flex: 0 0 auto;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: #25d366;
-        color: #fff;
-        transition: filter 180ms ease, transform 180ms ease;
-      }
-      .site-wa-header:hover { filter: brightness(1.06); transform: translateY(-1px); }
-      .site-wa-header svg { width: 24px; height: 24px; }
-
       .site-cta-bar { display: none; }
 
       @media (max-width: 980px) {
-        .site-wa-header { display: none; }
-
         body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
 
         .site-wa-float {
           right: 14px;
+          top: auto;
           bottom: calc(16px + env(safe-area-inset-bottom, 0px));
           width: 52px;
           height: 52px;
+          transition: transform 180ms ease, box-shadow 180ms ease, bottom 220ms ease;
         }
         body.has-cta-bar .site-wa-float { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
 
@@ -216,14 +202,6 @@
     widgets.float.innerHTML = WA_ICON;
     document.body.appendChild(widgets.float);
 
-    const headerActions = document.querySelector('.site-header .header-actions');
-    if (headerActions) {
-      widgets.header = createWaAnchor('site-wa-header', 'header');
-      widgets.header.innerHTML = WA_ICON;
-      const quoteButton = headerActions.querySelector('.quote-button');
-      headerActions.insertBefore(widgets.header, quoteButton || null);
-    }
-
     widgets.bar = document.createElement('div');
     widgets.bar.className = 'site-cta-bar';
     widgets.barWa = createWaAnchor('site-cta-wa', 'mobile_bar');
@@ -237,7 +215,7 @@
 
   const syncLabels = (lang = getLanguage()) => {
     const copy = LABELS[lang] || LABELS.en;
-    [widgets.float, widgets.header].forEach((node) => {
+    [widgets.float].forEach((node) => {
       if (!node) return;
       node.setAttribute('aria-label', copy.chat);
       node.title = copy.chat;
