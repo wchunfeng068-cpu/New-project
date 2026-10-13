@@ -85,7 +85,9 @@ async function measurePage(ws, send, file, width, name, shotPath) {
     const haB = box(document.querySelector('.header-actions'));
     const heroB = box(document.querySelector('.hero'));
     const hcB = box(document.querySelector('.hero-content'));
-    return JSON.stringify({ vw, sw, small, navB, haB, heroB, hcB });
+    const videoB = box(document.querySelector('.video-section'));
+    const playB = box(document.querySelector('.play-button'));
+    return JSON.stringify({ vw, sw, small, navB, haB, heroB, hcB, videoB, playB });
   })()`;
 
   const r = await send('Runtime.evaluate', { expression: EXPR, returnByValue: true });
@@ -104,11 +106,15 @@ async function measurePage(ws, send, file, width, name, shotPath) {
   const heroLeft = (m.vw >= 981 && m.hcB && m.heroB)
     ? (m.hcB.x + m.hcB.w / 2) < (m.heroB.x + m.heroB.w / 2)
     : null;
+  const playCentered = (m.playB && m.videoB)
+    ? (Math.abs((m.playB.x + m.playB.w / 2) - (m.videoB.x + m.videoB.w / 2)) <= 3 &&
+       Math.abs((m.playB.y + m.playB.h / 2) - (m.videoB.y + m.videoB.h / 2)) <= 3)
+    : null;
   const smallKey = (s) => `${s.tag}.${s.cls} ${s.w}x${s.h} "${s.text}"`;
 
   return {
     ok: true,
-    vw: m.vw, sw: m.sw, overflow, navOverlap, heroLeft,
+    vw: m.vw, sw: m.sw, overflow, navOverlap, heroLeft, playCentered,
     small: m.small.map(smallKey),
   };
 }
@@ -137,6 +143,8 @@ async function connectCDP() {
   });
   await send('Page.enable');
   await send('Runtime.enable');
+  await send('Network.enable');
+  await send('Network.setCacheDisabled', { cacheDisabled: true });
   return { ws, send };
 }
 
@@ -247,8 +255,9 @@ async function main() {
         if (!cur || !cur.ok) { regressions.push(`${page.name}@${width}: 测量失败`); continue; }
         if (cur.overflow) regressions.push(`${page.name}@${width}: 横向溢出 (${cur.sw}>${cur.vw})`);
         if (cur.navOverlap) regressions.push(`${page.name}@${width}: 桌面导航与右侧按钮重叠`);
-        if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字错位(跑到右半边)`);
-        if (old && Array.isArray(old.small)) {
+      if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字错位(跑到右半边)`);
+      if (cur.playCentered === false) regressions.push(`${page.name}@${width}: 视频播放按钮未居中`);
+      if (old && Array.isArray(old.small)) {
           for (const s of cur.small) if (!old.small.includes(s))
             regressions.push(`${page.name}@${width}: 新增小热区 ${s}`);
         }
