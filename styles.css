@@ -198,13 +198,12 @@ button {
   font-weight: 800;
 }
 
-@media (min-width: 981px) {
-  .primary-nav {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+/* The nav used to be absolutely centred, which ignored the width of the
+   language switcher + quote button and overlapped them between 981 and 1240px.
+   Letting it take part in the grid (column 2) keeps it centred in the space
+   that is actually left over. */
+.primary-nav {
+  min-width: 0;
 }
 
 .primary-nav a {
@@ -2078,23 +2077,23 @@ h2 {
    the action sizes so the last nav item never slides under the language switcher. */
 @media (min-width: 981px) and (max-width: 1240px) {
   .site-header {
-    grid-template-columns: minmax(140px, 190px) 1fr auto;
-    padding-inline: 18px;
-    gap: 14px;
+    grid-template-columns: minmax(120px, 160px) 1fr auto;
+    padding-inline: 16px;
+    gap: 12px;
   }
 
   .primary-nav {
-    gap: 18px;
+    gap: 16px;
     font-size: 16px;
   }
 
   .language-select {
-    min-width: 92px;
-    padding-right: 24px;
+    min-width: 88px;
+    padding-right: 22px;
   }
 
   .quote-button {
-    padding-inline: 16px;
+    padding-inline: 14px;
   }
 }
 
