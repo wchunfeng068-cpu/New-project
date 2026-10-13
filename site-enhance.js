@@ -26,7 +26,7 @@
   var GAP = 14; // px between the WhatsApp button and the Top button
   var COOKIE_KEY = 'dc_cookie_consent';
 
-  var GA4_ID = ''; // e.g. 'G-XXXXXXXXXX'
+  var GA4_ID = 'G-6FZEHHTB5C';
   var CLARITY_ID = ''; // e.g. 'abcd1234ef'
 
   var SOCIAL_LINKS = {
