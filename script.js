@@ -4,20 +4,6 @@
   const LANGUAGE_STORAGE_KEY = 'travelday-site-language';
   const NAV_STYLE_ID = 'travelday-nav-standard-styles';
   const INQUIRY_STYLE_ID = 'travelday-inquiry-standard-styles';
-
-  // Shared WhatsApp widgets + analytics live in site-widgets.js (config in site-config.js).
-  const SITE_WIDGETS_VERSION = '20261012-ux1g';
-  const SITE_WIDGETS_BASE = document.currentScript?.src || window.location.href;
-  const loadSiteWidgets = () => {
-    if (window.__siteWidgetsRequested) return;
-    window.__siteWidgetsRequested = true;
-    ['site-config.js', 'site-widgets.js'].forEach((file) => {
-      const script = document.createElement('script');
-      script.src = new URL(`${file}?v=${SITE_WIDGETS_VERSION}`, SITE_WIDGETS_BASE).toString();
-      script.async = false;
-      document.head.appendChild(script);
-    });
-  };
   const NAV_LABELS = {
     zh: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
     en: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
@@ -33,12 +19,12 @@
       nav: ['首页', '产品中心', '解决方案', '关于我们', '市场', '联系我们'],
       quote: '获取报价 →',
       heroEyebrow: '行李箱及零部件供应链合作伙伴',
-      heroTitle: '箱包配件制造商\n与行李箱工厂',
+      heroTitle: '从中国供应链\n到全球制造。',
       heroButtonPrimary: '获取报价 →',
       heroButtonSecondary: '查看产品',
       heroStats: [
-        ['自2016年起', '行业经验'],
-        ['600+ 集装箱', '年出口量'],
+        ['自2006年起', '行业经验'],
+        ['400+ 集装箱', '年出口量'],
         ['OEM & ODM', '一站式解决方案'],
         ['全球市场', '值得信赖的合作伙伴'],
       ],
@@ -75,10 +61,10 @@
       productionProofTwoDesc: '严苛检测，稳定可靠交付',
       statsTitle: '您值得信赖的供应链合作伙伴',
       stats: [
-        ['2016', '成立年份'],
-        ['60+', '全球客户'],
-        ['600+', '年出货集装箱'],
-        ['10+', '出口国家'],
+        ['20+', '年行业经验'],
+        ['50+', '团队成员'],
+        ['1000+', '全球客户'],
+        ['5%', '净利润率'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: '全球布局',
@@ -89,12 +75,18 @@
       contactPhoneLabel: '电话：',
       contactEmailLabel: '邮箱：',
       contactAddressLabel: '地址：',
-      contactAddress: '中国上海',
+      contactAddress: '中国广东省佛山市南海区里水镇里水大道 88 号',
       companyCn: '上海戴承实业有限公司',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         '专注于行李箱及零部件供应链，致力于为全球客户提供高品质的产品与专业的供应链解决方案。',
-      footer: '© 2016-2026 TRAVELDAY. 保留所有权利。',
+      quoteTitle: '让合作更快发生',
+      formName: '您的姓名',
+      formCompany: '公司名称',
+      formEmail: '邮箱地址',
+      formMessage: '留言内容',
+      formSubmit: '提交询盘',
+      footer: '© 2006-2026 TRAVELDAY. 保留所有权利。',
       footerLinks: ['隐私政策', '服务条款', '网站地图'],
       modalClose: '关闭视频',
     },
@@ -105,12 +97,12 @@
       nav: ['Home', 'Products', 'Solutions', 'About', 'Market', 'Contact'],
       quote: 'Get Quote →',
       heroEyebrow: 'Luggage and component supply chain partner',
-      heroTitle: 'Luggage Parts Manufacturer\n& Suitcase Factory China',
+      heroTitle: 'From China supply chain\nto global production',
       heroButtonPrimary: 'Get Quote →',
       heroButtonSecondary: 'View Products',
       heroStats: [
-        ['Since 2016', 'Industry experience'],
-        ['600+ containers', 'Annual export volume'],
+        ['Since 2006', 'Industry experience'],
+        ['1000+ containers', 'Annual export volume'],
         ['OEM & ODM', 'One-stop solutions'],
         ['Global market', 'Trusted partner'],
       ],
@@ -147,10 +139,10 @@
       productionProofTwoDesc: 'Strict testing for stable, reliable delivery',
       statsTitle: 'A supply chain partner you can trust',
       stats: [
-        ['Since 2016', 'Years in business'],
-        ['60+', 'Global clients'],
-        ['600+', 'Containers a year'],
-        ['10+', 'Export countries'],
+        ['Since 2006', 'Years in business'],
+        ['50+', 'Team members'],
+        ['1000+', 'Global customers'],
+        ['5%', 'Net profit margin'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'Global footprint',
@@ -161,12 +153,18 @@
       contactPhoneLabel: 'Phone:',
       contactEmailLabel: 'Email:',
       contactAddressLabel: 'Address:',
-      contactAddress: 'Shanghai, China',
-      companyCn: '上海戴承实业有限公司',
+      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Focused on luggage and component supply chains, delivering high-quality products and professional supply chain solutions for global customers.',
-      footer: '© 2016-2026 TRAVELDAY. All rights reserved.',
+      quoteTitle: 'Turn every inquiry into one elegant entry point.',
+      formName: 'Your name',
+      formCompany: 'Company name',
+      formEmail: 'Email address',
+      formMessage: 'Message',
+      formSubmit: 'Send inquiry',
+      footer: '© 2006-2026 TRAVELDAY. All rights reserved.',
       footerLinks: ['Privacy Policy', 'Terms of Service', 'Sitemap'],
       modalClose: 'Close video',
     },
@@ -177,12 +175,12 @@
       nav: ['Inicio', 'Productos', 'Soluciones', 'Nosotros', 'Mercado', 'Contacto'],
       quote: 'Solicitar cotización →',
       heroEyebrow: 'Tu socio en equipaje y componentes',
-      heroTitle: 'Fabricante de piezas de equipaje\ny fábrica de maletas en China',
+      heroTitle: 'De la cadena de suministro de China\na la producción global',
       heroButtonPrimary: 'Solicitar cotización →',
       heroButtonSecondary: 'Ver productos',
       heroStats: [
-        ['Desde 2016', 'Experiencia'],
-        ['600+ contenedores', 'Volumen anual'],
+        ['Desde 2006', 'Experiencia'],
+        ['400+ contenedores', 'Volumen anual'],
         ['OEM & ODM', 'Solución integral'],
         ['Mercado global', 'Socio de confianza'],
       ],
@@ -219,10 +217,10 @@
       productionProofTwoDesc: 'Pruebas estrictas para una entrega estable y fiable',
       statsTitle: 'Un socio de suministro en quien puedes confiar',
       stats: [
-        ['Desde 2016', 'Años en el sector'],
-        ['60+', 'Clientes globales'],
-        ['600+', 'Contenedores al año'],
-        ['10+', 'Países de exportación'],
+        ['Desde 2006', 'Años de experiencia'],
+        ['50+', 'Miembros del equipo'],
+        ['1000+', 'Clientes globales'],
+        ['5%', 'Margen neto'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'Presencia global',
@@ -233,12 +231,18 @@
       contactPhoneLabel: 'Teléfono:',
       contactEmailLabel: 'Correo:',
       contactAddressLabel: 'Dirección:',
-      contactAddress: 'Shanghai, China',
-      companyCn: '上海戴承实业有限公司',
+      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'Especializados en equipaje y componentes, ofrecemos productos de alta calidad y soluciones profesionales de cadena de suministro para clientes globales.',
-      footer: '© 2016-2026 TRAVELDAY. Todos los derechos reservados.',
+      quoteTitle: 'Convierte cada consulta en una entrada clara y elegante.',
+      formName: 'Tu nombre',
+      formCompany: 'Nombre de la empresa',
+      formEmail: 'Correo electrónico',
+      formMessage: 'Mensaje',
+      formSubmit: 'Enviar consulta',
+      footer: '© 2006-2026 TRAVELDAY. Todos los derechos reservados.',
       footerLinks: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'],
       modalClose: 'Cerrar video',
     },
@@ -249,12 +253,12 @@
       nav: ['होम', 'उत्पाद', 'समाधान', 'हमारे बारे में', 'बाज़ार', 'संपर्क'],
       quote: 'कोटेशन लें →',
       heroEyebrow: 'लगेज और कंपोनेंट सप्लाई चेन पार्टनर',
-      heroTitle: 'लगेज पार्ट्स निर्माता\nऔर सूटकेस फैक्ट्री चीन',
+      heroTitle: 'चीन की सप्लाई चेन से\nवैश्विक उत्पादन तक',
       heroButtonPrimary: 'कोटेशन लें →',
       heroButtonSecondary: 'उत्पाद देखें',
       heroStats: [
-        ['2016 से', 'उद्योग अनुभव'],
-        ['600+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
+        ['2006 से', 'उद्योग अनुभव'],
+        ['400+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
         ['OEM & ODM', 'वन-स्टॉप समाधान'],
         ['वैश्विक बाज़ार', 'विश्वसनीय साझेदार'],
       ],
@@ -291,10 +295,10 @@
       productionProofTwoDesc: 'स्थिर और विश्वसनीय डिलीवरी के लिए कठोर परीक्षण',
       statsTitle: 'एक सप्लाई चेन पार्टनर जिस पर आप भरोसा कर सकते हैं',
       stats: [
-        ['2016 से', 'व्यवसाय में'],
-        ['60+', 'वैश्विक ग्राहक'],
-        ['600+', 'कंटेनर प्रति वर्ष'],
-        ['10+', 'निर्यात देश'],
+        ['2006 से', 'वर्षों का अनुभव'],
+        ['50+', 'टीम सदस्य'],
+        ['1000+', 'वैश्विक ग्राहक'],
+        ['5%', 'शुद्ध लाभ मार्जिन'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'वैश्विक उपस्थिति',
@@ -305,12 +309,18 @@
       contactPhoneLabel: 'फ़ोन:',
       contactEmailLabel: 'ईमेल:',
       contactAddressLabel: 'पता:',
-      contactAddress: 'Shanghai, China',
-      companyCn: '上海戴承实业有限公司',
+      contactAddress: 'No. 88 Lishui Avenue, Lishui Town, Nanhai District, Foshan, Guangdong, China',
+      companyCn: 'Shanghai Daicheng Industrial Co., Ltd.',
       companyEn: 'Shanghai Daicheng Industrial Co., Ltd.',
       contactDesc:
         'लगेज और कंपोनेंट सप्लाई चेन में विशेषज्ञ, वैश्विक ग्राहकों के लिए उच्च गुणवत्ता के उत्पाद और पेशेवर सप्लाई चेन समाधान।',
-      footer: '© 2016-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
+      quoteTitle: 'हर पूछताछ को एक ही प्रवेश बिंदु में लाएं।',
+      formName: 'आपका नाम',
+      formCompany: 'कंपनी का नाम',
+      formEmail: 'ईमेल पता',
+      formMessage: 'संदेश',
+      formSubmit: 'पूछताछ भेजें',
+      footer: '© 2006-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
       footerLinks: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'],
       modalClose: 'वीडियो बंद करें',
     },
@@ -330,26 +340,26 @@
 
   const HERO_STAT_LABELS = {
     zh: [
-      ['自2016年起', '行业经验'],
-      ['600+ 集装箱', '年出口量'],
+      ['自2006年起', '行业经验'],
+      ['1000+ 集装箱', '年出口量'],
       ['OEM & ODM', '一站式解决方案'],
       ['全球市场', '值得信赖的合作伙伴'],
     ],
     en: [
-      ['Since 2016', 'Industry experience'],
-      ['600+ containers', 'Annual export volume'],
+      ['Since 2006', 'Industry experience'],
+      ['1000+ containers', 'Annual export volume'],
       ['OEM & ODM', 'One-stop solutions'],
       ['Global market', 'Trusted partner'],
     ],
     es: [
-      ['Desde 2016', 'Experiencia'],
-      ['600+ contenedores', 'Volumen anual'],
+      ['Desde 2006', 'Experiencia'],
+      ['1000+ contenedores', 'Volumen anual'],
       ['OEM & ODM', 'Solución integral'],
       ['Mercado global', 'Socio de confianza'],
     ],
     hi: [
-      ['2016 से', 'उद्योग अनुभव'],
-      ['600+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
+      ['2006 से', 'उद्योग अनुभव'],
+      ['1000+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
       ['OEM & ODM', 'एक ही स्थान पर समाधान'],
       ['वैश्विक बाज़ार', 'विश्वसनीय भागीदार'],
     ],
@@ -357,28 +367,28 @@
 
   const STATS_BAND_LABELS = {
     zh: [
-      ['2016', '成立年份'],
-      ['60+', '全球客户'],
-      ['600+', '年出货集装箱'],
-      ['10+', '出口国家'],
+      ['20+', '行业经验'],
+      ['50+', '团队成员'],
+      ['1000+', '全球客户'],
+      ['5%', '净利润率'],
     ],
     en: [
-      ['Since 2016', 'Years in business'],
-      ['60+', 'Global clients'],
-      ['600+', 'Containers a year'],
-      ['10+', 'Export countries'],
+      ['20+', 'Years in business'],
+      ['50+', 'Team members'],
+      ['1000+', 'Global customers'],
+      ['5%', 'Net profit margin'],
     ],
     es: [
-      ['Desde 2016', 'Años en el sector'],
-      ['60+', 'Clientes globales'],
-      ['600+', 'Contenedores al año'],
-      ['10+', 'Países de exportación'],
+      ['20+', 'Años de experiencia'],
+      ['50+', 'Miembros del equipo'],
+      ['1000+', 'Clientes globales'],
+      ['5%', 'Margen neto'],
     ],
     hi: [
-      ['2016 से', 'व्यवसाय में'],
-      ['60+', 'वैश्विक ग्राहक'],
-      ['600+', 'कंटेनर प्रति वर्ष'],
-      ['10+', 'निर्यात देश'],
+      ['20+', 'उद्योग अनुभव'],
+      ['50+', 'टीम के सदस्य'],
+      ['1000+', 'वैश्विक ग्राहक'],
+      ['5%', 'शुद्ध लाभ मार्जिन'],
     ],
   };
 
@@ -735,7 +745,7 @@
     node.style.maxWidth = tuning.maxWidth;
     node.style.minHeight = tuning.minHeight;
     node.style.paddingTop = tuning.paddingTop;
-    node.style.letterSpacing = tuning.letterSpacing || '';
+    node.style.letterSpacing = '0';
   };
 
   const clearTypeTuning = (node) => {
@@ -767,10 +777,10 @@
         hi: { fontSize: '38px', lineHeight: '1.12', maxWidth: '500px', minHeight: '150px', paddingTop: '12px' },
       },
       phone: {
-        zh: { fontSize: '34px', lineHeight: '1.1', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.5px' },
-        en: { fontSize: '26px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
-        es: { fontSize: '28px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
-        hi: { fontSize: '28px', lineHeight: '1.08', maxWidth: '', minHeight: '', paddingTop: '', letterSpacing: '-0.4px' },
+        zh: { fontSize: '36px', lineHeight: '1.08', maxWidth: '100%', minHeight: '126px', paddingTop: '0px' },
+        en: { fontSize: '28px', lineHeight: '1.14', maxWidth: '100%', minHeight: '126px', paddingTop: '18px' },
+        es: { fontSize: '30px', lineHeight: '1.12', maxWidth: '100%', minHeight: '126px', paddingTop: '14px' },
+        hi: { fontSize: '30px', lineHeight: '1.12', maxWidth: '100%', minHeight: '126px', paddingTop: '10px' },
       },
     };
 
@@ -936,7 +946,16 @@
     }
     setHTML('#contact .company-name', `${t.companyCn}<br />${t.companyEn}`);
     setText('#contact .footer-brand-copy p', t.contactDesc);
-    // The inquiry form inside #contact is rendered and translated by shared-inquiry.js.
+    setText('#contact .inquiry-form h2', t.quoteTitle);
+    $$('#contact .inquiry-form label').forEach((label, index) => {
+      const span = $('span', label);
+      if (!span) return;
+      if (index === 0) span.textContent = t.formName;
+      if (index === 1) span.textContent = t.formCompany;
+      if (index === 2) span.textContent = t.formEmail;
+      if (index === 3) span.textContent = t.formMessage;
+    });
+    setText('.form-submit', t.formSubmit);
 
     // Footer
     setText('.site-footer > p', t.footer);
@@ -966,11 +985,6 @@
     const closeBtn = modal.querySelector('[data-close-video]');
     if (closeBtn) closeBtn.focus();
     try {
-      if (!player.getAttribute('src')) {
-        player.src = player.dataset.src;
-        player.poster = player.dataset.poster;
-        player.load();
-      }
       player.currentTime = 0;
       await player.play();
       modal.classList.remove('is-loading');
@@ -992,18 +1006,13 @@
       (entries, instance) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.remove('reveal-pending');
           entry.target.classList.add('is-visible');
           instance.unobserve(entry.target);
         });
       },
       { rootMargin: '0px 0px -80px 0px', threshold: 0.12 },
     );
-    elements.forEach((el) => {
-      if (el.classList.contains('hero-stats')) return;
-      el.classList.add('reveal-pending');
-      observer.observe(el);
-    });
+    elements.forEach((el) => observer.observe(el));
   };
 
   const bindLazyBackgrounds = () => {
@@ -1102,28 +1111,19 @@
       nav.classList.toggle('is-open', !expanded);
       if (!expanded) {
         const firstLink = nav.querySelector('a');
-        if (firstLink) setTimeout(() => {
-          if (nav.classList.contains('is-open')) firstLink.focus();
-        }, 100);
+        if (firstLink) setTimeout(() => firstLink.focus(), 100);
       } else {
         mobileMenuButton.focus();
       }
     });
-    document.addEventListener('click', (event) => {
-      if (!nav.classList.contains('is-open')) return;
-      if (nav.contains(event.target) || mobileMenuButton.contains(event.target)) return;
-      // The drawer's language and quote controls are separate siblings of nav.
-      if (event.target.closest('.header-actions')) return;
-      closeMobileMenu();
-      mobileMenuButton.focus();
-    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-        closeMobileMenu();
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
         mobileMenuButton.focus();
       }
     });
-    $$('#primaryNav a, .header-actions .quote-button').forEach((link) => {
+    $$('#primaryNav a').forEach((link) => {
       link.addEventListener('click', () => {
         closeMobileMenu();
       });
@@ -1259,7 +1259,6 @@
 
     setSiteLanguage(readInitialLanguage());
     document.body.classList.remove('i18n-loading');
-    loadSiteWidgets();
     let resizeRaf = 0;
     window.addEventListener(
       'resize',
@@ -1271,11 +1270,23 @@
       },
       { passive: true },
     );
-  };
 
-  window.addEventListener('pageshow', () => {
-    document.body.classList.remove('is-exiting', 'i18n-loading');
-  });
+    // Page transition: fade out before navigating to internal links
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href');
+      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
+      // Only intercept links to internal pages
+      try {
+        const url = new URL(href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+      } catch { return; }
+      event.preventDefault();
+      document.body.classList.add('is-exiting');
+      setTimeout(() => { window.location.href = href; }, 200);
+    });
+  };
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init, { once: true });

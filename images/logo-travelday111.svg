@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 760" role="img" aria-labelledby="title">
+  <title id="title">TRAVELDAY</title>
+  <rect width="1760" height="760" fill="none"/>
+  <g fill="#d39a00">
+    <text x="880" y="330" text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="430" font-weight="700" letter-spacing="-34">TD</text>
+    <text x="880" y="642" text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="250" font-weight="700" letter-spacing="-8">TRAVELDAY</text>
+    <circle cx="1650" cy="462" r="52" fill="none" stroke="#d39a00" stroke-width="12"/>
+    <text x="1650" y="505" text-anchor="middle"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="96" font-weight="400">R</text>
+  </g>
+</svg>

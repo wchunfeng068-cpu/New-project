@@ -1,12 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" data-default-lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Center</title>
     <meta name="description" content="Explore TRAVELDAY luggage, components and OEM/ODM supply options for global buyers." />
-    <link rel="canonical" href="https://luggage-dc.com/mockups/product-center-preview.html" />
-    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href="https://www.traveldaysuitcase.com/mockups/product-center-preview.html" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
     <noscript>
@@ -15,15 +14,848 @@
         .mobile-menu-button { display: none !important; }
       </style>
     </noscript>
-    <!-- Main site design system (header, nav drawer, cards, buttons, footer) -->
-    <link rel="stylesheet" href="../styles.css?v=20261012-audit19" />
-    <!-- Shared mockup page layout helpers built on styles.css tokens -->
-    <link rel="stylesheet" href="mockup-pages.css?v=20261012-audit2" />
+    <style>
+      :root {
+        --page: #f4f0e9;
+        --card: #ffffff;
+        --ink: #141312;
+        --text: #2b2824;
+        --muted: #766f65;
+        --line: #ebe3d8;
+        --gold: #d39a00;
+        --gold-dark: #a87300;
+        --soft: #f6f1e9;
+        --shadow: 0 18px 48px rgba(35, 28, 20, 0.1);
+        --radius: 18px;
+        --font-sans: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        font-family: var(--font-sans);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95), rgba(244, 240, 233, 0.7) 42%, rgba(227, 221, 211, 0.62)),
+          var(--page);
+        opacity: 1;
+        transition: opacity 150ms ease;
+      }
+
+      body.i18n-loading {
+        opacity: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .page {
+        width: min(1500px, calc(100% - 42px));
+        margin: 32px auto 30px;
+      }
+
+      .site-header {
+        position: relative;
+        display: grid;
+        grid-template-columns: 280px 1fr auto;
+        align-items: center;
+        min-height: 64px;
+        margin-bottom: 24px;
+        gap: 22px;
+        padding: 0 34px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        min-width: 0;
+        gap: 0;
+        color: var(--gold);
+        font-weight: 900;
+      }
+
+      .brand-logo {
+        position: relative;
+        display: grid;
+        width: 160px;
+        height: 70px;
+        place-items: center;
+        overflow: visible;
+      }
+
+      .brand-logo img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .primary-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        color: #171514;
+        font-size: 18px;
+        font-weight: 800;
+        font-family: var(--font-sans);
+      }
+
+      @media (min-width: 981px) {
+        .primary-nav {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .primary-nav a {
+        position: relative;
+        padding: 22px 0;
+        transition: color 180ms ease;
+      }
+
+      html:not([data-nav-ready="true"]) .primary-nav {
+        visibility: hidden;
+      }
+
+      .primary-nav a.active {
+        color: var(--gold-dark);
+      }
+
+      .primary-nav a.active::after {
+        position: absolute;
+        left: 50%;
+        bottom: 12px;
+        width: 24px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--gold);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .language-select {
+        min-height: 44px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        outline: 0;
+      }
+
+      .quote-button,
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border-radius: 8px;
+        border: 0;
+        padding: 0 22px;
+        font-size: 13px;
+        font-weight: 900;
+        cursor: pointer;
+      }
+
+      .quote-button,
+      .button-primary {
+        background: var(--gold);
+        color: #fff;
+        box-shadow: 0 10px 22px rgba(172, 109, 0, 0.18);
+      }
+
+      .button-outline,
+      .outline {
+        border: 1px solid rgba(184, 128, 21, 0.42);
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      .mobile-menu-button {
+        display: none;
+        width: 42px;
+        height: 38px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        padding: 8px;
+      }
+
+      .mobile-menu-button span {
+        display: block;
+        height: 2px;
+        margin: 5px 0;
+        border-radius: 999px;
+        background: var(--ink);
+      }
+
+      .primary-nav a:hover {
+        color: var(--gold-dark);
+      }
+
+      .quote-button:hover,
+      .button-primary:hover {
+        filter: brightness(1.1);
+      }
+
+      .language-select:hover {
+        border-color: var(--gold);
+      }
+
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: var(--radius);
+        background: var(--card);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: block;
+        min-height: 520px;
+        margin-top: 8px;
+        padding: 66px 72px;
+        background:
+          linear-gradient(90deg, rgba(255, 253, 250, 0.96) 0%, rgba(255, 253, 250, 0.86) 43%, rgba(255, 253, 250, 0.18) 68%),
+          url("../images/series-luggage.jpg") right center / cover no-repeat;
+      }
+
+      .hero.product-center-hero {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 560px;
+        border: 0;
+        padding: 0;
+        overflow: hidden;
+        background: none;
+      }
+
+      .product-center-hero-image {
+        display: block;
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+        object-position: center;
+        margin: 0 auto;
+      }
+
+      .product-center-hero-copy {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: clamp(32px, 6.2vw, 104px);
+        width: min(42%, 560px);
+        transform: translateY(-50%);
+      }
+
+      .product-center-hero-copy .kicker {
+        margin-bottom: 24px;
+        color: #786958;
+        font-size: 13px;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      .product-center-hero-copy h1 {
+        margin-bottom: 20px;
+        color: #1e1b18;
+        font-size: clamp(42px, 4.4vw, 68px);
+        line-height: 1.03;
+      }
+
+      .product-center-hero-copy p:not(.kicker) {
+        max-width: 390px;
+        margin: 0;
+        color: #625b52;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.65;
+      }
+
+      .product-center-hero-copy .hero-actions {
+        margin-top: 30px;
+      }
+
+      .skip-link {
+        position: fixed;
+        z-index: 2000;
+        top: 12px;
+        left: 12px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #141312;
+        color: #fff;
+        font-weight: 800;
+        transform: translateY(-160%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .kicker {
+        margin: 0 0 14px;
+        color: var(--gold-dark);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 22px;
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", "SimSun", serif;
+        font-size: 64px;
+        font-weight: 500;
+        line-height: 1.08;
+      }
+
+      .lead {
+        max-width: 560px;
+        color: var(--muted);
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.8;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 42px;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+      }
+
+      .category-card,
+      .filter button {
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .category-card.is-active,
+      .filter .selected {
+        border-color: rgba(211, 154, 0, 0.55);
+        background: #fff7e1;
+        color: var(--gold-dark);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 24px;
+      }
+
+      .stats article {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        min-height: 96px;
+        padding: 0 24px;
+        border-right: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .stats article:last-child {
+        border-right: 0;
+      }
+
+      .icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 3px solid var(--gold);
+        border-radius: 12px;
+        color: var(--gold);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .stats strong {
+        display: block;
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 900;
+      }
+
+      .stats span {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .categories {
+        margin-top: 24px;
+        padding: 18px;
+      }
+
+      .category-card {
+        min-height: 180px;
+        overflow: hidden;
+        border-radius: 14px;
+        padding: 0;
+        text-align: left;
+      }
+
+      .category-card-image {
+        height: 124px;
+        background:
+          linear-gradient(rgba(242, 236, 226, 0.2), rgba(218, 208, 195, 0.12)),
+          var(--image) center / cover no-repeat;
+      }
+
+      .category-card span {
+        display: block;
+        padding: 14px 14px 16px;
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 900;
+      }
+
+      .workspace {
+        margin-top: 24px;
+      }
+
+      .catalog-rail {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .catalog-section {
+        position: relative;
+        display: grid;
+        gap: 10px;
+        min-height: 0;
+        overflow: hidden;
+        padding: 10px;
+        border: 1px solid rgba(232, 224, 212, 0.92);
+        border-radius: 20px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 242, 234, 0.98));
+        box-shadow: 0 16px 36px rgba(35, 28, 20, 0.08);
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .catalog-section-frame {
+        display: grid;
+        gap: 10px;
+      }
+
+      .catalog-section:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 46px rgba(35, 28, 20, 0.12);
+      }
+
+      .catalog-section-image {
+        min-height: 360px;
+        border-radius: 20px;
+        background-color: #eae0d3;
+        background-image:
+          linear-gradient(180deg, rgba(240, 231, 220, 0.48) 0%, rgba(235, 224, 211, 0.14) 100%),
+          var(--image);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-blend-mode: multiply;
+        filter: saturate(0.9) contrast(0.95);
+      }
+
+      .catalog-section-head {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 66px;
+        padding: 0 18px;
+        border: 1px solid rgba(232, 224, 212, 0.72);
+        border-radius: 16px;
+        background: rgba(255, 252, 247, 0.84);
+        backdrop-filter: blur(4px);
+      }
+
+      .catalog-section-head::after {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        color: rgba(20, 19, 18, 0.07);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1;
+        white-space: nowrap;
+        content: attr(data-watermark);
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .catalog-section-head .catalog-section-title {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 1px;
+        font-size: 20px;
+        line-height: 1.08;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1180px) {
+        .site-header {
+          grid-template-columns: 1fr;
+        }
+
+        .primary-nav {
+          flex-wrap: wrap;
+          justify-content: start;
+          gap: 22px;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          grid-template-columns: 1fr auto;
+          min-height: auto;
+          padding: 14px 18px;
+        }
+
+        .mobile-menu-button {
+          display: block;
+        }
+
+        .header-actions {
+          grid-column: 1 / -1;
+          display: none;
+          width: 100%;
+        }
+
+        .primary-nav {
+          display: flex;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 280px;
+          height: 100vh;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding-top: 10px;
+          background: var(--card);
+          transform: translateX(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+          z-index: 1000;
+        }
+
+        body.is-menu-open .primary-nav {
+          transform: translateX(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        body.is-menu-open .header-actions {
+          position: fixed;
+          left: 0;
+          bottom: 24px;
+          z-index: 1001;
+          display: flex;
+          width: 280px;
+          padding: 18px;
+          background: var(--card);
+          box-shadow: 0 -12px 28px rgba(35, 28, 20, 0.08);
+        }
+
+        body.is-menu-open::before {
+          position: fixed;
+          z-index: 999;
+          inset: 0;
+          background: rgba(20, 19, 18, 0.32);
+          content: "";
+        }
+
+        .primary-nav a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .header-actions {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 860px) {
+        .page {
+          width: min(100% - 24px, 720px);
+        }
+
+        .site-header,
+        .hero:not(.product-center-hero) {
+          padding: 18px;
+        }
+
+        .product-center-hero-image {
+          width: 100%;
+          height: auto;
+          transform: none;
+        }
+
+        .product-center-hero-copy {
+          left: 30px;
+          width: min(52%, 390px);
+        }
+
+        .product-center-hero-copy h1 {
+          font-size: 40px;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .stats,
+        .category-grid,
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+
+        .side-stack,
+        .side {
+          position: static;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .catalog-rail {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .site-footer {
+        display: grid;
+        grid-template-columns: 1fr auto 44px;
+        align-items: center;
+        gap: 18px;
+        min-height: 62px;
+        margin-top: 48px;
+        border-radius: 12px;
+        padding: 0 22px;
+        background: #11100f;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .site-footer p {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .site-footer nav {
+        display: flex;
+        gap: 22px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .site-footer nav a {
+        color: rgba(255, 255, 255, 0.72);
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .site-footer nav a:hover {
+        color: var(--gold, #d39a00);
+      }
+
+      .back-top {
+        display: grid;
+        min-width: 44px;
+        min-height: 44px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--gold, #d39a00);
+        color: #fff;
+        font-weight: 900;
+        text-decoration: none;
+        transition: color 180ms ease;
+      }
+
+      .back-top:hover {
+        color: var(--gold-dark, #a87300);
+      }
+
+      @media (max-width: 640px) {
+        .site-footer {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          padding: 16px 22px;
+          text-align: center;
+        }
+        .site-footer nav {
+          justify-content: center;
+        }
+      }
+
+      /* Custom language dropdown */
+      .lang-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .lang-dropdown-trigger {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
+        min-width: 108px;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        padding: 0 28px 0 12px;
+        background: #fff;
+        color: #5b554e;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        cursor: pointer;
+        outline: none;
+        transition: border-color 180ms ease;
+        position: relative;
+        z-index: 1;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .lang-dropdown-trigger::after {
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 10px;
+        height: 6px;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23766f65' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E") no-repeat center;
+        transform: translateY(-50%);
+        transition: transform 200ms ease;
+      }
+
+      .lang-dropdown.is-open .lang-dropdown-trigger::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      .lang-dropdown-trigger:hover {
+        border-color: var(--gold, #d39a00);
+      }
+
+      .lang-dropdown-trigger:focus-visible {
+        outline: 3px solid var(--gold, #d39a00);
+        outline-offset: 2px;
+      }
+
+      .lang-dropdown-panel {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 0;
+        min-width: 100%;
+        border: 1px solid #ddd4c9;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(35, 28, 20, 0.14);
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-6px);
+        transition: opacity 200ms ease, transform 200ms ease, visibility 200ms;
+        z-index: 1100;
+      }
+
+      .lang-dropdown.is-open .lang-dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .lang-dropdown-option {
+        display: flex;
+        align-items: center;
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 13px;
+        font-weight: 700;
+        font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+        color: #5b554e;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 120ms ease, color 120ms ease;
+      }
+
+      .lang-dropdown-option:hover {
+        background: rgba(211, 154, 0, 0.08);
+        color: var(--gold-dark, #a87300);
+      }
+
+      .lang-dropdown-option.is-active {
+        color: var(--gold-dark, #a87300);
+        font-weight: 900;
+      }
+
+      .lang-dropdown-option.is-active::after {
+        content: "✓";
+        margin-left: auto;
+        padding-left: 8px;
+        color: var(--gold, #d39a00);
+      }
+
+      .language-select {
+        position: absolute !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 0 !important;
+      }
+    </style>
   </head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <div class="page-stage">
-    <div class="page-shell" id="top">
+  <body class="i18n-loading">
+    <div class="page">
       <header class="site-header" data-section="navigation">
         <a class="brand" href="../index.html" aria-label="TRAVELDAY home">
           <span class="brand-logo">
@@ -61,95 +893,45 @@
         </div>
       </header>
 
-      <main class="mk-main" id="main-content" tabindex="-1">
-        <section class="card mk-hero" aria-label="Product Center hero" data-section="product-center-hero">
-          <div class="mk-hero-copy">
-            <p class="eyebrow" data-copy="heroKicker">TRAVELDAY PRODUCT CENTER</p>
-            <h1 data-copy="heroTitle">Crafted for<br />every journey.</h1>
-            <p class="mk-lead" data-copy="heroDescription">Premium luggage and components, engineered for global brands.</p>
-            <div class="mk-actions">
-              <a class="button button-primary" href="#catalog" data-copy="heroButton">Explore Products</a>
-              <a class="button button-outline" href="../index.html#contact" data-copy="heroQuote">Get Quote →</a>
+      <main>
+        <section class="hero card product-center-hero" aria-label="Product Center hero">
+          <img
+            class="product-center-hero-image"
+            src="../images/product-center-hero-luxury-minimal.png"
+            alt="Premium luggage shell, zipper, handle and wheel materials"
+            width="1774" height="887" loading="eager" fetchpriority="high" decoding="async"
+          />
+          <div class="product-center-hero-copy">
+            <p class="kicker" data-i18n="heroKicker">TRAVELDAY PRODUCT CENTER</p>
+            <h1 data-i18n="heroTitle">Crafted for<br />every journey.</h1>
+            <p data-i18n="heroDescription">Premium luggage and components, engineered for global brands.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#catalog" data-i18n="heroButton">Explore Products</a>
             </div>
           </div>
-          <figure class="mk-hero-media mk-hero-media--wide">
-            <picture><source srcset="../images/optimized/product-center-hero-luxury-minimal.webp" type="image/webp" /><img
-              class="product-center-hero-image"
-              src="../images/product-center-hero-luxury-minimal.png"
-              alt="Premium luggage shell, zipper, handle and wheel materials"
-              width="1774" height="887" loading="eager" fetchpriority="high" decoding="async"
-            /></picture>
-          </figure>
         </section>
 
-        <section class="card mk-section" id="catalog" data-reveal data-section="product-catalog">
-          <div class="mk-head">
-            <p class="section-kicker" data-copy="catalogKicker">PRODUCT CATALOG</p>
-            <h2 data-copy="catalogTitle">Choose a product line</h2>
-          </div>
-          <div class="product-grid mk-catalog" data-catalog></div>
+        <section class="workspace card" id="catalog">
+          <div class="catalog-rail" data-catalog></div>
         </section>
+
       </main>
-
       <footer class="site-footer" data-section="footer">
-        <p>© 2016-2026 TRAVELDAY. All rights reserved.</p>
-        <nav aria-label="Footer navigation">
-          <a href="../privacy.html">Privacy Policy</a>
-          <a href="../terms.html">Terms of Service</a>
-          <a href="../sitemap.html">Sitemap</a>
+        <p>© 2006-2026 TRAVELDAY. 保留所有权利。</p>
+        <nav aria-label="页脚导航">
+          <a href="../privacy.html">隐私政策</a>
+          <a href="../terms.html">服务条款</a>
+          <a href="../sitemap.html">网站地图</a>
         </nav>
         <a class="back-top" href="#top" aria-label="Back to top">↑</a>
       </footer>
-      <a class="floating-top" href="#top" aria-label="Back to top">Top</a>
-    </div>
     </div>
 
+    <script src="../shared-shell.js?v=20260730-3" defer></script>
+
     <script>
-      // Page copy. Runs on DOMContentLoaded, i.e. after ../script.js (defer) has applied the
-      // shared i18n + nav; re-runs on every "travelday:languagechange" fired by script.js.
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener('DOMContentLoaded', () => {
       const LANGS = ["zh", "en", "es", "hi"];
-      const PAGE_DESCRIPTION = "Explore TRAVELDAY luggage, components and OEM/ODM supply options for global buyers.";
-      const readLang = () => {
-        const fromDoc = document.documentElement.dataset.lang;
-        if (LANGS.includes(fromDoc)) return fromDoc;
-        try {
-          const fromQuery = new URLSearchParams(window.location.search).get("lang");
-          if (LANGS.includes(fromQuery)) return fromQuery;
-        } catch {
-          // Ignore malformed URLs.
-        }
-        try {
-          const stored = localStorage.getItem("travelday-site-language");
-          if (LANGS.includes(stored)) return stored;
-        } catch {
-          // Storage can be blocked in some file:// contexts.
-        }
-        return "en";
-      };
-      const addLang = (href, lang) => {
-        const url = new URL(href, window.location.href);
-        url.searchParams.set("lang", lang);
-        return url.toString();
-      };
-      // script.js writes the homepage title/description; restore this page's own.
-      const setPageMeta = (title, lang) => {
-        document.title = title;
-        document.querySelector('meta[name="description"]')?.setAttribute("content", PAGE_DESCRIPTION);
-        document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
-      };
-      const fillCopy = (map) => {
-        document.querySelectorAll("[data-copy]").forEach((node) => {
-          const value = map[node.dataset.copy];
-          if (value != null) node.innerHTML = value;
-        });
-      };
-      const onLanguage = (apply) => {
-        apply(readLang());
-        window.addEventListener("travelday:languagechange", (event) => {
-          apply(LANGS.includes(event.detail?.lang) ? event.detail.lang : readLang());
-        });
-      };
 
       const pageCopy = {
         zh: {
@@ -257,39 +1039,99 @@
         },
       ];
 
-      const extraCopy = {"zh": {"heroQuote": "获取报价 →", "catalogKicker": "产品目录", "catalogTitle": "选择产品系列"}, "en": {"heroQuote": "Get Quote →", "catalogKicker": "PRODUCT CATALOG", "catalogTitle": "Choose a product line"}, "es": {"heroQuote": "Solicitar cotización →", "catalogKicker": "CATÁLOGO", "catalogTitle": "Elija una línea de producto"}, "hi": {"heroQuote": "कोटेशन लें →", "catalogKicker": "उत्पाद कैटलॉग", "catalogTitle": "उत्पाद श्रृंखला चुनें"}};
       const catalogRoot = document.querySelector("[data-catalog]");
 
-      // Keep original paths in the data; request WebP first and fall back once.
-      const optimizedImagePath = (src) => src
-        .replace("../images/", "../images/optimized/")
-        .replace(/\.(png|jpe?g)$/i, ".webp");
-
-      const renderCatalog = (lang) => {
-        const t = pageCopy[lang] || pageCopy.en;
-        catalogRoot.innerHTML = catalogSections.map((section, index) => `
-          <a class="product-card" href="${addLang(section.href, lang)}" id="catalog-${section.key}">
-            <img class="product-image" src="${optimizedImagePath(section.image)}" data-original-src="${section.image}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${t.catalog[section.key]}" width="1774" height="887" loading="${index < 2 ? "eager" : "lazy"}" decoding="async" />
-            <div class="product-body">
-              <h3>${t.catalog[section.key]}</h3>
-              <small>${section.label}</small>
-            </div>
-          </a>
-        `).join("");
+      const readActiveLang = () => {
+        const fromShell = window.traveldayShell?.readLanguage?.("en") || window.traveldayShell?.getLanguage?.();
+        return LANGS.includes(fromShell) ? fromShell : "en";
       };
 
-      onLanguage((lang) => {
-        const t = pageCopy[lang] || pageCopy.en;
-        setPageMeta(t.title, lang);
-        fillCopy({ ...t, ...(extraCopy[lang] || extraCopy.en) });
-        document.querySelector(".mk-hero")?.setAttribute("aria-label", t.heroLabel);
-        document.querySelector(".product-center-hero-image")?.setAttribute("alt", t.heroAlt);
-        if (catalogRoot) renderCatalog(lang);
-      });
+      const addLang = (href, lang) => {
+        const url = new URL(href, window.location.href);
+        url.searchParams.set("lang", lang);
+        return url.toString();
+      };
 
+      function renderSectionCard(section, lang) {
+        const t = pageCopy[lang] || pageCopy.en;
+        return `
+          <a class="catalog-section" href="${addLang(section.href, lang)}" id="catalog-${section.key}">
+            <div class="catalog-section-frame">
+              <div class="catalog-section-head" data-watermark="${section.label}">
+                <h2 class="catalog-section-title">${t.catalog[section.key]}</h2>
+              </div>
+              <div class="catalog-section-image" data-lazy-image="${section.image}"></div>
+            </div>
+          </a>
+        `;
+      }
+
+      let catalogImageObserver;
+
+      function bindCatalogImageLoading() {
+        const images = Array.from(document.querySelectorAll(".catalog-section-image[data-lazy-image]"));
+        if (catalogImageObserver) catalogImageObserver.disconnect();
+
+        const loadImage = (node) => {
+          const src = node.dataset.lazyImage;
+          if (!src || node.dataset.imageLoaded === "true") return;
+          node.style.setProperty("--image", `url("${src}")`);
+          node.dataset.imageLoaded = "true";
+        };
+
+        if (!("IntersectionObserver" in window)) {
+          images.forEach(loadImage);
+          return;
+        }
+
+        catalogImageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            loadImage(entry.target);
+            observer.unobserve(entry.target);
+          });
+        }, { rootMargin: "300px 0px" });
+        images.forEach((image) => catalogImageObserver.observe(image));
+      }
+
+      function applyProductCenterCopy(lang) {
+        const activeLang = LANGS.includes(lang) ? lang : "en";
+        const t = pageCopy[activeLang] || pageCopy.en;
+        document.title = t.title;
+        document.documentElement.lang = activeLang === "zh" ? "zh-CN" : activeLang;
+        document.documentElement.dataset.lang = activeLang;
+
+        document.querySelector(".brand")?.setAttribute("aria-label", t.brandLabel);
+        document.querySelector(".primary-nav")?.setAttribute("aria-label", t.navLabel);
+        document.querySelector(".product-center-hero")?.setAttribute("aria-label", t.heroLabel);
+        document.querySelector(".product-center-hero-image")?.setAttribute("alt", t.heroAlt);
+        document.querySelector('[data-i18n="heroKicker"]')?.replaceChildren(t.heroKicker);
+        const heroTitle = document.querySelector('[data-i18n="heroTitle"]');
+        if (heroTitle) heroTitle.innerHTML = t.heroTitle;
+        document.querySelector('[data-i18n="heroDescription"]')?.replaceChildren(t.heroDescription);
+        document.querySelector('[data-i18n="heroButton"]')?.replaceChildren(t.heroButton);
+        document.querySelectorAll(".primary-nav a").forEach((link, index) => {
+          if (t.nav[index]) link.textContent = t.nav[index];
+        });
+        const quoteButton = document.querySelector(".quote-button");
+        if (quoteButton) quoteButton.textContent = t.quote;
+        const select = document.querySelector(".language-select");
+        if (select && select.value !== activeLang) select.value = activeLang;
+        if (catalogRoot) {
+          catalogRoot.innerHTML = catalogSections.map((section) => renderSectionCard(section, activeLang)).join("");
+          bindCatalogImageLoading();
+        }
+        window.traveldayShell?.syncLanguageLinks?.(activeLang);
+        document.documentElement.dataset.navReady = "true";
+      }
+
+      window.traveldayShell?.init?.({ defaultLang: "en" });
+      applyProductCenterCopy(readActiveLang());
+      window.addEventListener("travelday:languagechange", (event) => {
+        const nextLang = LANGS.includes(event.detail?.lang) ? event.detail.lang : readActiveLang();
+        applyProductCenterCopy(nextLang);
+      });
       });
     </script>
-    <script src="../script.js?v=20261012-audit14" defer></script>
-    <script src="../cookie-consent.js?v=20261013-cc2" defer></script>
   </body>
 </html>
