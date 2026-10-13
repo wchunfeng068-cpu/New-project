@@ -27,7 +27,7 @@
   var COOKIE_KEY = 'dc_cookie_consent';
 
   var GA4_ID = 'G-6FZEHHTB5C';
-  var CLARITY_ID = ''; // e.g. 'abcd1234ef'
+  var CLARITY_ID = 'yx33pfkr2v';
 
   var SOCIAL_LINKS = {
     linkedin: '', // e.g. 'https://www.linkedin.com/company/...'
