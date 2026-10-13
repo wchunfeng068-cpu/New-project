@@ -1018,6 +1018,28 @@
       { rootMargin: '0px 0px -80px 0px', threshold: 0.12 },
     );
     pending.forEach((el) => observer.observe(el));
+
+    // Safety net: anything the visitor has already scrolled past (a fast flick, the End key,
+    // or a jump to #contact) is shown too, so no section can be left invisible above them.
+    let ticking = false;
+    const revealPassed = () => {
+      ticking = false;
+      let left = 0;
+      pending.forEach((el) => {
+        if (el.classList.contains('is-visible')) return;
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        } else left += 1;
+      });
+      if (!left) window.removeEventListener('scroll', onScroll);
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(revealPassed);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
   };
 
   const bindLazyBackgrounds = () => {

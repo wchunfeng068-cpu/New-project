@@ -310,7 +310,7 @@
       alt: "Beauty, Sales",
       name: "Beauty",
       role: "Sales",
-      summary: "15+ years in luggage sourcing and one-stop support.",
+      summary: "My 15+ years in luggage sourcing, one-stop support.",
       imagePosition: "50%",
     },
     {

@@ -17,6 +17,7 @@
  *   - 小热区 (可点元素 < 32px) 新增
  *   - 桌面导航与语言/报价按钮重叠 (981px 以上)
  *   - HERO 文字错位 (文字块中心跑到 HERO 右半边)
+ *   - 滚动到底后仍有内容看不见 (透明度为 0 但占着位置，例如滚动动画失效)
  */
 
 import { spawn } from 'node:child_process';
@@ -66,6 +67,33 @@ async function measurePage(ws, send, file, width, name, shotPath) {
     if (st.result && st.result.value === 'complete') { ready = true; break; }
   }
   await sleep(800);
+
+  // 像真实访客一样从上滚到底，再检查有没有「占位但看不见」的内容（例如滚动出现动画失效）。
+  // 注意：这里绝不能注入强制显示的样式，否则会掩盖这类问题。
+  const HIDDEN_EXPR = `(async () => {
+    const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+    for (let y = 0; y < document.documentElement.scrollHeight; y += Math.round(innerHeight * 0.6)) {
+      window.scrollTo(0, y); await wait(120);
+    }
+    window.scrollTo(0, document.documentElement.scrollHeight); await wait(1200);
+    const effOpacity = (el) => { let o = 1; for (let n = el; n && n.nodeType === 1; n = n.parentElement) o *= parseFloat(getComputedStyle(n).opacity); return o; };
+    const skip = (el) => el.closest('[aria-hidden="true"], dialog, [hidden], .dc-cookie, .dc-wa-fab, .floating-top, .mobile-menu, nav');
+    const hidden = [];
+    document.querySelectorAll('main > *, section, [data-reveal], [data-reveal-stagger] > *').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.width < 40 || r.height < 40 || skip(el)) return;
+      const cs = getComputedStyle(el);
+      if (cs.display === 'none' || cs.position === 'fixed') return;
+      if (effOpacity(el) < 0.5 || cs.visibility === 'hidden')
+        hidden.push((el.id ? '#' + el.id : el.tagName.toLowerCase() + '.' + String(el.className).split(' ')[0]) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height));
+    });
+    if (parseFloat(getComputedStyle(document.body).opacity) < 0.5) hidden.unshift('body');
+    window.scrollTo(0, 0); await wait(400);
+    return JSON.stringify(hidden.slice(0, 8));
+  })()`;
+  const hr = await send('Runtime.evaluate', { expression: HIDDEN_EXPR, awaitPromise: true, returnByValue: true });
+  let hiddenContent = [];
+  try { hiddenContent = JSON.parse(hr.result.value); } catch (e) { hiddenContent = ['(检查失败)']; }
 
   const EXPR = `(() => {
     const vw = document.documentElement.clientWidth;
@@ -118,7 +146,7 @@ async function measurePage(ws, send, file, width, name, shotPath) {
 
   return {
     ok: true,
-    vw: m.vw, sw: m.sw, overflow, navOverlap, heroLeft, playCentered,
+    vw: m.vw, sw: m.sw, overflow, navOverlap, heroLeft, playCentered, hiddenContent,
     small: m.small.map(smallKey),
   };
 }
@@ -181,7 +209,9 @@ function saveBaseline(data) {
   fs.writeFileSync(path.join(OUT, 'baseline.json'), JSON.stringify(data, null, 2));
 }
 
-const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME = process.env.CHROME_PATH ||
+  ['/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', '/opt/pw-browsers/chromium']
+    .find((c) => fs.existsSync(c)) || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 /** 确保 CDP 可用：若 9222 已开则复用，否则自起 headless Chrome；返回子进程或 null(复用) */
 async function ensureChrome() {
@@ -260,6 +290,7 @@ async function main() {
         // 硬性规则：无论基线是什么，这几种情况都算回归（避免把错误状态录进基线后被放行）
         if (cur.overflow) regressions.push(`${page.name}@${width}: 横向溢出 (${cur.sw}>${cur.vw})`);
         if (cur.navOverlap) regressions.push(`${page.name}@${width}: 导航最后一项被语言选择框遮住`);
+        if (cur.hiddenContent && cur.hiddenContent.length) regressions.push(`${page.name}@${width}: 滚动到底后仍有内容看不见 -> ${cur.hiddenContent.join(', ')}`);
         if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字跑到右半边（压到人物）`);
         // 与基线比对：拦截相对基线的变化
         if (old) {
