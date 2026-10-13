@@ -13,15 +13,17 @@
 }
 
 /* ---------- Hero: copy + media split ---------- */
+/* ---------- Hero: media as full-bleed background, copy overlaid (V1 overlay style) ---------- */
 .mk-hero {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
   align-items: center;
-  gap: clamp(28px, 4vw, 64px);
+  min-height: clamp(420px, 52vw, 600px);
   padding: clamp(28px, 4.4vw, 64px);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(211, 154, 0, 0.08), transparent 42%),
-    var(--color-shell);
+  overflow: hidden;
+  background: var(--color-shell);
+  border-radius: var(--radius-inner);
+  box-shadow: var(--shadow-card);
 }
 
 .mk-hero--media-first .mk-hero-media {
@@ -29,10 +31,17 @@
 }
 
 .mk-hero-copy {
+  position: relative;
+  z-index: 2;
   display: grid;
   align-content: center;
   gap: 18px;
   min-width: 0;
+  max-width: 560px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .mk-hero-copy h1 {
@@ -51,7 +60,9 @@
 }
 
 .mk-hero-media {
-  position: relative;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   min-width: 0;
   margin: 0;
 }
@@ -62,25 +73,22 @@ picture { display: contents; }
 .mk-hero-media img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
+  height: 100%;
+  aspect-ratio: auto;
   object-fit: cover;
-  border-radius: var(--radius-inner);
-  box-shadow: var(--shadow-card);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .mk-hero-media--portrait img {
-  aspect-ratio: 4 / 5;
-  max-height: 640px;
   object-position: 50% 20%;
 }
 
 .mk-hero-media--wide img {
-  aspect-ratio: 2 / 1;
+  object-position: 50% 50%;
 }
 
 .mk-hero-media--contain img {
-  aspect-ratio: auto;
   object-fit: contain;
   background: var(--color-card);
 }
@@ -538,8 +546,7 @@ picture { display: contents; }
   }
 
   .mk-hero-media--portrait img {
-    aspect-ratio: 4 / 3;
-    max-height: none;
+    object-position: 50% 20%;
   }
 
   .mk-grid-3 {
@@ -554,12 +561,14 @@ picture { display: contents; }
 
 @media (max-width: 640px) {
   .mk-hero {
-    padding: 22px 18px;
-    gap: 22px;
+    padding: 18px 14px;
+    min-height: 360px;
   }
 
   .mk-hero-copy {
     gap: 14px;
+    max-width: none;
+    padding: 0;
   }
 
   .mk-lead {
