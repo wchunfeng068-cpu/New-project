@@ -197,6 +197,11 @@
         });
       };
 
+      function teamWebp(pngRel) {
+        // pngRel 形如 'clean/member-lucky-clean.png'
+        return '../images/optimized/team-members/' + pngRel.replace(/\.png$/i, '.webp');
+      }
+
       const teamMembers = [
           { name: 'Lucky', role: 'Sales', img: 'clean/member-lucky-clean.png', quote: 'Speciality in every word and action, trust in every trip', pos: '50% 8%' },
           { name: 'Rita', role: 'Sales', img: 'clean/member-rita-clean.png', quote: 'Experience and professional is my name card', pos: '50% 8%' },
@@ -330,7 +335,7 @@
       if (stage && thumbs) {
         stage.innerHTML = teamMembers.map((m, i) => `
           <figure class="mk-member" data-index="${i}">
-            <img src="../images/team-members/${m.img}" alt="${m.name} - ${m.role}" loading="${i === 0 ? "eager" : "lazy"}" decoding="async" style="object-position: ${m.pos || "50% 8%"}" />
+            <img src="${teamWebp(m.img)}" onerror="this.onerror=null;this.src='../images/team-members/${m.img}'" alt="${m.name} - ${m.role}" loading="${i === 0 ? "eager" : "lazy"}" decoding="async" style="object-position: ${m.pos || "50% 8%"}" />
             <figcaption>
               <div class="mk-member-name"><strong>${m.name}</strong><span>${m.role}</span></div>
               <p>${m.quote}</p>
@@ -339,7 +344,7 @@
         `).join("");
         thumbs.innerHTML = teamMembers.map((m, i) => `
           <button class="mk-thumb" type="button" data-thumb="${i}" aria-label="View ${m.name}">
-            <img src="../images/team-members/${m.img}" alt="" loading="lazy" decoding="async" />
+            <img src="${teamWebp(m.img)}" onerror="this.onerror=null;this.src='../images/team-members/${m.img}'" alt="" loading="lazy" decoding="async" />
           </button>
         `).join("");
 
