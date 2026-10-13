@@ -23,7 +23,7 @@
       heroButtonPrimary: '获取报价 →',
       heroButtonSecondary: '查看产品',
       heroStats: [
-        ['自2006年起', '行业经验'],
+        ['自2016年起', '行业经验'],
         ['400+ 集装箱', '年出口量'],
         ['OEM & ODM', '一站式解决方案'],
         ['全球市场', '值得信赖的合作伙伴'],
@@ -61,10 +61,9 @@
       productionProofTwoDesc: '严苛检测，稳定可靠交付',
       statsTitle: '您值得信赖的供应链合作伙伴',
       stats: [
-        ['20+', '年行业经验'],
+        ['10+', '年行业经验'],
         ['50+', '团队成员'],
         ['1000+', '全球客户'],
-        ['5%', '净利润率'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: '全球布局',
@@ -86,7 +85,7 @@
       formEmail: '邮箱地址',
       formMessage: '留言内容',
       formSubmit: '提交询盘',
-      footer: '© 2006-2026 TRAVELDAY. 保留所有权利。',
+      footer: '© 2016-2026 TRAVELDAY. 保留所有权利。',
       footerLinks: ['隐私政策', '服务条款', '网站地图'],
       modalClose: '关闭视频',
     },
@@ -101,7 +100,7 @@
       heroButtonPrimary: 'Get Quote →',
       heroButtonSecondary: 'View Products',
       heroStats: [
-        ['Since 2006', 'Industry experience'],
+        ['Since 2016', 'Industry experience'],
         ['1000+ containers', 'Annual export volume'],
         ['OEM & ODM', 'One-stop solutions'],
         ['Global market', 'Trusted partner'],
@@ -139,10 +138,9 @@
       productionProofTwoDesc: 'Strict testing for stable, reliable delivery',
       statsTitle: 'A supply chain partner you can trust',
       stats: [
-        ['Since 2006', 'Years in business'],
+        ['Since 2016', 'Years in business'],
         ['50+', 'Team members'],
         ['1000+', 'Global customers'],
-        ['5%', 'Net profit margin'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'Global footprint',
@@ -164,7 +162,7 @@
       formEmail: 'Email address',
       formMessage: 'Message',
       formSubmit: 'Send inquiry',
-      footer: '© 2006-2026 TRAVELDAY. All rights reserved.',
+      footer: '© 2016-2026 TRAVELDAY. All rights reserved.',
       footerLinks: ['Privacy Policy', 'Terms of Service', 'Sitemap'],
       modalClose: 'Close video',
     },
@@ -179,7 +177,7 @@
       heroButtonPrimary: 'Solicitar cotización →',
       heroButtonSecondary: 'Ver productos',
       heroStats: [
-        ['Desde 2006', 'Experiencia'],
+        ['Desde 2016', 'Experiencia'],
         ['400+ contenedores', 'Volumen anual'],
         ['OEM & ODM', 'Solución integral'],
         ['Mercado global', 'Socio de confianza'],
@@ -217,10 +215,9 @@
       productionProofTwoDesc: 'Pruebas estrictas para una entrega estable y fiable',
       statsTitle: 'Un socio de suministro en quien puedes confiar',
       stats: [
-        ['Desde 2006', 'Años de experiencia'],
+        ['Desde 2016', 'Años de experiencia'],
         ['50+', 'Miembros del equipo'],
         ['1000+', 'Clientes globales'],
-        ['5%', 'Margen neto'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'Presencia global',
@@ -242,7 +239,7 @@
       formEmail: 'Correo electrónico',
       formMessage: 'Mensaje',
       formSubmit: 'Enviar consulta',
-      footer: '© 2006-2026 TRAVELDAY. Todos los derechos reservados.',
+      footer: '© 2016-2026 TRAVELDAY. Todos los derechos reservados.',
       footerLinks: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'],
       modalClose: 'Cerrar video',
     },
@@ -257,7 +254,7 @@
       heroButtonPrimary: 'कोटेशन लें →',
       heroButtonSecondary: 'उत्पाद देखें',
       heroStats: [
-        ['2006 से', 'उद्योग अनुभव'],
+        ['2016 से', 'उद्योग अनुभव'],
         ['400+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
         ['OEM & ODM', 'वन-स्टॉप समाधान'],
         ['वैश्विक बाज़ार', 'विश्वसनीय साझेदार'],
@@ -295,10 +292,9 @@
       productionProofTwoDesc: 'स्थिर और विश्वसनीय डिलीवरी के लिए कठोर परीक्षण',
       statsTitle: 'एक सप्लाई चेन पार्टनर जिस पर आप भरोसा कर सकते हैं',
       stats: [
-        ['2006 से', 'वर्षों का अनुभव'],
+        ['2016 से', 'वर्षों का अनुभव'],
         ['50+', 'टीम सदस्य'],
         ['1000+', 'वैश्विक ग्राहक'],
-        ['5%', 'शुद्ध लाभ मार्जिन'],
       ],
       globalKicker: 'GLOBAL FOOTPRINT',
       globalTitle: 'वैश्विक उपस्थिति',
@@ -320,7 +316,7 @@
       formEmail: 'ईमेल पता',
       formMessage: 'संदेश',
       formSubmit: 'पूछताछ भेजें',
-      footer: '© 2006-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
+      footer: '© 2016-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।',
       footerLinks: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'],
       modalClose: 'वीडियो बंद करें',
     },
@@ -340,25 +336,25 @@
 
   const HERO_STAT_LABELS = {
     zh: [
-      ['自2006年起', '行业经验'],
+      ['自2016年起', '行业经验'],
       ['1000+ 集装箱', '年出口量'],
       ['OEM & ODM', '一站式解决方案'],
       ['全球市场', '值得信赖的合作伙伴'],
     ],
     en: [
-      ['Since 2006', 'Industry experience'],
+      ['Since 2016', 'Industry experience'],
       ['1000+ containers', 'Annual export volume'],
       ['OEM & ODM', 'One-stop solutions'],
       ['Global market', 'Trusted partner'],
     ],
     es: [
-      ['Desde 2006', 'Experiencia'],
+      ['Desde 2016', 'Experiencia'],
       ['1000+ contenedores', 'Volumen anual'],
       ['OEM & ODM', 'Solución integral'],
       ['Mercado global', 'Socio de confianza'],
     ],
     hi: [
-      ['2006 से', 'उद्योग अनुभव'],
+      ['2016 से', 'उद्योग अनुभव'],
       ['1000+ कंटेनर', 'वार्षिक निर्यात मात्रा'],
       ['OEM & ODM', 'एक ही स्थान पर समाधान'],
       ['वैश्विक बाज़ार', 'विश्वसनीय भागीदार'],
@@ -367,28 +363,24 @@
 
   const STATS_BAND_LABELS = {
     zh: [
-      ['20+', '行业经验'],
+      ['10+', '行业经验'],
       ['50+', '团队成员'],
       ['1000+', '全球客户'],
-      ['5%', '净利润率'],
     ],
     en: [
-      ['20+', 'Years in business'],
+      ['10+', 'Years in business'],
       ['50+', 'Team members'],
       ['1000+', 'Global customers'],
-      ['5%', 'Net profit margin'],
     ],
     es: [
-      ['20+', 'Años de experiencia'],
+      ['10+', 'Años de experiencia'],
       ['50+', 'Miembros del equipo'],
       ['1000+', 'Clientes globales'],
-      ['5%', 'Margen neto'],
     ],
     hi: [
-      ['20+', 'उद्योग अनुभव'],
+      ['10+', 'उद्योग अनुभव'],
       ['50+', 'टीम के सदस्य'],
       ['1000+', 'वैश्विक ग्राहक'],
-      ['5%', 'शुद्ध लाभ मार्जिन'],
     ],
   };
 

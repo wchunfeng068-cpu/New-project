@@ -1523,7 +1523,7 @@ h2 {
 
 .stats-band dl {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin: 0;
 }
 
@@ -2167,7 +2167,7 @@ h2 {
   }
 
   .stats-band dl {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .video-section {
@@ -2867,8 +2867,8 @@ h2 {
 /* Phones (<=480px): keep the hero text off the face.
    The portrait is scaled to the hero height, so the face always sits in the same place:
    the image is moved down 64px to open a band for the small line above the head, the
-   headline sits just below the chin (on the dark jacket, so it is set in white), and the
-   buttons sit at the bottom. */
+   headline sits just below the chin on a translucent light panel (it lands on the dark
+   jacket), and the buttons sit at the bottom. */
 @media (max-width: 480px) {
   .hero {
     display: block;
@@ -2906,10 +2906,14 @@ h2 {
     left: 20px;
     right: 20px;
     margin: 0;
-    min-height: 0;
-    max-width: none;
-    color: #fff;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
+    /* script.js sets min-height / padding / max-width inline for the larger layouts */
+    min-height: 0 !important;
+    max-width: none !important;
+    padding: 12px 14px !important;
+    border-radius: 12px;
+    background: rgba(246, 241, 234, 0.82);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
   }
 
   .hero-actions {
