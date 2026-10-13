@@ -497,6 +497,11 @@ body.is-menu-open .mobile-menu-button span:nth-child(3) {
   background: #e2d8cd;
 }
 
+.hero > picture {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+
 .hero-cover {
   position: absolute;
   inset: 0;
@@ -512,6 +517,7 @@ body.is-menu-open .mobile-menu-button span:nth-child(3) {
   position: relative;
   z-index: 2;
   max-width: 560px;
+  grid-column: 1;
 }
 
 .hero-content-expanded {
