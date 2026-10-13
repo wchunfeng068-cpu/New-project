@@ -2083,8 +2083,7 @@ h2 {
   }
 
   .primary-nav {
-    gap: 16px;
-    font-size: 16px;
+    min-width: 0;
   }
 
   .language-select {
@@ -2733,6 +2732,21 @@ h2 {
           transform: translateX(-50%);
         }
       }
+
+/* 981-1240px: tighten the desktop nav (gap + font-size) so it never reaches the
+   language switcher. Uses the same "body .primary-nav" specificity as the block
+   above and comes later in the file, so it wins. */
+@media (min-width: 981px) and (max-width: 1240px) {
+  body .primary-nav {
+    gap: 16px;
+    font-size: 16px;
+  }
+
+  body .primary-nav a {
+    font-size: 16px;
+    padding-block: 22px;
+  }
+}
 
 /* Inquiry standard styles (from script.js / shared-shell.js) */
 
