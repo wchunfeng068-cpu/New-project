@@ -55,6 +55,10 @@
 
       body.i18n-loading {
         opacity: 0;
+        animation: dc-i18n-reveal 0s linear 1.2s forwards;
+      }
+      @keyframes dc-i18n-reveal {
+        to { opacity: 1; }
       }
 
       a {
@@ -285,7 +289,7 @@
         inset: 0;
         background:
           linear-gradient(90deg, rgba(255, 248, 239, 0.04), rgba(60, 53, 45, 0.06)),
-          var(--hero-image, url("../images/product-card-luggage.png")) center / cover no-repeat;
+          var(--hero-image, url("../images/optimized/product-card-luggage.webp")) center / cover no-repeat;
         content: "";
       }
 
@@ -862,7 +866,8 @@
         z-index: 0 !important;
       }
     </style>
-    <link rel="stylesheet" href="../site-enhance.css?v=20261014-3" />
+    <link rel="stylesheet" href="../site-enhance.css?v=20261013-c1" />
+    <noscript><style>body.i18n-loading { opacity: 1 !important; animation: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
   <body class="i18n-loading">
     <div class="page">
@@ -967,7 +972,7 @@
       </footer>
     </div>
 
-    <script src="../shared-shell.js?v=20260730-3" defer></script>
+    <script src="../shared-shell.js?v=20261013-c1" defer></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -1162,6 +1167,16 @@
     </script>
 
     <script>
+      // Load the same picture as a much smaller WebP (images/optimized/...) when it exists;
+      // fall back to the original file otherwise.
+      window.dcWithWebp = window.dcWithWebp || function (src, apply) {
+        var webp = /\.(png|jpe?g)$/i.test(src) ? src.replace("images/", "images/optimized/").replace(/\.(png|jpe?g)$/i, ".webp") : null;
+        if (!webp) return apply(src);
+        var probe = new Image();
+        probe.onload = function () { apply(webp); };
+        probe.onerror = function () { apply(src); };
+        probe.src = webp;
+      };
       const detailGalleryItems = [
         { title: '正面主图', src: '../images/product-card-luggage.png', position: 'center' },
         { title: '系列展示', src: '../images/series-luggage.jpg', position: 'center' },
@@ -1196,7 +1211,8 @@
         }).join('');
       }
 
-      renderDetailGallery(detailGalleryItems, document.querySelector('[data-detail-gallery]'));
+      // The real gallery is rendered on DOMContentLoaded (applyDetailPage); rendering this
+      // placeholder first only downloaded extra full-size images.
     </script>
 
     <script>
@@ -1477,12 +1493,15 @@
             const label = lang === "en" ? title.replace(/[一-龥]/g, "").trim() || galleryLabel : title;
             return `
               <article class="detail-shot" aria-label="${label}">
-                <div class="detail-shot-image-wrap" style="--image: url('${src}'); --position: ${position}; --size: ${size}">
+                <div class="detail-shot-image-wrap" data-image-src="${src}" style="--position: ${position}; --size: ${size}">
                   <div class="detail-shot-image" role="img" aria-label="${label}"></div>
                 </div>
               </article>
             `;
           }).join("");
+          target.querySelectorAll("[data-image-src]").forEach((node) => {
+            window.dcWithWebp(node.dataset.imageSrc, (url) => node.style.setProperty("--image", `url('${url}')`));
+          });
         };
 
         const applyDetailPage = (lang = readLang()) => {
@@ -1517,7 +1536,7 @@
           const visual = document.querySelector(".hero-visual");
           if (visual) {
             visual.setAttribute("aria-label", galleryLabel);
-            visual.style.setProperty("--hero-image", `url("${product.heroImage}")`);
+            window.dcWithWebp(product.heroImage, (url) => visual.style.setProperty("--hero-image", `url("${url}")`));
           }
 
           const back = document.querySelector(".detail-actions .button-outline");
@@ -1557,6 +1576,6 @@
       });
     </script>
     <script src="../shared-inquiry.js?v=20260730-1" defer></script>
-    <script src="../site-enhance.js?v=20261014-4" defer></script>
+    <script src="../site-enhance.js?v=20261013-c1" defer></script>
 </body>
 </html>

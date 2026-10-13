@@ -42,6 +42,14 @@ body {
 
 body.i18n-loading {
   opacity: 0;
+  /* Safety net: if the language script is slow or fails, show the page anyway after 1.2s */
+  animation: dc-i18n-reveal 0s linear 1.2s forwards;
+}
+
+@keyframes dc-i18n-reveal {
+  to {
+    opacity: 1;
+  }
 }
 
 body.is-exiting {
@@ -507,6 +515,16 @@ body.is-menu-open .mobile-menu-button span:nth-child(3) {
   background: #e2d8cd;
 }
 
+/* WebP images are wrapped in <picture>. In these grid sections the wrapper must not take a
+   grid cell (it pushed the hero headline onto the portrait and the video copy to the right).
+   Positioning it absolutely takes it out of the grid; the image inside is absolute already.
+   (display: contents does not help here: Chromium still auto-places the copy in column 2.) */
+.hero > picture,
+.video-section > picture {
+  position: absolute;
+  inset: 0;
+}
+
 .hero-cover {
   position: absolute;
   inset: 0;
@@ -532,15 +550,6 @@ body.is-menu-open .mobile-menu-button span:nth-child(3) {
   padding-top: 10px;
 }
 
-/* 首页 hero：文字整体向左、向上偏移，避免压到人物脸部 */
-.home-hero {
-  padding-left: 32px;
-  padding-right: 64px;
-}
-.home-hero .hero-content-expanded {
-  max-width: 560px;
-  transform: translateY(-24px);
-}
 
 .eyebrow,
 .section-kicker {
@@ -1980,15 +1989,6 @@ h2 {
     font-size: 58px;
   }
 
-  .home-hero {
-    padding-left: 28px;
-    padding-right: 42px;
-  }
-  .home-hero .hero-content-expanded {
-    max-width: 520px;
-    transform: translateY(-18px);
-  }
-
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2076,11 +2076,6 @@ h2 {
     min-height: 760px;
     align-items: start;
     padding: 42px 28px;
-  }
-
-  .home-hero .hero-content-expanded {
-    max-width: 100%;
-    transform: none;
   }
 
   .hero-content {
@@ -2837,3 +2832,34 @@ h2 {
           justify-content: center;
         }
       }
+
+/* 981-1240px (iPad landscape, 13" laptops): the centred nav used to slide under the
+   language switcher and hide "Contact". In this range only, let the nav take its
+   grid column and tighten it so every item stays visible. Wider screens are unchanged. */
+@media (min-width: 981px) and (max-width: 1240px) {
+  body .site-header {
+    grid-template-columns: 160px minmax(0, 1fr) auto;
+    gap: 12px;
+    padding-inline: 16px;
+  }
+
+  body .primary-nav {
+    position: static;
+    transform: none;
+    min-width: 0;
+    gap: 18px;
+    font-size: 16px;
+  }
+
+  body .primary-nav a {
+    font-size: 16px;
+  }
+
+  body .language-select {
+    min-width: 88px;
+  }
+
+  body .quote-button {
+    padding-inline: 14px;
+  }
+}

@@ -44,7 +44,8 @@ const PAGES = [
   { file: 'terms.html', name: 'terms' },
   { file: 'thank-you.html', name: 'thank-you' },
 ];
-const WIDTHS = [1440, 1280, 980, 390];
+// 1024 / 1180 cover iPad landscape and small laptops, where the nav used to hide "Contact".
+const WIDTHS = [1440, 1280, 1180, 1024, 980, 390];
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const PYTHON = fs.existsSync('/Users/a1/.workbuddy/binaries/python/versions/3.13.12/bin/python3')
@@ -81,8 +82,11 @@ async function measurePage(ws, send, file, width, name, shotPath) {
         small.push({ tag: el2.tagName.toLowerCase(), cls: String(el2.className).slice(0, 40),
           w: Math.round(r.width), h: Math.round(r.height), text: (el2.textContent || '').trim().slice(0, 20) });
     });
-    const navB = box(document.querySelector('.primary-nav'));
-    const haB = box(document.querySelector('.header-actions'));
+    // Compare the last visible nav link with the language switcher (.header-actions can be a
+    // wide grid cell, so its box is not a reliable edge).
+    const navLinks = [...document.querySelectorAll('header .primary-nav a')].filter((a) => a.getBoundingClientRect().width > 0);
+    const navB = box(navLinks[navLinks.length - 1]);
+    const haB = box(document.querySelector('header .language-select') || document.querySelector('.header-actions'));
     const heroB = box(document.querySelector('.hero'));
     const hcB = box(document.querySelector('.hero-content'));
     const videoB = box(document.querySelector('.video-section'));
@@ -102,7 +106,7 @@ async function measurePage(ws, send, file, width, name, shotPath) {
 
   // 派生不变量
   const overflow = m.sw > m.vw + 1;
-  const navOverlap = m.vw >= 981 && m.navB && m.haB && m.navB.right > m.haB.left - 2;
+  const navOverlap = m.vw >= 981 && m.navB && m.haB && m.navB.right > m.haB.x - 2; // box() has x, not left
   const heroLeft = (m.vw >= 981 && m.hcB && m.heroB)
     ? (m.hcB.x + m.hcB.w / 2) < (m.heroB.x + m.heroB.w / 2)
     : null;
@@ -253,19 +257,12 @@ async function main() {
         const cur = results[page.name]?.[width];
         const old = base[page.name]?.[width];
         if (!cur || !cur.ok) { regressions.push(`${page.name}@${width}: 测量失败`); continue; }
-        // 与基线比对：只拦截相对基线的变化，允许基线本身带 overflow/heroLeft 等已知状态
+        // 硬性规则：无论基线是什么，这几种情况都算回归（避免把错误状态录进基线后被放行）
+        if (cur.overflow) regressions.push(`${page.name}@${width}: 横向溢出 (${cur.sw}>${cur.vw})`);
+        if (cur.navOverlap) regressions.push(`${page.name}@${width}: 导航最后一项被语言选择框遮住`);
+        if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字跑到右半边（压到人物）`);
+        // 与基线比对：拦截相对基线的变化
         if (old) {
-          if (cur.overflow !== old.overflow) {
-            regressions.push(`${page.name}@${width}: 横向溢出状态变化 (${cur.sw}>${cur.vw})`);
-          }
-          if (cur.navOverlap !== old.navOverlap) {
-            regressions.push(`${page.name}@${width}: 桌面导航与右侧按钮重叠状态变化`);
-          }
-          if (cur.heroLeft !== old.heroLeft) {
-            if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字跑到右半边`);
-            else if (cur.heroLeft === true) regressions.push(`${page.name}@${width}: HERO 文字跑到左半边`);
-            else regressions.push(`${page.name}@${width}: HERO 文字对齐状态变化`);
-          }
           if (cur.playCentered !== old.playCentered) {
             if (cur.playCentered === false) regressions.push(`${page.name}@${width}: 视频播放按钮未居中`);
             else if (cur.playCentered === true) regressions.push(`${page.name}@${width}: 视频播放按钮由未居中变为居中`);

@@ -668,6 +668,8 @@
     syncPrimaryNavigation(state.lang);
     const next = setLanguage(state.lang, { updateHistory: false });
     schedulePrimaryNavigationSync(next);
+    // styles.css keeps the nav hidden until this flag is set (script.js does the same on the home page)
+    document.documentElement.dataset.navReady = 'true';
     document.body.classList.remove('i18n-loading');
     return next;
   };

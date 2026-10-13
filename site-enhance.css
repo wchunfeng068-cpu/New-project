@@ -1,25 +1,68 @@
-/* site-enhance.css — 解耦增强层（WhatsApp 浮窗 + cookie 同意横幅）
- * 仅注入新的悬浮元素，不改动原页面任何结构与观感。
- * 浮窗按钮 56x56（>=32px，避开体检小热区）；横幅固定底部、box-sizing 防横向溢出。
+/* site-enhance.css — WhatsApp floating button + cookie notice (see site-enhance.js).
+ * Position and size of .dc-wa-fab are set at runtime from the "Top" button;
+ * the values below are only the fallback before the script runs.
  */
+
 .dc-wa-fab {
   position: fixed;
-  right: 20px;
-  bottom: 150px; /* 回退值；运行时由 site-enhance.js 定位到「返回顶部」按钮上方 */
-  width: 56px;
-  height: 56px;
+  right: 16px;
+  bottom: 86px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: #25D366;
+  background: #25d366;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  z-index: 9999;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  z-index: 121;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: bottom 220ms ease, transform 150ms ease;
 }
-.dc-wa-fab:hover { transform: scale(1.06); }
-.dc-wa-fab svg { width: 32px; height: 32px; display: block; }
+.dc-wa-fab svg {
+  position: relative;
+  width: 58%;
+  height: 58%;
+  display: block;
+}
+.dc-wa-fab:hover {
+  transform: scale(1.06);
+}
+.dc-wa-fab:focus-visible {
+  outline: 3px solid #0b7a3a;
+  outline-offset: 3px;
+}
+
+/* Continuous attention pulse: an expanding green ring */
+.dc-wa-fab::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: dcWaPulse 1.8s ease-out infinite;
+}
+@keyframes dcWaPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dc-wa-fab::after {
+    animation: none;
+  }
+}
+
+/* While the cookie notice is open, lift the Top button above it (the WhatsApp button follows) */
+html.dc-cookie-open .floating-top {
+  margin-bottom: var(--dc-cookie-offset, 0px);
+}
 
 .dc-cookie {
   position: fixed;
@@ -30,9 +73,9 @@
   width: 100%;
   background: rgba(20, 19, 18, 0.95);
   color: #fff;
-  font: 14px/1.5 Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+  font: 14px/1.5 Arial, 'Microsoft YaHei', 'PingFang SC', sans-serif;
   z-index: 9998;
-  padding: 16px;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom, 0px));
 }
 .dc-cookie-inner {
   max-width: 1100px;
@@ -41,26 +84,59 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
 }
-.dc-cookie p { margin: 0; flex: 1 1 320px; }
-.dc-cookie p a { color: #9be7b4; }
-.dc-cookie-actions { display: flex; gap: 10px; }
+.dc-cookie p {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dc-cookie p a {
+  color: #9be7b4;
+}
+.dc-cookie-actions {
+  display: flex;
+  gap: 10px;
+  flex: none;
+}
 .dc-cookie button {
   min-height: 40px;
   padding: 0 18px;
   border: 0;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font: inherit;
 }
-.dc-cookie .accept { background: #25D366; color: #06210f; font-weight: 600; }
-.dc-cookie .decline { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); }
+.dc-cookie .accept {
+  background: #25d366;
+  color: #06210f;
+  font-weight: 600;
+}
+.dc-cookie .decline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
 
-/* 横幅出现时由 JS 把浮窗抬到横幅上方，避免重叠（此处不再硬编码 bottom） */
-
-@media (max-width: 600px) {
-  .dc-wa-fab { right: 14px; bottom: 84px; }
-  .dc-cookie-inner { flex-direction: column; align-items: stretch; }
-  .dc-cookie-actions { justify-content: flex-end; }
+/* Phones: keep the notice short so it does not cover the page */
+@media (max-width: 640px) {
+  .dc-cookie {
+    font-size: 12.5px;
+    line-height: 1.45;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+  .dc-cookie-inner {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+  .dc-cookie p {
+    flex-basis: 100%;
+  }
+  .dc-cookie-actions {
+    margin-left: auto;
+    gap: 8px;
+  }
+  .dc-cookie button {
+    min-height: 34px;
+    padding: 0 14px;
+  }
 }
