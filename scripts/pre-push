@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# 发布前视觉体检钩子：git push 前自动跑 scripts/visual-qa.mjs
+# 有回归（退出码 1）则拒绝推送。安装：
+#   cp scripts/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+set -e
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+echo "[pre-push] 运行发布前视觉体检..."
+node scripts/visual-qa.mjs
+echo "[pre-push] ✅ 体检通过，允许推送"

@@ -18,3 +18,5 @@ mockups/*-draft.html
 mockups/*-render.html
 mockups/*-minimal.html
 .playwright-cli/
+scripts/qa-baseline/*.png
+/tmp/qa-cdp-profile

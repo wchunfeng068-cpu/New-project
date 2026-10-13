@@ -1,0 +1,360 @@
+{
+  "home": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": true,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": true,
+      "small": []
+    }
+  },
+  "product-center": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  },
+  "solution": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  },
+  "company": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  },
+  "market": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  },
+  "product-detail": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  },
+  "privacy": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    }
+  },
+  "terms": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": [
+        "a. 193x17 \"wchunfeng068@gmail.c\""
+      ]
+    }
+  },
+  "thank-you": {
+    "390": {
+      "ok": true,
+      "vw": 390,
+      "sw": 390,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "980": {
+      "ok": true,
+      "vw": 965,
+      "sw": 965,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1280": {
+      "ok": true,
+      "vw": 1265,
+      "sw": 1265,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    },
+    "1440": {
+      "ok": true,
+      "vw": 1425,
+      "sw": 1425,
+      "overflow": false,
+      "navOverlap": false,
+      "heroLeft": null,
+      "small": []
+    }
+  }
+}

@@ -58,3 +58,34 @@
 
 Antigravity 目前是 GUI 应用、无命令行接口，无法从终端派单。若要用它，请手动打开
 `/Applications/Antigravity.app`，让它读本文件领取任务。
+
+---
+
+## 发布前视觉体检（WorkBuddy 直接维护，无需派单）
+
+**目的**：把"发布后人工肉眼发现错位/重叠"变成"发布前机器自动拦截"。
+**位置**：`scripts/visual-qa.mjs`（自包含：自动起静态服务器 + headless Chrome，跑完自收）。
+
+**用法**（在项目根目录执行）：
+```bash
+node scripts/visual-qa.mjs            # 检查回归（默认）。有回归退出码 1，绿则 0
+node scripts/visual-qa.mjs baseline   # 首次 / 大改后采集基线（指标 JSON + 截图）
+```
+
+**拦截的回归**：
+- 横向溢出（scrollWidth > clientWidth）
+- 新增小热区（可点元素 < 32px）
+- 桌面导航与语言/报价按钮重叠（≥981px）
+- HERO 文字错位（桌面文字块中心跑到 HERO 右半边）
+
+**基线**：`scripts/qa-baseline/baseline.json`（入库跟踪）；截图 `scripts/qa-baseline/*.png` 不入库（可本地人眼复查）。
+
+**接入发布流程（强制门槛）**：
+1. 改完样式/布局后，先跑 `node scripts/visual-qa.mjs`，必须 ✅ 无回归。
+2. 改 `styles.css` / `script.js` 时同步 bump 对应 HTML 的 `?v=` 版本串（否则线上看不到改动）。
+3. 再 `git add -A && git commit` 并提交 `.vercel-deploy-trigger` 触发部署。
+
+**可选自动化**：把 `scripts/pre-push` 复制到 `.git/hooks/pre-push` 并 `chmod +x`，
+`git push` 前会自动跑体检，有回归直接拦住不让推。
+（注意：pre-push 需本机有 Chrome；脚本会复用 9222 调试端口，没有则自起 headless。）
+
