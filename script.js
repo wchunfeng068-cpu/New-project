@@ -425,7 +425,8 @@
 
   const getProjectRootUrl = () => {
     const current = new URL(window.location.href);
-    return new URL(current.pathname.includes('/mockups/') ? '../' : './', current);
+    // Section pages live one folder deep (/products/, /about/ ...); everything else is at the root
+    return new URL(current.pathname.split('/').length > 2 ? '../' : './', current);
   };
 
   const withLanguage = (url, lang) => {
@@ -451,10 +452,10 @@
 
   const getCurrentPageKey = () => {
     const pathname = window.location.pathname.toLowerCase();
-    if (pathname.endsWith('/product-center-preview.html') || pathname.endsWith('/product-detail-preview.html')) return 'products';
-    if (pathname.endsWith('/solution-preview.html')) return 'solutions';
-    if (pathname.endsWith('/company-presence-preview.html')) return 'about';
-    if (pathname.endsWith('/market-preview.html')) return 'market';
+    if (/\/(products|product-detail)\//.test(pathname) || /(product-center|product-detail)-preview\.html$/.test(pathname)) return 'products';
+    if (/\/solutions\//.test(pathname) || pathname.endsWith('/solution-preview.html')) return 'solutions';
+    if (/\/about\//.test(pathname) || pathname.endsWith('/company-presence-preview.html')) return 'about';
+    if (/\/market\//.test(pathname) || pathname.endsWith('/market-preview.html')) return 'market';
     return 'home';
   };
 
@@ -634,23 +635,23 @@
     const labels = NAV_LABELS[lang] || NAV_LABELS[DEFAULT_LANG];
     const targets = [
       { key: 'home', href: withLanguage(new URL('index.html', root), lang) },
-      { key: 'products', href: withLanguage(new URL('mockups/product-center-preview.html', root), lang) },
+      { key: 'products', href: withLanguage(new URL('products/', root), lang) },
       {
         key: 'solutions',
         href: hasLocalSolutions
           ? '#solutions'
           : isThankYouPage
             ? `${withLanguage(homeUrl, lang)}#solutions`
-            : withLanguage(new URL('mockups/solution-preview.html', root), lang),
+            : withLanguage(new URL('solutions/', root), lang),
       },
-      { key: 'about', href: withLanguage(new URL('mockups/company-presence-preview.html', root), lang) },
+      { key: 'about', href: withLanguage(new URL('about/', root), lang) },
       {
         key: 'market',
         href: hasLocalGlobal
           ? '#global'
           : isThankYouPage
             ? `${withLanguage(homeUrl, lang)}#global`
-            : withLanguage(new URL('mockups/market-preview.html', root), lang),
+            : withLanguage(new URL('market/', root), lang),
       },
       {
         key: 'contact',

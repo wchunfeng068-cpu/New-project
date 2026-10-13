@@ -35,11 +35,11 @@ const CDP_PORT = 9222;
 
 const PAGES = [
   { file: 'index.html', name: 'home' },
-  { file: 'mockups/product-center-preview.html', name: 'product-center' },
-  { file: 'mockups/solution-preview.html', name: 'solution' },
-  { file: 'mockups/company-presence-preview.html', name: 'company' },
-  { file: 'mockups/market-preview.html', name: 'market' },
-  { file: 'mockups/product-detail-preview.html', name: 'product-detail' },
+  { file: 'products/index.html', name: 'product-center' },
+  { file: 'solutions/index.html', name: 'solution' },
+  { file: 'about/index.html', name: 'company' },
+  { file: 'market/index.html', name: 'market' },
+  { file: 'product-detail/index.html', name: 'product-detail' },
   { file: 'privacy.html', name: 'privacy' },
   { file: 'terms.html', name: 'terms' },
   { file: 'thank-you.html', name: 'thank-you' },

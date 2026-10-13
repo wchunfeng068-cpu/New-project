@@ -130,6 +130,32 @@
       ],
       "destination": "https://luggage-dc.com/$1",
       "statusCode": 301
+    },
+    {
+      "source": "/mockups/product-center-preview.html",
+      "destination": "/products/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mockups/product-detail-preview.html",
+      "destination": "/product-detail/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mockups/solution-preview.html",
+      "destination": "/solutions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mockups/market-preview.html",
+      "destination": "/market/",
+      "statusCode": 301
+    },
+    {
+      "source": "/mockups/company-presence-preview.html",
+      "destination": "/about/",
+      "statusCode": 301
     }
-  ]
+  ],
+  "trailingSlash": true
 }

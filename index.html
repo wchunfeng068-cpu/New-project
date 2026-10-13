@@ -56,8 +56,8 @@
         .mobile-menu-button { display: none !important; }
       </style>
     </noscript>
-    <link rel="stylesheet" href="styles.css?v=20261013-c5" />
-    <link rel="stylesheet" href="site-enhance.css?v=20261013-c6" />
+    <link rel="stylesheet" href="styles.css?v=aeebe3e27b" />
+    <link rel="stylesheet" href="site-enhance.css?v=204e17f4c1" />
     <noscript><style>body.i18n-loading { opacity: 1 !important; animation: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
   <body class="i18n-loading">
@@ -83,9 +83,9 @@
 
         <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
           <a href="#top">Home</a>
-          <a href="mockups/product-center-preview.html">Products</a>
-          <a href="mockups/solution-preview.html">Solutions</a>
-          <a href="mockups/company-presence-preview.html">About</a>
+          <a href="products/">Products</a>
+          <a href="solutions/">Solutions</a>
+          <a href="about/">About</a>
           <a href="#global">Market</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -109,7 +109,7 @@
             <h1 data-i18n="heroTitle">From China supply chain<br />to global production</h1>
             <div class="hero-actions">
               <a class="button button-primary" href="#contact" data-i18n="heroButtonPrimary">Get Quote →</a>
-              <a class="button button-outline" href="mockups/product-center-preview.html" data-i18n="heroButtonSecondary">View Products</a>
+              <a class="button button-outline" href="products/" data-i18n="heroButtonSecondary">View Products</a>
             </div>
           </div>
         </section>
@@ -147,19 +147,19 @@
 
         <section class="section-block" id="products" data-reveal data-reveal-stagger data-section="categories">
           <div class="product-grid">
-            <a class="product-card product-card-luggage" href="mockups/product-center-preview.html" aria-label="Open product center">
+            <a class="product-card product-card-luggage" href="products/" aria-label="Open product center">
               <div class="product-image product-card-image product-card-image-luggage" data-lazy-background="images/product-card-luggage.png" data-lazy-background-webp="images/optimized/product-card-luggage.webp" aria-label="Multiple luggage showcase image"></div>
               <div class="product-body">
                 <h3>Luggage</h3>
               </div>
             </a>
-            <a class="product-card product-card-accessories" href="mockups/product-center-preview.html" aria-label="Open product center">
+            <a class="product-card product-card-accessories" href="products/" aria-label="Open product center">
               <div class="product-image product-card-image product-card-image-accessories" data-lazy-background="images/product-card-accessories.png" data-lazy-background-webp="images/optimized/product-card-accessories.webp" aria-label="Accessories showcase image"></div>
               <div class="product-body">
                 <h3>ACCESSORIES</h3>
               </div>
             </a>
-            <a class="product-card product-card-presence" href="mockups/company-presence-preview.html" aria-label="Open company presence page">
+            <a class="product-card product-card-presence" href="about/" aria-label="Open company presence page">
               <div class="product-image product-card-image product-card-image-presence" data-lazy-background="images/product-card-company-presence.png" data-lazy-background-webp="images/optimized/product-card-company-presence.webp" aria-label="Company presence image"></div>
               <div class="product-body">
                 <h3>Company Presence</h3>
@@ -354,11 +354,17 @@
             </p>
           </div>
 
-          <form class="inquiry-form" aria-label="Quick inquiry form">
+          <!-- Works without JavaScript too: posts straight to FormSubmit, which emails the inquiry
+               and then sends the visitor to the thank-you page. With JavaScript, shared-inquiry.js
+               replaces this section with the full form and sends it in the background. -->
+          <form class="inquiry-form" aria-label="Quick inquiry form" action="https://formsubmit.co/wchunfeng068@gmail.com" method="POST">
+            <input type="hidden" name="_next" value="https://luggage-dc.com/thank-you.html" />
+            <input type="hidden" name="_subject" value="New inquiry from luggage-dc.com" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
             <h2>Turn every inquiry into one elegant entry point.</h2>
             <label>
               <span>Your name</span>
-              <input name="name" type="text" autocomplete="name" />
+              <input name="name" type="text" autocomplete="name" required />
             </label>
             <label>
               <span>Company name</span>
@@ -366,11 +372,11 @@
             </label>
             <label>
               <span>Email address</span>
-              <input name="email" type="email" autocomplete="email" />
+              <input name="email" type="email" autocomplete="email" required />
             </label>
             <label>
               <span>Message</span>
-              <textarea name="message" rows="4"></textarea>
+              <textarea name="message" rows="4" required></textarea>
             </label>
             <button class="button button-primary form-submit" type="submit">Send inquiry</button>
             <p class="form-status" role="status" aria-live="polite"></p>
@@ -406,8 +412,8 @@
       </div>
     </div>
 
-    <script src="script.js?v=20261013-c3" defer></script>
-    <script src="shared-inquiry.js?v=20260730-1" defer></script>
-    <script src="site-enhance.js?v=20261013-c8" defer></script>
+    <script src="script.js?v=e033a148ac" defer></script>
+    <script src="shared-inquiry.js?v=039797975f" defer></script>
+    <script src="site-enhance.js?v=00977ce2b4" defer></script>
 </body>
 </html>

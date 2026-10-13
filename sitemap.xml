@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://luggage-dc.com/</loc></url>
-  <url><loc>https://luggage-dc.com/mockups/product-center-preview.html</loc></url>
-  <url><loc>https://luggage-dc.com/mockups/product-detail-preview.html</loc></url>
-  <url><loc>https://luggage-dc.com/mockups/solution-preview.html</loc></url>
-  <url><loc>https://luggage-dc.com/mockups/market-preview.html</loc></url>
-  <url><loc>https://luggage-dc.com/mockups/company-presence-preview.html</loc></url>
+  <url><loc>https://luggage-dc.com/products/</loc></url>
+  <url><loc>https://luggage-dc.com/product-detail/</loc></url>
+  <url><loc>https://luggage-dc.com/solutions/</loc></url>
+  <url><loc>https://luggage-dc.com/market/</loc></url>
+  <url><loc>https://luggage-dc.com/about/</loc></url>
   <url><loc>https://luggage-dc.com/privacy.html</loc></url>
   <url><loc>https://luggage-dc.com/terms.html</loc></url>
 </urlset>
