@@ -2,6 +2,13 @@
 <html lang="en" data-default-lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Hide the page only while it is being switched to another language (avoids a flash of
+         the wrong language); visitors in the page's own language see it immediately. -->
+    <script>(function(){try{var d=document.documentElement,l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('travelday-site-language');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
+    <link rel="preload" as="image" href="../images/optimized/product-center-hero-luxury-minimal.webp" type="image/webp" fetchpriority="high" />
+    <!-- Chrome/Edge: when the visitor hovers or presses a link to another page of this site,
+         render that page in the background so it appears instantly (other browsers ignore this) -->
+    <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/*.mp4","/thank-you.html*"]}}]},"eagerness":"moderate"}]}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Product Center</title>
     <meta name="description" content="Explore TRAVELDAY luggage, components and OEM/ODM supply options for global buyers." />
@@ -45,7 +52,7 @@
         transition: opacity 150ms ease;
       }
 
-      body.i18n-loading {
+      html.i18n-pending body.i18n-loading {
         opacity: 0;
         animation: dc-i18n-reveal 0s linear 1.2s forwards;
       }
@@ -132,7 +139,7 @@
         transition: color 180ms ease;
       }
 
-      html:not([data-nav-ready="true"]) .primary-nav {
+      html.i18n-pending:not([data-nav-ready="true"]) .primary-nav {
         visibility: hidden;
       }
 
@@ -864,6 +871,35 @@
     </style>
     <link rel="stylesheet" href="../site-enhance.css?v=204e17f4c1" />
     <noscript><style>body.i18n-loading { opacity: 1 !important; animation: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
+    <style>
+      /* Keep the header pixel-identical to the home page (styles.css), so it stays still
+         when visitors move between pages and only the content below changes. */
+      html { overflow-y: scroll; scrollbar-gutter: stable; }
+      html body .page { width: min(1500px, calc(100% - 42px)); margin-top: 32px; }
+      html body .site-header { min-height: 64px; padding: 0 34px; }
+      html body .site-header .brand,
+      html body .site-header .brand-logo { width: 160px; height: 70px; }
+      @media (min-width: 981px) and (max-width: 1240px) {
+        html body .site-header { grid-template-columns: 160px minmax(0, 1fr) auto; gap: 12px; padding-inline: 16px; }
+        html body .primary-nav { position: static; transform: none; min-width: 0; gap: 18px; font-size: 16px; }
+        html body .primary-nav a { font-size: 16px; }
+        html body .language-select { min-width: 88px; }
+        html body .quote-button { padding-inline: 14px; }
+      }
+      @media (min-width: 1241px) and (max-width: 1280px) {
+        html body .site-header { grid-template-columns: 230px 1fr auto; padding-inline: 22px; }
+      }
+      @media (max-width: 1280px) {
+        html body .page { width: calc(100% - 28px); }
+      }
+      @media (max-width: 980px) {
+        html body .site-header { min-height: 0; padding: 14px 18px; }
+        html body .mobile-menu-button { width: 44px; height: 44px; }
+      }
+      @media (max-width: 640px) {
+        html body .page { width: calc(100% - 20px); margin-top: 10px; }
+      }
+    </style>
 </head>
   <body class="i18n-loading">
     <div class="page">

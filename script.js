@@ -995,6 +995,18 @@
       return;
     }
 
+    // Whatever is already on screen stays visible (no blank first screen); the rest slides in.
+    const viewportBottom = window.innerHeight;
+    const pending = elements.filter((el) => {
+      const top = el.getBoundingClientRect().top;
+      if (top < viewportBottom) {
+        el.classList.add('is-visible');
+        return false;
+      }
+      return true;
+    });
+    document.documentElement.classList.add('reveal-ready');
+
     const observer = new IntersectionObserver(
       (entries, instance) => {
         entries.forEach((entry) => {
@@ -1005,7 +1017,7 @@
       },
       { rootMargin: '0px 0px -80px 0px', threshold: 0.12 },
     );
-    elements.forEach((el) => observer.observe(el));
+    pending.forEach((el) => observer.observe(el));
   };
 
   const bindLazyBackgrounds = () => {
@@ -1276,21 +1288,6 @@
       { passive: true },
     );
 
-    // Page transition: fade out before navigating to internal links
-    document.addEventListener('click', (event) => {
-      const link = event.target.closest('a[href]');
-      if (!link) return;
-      const href = link.getAttribute('href');
-      if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') return;
-      // Only intercept links to internal pages
-      try {
-        const url = new URL(href, window.location.href);
-        if (url.origin !== window.location.origin) return;
-      } catch { return; }
-      event.preventDefault();
-      document.body.classList.add('is-exiting');
-      setTimeout(() => { window.location.href = href; }, 200);
-    });
   };
 
   if (document.readyState === 'loading') {

@@ -40,7 +40,7 @@ body {
   transition: opacity 200ms ease;
 }
 
-body.i18n-loading {
+html.i18n-pending body.i18n-loading {
   opacity: 0;
   /* Safety net: if the language script is slow or fails, show the page anyway after 1.2s */
   animation: dc-i18n-reveal 0s linear 1.2s forwards;
@@ -52,9 +52,6 @@ body.i18n-loading {
   }
 }
 
-body.is-exiting {
-  opacity: 0;
-}
 
 body {
   background:
@@ -247,7 +244,7 @@ button {
   transform: translateX(-50%);
 }
 
-html:not([data-nav-ready="true"]) .primary-nav {
+html.i18n-pending:not([data-nav-ready="true"]) .primary-nav {
   visibility: hidden;
 }
 
@@ -2349,8 +2346,10 @@ h2 {
   }
 }
 
-/* Scroll reveal animations */
-[data-reveal] {
+/* Scroll reveal animations. Hidden states only apply once script.js adds .reveal-ready,
+   after it has marked everything already on screen as visible, so a page never opens with
+   its first screen blank; only content further down slides in. */
+html.reveal-ready [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -2359,7 +2358,7 @@ h2 {
   opacity: 1;
   transform: none;
 }
-[data-reveal][data-reveal-stagger] > * {
+html.reveal-ready [data-reveal][data-reveal-stagger] > * {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.5s ease, transform 0.5s ease;

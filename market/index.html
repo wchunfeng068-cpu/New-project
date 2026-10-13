@@ -2,6 +2,13 @@
 <html lang="en" data-default-lang="en">
   <head>
     <meta charset="utf-8" />
+    <!-- Hide the page only while it is being switched to another language (avoids a flash of
+         the wrong language); visitors in the page's own language see it immediately. -->
+    <script>(function(){try{var d=document.documentElement,l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('travelday-site-language');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
+    <link rel="preload" as="image" href="../images/optimized/market-global-nodes.webp" type="image/webp" fetchpriority="high" />
+    <!-- Chrome/Edge: when the visitor hovers or presses a link to another page of this site,
+         render that page in the background so it appears instantly (other browsers ignore this) -->
+    <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/*.mp4","/thank-you.html*"]}}]},"eagerness":"moderate"}]}</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TRAVELDAY | Market</title>
     <meta name="description" content="Discover TRAVELDAY's global luggage supply chain coverage and regional market capabilities." />
@@ -16,7 +23,7 @@
         .mobile-menu-button { display: none !important; }
       </style>
     </noscript>
-    <link rel="stylesheet" href="../styles.css?v=aeebe3e27b" />
+    <link rel="stylesheet" href="../styles.css?v=e620ff241c" />
     <style>
       .preview-main {
         display: grid;
