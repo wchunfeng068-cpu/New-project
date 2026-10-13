@@ -1,0 +1,68 @@
+/* site-enhance.css — 解耦增强层（WhatsApp 浮窗 + cookie 同意横幅）
+ * 仅注入新的悬浮元素，不改动原页面任何结构与观感。
+ * 浮窗按钮 56x56（>=32px，避开体检小热区）；横幅固定底部、box-sizing 防横向溢出。
+ */
+.dc-wa-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.dc-wa-fab:hover { transform: scale(1.06); }
+.dc-wa-fab svg { width: 32px; height: 32px; display: block; }
+
+.dc-cookie {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  background: rgba(20, 19, 18, 0.95);
+  color: #fff;
+  font: 14px/1.5 Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+  z-index: 9998;
+  padding: 16px;
+}
+.dc-cookie-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.dc-cookie p { margin: 0; flex: 1 1 320px; }
+.dc-cookie p a { color: #9be7b4; }
+.dc-cookie-actions { display: flex; gap: 10px; }
+.dc-cookie button {
+  min-height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.dc-cookie .accept { background: #25D366; color: #06210f; font-weight: 600; }
+.dc-cookie .decline { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); }
+
+/* 横幅出现时把浮窗抬到横幅上方，避免重叠 */
+html.dc-cookie-open .dc-wa-fab { bottom: 96px; }
+
+@media (max-width: 600px) {
+  .dc-wa-fab { right: 14px; bottom: 14px; }
+  html.dc-cookie-open .dc-wa-fab { bottom: 90px; }
+  .dc-cookie-inner { flex-direction: column; align-items: stretch; }
+  .dc-cookie-actions { justify-content: flex-end; }
+}

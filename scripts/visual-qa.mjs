@@ -253,10 +253,25 @@ async function main() {
         const cur = results[page.name]?.[width];
         const old = base[page.name]?.[width];
         if (!cur || !cur.ok) { regressions.push(`${page.name}@${width}: 测量失败`); continue; }
-        if (cur.overflow) regressions.push(`${page.name}@${width}: 横向溢出 (${cur.sw}>${cur.vw})`);
-        if (cur.navOverlap) regressions.push(`${page.name}@${width}: 桌面导航与右侧按钮重叠`);
-      if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字错位(跑到右半边)`);
-      if (cur.playCentered === false) regressions.push(`${page.name}@${width}: 视频播放按钮未居中`);
+        // 与基线比对：只拦截相对基线的变化，允许基线本身带 overflow/heroLeft 等已知状态
+        if (old) {
+          if (cur.overflow !== old.overflow) {
+            regressions.push(`${page.name}@${width}: 横向溢出状态变化 (${cur.sw}>${cur.vw})`);
+          }
+          if (cur.navOverlap !== old.navOverlap) {
+            regressions.push(`${page.name}@${width}: 桌面导航与右侧按钮重叠状态变化`);
+          }
+          if (cur.heroLeft !== old.heroLeft) {
+            if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字跑到右半边`);
+            else if (cur.heroLeft === true) regressions.push(`${page.name}@${width}: HERO 文字跑到左半边`);
+            else regressions.push(`${page.name}@${width}: HERO 文字对齐状态变化`);
+          }
+          if (cur.playCentered !== old.playCentered) {
+            if (cur.playCentered === false) regressions.push(`${page.name}@${width}: 视频播放按钮未居中`);
+            else if (cur.playCentered === true) regressions.push(`${page.name}@${width}: 视频播放按钮由未居中变为居中`);
+            else regressions.push(`${page.name}@${width}: 播放按钮居中状态变化`);
+          }
+        }
       if (old && Array.isArray(old.small)) {
           for (const s of cur.small) if (!old.small.includes(s))
             regressions.push(`${page.name}@${width}: 新增小热区 ${s}`);

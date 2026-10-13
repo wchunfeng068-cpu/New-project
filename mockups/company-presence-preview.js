@@ -393,7 +393,7 @@
                 style="--image-position: ${member.imagePosition};"
                 aria-label="${member.name}, ${member.role}. ${member.summary}"
               >
-                <img src="${member.image}" alt="${member.alt}" />
+                <picture><source srcset="${member.image.replace(/\.(png|jpe?g)$/i, '.webp')}" type="image/webp" /><img src="${member.image}" alt="${member.alt}" /></picture>
                 <span class="member-meta">
                   <span class="member-role">${member.role}</span>
                   <span class="member-name">${member.name}</span>

@@ -51,6 +51,12 @@
       "has": [{ "type": "host", "value": "www.luggage-dc.com" }],
       "destination": "https://luggage-dc.com/$1",
       "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "dc-luggage.com" }],
+      "destination": "https://luggage-dc.com/$1",
+      "statusCode": 301
     }
   ]
 }
