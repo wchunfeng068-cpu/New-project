@@ -1702,6 +1702,8 @@ h2 {
 }
 
 .contact-info a {
+  display: inline-block;
+  padding: 5px 0;
   color: var(--color-gold-dark);
 }
 
@@ -1902,6 +1904,10 @@ h2 {
 }
 
 .site-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 2px;
   transition: color 180ms ease;
 }
 
@@ -2065,6 +2071,30 @@ h2 {
 
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 981-1240px: the header row is tight. Shrink the brand column, the nav gaps and
+   the action sizes so the last nav item never slides under the language switcher. */
+@media (min-width: 981px) and (max-width: 1240px) {
+  .site-header {
+    grid-template-columns: minmax(140px, 190px) 1fr auto;
+    padding-inline: 18px;
+    gap: 14px;
+  }
+
+  .primary-nav {
+    gap: 18px;
+    font-size: 16px;
+  }
+
+  .language-select {
+    min-width: 92px;
+    padding-right: 24px;
+  }
+
+  .quote-button {
+    padding-inline: 16px;
   }
 }
 

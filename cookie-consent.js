@@ -104,6 +104,8 @@
         line-height: 1.6;
       }
       .cookie-consent__text a {
+        display: inline-block;
+        padding: 6px 2px;
         color: var(--color-gold-dark, #a87300);
         font-weight: 700;
         text-decoration: underline;
