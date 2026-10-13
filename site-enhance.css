@@ -140,3 +140,41 @@ html.dc-cookie-open .floating-top {
     padding: 0 14px;
   }
 }
+
+/* Social links in the footer (rendered only when a URL is configured in site-enhance.js) */
+.dc-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 8px;
+}
+.dc-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.dc-social a:hover,
+.dc-social a:focus-visible {
+  color: #d39a00;
+  border-color: #d39a00;
+}
+.dc-social svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+.site-footer nav:has(.dc-social) {
+  align-items: center;
+}
+@media (max-width: 640px) {
+  .dc-social {
+    flex-basis: 100%;
+    margin: 0 0 6px;
+  }
+}
