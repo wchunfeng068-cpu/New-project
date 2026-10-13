@@ -532,6 +532,16 @@ body.is-menu-open .mobile-menu-button span:nth-child(3) {
   padding-top: 10px;
 }
 
+/* 首页 hero：文字整体向左、向上偏移，避免压到人物脸部 */
+.home-hero {
+  padding-left: 32px;
+  padding-right: 64px;
+}
+.home-hero .hero-content-expanded {
+  max-width: 560px;
+  transform: translateY(-24px);
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0;
@@ -1970,6 +1980,15 @@ h2 {
     font-size: 58px;
   }
 
+  .home-hero {
+    padding-left: 28px;
+    padding-right: 42px;
+  }
+  .home-hero .hero-content-expanded {
+    max-width: 520px;
+    transform: translateY(-18px);
+  }
+
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2057,6 +2076,11 @@ h2 {
     min-height: 760px;
     align-items: start;
     padding: 42px 28px;
+  }
+
+  .home-hero .hero-content-expanded {
+    max-width: 100%;
+    transform: none;
   }
 
   .hero-content {
