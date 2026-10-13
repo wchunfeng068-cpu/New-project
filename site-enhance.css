@@ -5,7 +5,7 @@
 .dc-wa-fab {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 150px; /* 回退值；运行时由 site-enhance.js 定位到「返回顶部」按钮上方 */
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -57,12 +57,10 @@
 .dc-cookie .accept { background: #25D366; color: #06210f; font-weight: 600; }
 .dc-cookie .decline { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.5); }
 
-/* 横幅出现时把浮窗抬到横幅上方，避免重叠 */
-html.dc-cookie-open .dc-wa-fab { bottom: 96px; }
+/* 横幅出现时由 JS 把浮窗抬到横幅上方，避免重叠（此处不再硬编码 bottom） */
 
 @media (max-width: 600px) {
-  .dc-wa-fab { right: 14px; bottom: 14px; }
-  html.dc-cookie-open .dc-wa-fab { bottom: 90px; }
+  .dc-wa-fab { right: 14px; bottom: 84px; }
   .dc-cookie-inner { flex-direction: column; align-items: stretch; }
   .dc-cookie-actions { justify-content: flex-end; }
 }

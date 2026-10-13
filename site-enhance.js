@@ -24,6 +24,39 @@
     "</svg>";
   document.documentElement.appendChild(fab);
 
+  /* 把 WhatsApp 浮窗定位到「返回顶部」按钮上方，并保持可见间距 */
+  function placeWaFab() {
+    var top = document.querySelector(".floating-top");
+    if (!top) return;
+    var gap = 22; // 与 Top 按钮的垂直间距（已比旧版加大）
+    var cs = window.getComputedStyle(top);
+    var topFromBottom = parseFloat(cs.bottom) || 0; // Top 的 CSS bottom 值
+    var topH = parseFloat(cs.height) || 48;
+    var waH = fab.offsetHeight || 56;
+    var bottom = topFromBottom + topH + gap;
+    // cookie 横幅存在时，若会遮挡则把浮窗抬到横幅上方
+    if (document.documentElement.classList.contains("dc-cookie-open")) {
+      var cookie = document.querySelector(".dc-cookie");
+      var ch = cookie ? cookie.offsetHeight : 0;
+      if (bottom < ch + waH + 10) bottom = ch + waH + 10;
+    }
+    fab.style.bottom = bottom + "px";
+  }
+  function schedulePlaceWaFab() {
+    placeWaFab();
+    requestAnimationFrame(placeWaFab);
+    setTimeout(placeWaFab, 200);
+    setTimeout(placeWaFab, 600);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", schedulePlaceWaFab);
+  } else {
+    schedulePlaceWaFab();
+  }
+  window.addEventListener("load", placeWaFab);
+  window.addEventListener("resize", placeWaFab);
+  window.addEventListener("travelday:languagechange", placeWaFab);
+
   /* ---------- cookie 同意横幅 ---------- */
   function showCookie() {
     document.documentElement.classList.add("dc-cookie-open");
@@ -41,12 +74,14 @@
       '<button type="button" class="accept">接受</button>' +
       "</div></div>";
     document.documentElement.appendChild(el);
+    placeWaFab();
     el.querySelector(".accept").addEventListener("click", function () { consent("accepted"); });
     el.querySelector(".decline").addEventListener("click", function () { consent("declined"); });
     function consent(v) {
       try { localStorage.setItem(COOKIE_KEY, v); } catch (e) {}
       document.documentElement.classList.remove("dc-cookie-open");
       if (el.parentNode) el.parentNode.removeChild(el);
+      placeWaFab();
     }
   }
 
