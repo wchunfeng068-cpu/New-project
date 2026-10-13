@@ -2864,11 +2864,11 @@ h2 {
   }
 }
 
-/* Phones (<=480px): keep the hero text off the face.
+/* Phones (<=480px): keep the hero text off the face, with a quieter, more editorial layout.
    The portrait is scaled to the hero height, so the face always sits in the same place:
-   the image is moved down 64px to open a band for the small line above the head, the
-   headline sits just below the chin on a translucent light panel (it lands on the dark
-   jacket), and the buttons sit at the bottom. */
+   - the image is moved down 64px to open a band for the small line above the head;
+   - the headline sits on the jacket, below the chin, on a narrow translucent panel;
+   - the two buttons sit side by side at the bottom at their natural width. */
 @media (max-width: 480px) {
   .hero {
     display: block;
@@ -2891,36 +2891,87 @@ h2 {
     padding: 0;
   }
 
+  /* Small line: fine uppercase label with a short gold rule, instead of a heavy sentence */
   .hero .eyebrow {
     position: absolute;
-    top: 14px;
-    left: 20px;
-    right: 20px;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0;
-    line-height: 1.35;
+    color: var(--color-gold-dark);
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
 
+  .hero .eyebrow::before {
+    content: '';
+    flex: none;
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  /* Headline: lower on the jacket, narrower panel with generous padding */
   .hero h1 {
     position: absolute;
-    top: 292px;
-    left: 20px;
-    right: 20px;
+    top: 338px;
+    left: 24px;
+    width: min(82%, 300px);
     margin: 0;
     /* script.js sets min-height / padding / max-width inline for the larger layouts */
     min-height: 0 !important;
     max-width: none !important;
-    padding: 12px 14px !important;
-    border-radius: 12px;
-    background: rgba(246, 241, 234, 0.82);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    padding: 18px 20px !important;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(248, 244, 238, 0.78);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-size: 25px !important;
+    line-height: 1.22 !important;
+    letter-spacing: 0 !important;
   }
 
+  /* Buttons: side by side, natural width, quieter weight */
   .hero-actions {
     position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 22px;
+    left: 24px;
+    right: 24px;
+    bottom: 28px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
     margin: 0;
+  }
+
+  .hero-actions .button {
+    width: auto;
+    min-width: 0;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .hero-actions .button-primary {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  }
+
+  .hero-actions .button-outline {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
   }
 }
