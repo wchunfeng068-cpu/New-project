@@ -2,6 +2,8 @@
   const LANGS = ["zh", "en", "es", "hi"];
 
   const readLang = () => {
+    const pathLanguage = window.location.pathname.match(/^\/(zh|es|hi)(?:\/|$)/)?.[1];
+    if (pathLanguage) return pathLanguage;
     try {
       const queryLang = new URLSearchParams(window.location.search).get("lang");
       if (LANGS.includes(queryLang)) return queryLang;
@@ -176,13 +178,11 @@
   };
 
   const withLanguage = (href, lang) => {
-    const url = new URL(href, document.baseURI);
-    if (LANGS.includes(lang)) {
-      url.searchParams.set("lang", lang);
-    } else {
-      url.searchParams.delete("lang");
-    }
-    return url.href;
+    const url = new URL(href, `${window.location.origin}/`);
+    const route = url.pathname.replace(/^\/(zh|es|hi)(?=\/|$)/, '').replace(/\/index\.html$/, '/') || '/';
+    if (/^\/(privacy|terms|thank-you|sitemap)\.html$/.test(route)) return route + url.search + url.hash;
+    const localized = lang === 'en' ? route : `/${lang}${route === '/' ? '/' : route}`;
+    return localized + url.search + url.hash;
   };
 
   const applyPageCopy = (lang) => {
@@ -393,7 +393,7 @@
                 style="--image-position: ${member.imagePosition};"
                 aria-label="${member.name}, ${member.role}. ${member.summary}"
               >
-                <picture><source srcset="${member.image.replace(/\.(png|jpe?g)$/i, '.webp')}" type="image/webp" /><img src="${member.image}" alt="${member.alt}" /></picture>
+                <picture><source srcset="${new URL(member.image, `${window.location.origin}/`).pathname.replace(/\.(png|jpe?g)$/i, '.webp')}" type="image/webp" /><img src="${new URL(member.image, `${window.location.origin}/`).pathname}" alt="${member.alt}" /></picture>
                 <span class="member-meta">
                   <span class="member-role">${member.role}</span>
                   <span class="member-name">${member.name}</span>

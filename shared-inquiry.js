@@ -509,8 +509,7 @@
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const submitButton = form.querySelector('[type="submit"]');
-      const returnUrl = new URL(window.location.pathname.split('/').length > 2 ? '../thank-you.html' : 'thank-you.html', window.location.href);
-      returnUrl.searchParams.set('lang', getLanguage());
+      const returnUrl = new URL('/thank-you.html', window.location.origin);
       const payload = new FormData(form);
       payload.set('_captcha', 'false');
 

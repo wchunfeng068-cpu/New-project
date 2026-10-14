@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!-- Hide the page only while it is being switched to another language (avoids a flash of
          the wrong language); visitors in the page's own language see it immediately. -->
-    <script>(function(){try{var d=document.documentElement,l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('travelday-site-language');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
+    <script>(function(){try{var d=document.documentElement,p=location.pathname.match(/^\/(zh|es|hi)(?:\/|$)/),l=p?p[1]:new URLSearchParams(location.search).get('lang');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
     <link rel="preload" as="image" href="../images/optimized/product-center-hero-luxury-minimal.webp" type="image/webp" fetchpriority="high" />
     <!-- Chrome/Edge: when the visitor hovers or presses a link to another page of this site,
          render that page in the background so it appears instantly (other browsers ignore this) -->
@@ -13,6 +13,11 @@
     <title>TRAVELDAY | Product Center</title>
     <meta name="description" content="Explore TRAVELDAY luggage, components and OEM/ODM supply options for global buyers." />
     <link rel="canonical" href="https://luggage-dc.com/products/" />
+    <link rel="alternate" hreflang="en" href="https://luggage-dc.com/products/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/products/" />
+    <link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/products/" />
+    <link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/products/" />
+    <link rel="alternate" hreflang="x-default" href="https://luggage-dc.com/products/" />
     <link rel="icon" type="image/png" href="../images/logo-travelday.png" />
     <link rel="apple-touch-icon" href="../images/logo-travelday.png" />
     <noscript>
@@ -869,7 +874,7 @@
         z-index: 0 !important;
       }
     </style>
-    <link rel="stylesheet" href="../site-enhance.css?v=204e17f4c1" />
+    <link rel="stylesheet" href="../site-enhance.css?v=9f11f964a7" />
     <noscript><style>body.i18n-loading { opacity: 1 !important; animation: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
     <style>
       /* Keep the header pixel-identical to the home page (styles.css), so it stays still
@@ -974,7 +979,7 @@
       </footer>
     </div>
 
-    <script src="../shared-shell.js?v=0971f07e36" defer></script>
+    <script src="../shared-shell.js?v=d737febe4e" defer></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -1116,6 +1121,7 @@
       // Load the same picture as a much smaller WebP (images/optimized/...) when it exists;
       // fall back to the original file otherwise.
       window.dcWithWebp = window.dcWithWebp || function (src, apply) {
+        try { src = new URL(src, window.location.origin + "/").pathname; } catch (error) {}
         var webp = /\.(png|jpe?g)$/i.test(src) ? src.replace("images/", "images/optimized/").replace(/\.(png|jpe?g)$/i, ".webp") : null;
         if (!webp) return apply(src);
         var probe = new Image();
@@ -1191,6 +1197,6 @@
       });
       });
     </script>
-    <script src="../site-enhance.js?v=00977ce2b4" defer></script>
+    <script src="../site-enhance.js?v=252e331386" defer></script>
 </body>
 </html>

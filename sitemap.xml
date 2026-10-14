@@ -1,11 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://luggage-dc.com/</loc></url>
-  <url><loc>https://luggage-dc.com/products/</loc></url>
-  <url><loc>https://luggage-dc.com/product-detail/</loc></url>
-  <url><loc>https://luggage-dc.com/solutions/</loc></url>
-  <url><loc>https://luggage-dc.com/market/</loc></url>
-  <url><loc>https://luggage-dc.com/about/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://luggage-dc.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/products/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/products/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/products/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/products/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/products/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/products/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/products/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/products/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/products/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/products/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/products/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/products/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/products/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/products/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/products/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/products/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/products/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/product-detail/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/product-detail/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/product-detail/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/product-detail/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/product-detail/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/product-detail/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/product-detail/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/product-detail/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/product-detail/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/solutions/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/solutions/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/solutions/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/solutions/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/solutions/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/solutions/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/solutions/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/solutions/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/solutions/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/solutions/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/solutions/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/market/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/market/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/market/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/market/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/market/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/market/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/market/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/market/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/market/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/market/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/market/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/market/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/market/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/market/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/market/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/market/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/market/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/market/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/market/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/market/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/about/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/about/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/zh/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/about/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/about/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/es/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/about/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/about/" />
+  </url>
+  <url>
+    <loc>https://luggage-dc.com/hi/about/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://luggage-dc.com/about/" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/about/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/about/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/about/" />
+  </url>
   <url><loc>https://luggage-dc.com/privacy.html</loc></url>
   <url><loc>https://luggage-dc.com/terms.html</loc></url>
 </urlset>

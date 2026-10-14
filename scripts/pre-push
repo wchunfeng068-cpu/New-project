@@ -7,6 +7,8 @@ ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 echo "[pre-push] 检查 CSS/JS 版本号..."
 node tools/stamp-versions.mjs --check
+echo "[pre-push] 检查多语言静态页与英文源文件/翻译字典一致..."
+node tools/build-i18n.mjs --check
 echo "[pre-push] 运行发布前视觉体检..."
 node scripts/visual-qa.mjs
 echo "[pre-push] ✅ 体检通过，允许推送"

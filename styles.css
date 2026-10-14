@@ -2974,3 +2974,11 @@ html.reveal-ready [data-reveal].is-visible[data-reveal-stagger] > * {
     backdrop-filter: blur(6px);
   }
 }
+
+/* Keep the longer Spanish labels clear of the language selector without shrinking type. */
+@media (min-width: 981px) {
+  html[lang="es"] body .primary-nav {
+    gap: 18px;
+    left: 45%;
+  }
+}

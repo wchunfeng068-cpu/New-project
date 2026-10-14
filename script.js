@@ -388,18 +388,13 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   const readInitialLanguage = () => {
+    const pathLanguage = window.location.pathname.match(/^\/(zh|es|hi)(?:\/|$)/)?.[1];
+    if (pathLanguage) return pathLanguage;
     try {
       const queryLang = new URLSearchParams(window.location.search).get('lang');
       if (LANGS.includes(queryLang)) return queryLang;
     } catch {
       // Ignore malformed URLs and fall back to stored/default language.
-    }
-
-    try {
-      const storedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      if (LANGS.includes(storedLang)) return storedLang;
-    } catch {
-      // Some file:// contexts can block storage access.
     }
 
     return DEFAULT_LANG;
@@ -416,22 +411,33 @@
   const updateLanguageInUrl = (lang) => {
     try {
       const url = new URL(window.location.href);
-      url.searchParams.set('lang', lang);
-      window.history.replaceState({ lang }, '', url);
+      if (url.searchParams.has('__i18n_build')) return;
+      const key = getCurrentPageKey();
+      const basePath = key === 'home' ? '/' : `/${key}/`;
+      url.pathname = lang === 'en' ? basePath : `/${lang}${basePath}`;
+      url.searchParams.delete('lang');
+      if (url.pathname + url.search + url.hash !== window.location.pathname + window.location.search + window.location.hash) {
+        window.location.assign(url);
+      }
     } catch {
       // Some file:// contexts or locked-down browsers can block history updates.
     }
   };
 
   const getProjectRootUrl = () => {
-    const current = new URL(window.location.href);
-    // Section pages live one folder deep (/products/, /about/ ...); everything else is at the root
-    return new URL(current.pathname.split('/').length > 2 ? '../' : './', current);
+    return new URL('/', window.location.origin);
   };
 
   const withLanguage = (url, lang) => {
-    url.searchParams.set('lang', lang);
-    return url.toString();
+    const target = new URL(url, window.location.href);
+    target.searchParams.delete('lang');
+    const cleanPath = target.pathname.replace(/^\/(zh|es|hi)(?=\/|$)/, '').replace(/\/index\.html$/, '/') || '/';
+    if (/^\/(privacy|terms|thank-you|sitemap)\.html$/.test(cleanPath)) {
+      target.pathname = cleanPath;
+      return target.pathname + target.search + target.hash;
+    }
+    target.pathname = lang === 'en' ? cleanPath : `/${lang}${cleanPath === '/' ? '/' : cleanPath}`;
+    return target.pathname + target.search + target.hash;
   };
 
   const getActiveLanguage = () => (LANGS.includes(state.lang) ? state.lang : readInitialLanguage());
@@ -443,16 +449,18 @@
     try {
       const url = new URL(rawHref, document.baseURI);
       if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
-      url.searchParams.set('lang', lang);
-      anchor.setAttribute('href', url.toString());
+      if (url.origin !== window.location.origin) return;
+      const localized = withLanguage(url, lang);
+      anchor.setAttribute('href', localized);
     } catch {
       // Keep the original href if the browser cannot normalize it.
     }
   };
 
   const getCurrentPageKey = () => {
-    const pathname = window.location.pathname.toLowerCase();
-    if (/\/(products|product-detail)\//.test(pathname) || /(product-center|product-detail)-preview\.html$/.test(pathname)) return 'products';
+    const pathname = window.location.pathname.toLowerCase().replace(/^\/(zh|es|hi)(?=\/|$)/, '') || '/';
+    if (/\/product-detail\//.test(pathname) || /product-detail-preview\.html$/.test(pathname)) return 'product-detail';
+    if (/\/products\//.test(pathname) || /product-center-preview\.html$/.test(pathname)) return 'products';
     if (/\/solutions\//.test(pathname) || pathname.endsWith('/solution-preview.html')) return 'solutions';
     if (/\/about\//.test(pathname) || pathname.endsWith('/company-presence-preview.html')) return 'about';
     if (/\/market\//.test(pathname) || pathname.endsWith('/market-preview.html')) return 'market';
@@ -634,31 +642,32 @@
     const homeUrl = new URL('index.html', root);
     const labels = NAV_LABELS[lang] || NAV_LABELS[DEFAULT_LANG];
     const targets = [
-      { key: 'home', href: withLanguage(new URL('index.html', root), lang) },
-      { key: 'products', href: withLanguage(new URL('products/', root), lang) },
+      { key: 'home', href: withLanguage(new URL('/', root), lang) },
+      { key: 'products', href: withLanguage(new URL('/products/', root), lang) },
       {
         key: 'solutions',
         href: hasLocalSolutions
           ? '#solutions'
           : isThankYouPage
             ? `${withLanguage(homeUrl, lang)}#solutions`
-            : withLanguage(new URL('solutions/', root), lang),
+            : withLanguage(new URL('/solutions/', root), lang),
       },
-      { key: 'about', href: withLanguage(new URL('about/', root), lang) },
+      { key: 'about', href: withLanguage(new URL('/about/', root), lang) },
       {
         key: 'market',
         href: hasLocalGlobal
           ? '#global'
           : isThankYouPage
             ? `${withLanguage(homeUrl, lang)}#global`
-            : withLanguage(new URL('market/', root), lang),
+            : withLanguage(new URL('/market/', root), lang),
       },
       {
         key: 'contact',
         href: hasLocalContact ? '#contact' : `${withLanguage(homeUrl, lang)}#contact`,
       },
     ];
-    const activeKey = getCurrentPageKey();
+    const currentPageKey = getCurrentPageKey();
+    const activeKey = currentPageKey === 'product-detail' ? 'products' : currentPageKey;
 
     targets.forEach((target, index) => {
       const link = navLinks[index];
@@ -702,8 +711,8 @@
       }
 
       if (!['file:', 'http:', 'https:'].includes(url.protocol)) return;
-      url.searchParams.set('lang', lang);
-      anchor.href = url.toString();
+      if (url.origin !== window.location.origin) return;
+      anchor.href = withLanguage(url, lang);
     });
     syncPrimaryNavigation(lang);
   };

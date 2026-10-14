@@ -98,6 +98,24 @@
     }
   ],
   "redirects": [
+    { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/", "statusCode": 301 },
+    { "source": "/products/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/products/", "statusCode": 301 },
+    { "source": "/product-detail/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/product-detail/", "statusCode": 301 },
+    { "source": "/solutions/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/solutions/", "statusCode": 301 },
+    { "source": "/market/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/market/", "statusCode": 301 },
+    { "source": "/about/", "has": [{ "type": "query", "key": "lang", "value": "zh" }], "destination": "/zh/about/", "statusCode": 301 },
+    { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/", "statusCode": 301 },
+    { "source": "/products/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/products/", "statusCode": 301 },
+    { "source": "/product-detail/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/product-detail/", "statusCode": 301 },
+    { "source": "/solutions/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/solutions/", "statusCode": 301 },
+    { "source": "/market/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/market/", "statusCode": 301 },
+    { "source": "/about/", "has": [{ "type": "query", "key": "lang", "value": "es" }], "destination": "/es/about/", "statusCode": 301 },
+    { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/", "statusCode": 301 },
+    { "source": "/products/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/products/", "statusCode": 301 },
+    { "source": "/product-detail/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/product-detail/", "statusCode": 301 },
+    { "source": "/solutions/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/solutions/", "statusCode": 301 },
+    { "source": "/market/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/market/", "statusCode": 301 },
+    { "source": "/about/", "has": [{ "type": "query", "key": "lang", "value": "hi" }], "destination": "/hi/about/", "statusCode": 301 },
     {
       "source": "/(.*)",
       "has": [

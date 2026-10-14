@@ -36,6 +36,11 @@ const CDP_PORT = 9222;
 
 const PAGES = [
   { file: 'index.html', name: 'home' },
+  { file: 'zh/index.html', name: 'home-zh' },
+  { file: 'es/index.html', name: 'home-es' },
+  { file: 'hi/index.html', name: 'home-hi' },
+  { file: 'es/products/index.html', name: 'products-es' },
+  { file: 'zh/products/index.html', name: 'products-zh' },
   { file: 'products/index.html', name: 'product-center' },
   { file: 'solutions/index.html', name: 'solution' },
   { file: 'about/index.html', name: 'company' },
@@ -73,9 +78,9 @@ async function measurePage(ws, send, file, width, name, shotPath) {
   const HIDDEN_EXPR = `(async () => {
     const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     for (let y = 0; y < document.documentElement.scrollHeight; y += Math.round(innerHeight * 0.6)) {
-      window.scrollTo(0, y); await wait(120);
+      window.scrollTo({ top: y, behavior: 'instant' }); await wait(120);
     }
-    window.scrollTo(0, document.documentElement.scrollHeight); await wait(1200);
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' }); await wait(1200);
     const effOpacity = (el) => { let o = 1; for (let n = el; n && n.nodeType === 1; n = n.parentElement) o *= parseFloat(getComputedStyle(n).opacity); return o; };
     const skip = (el) => el.closest('[aria-hidden="true"], dialog, [hidden], .dc-cookie, .dc-wa-fab, .floating-top, .mobile-menu, nav');
     const hidden = [];
@@ -88,7 +93,7 @@ async function measurePage(ws, send, file, width, name, shotPath) {
         hidden.push((el.id ? '#' + el.id : el.tagName.toLowerCase() + '.' + String(el.className).split(' ')[0]) + ' ' + Math.round(r.width) + 'x' + Math.round(r.height));
     });
     if (parseFloat(getComputedStyle(document.body).opacity) < 0.5) hidden.unshift('body');
-    window.scrollTo(0, 0); await wait(400);
+    window.scrollTo({ top: 0, behavior: 'instant' }); await wait(400);
     return JSON.stringify(hidden.slice(0, 8));
   })()`;
   const hr = await send('Runtime.evaluate', { expression: HIDDEN_EXPR, awaitPromise: true, returnByValue: true });
@@ -159,8 +164,18 @@ async function connectCDP() {
   const ws = new WebSocket(page.webSocketDebuggerUrl);
   let id = 0;
   const pending = new Map();
+  const events = [];
   ws.onmessage = (e) => {
     const msg = JSON.parse(e.data);
+    if (msg.method === 'Runtime.exceptionThrown') events.push({ type: 'exception', text: msg.params.exceptionDetails?.text || 'JavaScript exception' });
+    if (msg.method === 'Runtime.consoleAPICalled' && msg.params.type === 'error') {
+      const text = (msg.params.args || []).map((a) => a.value || a.description || '').join(' ');
+      events.push({ type: 'console', text });
+    }
+    if (msg.method === 'Network.responseReceived' && msg.params.response?.status >= 400) {
+      const responseUrl = msg.params.response.url || '';
+      if (responseUrl.startsWith(URL)) events.push({ type: 'http', status: msg.params.response.status, url: responseUrl });
+    }
     if (msg.id && pending.has(msg.id)) {
       const { resolve, reject } = pending.get(msg.id);
       pending.delete(msg.id);
@@ -177,7 +192,7 @@ async function connectCDP() {
   await send('Runtime.enable');
   await send('Network.enable');
   await send('Network.setCacheDisabled', { cacheDisabled: true });
-  return { ws, send };
+  return { ws, send, events };
 }
 
 /** 起静态服务器，返回子进程 (用完 kill) */
@@ -255,13 +270,18 @@ async function main() {
     const conn = await connectCDP();
     ws = conn.ws;
     const send = conn.send;
+    const events = conn.events;
     const results = {};
 
     for (const page of PAGES) {
       results[page.name] = {};
       for (const width of WIDTHS) {
+        events.length = 0;
         const shotPath = path.join(OUT, `${page.name}@${width}.png`);
         const m = await measurePage(ws, send, page.file, width, page.name, shotPath);
+        m.browserIssues = events.map((event) => event.type === 'http'
+          ? `HTTP ${event.status} ${event.url}`
+          : `${event.type}: ${event.text}`);
         results[page.name][width] = m;
         const tag = m.ok ? (m.overflow ? 'OVERFLOW' : 'ok') : 'FAIL';
         console.log(`  ${page.name} @${width} -> ${tag}`);
@@ -291,6 +311,7 @@ async function main() {
         if (cur.overflow) regressions.push(`${page.name}@${width}: 横向溢出 (${cur.sw}>${cur.vw})`);
         if (cur.navOverlap) regressions.push(`${page.name}@${width}: 导航最后一项被语言选择框遮住`);
         if (cur.hiddenContent && cur.hiddenContent.length) regressions.push(`${page.name}@${width}: 滚动到底后仍有内容看不见 -> ${cur.hiddenContent.join(', ')}`);
+        if (cur.browserIssues?.length) regressions.push(`${page.name}@${width}: 浏览器报错/本地资源失败 -> ${cur.browserIssues.join('; ')}`);
         if (cur.heroLeft === false) regressions.push(`${page.name}@${width}: HERO 文字跑到右半边（压到人物）`);
         // 与基线比对：拦截相对基线的变化
         if (old) {

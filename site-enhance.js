@@ -42,8 +42,7 @@
   };
 
   // Section pages live one folder deep (/products/, /about/ ...)
-  var IN_SECTION = location.pathname.split('/').length > 2;
-  var PRIVACY_HREF = IN_SECTION ? '../privacy.html' : 'privacy.html';
+  var PRIVACY_HREF = '/privacy.html';
 
   var COPY = {
     en: {

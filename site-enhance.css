@@ -178,3 +178,11 @@ html.dc-cookie-open .floating-top {
     margin: 0 0 6px;
   }
 }
+
+/* Longer Spanish labels need a little more room beside the language and quote controls. */
+@media (min-width: 981px) {
+  html[lang="es"] body .primary-nav {
+    gap: 18px;
+    left: 45%;
+  }
+}

@@ -41,7 +41,9 @@ for (const page of walk(ROOT)) {
   const html = fs.readFileSync(page, 'utf8');
   const next = html.replace(REF, (match, attr, ref, oldVersion) => {
     if (/^(https?:)?\/\//.test(ref)) return match;
-    const target = path.resolve(path.dirname(page), ref);
+    const target = ref.startsWith('/')
+      ? path.resolve(ROOT, `.${ref}`)
+      : path.resolve(path.dirname(page), ref);
     if (!fs.existsSync(target)) {
       console.error(`[stamp-versions] missing file: ${path.relative(ROOT, page)} -> ${ref}`);
       missing += 1;

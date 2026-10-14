@@ -24,12 +24,18 @@
 
 ## 改完代码后
 
+英文页面及翻译字典是源文件；`/zh/`、`/es/`、`/hi/` 下的页面是生成文件，不要手工编辑。更新页面文案或翻译字典后，按顺序运行：
+
 ```bash
-node tools/stamp-versions.mjs      # 更新 CSS/JS 的 ?v= 版本号（按文件内容自动生成）
-node scripts/visual-qa.mjs         # 发布前视觉体检：横向溢出、导航遮挡、首页标题位置
+node tools/build-i18n.mjs          # 生成中文、西语、印地语静态 HTML，并更新 hreflang 与 sitemap
+node tools/stamp-versions.mjs      # 更新所有子目录 HTML 中 CSS/JS 的 ?v= 内容哈希
+node tools/build-i18n.mjs --check  # 确认已提交的语言页与源文件一致
+node scripts/visual-qa.mjs        # 发布前视觉体检：横向溢出、导航遮挡、隐藏内容等
 ```
 
-`scripts/pre-push` 会在 `git push` 前自动跑这两步，安装方法：
+`build-i18n.mjs` 使用 Chrome 无头浏览器导出站点现有翻译字典渲染结果（可通过 `CHROME_PATH` 指定 Chrome 路径）。语言切换会跳到当前页面对应的语言网址；根目录始终为英文，不会按浏览器语言自动跳转。隐私、条款和感谢页面仍只有英文版。
+
+`scripts/pre-push` 会在 `git push` 前检查版本哈希、生成页一致性并运行视觉体检，安装方法：
 
 ```bash
 cp scripts/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push

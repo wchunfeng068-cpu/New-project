@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <!-- Hide the page only while it is being switched to another language (avoids a flash of
          the wrong language); visitors in the page's own language see it immediately. -->
-    <script>(function(){try{var d=document.documentElement,l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('travelday-site-language');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
+    <script>(function(){try{var d=document.documentElement,p=location.pathname.match(/^\/(zh|es|hi)(?:\/|$)/),l=p?p[1]:new URLSearchParams(location.search).get('lang');if(l&&l!==(d.getAttribute('data-default-lang')||'en'))d.classList.add('i18n-pending');}catch(e){}})();</script>
     <link rel="preload" as="image" href="../images/optimized/company-presence/hero-portrait.webp" type="image/webp" fetchpriority="high" />
     <!-- Chrome/Edge: when the visitor hovers or presses a link to another page of this site,
          render that page in the background so it appears instantly (other browsers ignore this) -->
@@ -12,6 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRAVELDAY | Company Presence</title>
     <link rel="canonical" href="https://luggage-dc.com/about/" />
+    <link rel="alternate" hreflang="en" href="https://luggage-dc.com/about/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://luggage-dc.com/zh/about/" />
+    <link rel="alternate" hreflang="es" href="https://luggage-dc.com/es/about/" />
+    <link rel="alternate" hreflang="hi" href="https://luggage-dc.com/hi/about/" />
+    <link rel="alternate" hreflang="x-default" href="https://luggage-dc.com/about/" />
     <meta
       name="description"
       content="TRAVELDAY company presence page showcasing the team, meeting culture, and brand atmosphere."
@@ -1643,7 +1648,7 @@
       }
 
     </style>
-    <link rel="stylesheet" href="../site-enhance.css?v=204e17f4c1" />
+    <link rel="stylesheet" href="../site-enhance.css?v=9f11f964a7" />
     <noscript><style>body.i18n-loading { opacity: 1 !important; animation: none !important; } [data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
     <style>
       /* Keep the header pixel-identical to the home page (styles.css), so it stays still
@@ -1825,7 +1830,7 @@
       </footer>
     </div>
 
-    <script src="../shared-shell.js?v=0971f07e36" defer></script>
+    <script src="../shared-shell.js?v=d737febe4e" defer></script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const teamMembers = [
@@ -1854,7 +1859,7 @@
         // Render spotlight cards
         stage.innerHTML = teamMembers.map((m, i) => `
           <article class="team-spotlight-card" data-index="${i}">
-            <img class="team-card-img" src="../images/optimized/team-members/${m.img.replace(/\.png$/, '.webp')}" data-original-src="../images/team-members/${m.img}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${m.name} - ${m.role}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" style="object-position: ${m.pos || '50% 8%'}" />
+            <img class="team-card-img" src="/images/optimized/team-members/${m.img.replace(/\.png$/, '.webp')}" data-original-src="/images/team-members/${m.img}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${m.name} - ${m.role}" loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async" style="object-position: ${m.pos || '50% 8%'}" />
             <div class="team-card-overlay">
               <div class="team-card-header">
                 <h3 class="team-card-name">${m.name}</h3>
@@ -1869,7 +1874,7 @@
         // Render thumbnails
         thumbsContainer.innerHTML = teamMembers.map((m, i) => `
           <button class="team-thumb${i === 0 ? ' is-active' : ''}" data-thumb="${i}" aria-label="View ${m.name}">
-            <img src="../images/optimized/team-members/${m.img.replace(/\.png$/, '.webp')}" data-original-src="../images/team-members/${m.img}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${m.name}" loading="lazy" />
+          <img src="/images/optimized/team-members/${m.img.replace(/\.png$/, '.webp')}" data-original-src="/images/team-members/${m.img}" onerror="this.onerror=null;this.src=this.dataset.originalSrc" alt="${m.name}" loading="lazy" />
           </button>
         `).join('');
 
@@ -1964,7 +1969,7 @@
         startAuto();
       });
     </script>
-    <script src="./company-presence-preview.js?v=180e900ff4" defer></script>
+    <script src="./company-presence-preview.js?v=cd4053715b" defer></script>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -2151,6 +2156,6 @@
       });
     </script>
 
-    <script src="../site-enhance.js?v=00977ce2b4" defer></script>
+    <script src="../site-enhance.js?v=252e331386" defer></script>
 </body>
 </html>
