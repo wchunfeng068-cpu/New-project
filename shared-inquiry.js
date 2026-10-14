@@ -510,6 +510,9 @@
       event.preventDefault();
       const submitButton = form.querySelector('[type="submit"]');
       const returnUrl = new URL('/thank-you.html', window.location.origin);
+      // The thank-you page exists once and translates itself from ?lang=.
+      const inquiryLang = getLanguage();
+      if (inquiryLang && inquiryLang !== 'en') returnUrl.searchParams.set('lang', inquiryLang);
       const payload = new FormData(form);
       payload.set('_captcha', 'false');
 

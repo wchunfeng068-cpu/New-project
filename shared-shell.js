@@ -635,6 +635,29 @@
     return topButton;
   };
 
+  // Footer: the section pages ship their footer in one language; set it to the page language.
+  const FOOTER_COPY = {
+    en: { rights: '© 2016-2026 TRAVELDAY. All rights reserved.', links: ['Privacy Policy', 'Terms of Service', 'Sitemap'], nav: 'Footer navigation', top: 'Back to top' },
+    zh: { rights: '© 2016-2026 TRAVELDAY. 保留所有权利。', links: ['隐私政策', '服务条款', '网站地图'], nav: '页脚导航', top: '返回顶部' },
+    es: { rights: '© 2016-2026 TRAVELDAY. Todos los derechos reservados.', links: ['Privacidad', 'Términos de servicio', 'Mapa del sitio'], nav: 'Navegación del pie de página', top: 'Volver arriba' },
+    hi: { rights: '© 2016-2026 TRAVELDAY. सर्वाधिकार सुरक्षित।', links: ['गोपनीयता नीति', 'सेवा की शर्तें', 'साइटमैप'], nav: 'फ़ुटर नेविगेशन', top: 'ऊपर जाएँ' },
+  };
+  const syncFooter = (lang) => {
+    const copy = FOOTER_COPY[lang] || FOOTER_COPY.en;
+    document.querySelectorAll('.site-footer').forEach((footer) => {
+      const rights = footer.querySelector(':scope > p');
+      if (rights && /TRAVELDAY/.test(rights.textContent)) rights.textContent = copy.rights;
+      const nav = footer.querySelector('nav');
+      if (nav) nav.setAttribute('aria-label', copy.nav);
+      [['privacy', 0], ['terms', 1], ['sitemap', 2]].forEach(([name, index]) => {
+        const link = footer.querySelector(`nav a[href*="${name}.html"]`);
+        if (link) link.textContent = copy.links[index];
+      });
+      const back = footer.querySelector('.back-top');
+      if (back) back.setAttribute('aria-label', copy.top);
+    });
+  };
+
   const setLanguage = (lang, options = {}) => {
     const next = isValidLang(lang) ? lang : getDefaultLang();
     state.lang = next;
@@ -643,6 +666,7 @@
     syncLanguageSelects(next);
     syncLanguageLinks(next);
     syncPrimaryNavigation(next);
+    syncFooter(next);
 
     const topButton = ensureTopButton();
     if (topButton) {
